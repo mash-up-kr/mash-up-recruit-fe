@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "stylelint-config-prettier",
+    "stylelint-config-styled-components"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx}"],
+      "customSyntax": "@stylelint/postcss-css-in-js"
+    }
+  ]
+}
