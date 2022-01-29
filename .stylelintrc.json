@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-prettier",
+    "stylelint-config-rational-order",
+    "stylelint-config-styled-components"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx}"],
+      "customSyntax": "@stylelint/postcss-css-in-js"
+    }
+  ]
+}
