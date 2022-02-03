@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-const resetCss = css`
+export const resetCss = css`
   html {
     /* 1rem = 10px */
     font-size: 62.5%;
@@ -180,5 +180,3 @@ const resetCss = css`
     pointer-events: none;
   }
 `;
-
-export default resetCss;
