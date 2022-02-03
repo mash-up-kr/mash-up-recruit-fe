@@ -6,7 +6,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "patch-package"
+    "lint:code": "eslint --ext .js,.jsx,.ts,.tsx",
+    "lint:code-fix": "eslint --fix --ext .js,.jsx,.ts,.tsx",
+    "prettier:code-fix": "prettier --write",
+    "lint:style": "stylelint **/*.(ts|tsx)",
+    "lint:style-fix": "stylelint **/*.(ts|tsx) --fix",
+    "postinstall": "patch-package",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -26,6 +32,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "patch-package": "^6.4.7",
     "postcss-syntax": "^0.36.2",
     "postinstall-postinstall": "^2.1.0",
@@ -41,5 +49,17 @@
     "node": "^16.13.0",
     "npm": "please-use-yarn",
     "yarn": "^1.22.17"
+  },
+  "lint-staged": {
+    "*.json": [
+      "yarn prettier:code-fix"
+    ],
+    ".*rc": [
+      "yarn prettier:code-fix"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint:code-fix --cache",
+      "yarn lint:style-fix --cache"
+    ]
   }
 }
