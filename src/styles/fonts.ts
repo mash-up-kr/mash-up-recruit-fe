@@ -76,3 +76,5 @@ export const fonts = {
     `,
   },
 } as const;
+
+export type FontType = typeof fonts;

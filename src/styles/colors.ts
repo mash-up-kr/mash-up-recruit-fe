@@ -15,3 +15,5 @@ export const colors = {
   purple20: '#E8E4FF',
   red70: '#FC4162',
 } as const;
+
+export type ColorType = typeof colors;
