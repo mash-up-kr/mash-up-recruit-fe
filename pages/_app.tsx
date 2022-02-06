@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app';
 import { Global } from '@emotion/react';
-import resetCss from '@/styles/reset';
+import globalStyles from '@/styles/globalStyles';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <Global styles={resetCss} />
+      <Global styles={globalStyles} />
       <Component {...pageProps} />
     </>
   );

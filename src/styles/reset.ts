@@ -135,7 +135,7 @@ const resetCss = css`
     /* TODO:(하준) 기본 Font Color 나오면 변경 */
     color: #000;
     /* TODO:(하준) 웹폰트 결정되면 변경 */
-    font-family: sans-serif;
+    font-family: SpoqaHanSansNeo, sans-serif;
     line-height: 1;
     /* TODO:(하준) 기본 BackgroundColor 나오면 변경 */
     background-color: #fff;
