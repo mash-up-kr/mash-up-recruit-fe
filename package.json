@@ -9,8 +9,8 @@
     "lint:code": "eslint --ext .js,.jsx,.ts,.tsx",
     "lint:code-fix": "eslint --fix --ext .js,.jsx,.ts,.tsx",
     "prettier:code-fix": "prettier --write",
-    "lint:style": "stylelint **/*.(ts|tsx)",
-    "lint:style-fix": "stylelint **/*.(ts|tsx) --fix",
+    "lint:style": "stylelint **/*.{ts,tsx}",
+    "lint:style-fix": "stylelint **/*.{ts,tsx} --fix",
     "postinstall": "patch-package",
     "prepare": "husky install"
   },
