@@ -19,24 +19,10 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
           <link
-            href="/fonts/Gilroy-Extrabold.woff"
-            rel="preload"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
             href="/fonts/SpoqaHanSansNeo-Regular.woff2"
             rel="preload"
             as="font"
             type="font/woff2"
-            crossOrigin="anonymous"
-          />
-          <link
-            href="/fonts/SpoqaHanSansNeo-Regular.woff"
-            rel="preload"
-            as="font"
-            type="font/woff"
             crossOrigin="anonymous"
           />
           <link
@@ -47,24 +33,10 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
           <link
-            href="/fonts/SpoqaHanSansNeo-Medium.woff"
-            rel="preload"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
             href="/fonts/SpoqaHanSansNeo-Bold.woff2"
             rel="preload"
             as="font"
             type="font/woff2"
-            crossOrigin="anonymous"
-          />
-          <link
-            href="/fonts/SpoqaHanSansNeo-Bold.woff"
-            rel="preload"
-            as="font"
-            type="font/woff"
             crossOrigin="anonymous"
           />
         </Head>
