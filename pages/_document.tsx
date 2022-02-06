@@ -12,28 +12,14 @@ class MyDocument extends Document {
       <Html lang="ko">
         <Head>
           <link
-            href="/fonts/Gilroy-ExtraBold.woff2"
+            href="/fonts/Gilroy-Extrabold.woff2"
             rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
-            href="/fonts/Gilroy-ExtraBold.woff"
-            rel="preload"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
-            href="/fonts/SpoqaHanSansNeo-Light.woff2"
-            rel="preload"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
-          <link
-            href="/fonts/SpoqaHanSansNeo-Light.woff"
+            href="/fonts/Gilroy-Extrabold.woff"
             rel="preload"
             as="font"
             type="font/woff"

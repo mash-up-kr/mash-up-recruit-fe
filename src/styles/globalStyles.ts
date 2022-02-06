@@ -5,29 +5,6 @@ const globalStyles = css`
   ${resetCss}
 
   @font-face {
-    font-weight: 300;
-    font-family: 'SpoqaHanSansNeo';
-    font-style: normal;
-    src: local('Spoqa Han Sans Neo Light'), local('SpoqaHanSansNeo-Light'),
-      url('fonts/SpoqaHanSansNeo-Light.woff2') format('woff2'),
-      url('fonts/SpoqaHanSansNeo-Light.woff') format('woff'),
-      url('fonts/SpoqaHanSansNeo-Light.ttf') format('truetype');
-    font-display: swap;
-  }
-
-  @font-face {
-    font-weight: 300;
-    font-family: 'SpoqaHanSansNeo';
-    font-style: normal;
-    src: local('Gilroy Extrabold'), local('Gilroy-Extrabold'),
-      url('fonts/Gilroy-Extrabold.woff2') format('woff2'),
-      url('fonts/Gilroy-Extrabold.woff') format('woff'),
-      url('fonts/Gilroy-ExtraBold.ttf') format('truetype');
-    font-display: swap;
-    unicode-range: U+0041-005A, U+0061-007A;
-  }
-
-  @font-face {
     font-weight: 400;
     font-family: 'SpoqaHanSansNeo';
     font-style: normal;
@@ -45,7 +22,7 @@ const globalStyles = css`
     src: local('Gilroy Extrabold'), local('Gilroy-Extrabold'),
       url('fonts/Gilroy-Extrabold.woff2') format('woff2'),
       url('fonts/Gilroy-Extrabold.woff') format('woff'),
-      url('fonts/Gilroy-ExtraBold.ttf') format('truetype');
+      url('fonts/Gilroy-Extrabold.ttf') format('truetype');
     font-display: swap;
     unicode-range: U+0041-005A, U+0061-007A;
   }
@@ -68,7 +45,7 @@ const globalStyles = css`
     src: local('Gilroy Extrabold'), local('Gilroy-Extrabold'),
       url('fonts/Gilroy-Extrabold.woff2') format('woff2'),
       url('fonts/Gilroy-Extrabold.woff') format('woff'),
-      url('fonts/Gilroy-ExtraBold.ttf') format('truetype');
+      url('fonts/Gilroy-Extrabold.ttf') format('truetype');
     font-display: swap;
     unicode-range: U+0041-005A, U+0061-007A;
   }
@@ -91,7 +68,7 @@ const globalStyles = css`
     src: local('Gilroy Extrabold'), local('Gilroy-Extrabold'),
       url('fonts/Gilroy-Extrabold.woff2') format('woff2'),
       url('fonts/Gilroy-Extrabold.woff') format('woff'),
-      url('fonts/Gilroy-ExtraBold.ttf') format('truetype');
+      url('fonts/Gilroy-Extrabold.ttf') format('truetype');
     font-display: swap;
     unicode-range: U+0041-005A, U+0061-007A;
   }
@@ -103,7 +80,7 @@ const globalStyles = css`
     src: local('Gilroy Extrabold'), local('Gilroy-Extrabold'),
       url('fonts/Gilroy-Extrabold.woff2') format('woff2'),
       url('fonts/Gilroy-Extrabold.woff') format('woff'),
-      url('fonts/Gilroy-ExtraBold.ttf') format('truetype');
+      url('fonts/Gilroy-Extrabold.ttf') format('truetype');
     font-display: swap;
     unicode-range: U+0041-005A, U+0061-007A;
   }
