@@ -57,26 +57,31 @@ export const fonts = {
     extrabold46: css`
       font-weight: 800;
       font-size: 4.6rem;
+      font-family: Gilroy;
       line-height: normal;
     `,
     extrabold26: css`
       font-weight: 800;
       font-size: 2.6rem;
+      font-family: Gilroy;
       line-height: normal;
     `,
     extrabold20: css`
       font-weight: 800;
       font-size: 2rem;
+      font-family: Gilroy;
       line-height: normal;
     `,
     extrabold18: css`
       font-weight: 800;
       font-size: 1.8rem;
+      font-family: Gilroy;
       line-height: normal;
     `,
     extrabold15: css`
       font-weight: 800;
       font-size: 1.5rem;
+      font-family: Gilroy;
       line-height: normal;
     `,
   },
