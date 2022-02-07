@@ -1,2 +1,2 @@
-export * from './reset';
+export * from './globalStyles';
 export * from './themes';
