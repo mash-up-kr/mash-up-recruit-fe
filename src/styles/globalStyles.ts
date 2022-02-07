@@ -1,12 +1,10 @@
-import resetCss from '@/styles/reset';
 import gilroy from '@/styles/fonts/gilroy';
-import spoqaHanSans from '@/styles/fonts/spoqaHanSans';
+import spoqaHanSansNeo from '@/styles/fonts/spoqaHanSansNeo';
 import { css } from '@emotion/react';
+import { resetCss } from './reset';
 
-const globalStyles = css`
-  ${resetCss}
+export const globalStyles = css`
   ${gilroy}
-  ${spoqaHanSans}
+  ${spoqaHanSansNeo}
+  ${resetCss}
 `;
-
-export default globalStyles;

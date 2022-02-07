@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-const spoqaHanSans = css`
+const spoqaHanSansNeo = css`
   @font-face {
     font-weight: 400;
     font-family: 'SpoqaHanSansNeo';
@@ -35,4 +35,4 @@ const spoqaHanSans = css`
   }
 `;
 
-export default spoqaHanSans;
+export default spoqaHanSansNeo;
