@@ -47,6 +47,11 @@ export const fonts = {
       font-size: 1.3rem;
       line-height: 1.5;
     `,
+    regular13: css`
+      font-weight: 400;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    `,
   },
   en: {
     extrabold46: css`
