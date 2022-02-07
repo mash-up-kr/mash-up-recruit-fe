@@ -12,6 +12,13 @@ class MyDocument extends Document {
       <Html lang="ko">
         <Head>
           <link
+            href="/fonts/Gilroy-Light.woff2"
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
             href="/fonts/Gilroy-Extrabold.woff2"
             rel="preload"
             as="font"
