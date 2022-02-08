@@ -7,6 +7,11 @@ export const fonts = {
       font-size: 4.6rem;
       line-height: 1.5;
     `,
+    bold24: css`
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 1.5;
+    `,
     bold22: css`
       font-weight: 700;
       font-size: 2.2rem;
@@ -15,6 +20,11 @@ export const fonts = {
     bold18: css`
       font-weight: 700;
       font-size: 1.8rem;
+      line-height: 1.5;
+    `,
+    bold16: css`
+      font-weight: 700;
+      font-size: 1.6rem;
       line-height: 1.5;
     `,
     medium16: css`
@@ -66,6 +76,12 @@ export const fonts = {
       font-family: Gilroy;
       line-height: normal;
     `,
+    extrabold24: css`
+      font-weight: 800;
+      font-size: 2.4rem;
+      font-family: Gilroy;
+      line-height: normal;
+    `,
     extrabold20: css`
       font-weight: 800;
       font-size: 2rem;
@@ -81,6 +97,18 @@ export const fonts = {
     extrabold15: css`
       font-weight: 800;
       font-size: 1.5rem;
+      font-family: Gilroy;
+      line-height: normal;
+    `,
+    light60: css`
+      font-weight: 300;
+      font-size: 6rem;
+      font-family: Gilroy;
+      line-height: normal;
+    `,
+    light26: css`
+      font-weight: 300;
+      font-size: 2.6rem;
       font-family: Gilroy;
       line-height: normal;
     `,
