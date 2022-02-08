@@ -64,6 +64,12 @@ export const fonts = {
     `,
   },
   en: {
+    extrabold100: css`
+      font-weight: 800;
+      font-size: 10rem;
+      font-family: Gilroy;
+      line-height: normal;
+    `,
     extrabold46: css`
       font-weight: 800;
       font-size: 4.6rem;
