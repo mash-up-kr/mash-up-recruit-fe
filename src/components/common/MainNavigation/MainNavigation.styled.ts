@@ -33,6 +33,10 @@ export const NavList = styled.ul`
       & > a {
         color: ${theme.colors.gray80};
       }
+
+      & > a:hover {
+        color: ${theme.colors.purple70};
+      }
     }
   `}
 `;
@@ -44,5 +48,9 @@ export const LoginButton = styled.button`
     color: ${theme.colors.gray80};
     background: transparent;
     border: 0;
+
+    &:hover {
+      color: ${theme.colors.purple70};
+    }
   `}
 `;
