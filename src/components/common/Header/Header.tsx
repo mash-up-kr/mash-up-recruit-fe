@@ -1,6 +1,6 @@
 import { LinkTo, MainNavigation } from '@/components';
 import MashUpLogo from '@/assets/svg/mash-up-logo.svg';
-import { HOME_PAGE } from '@/consts';
+import { HOME_PAGE } from '@/constants';
 import * as Styled from './Header.styled';
 
 const Header = () => {
