@@ -1,4 +1,4 @@
-import { FAQ_PAGE, HOME_PAGE } from '@/consts';
+import { FAQ_PAGE, HOME_PAGE } from '@/constants';
 import { LinkTo } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import * as Styled from './MainNavigation.styled';
