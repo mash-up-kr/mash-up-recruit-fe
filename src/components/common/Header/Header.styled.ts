@@ -20,6 +20,7 @@ export const Heading = styled.h1`
     display: inline-block;
     width: 24rem;
     padding: 0.7rem 0 0 0.6rem;
+
     span {
       ${theme.fonts.en.extrabold24}
       margin-left: 1.3rem;
