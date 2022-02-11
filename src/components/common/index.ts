@@ -5,3 +5,4 @@ export { default as Layout } from './Layout/Layout';
 export { default as Portal } from './Portal/Portal.component';
 export { default as Modal } from './Modal/Modal.component';
 export { default as LoginModalDialog } from './LoginModalDialog/LoginModalDialog.component';
+export { default as AlertModalDialog } from './AlertModalDialog/AlertModalDialog.component';
