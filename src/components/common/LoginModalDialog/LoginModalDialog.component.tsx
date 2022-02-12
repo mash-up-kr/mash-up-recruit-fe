@@ -1,6 +1,7 @@
 import { Modal } from '@/components';
 import GoogleLogo from '@/assets/svg/google-logo.svg';
 import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from 'react';
+import XIcon from '@/assets/svg/x-icon.svg';
 import * as Styled from './LoginModalDialog.styled';
 
 const STATIC_MESSAGE = {
@@ -33,6 +34,10 @@ interface LoginModalDialogProps {
 }
 
 const LoginModalDialog = ({ type, device, setIsOpenModal, beforeRef }: LoginModalDialogProps) => {
+  const handleCloseLoginModal: MouseEventHandler<HTMLButtonElement> = () => {
+    setIsOpenModal(false);
+  };
+
   // TODO:(하준) 로그인 버튼시 작동 할 이벤트 핸들러 정의 (props로 빼도 무방)
   const handleLogin: MouseEventHandler<HTMLButtonElement> = () => {};
 
@@ -41,13 +46,17 @@ const LoginModalDialog = ({ type, device, setIsOpenModal, beforeRef }: LoginModa
       <Styled.Dialog>
         <Styled.Heading>{STATIC_MESSAGE.header[type]}</Styled.Heading>
         <Styled.Paragraph>{STATIC_MESSAGE.paragraph[device][type]}</Styled.Paragraph>
-        <Styled.LoginButton onClick={handleLogin}>
+        <Styled.LoginButton type="button" onClick={handleLogin}>
           <GoogleLogo />
           Google 계정으로 로그인
         </Styled.LoginButton>
         <Styled.Notice>
           로그인시 서비스 이용약관과 개인정보 처리방침에 동의하게 됩니다.
         </Styled.Notice>
+        <Styled.CloseButton type="button" onClick={handleCloseLoginModal}>
+          <div />
+          <XIcon />
+        </Styled.CloseButton>
       </Styled.Dialog>
     </Modal>
   );

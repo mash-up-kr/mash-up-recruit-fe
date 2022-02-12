@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 export const Dialog = styled.div`
   ${({ theme }) => css`
+    position: relative;
     z-index: ${theme.zIndex.dialog};
     min-width: 44rem;
     min-height: 27.3rem;
@@ -16,6 +17,7 @@ export const Dialog = styled.div`
 export const Heading = styled.h2`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold22}
+    margin-top: 3.4rem;
     color: ${theme.colors.gray80};
   `}
 `;
@@ -26,6 +28,32 @@ export const Paragraph = styled.p`
     margin: 0.8rem auto 2.4rem;
     color: ${theme.colors.gray60};
     white-space: pre-wrap;
+  `}
+`;
+
+export const CloseButton = styled.button`
+  ${({ theme }) => css`
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 4.4rem;
+    height: 4.4rem;
+    padding: 0;
+    background: ${theme.colors.gray10};
+    border: 0;
+    border-radius: 1.2rem;
+
+    &:hover {
+      & > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 1.2rem;
+      }
+    }
   `}
 `;
 
@@ -46,6 +74,11 @@ export const LoginButton = styled.button`
     & > svg {
       position: absolute;
       left: 2.4rem;
+    }
+
+    &:hover {
+      background: ${theme.colors.gray10};
+      border: 0.1rem solid ${theme.colors.gray40};
     }
   `}
 `;
