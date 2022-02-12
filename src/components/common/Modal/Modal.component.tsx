@@ -28,7 +28,6 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
   }) => {
     if (target === currentTarget) {
       setIsOpenModal(false);
-      beforeRef.current.focus();
     }
   };
 
@@ -40,7 +39,6 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
     const onModalCloseWithEscHandler = ({ key }: KeyboardEvent) => {
       if (key === 'Escape') {
         setIsOpenModal(false);
-        beforeRef.current.focus();
       }
     };
 
@@ -74,12 +72,16 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
 
     if (!mounted) setMounted(true);
 
+    const beforRefInEffect = beforeRef;
+
     return () => {
       $rootNode?.removeAttribute('aria-hidden');
       document.body.style.overflow = 'unset';
 
       window.removeEventListener('keyup', onModalCloseWithEscHandler);
       window.removeEventListener('keydown', handleFocusTrap);
+
+      beforRefInEffect.current.focus();
     };
   }, [beforeRef, mounted, setIsOpenModal]);
 
