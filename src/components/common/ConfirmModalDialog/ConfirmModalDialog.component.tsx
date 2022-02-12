@@ -2,7 +2,7 @@ import { Modal } from '@/components';
 import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from 'react';
 import * as Styled from './ConfirmModalDialog.styled';
 
-interface ConfirmModalDialogProps {
+export interface ConfirmModalDialogProps {
   heading: string;
   paragraph: string;
   handleCancelButton: MouseEventHandler<HTMLButtonElement>;

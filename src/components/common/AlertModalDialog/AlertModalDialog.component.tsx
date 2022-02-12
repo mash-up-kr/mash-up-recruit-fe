@@ -2,7 +2,7 @@ import { Modal } from '@/components';
 import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from 'react';
 import * as Styled from './AlertModalDialog.styled';
 
-interface AlertModalDialogProps {
+export interface AlertModalDialogProps {
   heading: string;
   paragraph: string;
   handleApprovalButton: MouseEventHandler<HTMLButtonElement>;

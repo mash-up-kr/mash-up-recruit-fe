@@ -26,7 +26,7 @@ const STATIC_MESSAGE = {
   },
 };
 
-interface LoginModalDialogProps {
+export interface LoginModalDialogProps {
   type: 'login' | 'apply';
   device: 'desktop' | 'tablet' | 'mobile';
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
