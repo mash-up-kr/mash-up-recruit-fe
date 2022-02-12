@@ -44,12 +44,26 @@ export const DialogFooter = styled.div`
 export const ApprovalButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
+    position: relative;
     width: 10rem;
     height: 5rem;
     margin-left: 1.2rem;
     padding: 0;
     color: ${theme.colors.white};
     background: ${theme.colors.purple70};
+    border: 0;
     border-radius: 1.2rem;
+
+    &:hover {
+      & > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 1.2rem;
+      }
+    }
   `}
 `;

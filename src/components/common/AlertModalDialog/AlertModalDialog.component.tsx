@@ -26,6 +26,7 @@ const AlertModalDialog = ({
         </Styled.DialogInner>
         <Styled.DialogFooter>
           <Styled.ApprovalButton type="button" onClick={handleApprovalButton}>
+            <div />
             확인
           </Styled.ApprovalButton>
         </Styled.DialogFooter>

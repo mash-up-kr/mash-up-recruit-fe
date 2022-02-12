@@ -32,9 +32,11 @@ const ConfirmModalDialog = ({
         </Styled.DialogInner>
         <Styled.DialogFooter>
           <Styled.CancelButton type="button" onClick={handleCancelButton}>
+            <div />
             {cancelButtonMessage}
           </Styled.CancelButton>
           <Styled.ApprovalButton type="button" onClick={handleApprovalButton}>
+            <div />
             {approvalButtonMessage}
           </Styled.ApprovalButton>
         </Styled.DialogFooter>
