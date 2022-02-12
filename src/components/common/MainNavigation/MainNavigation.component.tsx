@@ -43,6 +43,4 @@ const MainNavigation = () => {
   );
 };
 
-MainNavigation.displayName = 'MainNavigation';
-
 export default MainNavigation;
