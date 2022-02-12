@@ -44,7 +44,7 @@ export const DialogFooter = styled.div`
 export const ApprovalButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
-    width: 10.1rem;
+    width: 10rem;
     height: 5rem;
     margin-left: 1.2rem;
     padding: 0;

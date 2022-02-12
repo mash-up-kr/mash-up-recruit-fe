@@ -44,7 +44,7 @@ export const DialogFooter = styled.div`
 export const CancelButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
-    width: 9.9rem;
+    width: 10rem;
     height: 5rem;
     padding: 0;
     color: ${theme.colors.gray80};
@@ -56,7 +56,7 @@ export const CancelButton = styled.button`
 export const ApprovalButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
-    width: 10.1rem;
+    width: 10rem;
     height: 5rem;
     margin-left: 1.2rem;
     padding: 0;
