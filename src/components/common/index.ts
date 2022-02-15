@@ -9,3 +9,4 @@ export { default as AlertModalDialog } from './AlertModalDialog/AlertModalDialog
 export { default as ConfirmModalDialog } from './ConfirmModalDialog/ConfirmModalDialog.component';
 export { default as LabeledInput } from './LabeledInput/LabeledInput.component';
 export { default as LabeledTextArea } from './LabeledTextArea/LabeledTextArea.component';
+export { default as LabeledCheckbox } from './LabeledCheckbox/LabeledCheckbox.component';
