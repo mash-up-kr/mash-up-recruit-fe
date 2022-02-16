@@ -14,7 +14,7 @@ import * as Styled from './Modal.styled';
 interface ModalProps {
   children: ReactNode;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
-  beforeRef: MutableRefObject<HTMLButtonElement>;
+  beforeRef?: MutableRefObject<HTMLButtonElement>;
 }
 
 const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
@@ -81,7 +81,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
       window.removeEventListener('keyup', onModalCloseWithEscHandler);
       window.removeEventListener('keydown', handleFocusTrap);
 
-      beforRefInEffect.current.focus();
+      beforRefInEffect?.current.focus();
     };
   }, [beforeRef, mounted, setIsOpenModal]);
 
