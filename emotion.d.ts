@@ -1,5 +1,13 @@
 import '@emotion/react';
-import { FontType, ColorType, ZIndexType, InputType, A11yTheme, ButtonTheme } from '@/styles';
+import {
+  FontType,
+  ColorType,
+  ZIndexType,
+  InputType,
+  A11yTheme,
+  ButtonTheme,
+  BreakPointTheme,
+} from '@/styles';
 
 declare module '@emotion/react' {
   export interface Theme {
@@ -9,5 +17,6 @@ declare module '@emotion/react' {
     input: InputType;
     a11y: A11yTheme;
     button: ButtonTheme;
+    breakPoint: BreakPointTheme;
   }
 }

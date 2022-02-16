@@ -5,3 +5,4 @@ export * from './theme';
 export * from './input';
 export * from './a11y';
 export * from './button';
+export * from './breakPoint';

@@ -4,6 +4,7 @@ import { zIndex } from './zIndex';
 import { input } from './input';
 import { a11y } from './a11y';
 import { button } from './button';
+import { breakPoint } from './breakPoint';
 
 export const theme = {
   fonts,
@@ -12,4 +13,5 @@ export const theme = {
   input,
   a11y,
   button,
+  breakPoint,
 };
