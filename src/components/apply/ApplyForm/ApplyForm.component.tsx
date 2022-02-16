@@ -94,8 +94,8 @@ const ApplyForm = ({ heading, questionList }: ApplyFormProps) => {
                 required: '이름은 필수로 입력해야 해요!',
               })}
               maxLength={30}
-              isError={!!errors.name}
-              errorMessage={errors.name?.message}
+              isError={!!errors.userName}
+              errorMessage={errors.userName?.message}
               id={APPLY_FORM_KEYS.userName}
               placeholder="내용을 입력해주세요"
               label="이름"
