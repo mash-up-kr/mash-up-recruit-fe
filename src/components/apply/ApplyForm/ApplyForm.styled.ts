@@ -1,3 +1,4 @@
+import LinkTo from '@/components/common/LinkTo/LinkTo.component';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -85,11 +86,13 @@ export const SubmitButton = styled.button`
   `}
 `;
 
-export const BackToListButton = styled.button`
+export const BackToListLink = styled(LinkTo)`
   ${({ theme }) => css`
     ${theme.button.type.defaultLine}
+    display: inline-block;
     width: 100%;
     margin-top: 1.6rem;
+    text-align: center;
 
     @media (max-width: ${theme.breakPoint.mobile}) {
       width: 100%;

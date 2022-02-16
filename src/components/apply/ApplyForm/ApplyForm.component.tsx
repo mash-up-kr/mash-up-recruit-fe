@@ -6,9 +6,9 @@ import {
   APPLY_IOS_PAGE,
   APPLY_NODE_PAGE,
   APPLY_SPRING_PAGE,
+  HOME_PAGE,
 } from '@/constants';
 import { ValueOf } from '@/types';
-import { useRouter } from 'next/router';
 import { Question } from 'pages/apply/[platformName]';
 import { ChangeEventHandler } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -53,8 +53,6 @@ const ApplyForm = ({ heading, questionList }: ApplyFormProps) => {
     trigger,
     formState: { errors },
   } = useForm<ApplyFormValues>();
-
-  const router = useRouter();
 
   const handleReplacePhoneNumber: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
     const onlyNumberReg = /[^0-9]/g;
@@ -218,9 +216,7 @@ const ApplyForm = ({ heading, questionList }: ApplyFormProps) => {
           <Styled.SubmitButton disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}>
             제출하기
           </Styled.SubmitButton>
-          <Styled.BackToListButton type="button" onClick={router.back}>
-            목록으로 돌아가기
-          </Styled.BackToListButton>
+          <Styled.BackToListLink href={HOME_PAGE}>목록으로 돌아가기</Styled.BackToListLink>
         </Styled.ControlSection>
       </form>
     </section>
