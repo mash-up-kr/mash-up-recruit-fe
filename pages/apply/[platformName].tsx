@@ -1,10 +1,12 @@
-import { ApplyLayout } from '@/components';
+import { ApplyLayout, ConfirmModalDialog } from '@/components';
 import {
   PlatformHeadings,
   PLATFORM_HEADINGS,
 } from '@/components/apply/ApplyForm/ApplyForm.component';
+import { usePreventPageChange } from '@/hooks';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export interface Question {
   content: string;
@@ -19,13 +21,39 @@ interface ApplyProps {
 }
 
 const Apply = ({ questionList }: ApplyProps) => {
-  const route = useRouter();
+  const router = useRouter();
+
+  const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
+  const [afterBlockingPath, setAfterBlockingPath] = useState('/');
+
+  const handleCloseConfirmModal = () => {
+    setIsOpenConfirmModal(false);
+  };
+
+  const handleMoveAfterBlocking = () => {
+    router.push(afterBlockingPath);
+  };
+
+  usePreventPageChange(isOpenConfirmModal, setIsOpenConfirmModal, setAfterBlockingPath);
 
   return (
-    <ApplyLayout
-      heading={PLATFORM_HEADINGS[route.asPath as keyof PlatformHeadings]}
-      questionList={questionList}
-    />
+    <>
+      <ApplyLayout
+        heading={PLATFORM_HEADINGS[router.asPath as keyof PlatformHeadings]}
+        questionList={questionList}
+      />
+      {isOpenConfirmModal && (
+        <ConfirmModalDialog
+          approvalButtonMessage="나가기"
+          cancelButtonMessage="머물기"
+          handleApprovalButton={handleMoveAfterBlocking}
+          handleCancelButton={handleCloseConfirmModal}
+          heading="지금..나가시게요..?"
+          paragraph="저장 안된 내용은..날아갈 수 있다능.."
+          setIsOpenModal={setIsOpenConfirmModal}
+        />
+      )}
+    </>
   );
 };
 
