@@ -39,7 +39,15 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
       <>
         <Styled.Label htmlFor={id}>{label}</Styled.Label>
         {required && <Styled.RequiredDot />}
-        <Styled.Input id={id} name={id} isError={isError} ref={ref} {...restProps} $size={$size} />
+        <Styled.Input
+          id={id}
+          name={id}
+          isError={isError}
+          ref={ref}
+          {...restProps}
+          $size={$size}
+          autoComplete="off"
+        />
         {isError && <Styled.ErrorMessage>{errorMessage}</Styled.ErrorMessage>}
         {maxContentSize && (
           <Styled.WatchLengthWrapper>
