@@ -5,6 +5,10 @@ export const PlatformHeading = styled.h3`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold46};
     color: ${theme.colors.gray80};
+
+    @media (max-width: ${theme.breakPoint.mobile}) {
+      ${theme.fonts.kr.bold24}
+    }
   `}
 `;
 
@@ -17,11 +21,15 @@ export const SectionHeading = styled.h4`
     ${theme.fonts.kr.bold24};
     margin-bottom: 2.4rem;
     color: ${theme.colors.gray80};
+    @media (max-width: ${theme.breakPoint.mobile}) {
+      ${theme.fonts.kr.bold22}
+    }
   `}
 `;
 
 export const PersonalInformationWrapper = styled.div`
-  width: 53.2rem;
+  width: 100%;
+  max-width: 53.2rem;
   margin-bottom: 3.6rem;
 `;
 
@@ -42,8 +50,14 @@ export const QuestionWrapper = styled.div`
 `;
 
 export const ControlSection = styled.div`
-  width: 41.6rem;
-  margin-top: 3.6rem;
+  ${({ theme }) => css`
+    width: 41.6rem;
+    margin-top: 3.6rem;
+
+    @media (max-width: ${theme.breakPoint.mobile}) {
+      width: 100%;
+    }
+  `}
 `;
 
 export const TempSaveButton = styled.button`
@@ -51,6 +65,12 @@ export const TempSaveButton = styled.button`
     ${theme.button.type.primaryLine}
     width: 20rem;
     margin-right: 1.6rem;
+
+    @media (max-width: ${theme.breakPoint.mobile}) {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 1.6rem;
+    }
   `}
 `;
 
@@ -58,6 +78,10 @@ export const SubmitButton = styled.button`
   ${({ theme }) => css`
     ${theme.button.type.primary}
     width: 20rem;
+    @media (max-width: ${theme.breakPoint.mobile}) {
+      width: 100%;
+      margin-right: 0;
+    }
   `}
 `;
 
@@ -66,5 +90,10 @@ export const BackToListButton = styled.button`
     ${theme.button.type.defaultLine}
     width: 100%;
     margin-top: 1.6rem;
+
+    @media (max-width: ${theme.breakPoint.mobile}) {
+      width: 100%;
+      margin-top: 6rem;
+    }
   `}
 `;
