@@ -72,7 +72,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
 
     if (!mounted) setMounted(true);
 
-    const beforRefInEffect = beforeRef;
+    const beforeRefSnapshot = beforeRef;
 
     return () => {
       $rootNode?.removeAttribute('aria-hidden');
@@ -81,7 +81,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
       window.removeEventListener('keyup', onModalCloseWithEscHandler);
       window.removeEventListener('keydown', handleFocusTrap);
 
-      beforRefInEffect?.current.focus();
+      beforeRefSnapshot?.current.focus();
     };
   }, [beforeRef, mounted, setIsOpenModal]);
 
