@@ -7,7 +7,7 @@ interface LabeledTextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   isError?: boolean;
   errorMessage?: string;
   currentLength?: number;
-  maxContentSize?: number | null;
+  maxContentLength?: number | null;
 }
 
 const LabeledTextArea = forwardRef<HTMLTextAreaElement, LabeledTextAreaProps>(
@@ -19,7 +19,7 @@ const LabeledTextArea = forwardRef<HTMLTextAreaElement, LabeledTextAreaProps>(
       isError = false,
       errorMessage = '',
       currentLength = 0,
-      maxContentSize = null,
+      maxContentLength = null,
       ...restProps
     },
     ref,
@@ -30,18 +30,18 @@ const LabeledTextArea = forwardRef<HTMLTextAreaElement, LabeledTextAreaProps>(
         {required && <Styled.RequiredDot />}
         <Styled.TextArea id={id} name={id} isError={isError} {...restProps} ref={ref} />
         {isError && <Styled.ErrorMessage>{errorMessage}</Styled.ErrorMessage>}
-        {maxContentSize && (
+        {maxContentLength && (
           <Styled.WatchLengthWrapper>
             <Styled.CurrentLength
               state={(() => {
-                if (currentLength === maxContentSize) return 'max';
+                if (currentLength >= maxContentLength) return 'max';
                 if (currentLength === 0) return 'empty';
                 return 'writing';
               })()}
             >
               {currentLength}
             </Styled.CurrentLength>
-            <Styled.LimitLength>/{maxContentSize}</Styled.LimitLength>
+            <Styled.LimitLength>/{maxContentLength}</Styled.LimitLength>
           </Styled.WatchLengthWrapper>
         )}
       </>

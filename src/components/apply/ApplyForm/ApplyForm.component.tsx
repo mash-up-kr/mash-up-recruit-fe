@@ -159,9 +159,12 @@ const ApplyForm = ({ heading, questionList }: ApplyFormProps) => {
                         value: question.required,
                         message: '필수로 입력해야하는 항목이에요!',
                       },
-                      maxLength: question.maxContentSize,
+                      maxLength: {
+                        value: question.maxContentLength || Infinity,
+                        message: '최대 글자수를 초과하였습니다.',
+                      },
                     })}
-                    maxLength={question.maxContentSize}
+                    maxLength={question.maxContentLength || undefined}
                     label={question.content}
                     placeholder="내용을 입력해주세요."
                     required={question.required}
@@ -172,7 +175,7 @@ const ApplyForm = ({ heading, questionList }: ApplyFormProps) => {
                       handleValidateForm(uniqueQuestionId);
                     }}
                     currentLength={watch(uniqueQuestionId)?.length}
-                    maxContentSize={question.maxContentSize}
+                    maxContentLength={question.maxContentLength}
                   />
                 ) : (
                   <LabeledInput
@@ -181,9 +184,12 @@ const ApplyForm = ({ heading, questionList }: ApplyFormProps) => {
                         value: question.required,
                         message: '필수로 입력해야하는 항목이에요!',
                       },
-                      maxLength: question.maxContentSize,
+                      maxLength: {
+                        value: question.maxContentLength || Infinity,
+                        message: '최대 글자수를 초과하였습니다.',
+                      },
                     })}
-                    maxLength={question.maxContentSize}
+                    maxLength={question.maxContentLength || undefined}
                     id={uniqueQuestionId}
                     label={question.content}
                     required={question.required}
@@ -195,7 +201,7 @@ const ApplyForm = ({ heading, questionList }: ApplyFormProps) => {
                       handleValidateForm(uniqueQuestionId);
                     }}
                     currentLength={watch(uniqueQuestionId)?.length}
-                    maxContentSize={question.maxContentSize}
+                    maxContentLength={question.maxContentLength}
                   />
                 )}
               </Styled.QuestionWrapper>

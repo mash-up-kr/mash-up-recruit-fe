@@ -17,7 +17,7 @@ interface LabeledInputProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   errorMessage?: string;
   currentLength?: number;
-  maxContentSize?: number | null;
+  maxContentLength?: number | null;
 }
 
 const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
@@ -30,7 +30,7 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
       isError = false,
       errorMessage = '',
       currentLength = 0,
-      maxContentSize = null,
+      maxContentLength = null,
       ...restProps
     },
     ref,
@@ -49,18 +49,18 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
           autoComplete="off"
         />
         {isError && <Styled.ErrorMessage>{errorMessage}</Styled.ErrorMessage>}
-        {maxContentSize && (
+        {maxContentLength && (
           <Styled.WatchLengthWrapper>
             <Styled.CurrentLength
               state={(() => {
-                if (currentLength === maxContentSize) return 'max';
+                if (currentLength >= maxContentLength) return 'max';
                 if (currentLength === 0) return 'empty';
                 return 'writing';
               })()}
             >
               {currentLength}
             </Styled.CurrentLength>
-            <Styled.LimitLength>/{maxContentSize}</Styled.LimitLength>
+            <Styled.LimitLength>/{maxContentLength}</Styled.LimitLength>
           </Styled.WatchLengthWrapper>
         )}
       </>
