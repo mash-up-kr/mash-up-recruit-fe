@@ -1,10 +1,13 @@
-import { FAQ_PAGE, HOME_PAGE } from '@/constants';
+import { FAQ_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
 import { LinkTo, LoginModalDialog } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import { MouseEventHandler, MutableRefObject, useRef, useState } from 'react';
+import { useDetectViewPort } from '@/hooks';
 import * as Styled from './MainNavigation.styled';
 
 const MainNavigation = () => {
+  const { size } = useDetectViewPort();
+
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const loginButtonRef = useRef<HTMLButtonElement>(null) as MutableRefObject<HTMLButtonElement>;
 
@@ -21,7 +24,7 @@ const MainNavigation = () => {
           </li>
           <li>
             <LinkTo href={FAQ_PAGE}>자주 묻는 질문</LinkTo>
-            <DivisionLine />
+            <DivisionLine width={size === VIEWPORT_SIZE.MOBILE ? '1' : '2'} />
           </li>
           <li>
             <Styled.LoginButton type="button" onClick={handleOpenLoginModal} ref={loginButtonRef}>

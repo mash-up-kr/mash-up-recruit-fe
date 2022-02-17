@@ -16,7 +16,7 @@ export const NavList = styled.ul`
       margin: 0 2rem;
 
       &:first-of-type {
-        margin-left: 3.4rem;
+        margin-left: 0;
       }
       &:nth-of-type(2) {
         display: flex;
@@ -38,6 +38,12 @@ export const NavList = styled.ul`
         color: ${theme.colors.purple70};
       }
     }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      & > li {
+        ${theme.fonts.kr.medium15};
+      }
+    }
   `}
 `;
 
@@ -51,6 +57,9 @@ export const LoginButton = styled.button`
 
     &:hover {
       color: ${theme.colors.purple70};
+    }
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium15};
     }
   `}
 `;
