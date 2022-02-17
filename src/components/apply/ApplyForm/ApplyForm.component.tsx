@@ -1,4 +1,4 @@
-import { LabeledCheckbox, LabeledInput, LabeledTextArea, LinkTo } from '@/components';
+import { LabeledCheckbox, LabeledInput, LabeledTextArea } from '@/components';
 import {
   APPLY_ANDROID_PAGE,
   APPLY_DESIGN_PAGE,
@@ -213,7 +213,11 @@ const ApplyForm = ({ heading, questionList }: ApplyFormProps) => {
           checked={watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
           id={APPLY_FORM_KEYS.isAgreePersonalInfo}
         >
-          <LinkTo href="/">개인정보 수집 및 이용</LinkTo>에 동의합니다.
+          {/* TODO:(하준) 개인정보 수집 및 이용 동의 페이지 링크로 수정 */}
+          <a href="http://devfolio.world" target="_blank" rel="noreferrer">
+            개인정보 수집 및 이용
+          </a>
+          에 동의합니다.
         </LabeledCheckbox>
         <Styled.ControlSection>
           <Styled.TempSaveButton disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}>
