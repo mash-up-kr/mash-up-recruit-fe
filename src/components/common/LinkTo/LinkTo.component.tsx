@@ -7,7 +7,7 @@ interface LinkToProps extends LinkProps {
   className?: string;
 }
 
-const LinkTo = ({ href, children, className, ...rest }: LinkToProps) => {
+const LinkTo = ({ href, children, className = '', ...rest }: LinkToProps) => {
   return (
     <Link href={href} passHref {...rest}>
       <a href={href} className={className}>
@@ -18,7 +18,3 @@ const LinkTo = ({ href, children, className, ...rest }: LinkToProps) => {
 };
 
 export default LinkTo;
-
-LinkTo.defaultProps = {
-  className: '',
-};
