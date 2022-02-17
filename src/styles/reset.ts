@@ -165,6 +165,10 @@ export const resetCss = css`
     border-color: transparent;
     cursor: pointer;
     user-select: none;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   abbr[title] {
