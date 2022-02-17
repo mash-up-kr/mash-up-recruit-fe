@@ -22,7 +22,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
 
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  const HandleCloseModalWithMouseHandler: MouseEventHandler<HTMLDivElement> = ({
+  const handleCloseModalWithMouseHandler: MouseEventHandler<HTMLDivElement> = ({
     target,
     currentTarget,
   }) => {
@@ -87,7 +87,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
 
   return (
     <Portal elementId="modal-root" mounted={mounted}>
-      <Styled.Modal ref={dialogRef} tabIndex={-1} onClick={HandleCloseModalWithMouseHandler}>
+      <Styled.Modal ref={dialogRef} tabIndex={-1} onClick={handleCloseModalWithMouseHandler}>
         {children}
       </Styled.Modal>
     </Portal>
