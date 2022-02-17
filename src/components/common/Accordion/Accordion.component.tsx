@@ -10,7 +10,7 @@ interface AccordionProps {
   headingTagName?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-const Accordion = ({ id, title, content, headingTagName }: AccordionProps) => {
+const Accordion = ({ id, title, content, headingTagName = 'h3' }: AccordionProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLParagraphElement>(null);
@@ -31,18 +31,18 @@ const Accordion = ({ id, title, content, headingTagName }: AccordionProps) => {
         <button
           type="button"
           onClick={handleClickButton}
-          id={`${id}-header`}
+          id={`header-${id}`}
           aria-expanded={isExpanded}
-          aria-controls={`${id}-panel`}
+          aria-controls={`panel-${id}`}
         >
           {title}
           <Icon aria-hidden />
         </button>
       </Styled.Header>
       <Styled.Panel
-        id={`${id}-panel`}
+        id={`panel-${id}`}
         aria-hidden={!isExpanded}
-        aria-labelledby={`${id}-header`}
+        aria-labelledby={`header-${id}`}
         ref={panelRef}
       >
         <p ref={contentRef}>{content}</p>
@@ -52,7 +52,3 @@ const Accordion = ({ id, title, content, headingTagName }: AccordionProps) => {
 };
 
 export default Accordion;
-
-Accordion.defaultProps = {
-  headingTagName: 'h3',
-};
