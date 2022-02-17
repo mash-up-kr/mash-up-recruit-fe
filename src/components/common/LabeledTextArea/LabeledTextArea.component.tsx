@@ -17,9 +17,9 @@ const LabeledTextArea = forwardRef<HTMLTextAreaElement, LabeledTextAreaProps>(
       label,
       required,
       isError = false,
-      errorMessage,
-      currentLength,
-      maxContentSize,
+      errorMessage = '',
+      currentLength = 0,
+      maxContentSize = null,
       ...restProps
     },
     ref,
@@ -48,13 +48,6 @@ const LabeledTextArea = forwardRef<HTMLTextAreaElement, LabeledTextAreaProps>(
     );
   },
 );
-
-LabeledTextArea.defaultProps = {
-  isError: false,
-  errorMessage: '',
-  currentLength: 0,
-  maxContentSize: null,
-};
 
 LabeledTextArea.displayName = 'LabeledTextArea';
 

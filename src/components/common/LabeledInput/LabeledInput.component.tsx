@@ -28,9 +28,9 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
       $size,
       required,
       isError = false,
-      errorMessage,
+      errorMessage = '',
       currentLength = 0,
-      maxContentSize,
+      maxContentSize = null,
       ...restProps
     },
     ref,
@@ -67,12 +67,6 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
     );
   },
 );
-LabeledInput.defaultProps = {
-  isError: false,
-  errorMessage: '',
-  currentLength: 0,
-  maxContentSize: null,
-};
 
 LabeledInput.displayName = 'LabeledInput';
 
