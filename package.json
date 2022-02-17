@@ -19,6 +19,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "axios": "^0.26.0",
     "next": "12.0.8",
     "next-auth": "^4.2.1",
     "react": "17.0.2",
