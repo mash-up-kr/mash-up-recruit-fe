@@ -22,7 +22,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
 
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  const onModalCloseWithMouseHandler: MouseEventHandler<HTMLDivElement> = ({
+  const HandleCloseModalWithMouseHandler: MouseEventHandler<HTMLDivElement> = ({
     target,
     currentTarget,
   }) => {
@@ -36,13 +36,11 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
     $rootNode?.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'hidden';
 
-    const onModalCloseWithEscHandler = ({ key }: KeyboardEvent) => {
+    const handleCloseModalWithEscHandler = ({ key }: KeyboardEvent) => {
       if (key === 'Escape') {
         setIsOpenModal(false);
       }
     };
-
-    window.addEventListener('keyup', onModalCloseWithEscHandler);
 
     const handleFocusTrap = (e: KeyboardEvent) => {
       const focusableNodeList = dialogRef.current?.querySelectorAll<HTMLElement>(
@@ -64,6 +62,8 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
       }
     };
 
+    window.addEventListener('keyup', handleCloseModalWithEscHandler);
+
     if (mounted) {
       dialogRef.current?.focus();
 
@@ -78,7 +78,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
       $rootNode?.removeAttribute('aria-hidden');
       document.body.style.overflow = 'unset';
 
-      window.removeEventListener('keyup', onModalCloseWithEscHandler);
+      window.removeEventListener('keyup', handleCloseModalWithEscHandler);
       window.removeEventListener('keydown', handleFocusTrap);
 
       beforeRefSnapshot?.current.focus();
@@ -87,7 +87,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
 
   return (
     <Portal elementId="modal-root" mounted={mounted}>
-      <Styled.Modal ref={dialogRef} tabIndex={-1} onClick={onModalCloseWithMouseHandler}>
+      <Styled.Modal ref={dialogRef} tabIndex={-1} onClick={HandleCloseModalWithMouseHandler}>
         {children}
       </Styled.Modal>
     </Portal>
