@@ -25,11 +25,11 @@ const useDetectViewport = (initialViewPort = breakPoint.value) => {
 
     detectionViewport();
 
-    const throttleDetectViewport = throttle(detectionViewport, 200);
-    window.addEventListener('resize', throttleDetectViewport);
+    const handleDetectViewport = throttle(detectionViewport, 200);
+    window.addEventListener('resize', handleDetectViewport);
 
     return () => {
-      window.removeEventListener('resize', throttleDetectViewport);
+      window.removeEventListener('resize', handleDetectViewport);
     };
   }, [mobile, tabletL, tabletS]);
 
