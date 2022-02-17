@@ -10,7 +10,7 @@ export interface ConfirmModalDialogProps {
   cancelButtonMessage: string;
   approvalButtonMessage: string;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
-  beforeRef: MutableRefObject<HTMLButtonElement>;
+  beforeRef?: MutableRefObject<HTMLButtonElement>;
 }
 
 const ConfirmModalDialog = ({
