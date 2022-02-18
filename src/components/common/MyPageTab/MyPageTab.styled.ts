@@ -7,6 +7,7 @@ export const MyPageTabPanel = styled.div`
   right: 0;
   height: 0;
   overflow: hidden;
+  border-radius: 1.6rem;
   transition: 0.5s;
 `;
 
