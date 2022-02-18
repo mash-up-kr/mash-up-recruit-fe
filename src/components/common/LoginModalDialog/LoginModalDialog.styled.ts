@@ -5,7 +5,8 @@ export const Dialog = styled.div`
   ${({ theme }) => css`
     position: relative;
     z-index: ${theme.zIndex.dialog};
-    min-width: 44rem;
+    width: 100%;
+    max-width: 44rem;
     min-height: 27.3rem;
     padding: 4rem 4rem 2.4rem 4rem;
     text-align: center;
@@ -64,7 +65,8 @@ export const LoginButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 36rem;
+    width: 100%;
+    max-width: 36rem;
     margin-bottom: 1.6rem;
     padding: 1.6rem 2rem;
     background: ${theme.colors.white};

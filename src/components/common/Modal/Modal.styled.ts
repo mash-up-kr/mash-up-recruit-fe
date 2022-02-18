@@ -14,6 +14,7 @@ export const Modal = styled.div`
     justify-content: center;
     width: 100%;
     height: 100%;
+    padding: 0 2rem;
     background: rgba(0, 0, 0, 0.5);
   `}
 `;
