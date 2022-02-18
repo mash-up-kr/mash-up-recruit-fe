@@ -1,6 +1,7 @@
 export { default as LinkTo } from './LinkTo/LinkTo.component';
 export { default as MainNavigation } from './MainNavigation/MainNavigation.component';
 export { default as Header } from './Header/Header.component';
+export { default as Footer } from './Footer/Footer.component';
 export { default as Layout } from './Layout/Layout.component';
 export { default as Portal } from './Portal/Portal.component';
 export { default as Modal } from './Modal/Modal.component';

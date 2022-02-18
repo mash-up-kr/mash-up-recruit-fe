@@ -1,4 +1,4 @@
-import { Header } from '@/components';
+import { Header, Footer } from '@/components';
 import { ReactNode } from 'react';
 import * as Styled from './Layout.styled';
 
@@ -11,6 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <Header />
       <Styled.Layout>{children}</Styled.Layout>
+      <Footer />
     </>
   );
 };
