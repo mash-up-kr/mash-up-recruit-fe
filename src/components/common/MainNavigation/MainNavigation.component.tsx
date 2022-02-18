@@ -58,7 +58,10 @@ const MainNavigation = () => {
                   <span>내 페이지</span>
                   <ChevronBottom12 />
                 </Styled.MyPageButton>
-                <MyPageTab isOpenMyPageTab={isOpenMyPageTab} />
+                <MyPageTab
+                  isOpenMyPageTab={isOpenMyPageTab}
+                  setIsOpenMyPageTab={setIsOpenMyPageTab}
+                />
               </div>
             ) : (
               <Styled.SignInButton
