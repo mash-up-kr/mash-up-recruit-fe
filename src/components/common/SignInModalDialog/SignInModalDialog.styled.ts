@@ -58,7 +58,7 @@ export const CloseButton = styled.button`
   `}
 `;
 
-export const LoginButton = styled.button`
+export const SignInButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
     position: relative;
