@@ -6,9 +6,9 @@ export const Layout = styled.div`
     width: 100%;
     max-width: 82.4rem;
     margin: 0 auto;
-    padding: 8.4rem 2rem 15.8rem;
+    padding: 8rem 2rem 12.9rem;
 
-    @media (max-width: ${theme.breakPoint.mobile}) {
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
       padding: 3.6rem 2rem 9.9rem;
     }
   `}
