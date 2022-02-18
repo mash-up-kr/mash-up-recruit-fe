@@ -2,7 +2,7 @@ import { FAQ_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
 import { LinkTo, SignInModalDialog, MyPageTab } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import { MouseEventHandler, MutableRefObject, useRef, useState } from 'react';
-import { useDetectViewPort, useWatchingIsScrollTop } from '@/hooks';
+import { useDetectOutsideClick, useDetectViewPort, useWatchingIsScrollTop } from '@/hooks';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import ChevronBottom12 from '@/assets/svg/chevron-bottom-12.svg';
@@ -18,6 +18,7 @@ const MainNavigation = () => {
   const [isOpenMyPageTab, setIsOpenMyPageTab] = useState(false);
 
   const loginButtonRef = useRef<HTMLButtonElement>(null) as MutableRefObject<HTMLButtonElement>;
+  const MyPageTabWrrpaer = useRef<HTMLDivElement>(null);
 
   const handleOpenSignInModal: MouseEventHandler<HTMLButtonElement> = () => {
     setIsOpenSignInModal(true);
@@ -26,6 +27,12 @@ const MainNavigation = () => {
   const handleToggleMyPageTab: MouseEventHandler<HTMLButtonElement> = () => {
     setIsOpenMyPageTab(!isOpenMyPageTab);
   };
+
+  const handleCloseTab = () => {
+    setIsOpenMyPageTab(false);
+  };
+
+  useDetectOutsideClick(MyPageTabWrrpaer, handleCloseTab);
 
   return (
     <>
@@ -40,7 +47,7 @@ const MainNavigation = () => {
           </li>
           <li>
             {session.status === 'authenticated' ? (
-              <>
+              <div ref={MyPageTabWrrpaer}>
                 <Styled.MyPageButton
                   type="button"
                   isScrollTop={isScrollTop}
@@ -52,7 +59,7 @@ const MainNavigation = () => {
                   <ChevronBottom12 />
                 </Styled.MyPageButton>
                 <MyPageTab isOpenMyPageTab={isOpenMyPageTab} />
-              </>
+              </div>
             ) : (
               <Styled.SignInButton
                 type="button"
