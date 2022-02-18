@@ -4,7 +4,8 @@ import styled from '@emotion/styled';
 export const Dialog = styled.div`
   ${({ theme }) => css`
     z-index: ${theme.zIndex.dialog};
-    min-width: 45.1rem;
+    width: 100%;
+    max-width: 45.1rem;
     background: ${theme.colors.white};
     border-radius: 2rem;
   `}
@@ -45,9 +46,7 @@ export const CancelButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
     position: relative;
-    width: 10rem;
-    height: 5rem;
-    padding: 0;
+    padding: 1.3rem 2rem;
     color: ${theme.colors.gray80};
     background: ${theme.colors.gray40};
     border: 0;
@@ -71,10 +70,8 @@ export const ApprovalButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
     position: relative;
-    width: 10rem;
-    height: 5rem;
     margin-left: 1.2rem;
-    padding: 0;
+    padding: 1.3rem 2rem;
     color: ${theme.colors.white};
     background: ${theme.colors.purple70};
     border: 0;
