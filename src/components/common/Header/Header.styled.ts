@@ -5,26 +5,26 @@ import styled from '@emotion/styled';
 interface HeaderProps {
   isScrollTop: boolean;
   currentPage: string;
+  isHome: boolean;
 }
 
 export const Header = styled.header<HeaderProps>`
-  ${({ theme, isScrollTop, currentPage }) => css`
+  ${({ theme, isScrollTop, currentPage, isHome }) => css`
     position: fixed;
     z-index: ${theme.zIndex.header};
     width: 100%;
     height: 8rem;
     padding: 1.7rem 0;
-    ${(() =>
-      isScrollTop && currentPage === HOME_PAGE
-        ? css`
-            background: ${theme.colors.black};
-          `
-        : css`
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(2rem);
-          `)()};
+    ${isScrollTop && currentPage === HOME_PAGE
+      ? css`
+          background: ${theme.colors.black};
+        `
+      : css`
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(2rem);
+        `};
 
-    transition: ${isScrollTop ? 0 : '0.5s'};
+    transition: ${isHome ? '0.5s' : 0};
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       height: 6rem;
