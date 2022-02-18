@@ -1,3 +1,4 @@
+import { HOME_PAGE } from '@/constants';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -5,8 +6,13 @@ export const Nav = styled.nav`
   align-self: flex-end;
 `;
 
-export const NavList = styled.ul`
-  ${({ theme }) => css`
+interface NavListProps {
+  isScrollTop: boolean;
+  currentPage: string;
+}
+
+export const NavList = styled.ul<NavListProps>`
+  ${({ theme, isScrollTop, currentPage }) => css`
     display: flex;
     align-items: center;
     height: 2.7rem;
@@ -16,7 +22,7 @@ export const NavList = styled.ul`
       margin: 0 2rem;
 
       &:first-of-type {
-        margin-left: 3.4rem;
+        margin-left: 0;
       }
       &:nth-of-type(2) {
         display: flex;
@@ -31,26 +37,42 @@ export const NavList = styled.ul`
       }
 
       & > a {
-        color: ${theme.colors.gray80};
+        color: ${isScrollTop && currentPage === HOME_PAGE
+          ? theme.colors.white
+          : theme.colors.gray80};
       }
 
       & > a:hover {
         color: ${theme.colors.purple70};
       }
     }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      & > li {
+        ${theme.fonts.kr.medium15};
+      }
+    }
   `}
 `;
 
-export const LoginButton = styled.button`
-  ${({ theme }) => css`
+interface LoginButtonProps {
+  isScrollTop: boolean;
+  currentPage: string;
+}
+
+export const LoginButton = styled.button<LoginButtonProps>`
+  ${({ theme, isScrollTop, currentPage }) => css`
     ${theme.fonts.kr.bold18}
     padding: 0;
-    color: ${theme.colors.gray80};
+    color: ${isScrollTop && currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
     background: transparent;
     border: 0;
 
     &:hover {
       color: ${theme.colors.purple70};
+    }
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium15};
     }
   `}
 `;
