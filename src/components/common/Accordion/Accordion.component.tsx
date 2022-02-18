@@ -45,7 +45,7 @@ const Accordion = ({ id, title, content, headingTagName = 'h3' }: AccordionProps
         aria-labelledby={`header-${id}`}
         ref={panelRef}
       >
-        <p ref={contentRef}>{content}</p>
+        <Styled.Content ref={contentRef}>{content}</Styled.Content>
       </Styled.Panel>
     </Styled.Accordion>
   );
