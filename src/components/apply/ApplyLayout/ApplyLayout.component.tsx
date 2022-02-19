@@ -1,17 +1,17 @@
 import { ApplyForm } from '@/components';
-import { Question } from 'pages/apply/[platformName]';
+import { Application } from '@/types/dto';
 import * as Styled from './ApplyLayout.styled';
 
 interface ApplyLayoutProps {
   heading: string;
-  questionList: Question[];
+  application: Application;
 }
 
-const ApplyLayout = ({ heading, questionList }: ApplyLayoutProps) => {
+const ApplyLayout = ({ heading, application }: ApplyLayoutProps) => {
   return (
     <Styled.Layout>
       <Styled.ApplyHeading>지원서 작성</Styled.ApplyHeading>
-      <ApplyForm heading={heading} questionList={questionList} />
+      <ApplyForm heading={heading} application={application} />
     </Styled.Layout>
   );
 };
