@@ -2,7 +2,8 @@ import { Modal } from '@/components';
 import GoogleLogo from '@/assets/svg/google-logo.svg';
 import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from 'react';
 import XIcon from '@/assets/svg/x-icon.svg';
-import * as Styled from './LoginModalDialog.styled';
+import { signIn } from 'next-auth/react';
+import * as Styled from './SignInModalDialog.styled';
 
 const STATIC_MESSAGE = {
   header: {
@@ -26,34 +27,35 @@ const STATIC_MESSAGE = {
   },
 };
 
-export interface LoginModalDialogProps {
+export interface SignInModalDialogProps {
   type: 'login' | 'apply';
   device: 'desktop' | 'tablet' | 'mobile';
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
   beforeRef: MutableRefObject<HTMLButtonElement>;
 }
 
-const LoginModalDialog = ({ type, device, setIsOpenModal, beforeRef }: LoginModalDialogProps) => {
-  const handleCloseLoginModal: MouseEventHandler<HTMLButtonElement> = () => {
+const SignInModalDialog = ({ type, device, setIsOpenModal, beforeRef }: SignInModalDialogProps) => {
+  const handleCloseSignInModal: MouseEventHandler<HTMLButtonElement> = () => {
     setIsOpenModal(false);
   };
 
-  // TODO:(하준) 로그인 버튼시 작동 할 이벤트 핸들러 정의 (props로 빼도 무방)
-  const handleLogin: MouseEventHandler<HTMLButtonElement> = () => {};
+  const handleSignIn: MouseEventHandler<HTMLButtonElement> = () => {
+    signIn('google');
+  };
 
   return (
     <Modal beforeRef={beforeRef} setIsOpenModal={setIsOpenModal}>
       <Styled.Dialog>
         <Styled.Heading>{STATIC_MESSAGE.header[type]}</Styled.Heading>
         <Styled.Paragraph>{STATIC_MESSAGE.paragraph[device][type]}</Styled.Paragraph>
-        <Styled.LoginButton type="button" onClick={handleLogin}>
+        <Styled.SignInButton type="button" onClick={handleSignIn}>
           <GoogleLogo />
           Google 계정으로 로그인
-        </Styled.LoginButton>
+        </Styled.SignInButton>
         <Styled.Notice>
           로그인시 서비스 이용약관과 개인정보 처리방침에 동의하게 됩니다.
         </Styled.Notice>
-        <Styled.CloseButton type="button" onClick={handleCloseLoginModal}>
+        <Styled.CloseButton type="button" onClick={handleCloseSignInModal}>
           <div />
           <XIcon />
         </Styled.CloseButton>
@@ -62,4 +64,4 @@ const LoginModalDialog = ({ type, device, setIsOpenModal, beforeRef }: LoginModa
   );
 };
 
-export default LoginModalDialog;
+export default SignInModalDialog;

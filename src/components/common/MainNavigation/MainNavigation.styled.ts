@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const Nav = styled.nav`
+  position: relative;
   align-self: flex-end;
 `;
 
@@ -29,11 +30,12 @@ export const NavList = styled.ul<NavListProps>`
         align-items: center;
         margin-right: 0;
         svg {
-          margin-left: 2rem;
+          margin-left: 4rem;
         }
       }
       &:last-of-type {
         margin-right: 0;
+        margin-left: 4rem;
       }
 
       & > a {
@@ -50,17 +52,35 @@ export const NavList = styled.ul<NavListProps>`
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       & > li {
         ${theme.fonts.kr.medium15};
+
+        margin: 0 1rem;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+        &:nth-of-type(2) {
+          display: flex;
+          align-items: center;
+          margin-right: 0;
+          svg {
+            margin-left: 2rem;
+          }
+        }
+        &:last-of-type {
+          margin-right: 0;
+          margin-left: 2rem;
+        }
       }
     }
   `}
 `;
 
-interface LoginButtonProps {
+interface SignInButtonProps {
   isScrollTop: boolean;
   currentPage: string;
 }
 
-export const LoginButton = styled.button<LoginButtonProps>`
+export const SignInButton = styled.button<SignInButtonProps>`
   ${({ theme, isScrollTop, currentPage }) => css`
     ${theme.fonts.kr.bold18}
     padding: 0;
@@ -73,6 +93,50 @@ export const LoginButton = styled.button<LoginButtonProps>`
     }
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
+    }
+  `}
+`;
+
+interface MyPageButtonProps {
+  isScrollTop: boolean;
+  currentPage: string;
+  isOpenMyPageTab: boolean;
+}
+
+export const MyPageButton = styled.button<MyPageButtonProps>`
+  ${({ theme, isScrollTop, currentPage, isOpenMyPageTab }) => css`
+    ${theme.fonts.kr.bold18}
+    padding: 0;
+    color: ${isScrollTop && currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
+    background: transparent;
+    border: 0;
+
+    &:hover {
+      color: ${theme.colors.purple70};
+    }
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium15};
+    }
+    & > span {
+      margin-right: 0.6rem;
+    }
+
+    & > svg {
+      transition: 0.4s;
+
+      ${isOpenMyPageTab
+        ? css`
+            transform: rotate(-180deg);
+          `
+        : css`
+            transform: rotate(deg);
+          `};
+
+      & > path {
+        stroke: ${isScrollTop && currentPage === HOME_PAGE
+          ? theme.colors.white
+          : theme.colors.gray80};
+      }
     }
   `}
 `;
