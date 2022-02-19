@@ -8,11 +8,11 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
+    <Styled.AppWrapper>
       <Header />
       <Styled.Layout>{children}</Styled.Layout>
       <Footer />
-    </>
+    </Styled.AppWrapper>
   );
 };
 
