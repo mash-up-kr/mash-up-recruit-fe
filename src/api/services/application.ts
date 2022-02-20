@@ -54,11 +54,9 @@ class ApplicationApiService extends BaseApiService {
     updateApplicationRequest,
   }: TempSaveApplicationRequest): Promise<TempSaveApplicationResponse> {
     return this.http
-      .put(
-        `/${applicationId}`,
-        { updateApplicationRequest },
-        { headers: { Authorization: `Bearer ${accessToken}` } },
-      )
+      .put(`/${applicationId}`, updateApplicationRequest, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
       .then(BaseApiService.handleResponse)
       .catch(BaseApiService.handleError);
   }
@@ -69,13 +67,9 @@ class ApplicationApiService extends BaseApiService {
     updateConfirmationRequest,
   }: ConfirmApplicantRequest): Promise<ConfirmApplicantResponse> {
     return this.http
-      .post(
-        `/${applicationId}/confirm`,
-        { updateConfirmationRequest },
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        },
-      )
+      .post(`/${applicationId}/confirm`, updateConfirmationRequest, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
       .then(BaseApiService.handleResponse)
       .catch(BaseApiService.handleError);
   }
@@ -83,15 +77,12 @@ class ApplicationApiService extends BaseApiService {
   public submitApplication({
     accessToken,
     applicationId,
+    applicationSubmitRequest,
   }: SubmitApplicationRequest): Promise<SubmitApplicationResponse> {
     return this.http
-      .post(
-        `/${applicationId}/submit`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        },
-      )
+      .post(`/${applicationId}/submit`, applicationSubmitRequest, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
       .then(BaseApiService.handleResponse)
       .catch(BaseApiService.handleError);
   }
