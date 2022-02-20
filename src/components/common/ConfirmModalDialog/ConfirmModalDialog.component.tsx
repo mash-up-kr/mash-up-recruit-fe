@@ -11,6 +11,8 @@ export interface ConfirmModalDialogProps {
   approvalButtonMessage: string;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
   beforeRef?: MutableRefObject<HTMLButtonElement>;
+  deemClose?: boolean;
+  escClose?: boolean;
 }
 
 const ConfirmModalDialog = ({
@@ -22,9 +24,16 @@ const ConfirmModalDialog = ({
   approvalButtonMessage,
   beforeRef,
   setIsOpenModal,
+  deemClose,
+  escClose,
 }: ConfirmModalDialogProps) => {
   return (
-    <Modal beforeRef={beforeRef} setIsOpenModal={setIsOpenModal}>
+    <Modal
+      beforeRef={beforeRef}
+      setIsOpenModal={setIsOpenModal}
+      deemClose={deemClose}
+      escClose={escClose}
+    >
       <Styled.Dialog>
         <Styled.DialogInner>
           <Styled.Heading>{heading}</Styled.Heading>

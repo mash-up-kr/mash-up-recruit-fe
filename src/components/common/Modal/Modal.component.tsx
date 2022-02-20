@@ -15,9 +15,17 @@ interface ModalProps {
   children: ReactNode;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
   beforeRef?: MutableRefObject<HTMLButtonElement>;
+  deemClose?: boolean;
+  escClose?: boolean;
 }
 
-const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
+const Modal = ({
+  children,
+  setIsOpenModal,
+  beforeRef,
+  deemClose = true,
+  escClose = true,
+}: ModalProps) => {
   const [mounted, setMounted] = useState(false);
 
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -62,7 +70,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
       }
     };
 
-    window.addEventListener('keyup', handleCloseModalWithEscHandler);
+    if (escClose) window.addEventListener('keyup', handleCloseModalWithEscHandler);
 
     if (mounted) {
       dialogRef.current?.focus();
@@ -78,16 +86,20 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
       $rootNode?.removeAttribute('aria-hidden');
       document.body.style.overflow = 'unset';
 
-      window.removeEventListener('keyup', handleCloseModalWithEscHandler);
+      if (escClose) window.removeEventListener('keyup', handleCloseModalWithEscHandler);
       window.removeEventListener('keydown', handleFocusTrap);
 
       beforeRefSnapshot?.current.focus();
     };
-  }, [beforeRef, mounted, setIsOpenModal]);
+  }, [beforeRef, escClose, mounted, setIsOpenModal]);
 
   return (
     <Portal elementId="modal-root" mounted={mounted}>
-      <Styled.Modal ref={dialogRef} tabIndex={-1} onClick={handleCloseModalWithMouseHandler}>
+      <Styled.Modal
+        ref={dialogRef}
+        tabIndex={-1}
+        onClick={deemClose ? handleCloseModalWithMouseHandler : undefined}
+      >
         {children}
       </Styled.Modal>
     </Portal>

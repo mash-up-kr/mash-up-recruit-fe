@@ -8,6 +8,8 @@ export interface AlertModalDialogProps {
   handleApprovalButton: MouseEventHandler<HTMLButtonElement>;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
   beforeRef: MutableRefObject<HTMLButtonElement>;
+  deemClose?: boolean;
+  escClose?: boolean;
 }
 
 const AlertModalDialog = ({
@@ -16,9 +18,16 @@ const AlertModalDialog = ({
   handleApprovalButton,
   beforeRef,
   setIsOpenModal,
+  deemClose,
+  escClose,
 }: AlertModalDialogProps) => {
   return (
-    <Modal beforeRef={beforeRef} setIsOpenModal={setIsOpenModal}>
+    <Modal
+      beforeRef={beforeRef}
+      setIsOpenModal={setIsOpenModal}
+      deemClose={deemClose}
+      escClose={escClose}
+    >
       <Styled.Dialog>
         <Styled.DialogInner>
           <Styled.Heading>{heading}</Styled.Heading>
