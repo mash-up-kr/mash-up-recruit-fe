@@ -5,7 +5,7 @@ import { PlatformKey, platforms } from '@/components/faq/Navigation/Navigation.c
 import * as Styled from './ModalNavigation.styled';
 
 interface ModalNavigationProps {
-  platformName?: PlatformKey;
+  platformName: PlatformKey;
 }
 
 const ModalNavigation = ({ platformName }: ModalNavigationProps) => {
@@ -20,9 +20,7 @@ const ModalNavigation = ({ platformName }: ModalNavigationProps) => {
     setIsOpenModal(false);
   };
 
-  const currentRouteName = platformName
-    ? platforms.find(({ key }) => key === platformName)?.name
-    : '공통질문';
+  const currentRouteName = platforms.find(({ key }) => key === platformName)?.name;
 
   return (
     <>

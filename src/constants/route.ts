@@ -1,6 +1,6 @@
 export const HOME_PAGE = '/';
 
-export const FAQ_PAGE = '/faq';
+export const FAQ_COMMON_PAGE = '/faq/common';
 export const FAQ_FRONT_END_PAGE = '/faq/front-end';
 export const FAQ_DESIGN_PAGE = '/faq/design';
 export const FAQ_NODE_PAGE = '/faq/node';

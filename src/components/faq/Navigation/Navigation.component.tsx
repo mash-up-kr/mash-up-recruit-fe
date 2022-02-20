@@ -1,7 +1,7 @@
 import { LinkTo } from '@/components';
 
 import {
-  FAQ_PAGE,
+  FAQ_COMMON_PAGE,
   FAQ_SPRING_PAGE,
   FAQ_ANDROID_PAGE,
   FAQ_DESIGN_PAGE,
@@ -12,7 +12,7 @@ import {
 
 import * as Styled from './Navigation.styled';
 
-export type PlatformKey = 'design' | 'android' | 'ios' | 'front-end' | 'node' | 'spring';
+export type PlatformKey = 'common' | 'design' | 'android' | 'ios' | 'front-end' | 'node' | 'spring';
 
 export type Platform = {
   key: PlatformKey;
@@ -21,6 +21,11 @@ export type Platform = {
 };
 
 export const platforms: Platform[] = [
+  {
+    key: 'common',
+    path: FAQ_COMMON_PAGE,
+    name: '공통질문',
+  },
   {
     key: 'design',
     path: FAQ_DESIGN_PAGE,
@@ -60,18 +65,15 @@ interface NavigationProps {
 
 const Navigation = ({ platformName, handleClickItem = () => {} }: NavigationProps) => {
   return (
-    <Styled.Navigation>
-      <Styled.List>
-        <Styled.ListItem active={!platformName} onClick={handleClickItem}>
-          <LinkTo href={FAQ_PAGE}>공통질문</LinkTo>
-        </Styled.ListItem>
+    <nav>
+      <ul>
         {platforms.map(({ key, name, path }) => (
           <Styled.ListItem active={platformName === key} key={key} onClick={handleClickItem}>
             <LinkTo href={path}>{name}</LinkTo>
           </Styled.ListItem>
         ))}
-      </Styled.List>
-    </Styled.Navigation>
+      </ul>
+    </nav>
   );
 };
 

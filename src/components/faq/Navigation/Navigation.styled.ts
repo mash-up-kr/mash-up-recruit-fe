@@ -1,10 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const Navigation = styled.nav``;
-
-export const List = styled.ul``;
-
 interface StyledLiProps {
   active: boolean;
 }

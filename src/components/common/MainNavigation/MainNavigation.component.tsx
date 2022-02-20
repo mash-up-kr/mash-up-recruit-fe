@@ -1,4 +1,4 @@
-import { FAQ_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
+import { FAQ_COMMON_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
 import { LinkTo, LoginModalDialog } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import { MouseEventHandler, MutableRefObject, useRef, useState } from 'react';
@@ -28,7 +28,7 @@ const MainNavigation = () => {
             <LinkTo href={HOME_PAGE}>모집 공고</LinkTo>
           </li>
           <li>
-            <LinkTo href={FAQ_PAGE}>자주 묻는 질문</LinkTo>
+            <LinkTo href={FAQ_COMMON_PAGE}>자주 묻는 질문</LinkTo>
             <DivisionLine width={size === VIEWPORT_SIZE.MOBILE ? '1' : '2'} />
           </li>
           <li>
