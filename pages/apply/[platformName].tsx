@@ -18,25 +18,25 @@ interface ApplyProps {
 
 const Apply = ({ application }: ApplyProps) => {
   const router = useRouter();
-
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
-  const [afterBlockingPath, setAfterBlockingPath] = useState('/');
+  const [isOpenSuccessSubmitedModal, setIsOpenSuccessSubmitedModal] = useState(false);
+
+  const { handleMoveAfterBlocking } = usePreventPageChange(setIsOpenConfirmModal, [
+    isOpenConfirmModal,
+    isOpenSuccessSubmitedModal,
+  ]);
 
   const handleCloseConfirmModal = () => {
     setIsOpenConfirmModal(false);
   };
-
-  const handleMoveAfterBlocking = () => {
-    router.push(afterBlockingPath);
-  };
-
-  usePreventPageChange(isOpenConfirmModal, setIsOpenConfirmModal, setAfterBlockingPath);
 
   return (
     <>
       <ApplyLayout
         heading={PLATFORM_HEADINGS[router.asPath as keyof PlatformHeadings]}
         application={application}
+        isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
+        setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
       />
       {isOpenConfirmModal && (
         <ConfirmModalDialog
@@ -82,7 +82,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     })
   ).data;
 
-  if (!applications.find(({ team }) => team.teamId === teamIds[currentApplyPlatform])) {
+  const currentApplication = applications.find(
+    ({ team }) => team.teamId === teamIds[currentApplyPlatform],
+  );
+
+  if (!currentApplication) {
     const application = await applicationApiService.createMyApplication({
       accessToken: session.accessToken,
       teamId: teamIds[currentApplyPlatform],
@@ -94,8 +98,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const application = await applicationApiService.getApplicationDetail({
+    accessToken: session.accessToken,
+    applicationId: currentApplication.applicationId,
+  });
   return {
-    props: {},
+    props: {
+      application: application?.data,
+    },
   };
 };
 
