@@ -7,6 +7,9 @@ import { VIEWPORT_SIZE } from '@/constants';
 import { PlatformKey } from '@/components/faq/Navigation/Navigation.component';
 
 const questionsMap: Record<PlatformKey, { questions: Question[] }> = {
+  common: {
+    questions: [{ id: '0', title: '공통 질문 - 0', content: '공통 질문 답변 - 0' }],
+  },
   ios: {
     questions: [{ id: '0', title: 'iOS 질문 - 0', content: 'iOS 질문 답변 - 0' }],
   },
@@ -54,6 +57,7 @@ const Platform: NextPage<PlatformProps> = ({ platformName, questions }) => {
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
   return {
     paths: [
+      { params: { platformName: 'common' } },
       { params: { platformName: 'ios' } },
       { params: { platformName: 'front-end' } },
       { params: { platformName: 'android' } },
