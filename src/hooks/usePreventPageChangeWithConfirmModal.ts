@@ -1,14 +1,20 @@
 import Router from 'next/router';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 const usePreventPageChangeWithConfirmModal = (
-  isOpenConfirmModal: boolean,
   setOpenConfirmModal: Dispatch<SetStateAction<boolean>>,
-  setAfterBlockingPath: Dispatch<SetStateAction<string>>,
+  ignoreCases: boolean[],
 ) => {
+  const [afterBlockingPath, setAfterBlockingPath] = useState('/');
+
+  const handleMoveAfterBlocking = () => {
+    Router.push(afterBlockingPath);
+  };
+
   useEffect(() => {
     const handleBlockBeforeRouteChange = (toPath: string) => {
-      if (Router.asPath !== toPath && !isOpenConfirmModal) {
+      const blocking = ignoreCases.every((ignoreCase) => !ignoreCase);
+      if (Router.asPath !== toPath && blocking) {
         setOpenConfirmModal(true);
         setAfterBlockingPath(toPath);
         throw 'Route Change Blocking';
@@ -28,7 +34,9 @@ const usePreventPageChangeWithConfirmModal = (
       window.removeEventListener('beforeunload', beforeunload);
       Router.events.off('routeChangeStart', handleBlockBeforeRouteChange);
     };
-  }, [isOpenConfirmModal, setAfterBlockingPath, setOpenConfirmModal]);
+  }, [ignoreCases, setOpenConfirmModal]);
+
+  return { handleMoveAfterBlocking };
 };
 
 export default usePreventPageChangeWithConfirmModal;
