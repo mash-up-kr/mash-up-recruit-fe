@@ -8,7 +8,8 @@ export const breakPoint = {
   media: {
     mobile: '576px',
     tabletS: '767px',
-    tabletL: '1439px',
+    tabletL: '1279px',
+    // 1280px부터 Desktop
   },
 } as const;
 
