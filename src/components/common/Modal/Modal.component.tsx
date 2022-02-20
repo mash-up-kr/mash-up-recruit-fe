@@ -81,7 +81,7 @@ const Modal = ({ children, setIsOpenModal, beforeRef }: ModalProps) => {
       window.removeEventListener('keyup', handleCloseModalWithEscHandler);
       window.removeEventListener('keydown', handleFocusTrap);
 
-      beforeRefSnapshot?.current.focus();
+      beforeRefSnapshot?.current?.focus();
     };
   }, [beforeRef, mounted, setIsOpenModal]);
 
