@@ -55,6 +55,7 @@ interface UpdateApplication {
   answers: Array<{
     answerId: number;
     content: string;
+    questionId: number;
   }>;
   applicantName: string;
   phoneNumber: string;
@@ -90,5 +91,6 @@ export interface ConfirmApplicantResponse extends BaseResponse<Application> {}
 
 export interface SubmitApplicationRequest extends BaseRequest {
   applicationId: number;
+  applicationSubmitRequest: UpdateApplication;
 }
 export interface SubmitApplicationResponse extends BaseResponse<Application> {}
