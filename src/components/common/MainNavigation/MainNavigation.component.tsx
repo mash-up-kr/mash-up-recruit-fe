@@ -1,24 +1,38 @@
 import { FAQ_COMMON_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
-import { LinkTo, LoginModalDialog } from '@/components';
+import { LinkTo, SignInModalDialog, MyPageTab } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import { MouseEventHandler, MutableRefObject, useRef, useState } from 'react';
-import { useDetectViewPort, useWatchingIsScrollTop } from '@/hooks';
+import { useDetectOutsideClick, useDetectViewPort, useWatchingIsScrollTop } from '@/hooks';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import ChevronBottom12 from '@/assets/svg/chevron-bottom-12.svg';
 import * as Styled from './MainNavigation.styled';
 
 const MainNavigation = () => {
+  const session = useSession();
   const { size } = useDetectViewPort();
-
   const isScrollTop = useWatchingIsScrollTop();
-
   const { asPath } = useRouter();
 
-  const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
-  const loginButtonRef = useRef<HTMLButtonElement>(null) as MutableRefObject<HTMLButtonElement>;
+  const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
+  const [isOpenMyPageTab, setIsOpenMyPageTab] = useState(false);
 
-  const handleOpenLoginModal: MouseEventHandler<HTMLButtonElement> = () => {
-    setIsOpenLoginModal(true);
+  const loginButtonRef = useRef<HTMLButtonElement>(null) as MutableRefObject<HTMLButtonElement>;
+  const MyPageTabWrrpaer = useRef<HTMLDivElement>(null);
+
+  const handleOpenSignInModal: MouseEventHandler<HTMLButtonElement> = () => {
+    setIsOpenSignInModal(true);
   };
+
+  const handleToggleMyPageTab: MouseEventHandler<HTMLButtonElement> = () => {
+    setIsOpenMyPageTab(!isOpenMyPageTab);
+  };
+
+  const handleCloseTab = () => {
+    setIsOpenMyPageTab(false);
+  };
+
+  useDetectOutsideClick(MyPageTabWrrpaer, handleCloseTab);
 
   return (
     <>
@@ -32,24 +46,43 @@ const MainNavigation = () => {
             <DivisionLine width={size === VIEWPORT_SIZE.MOBILE ? '1' : '2'} />
           </li>
           <li>
-            <Styled.LoginButton
-              type="button"
-              isScrollTop={isScrollTop}
-              currentPage={asPath}
-              onClick={handleOpenLoginModal}
-              ref={loginButtonRef}
-            >
-              로그인
-            </Styled.LoginButton>
+            {session.status === 'authenticated' ? (
+              <div ref={MyPageTabWrrpaer}>
+                <Styled.MyPageButton
+                  type="button"
+                  isScrollTop={isScrollTop}
+                  currentPage={asPath}
+                  onClick={handleToggleMyPageTab}
+                  isOpenMyPageTab={isOpenMyPageTab}
+                >
+                  <span>내 페이지</span>
+                  <ChevronBottom12 />
+                </Styled.MyPageButton>
+                <MyPageTab
+                  isOpenMyPageTab={isOpenMyPageTab}
+                  setIsOpenMyPageTab={setIsOpenMyPageTab}
+                />
+              </div>
+            ) : (
+              <Styled.SignInButton
+                type="button"
+                isScrollTop={isScrollTop}
+                currentPage={asPath}
+                onClick={handleOpenSignInModal}
+                ref={loginButtonRef}
+              >
+                로그인
+              </Styled.SignInButton>
+            )}
           </li>
         </Styled.NavList>
       </Styled.Nav>
 
-      {isOpenLoginModal && (
-        <LoginModalDialog
+      {isOpenSignInModal && (
+        <SignInModalDialog
           device="desktop"
           type="login"
-          setIsOpenModal={setIsOpenLoginModal}
+          setIsOpenModal={setIsOpenSignInModal}
           beforeRef={loginButtonRef}
         />
       )}
