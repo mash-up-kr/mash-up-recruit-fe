@@ -16,16 +16,18 @@ export interface Answer {
   questionId: number;
 }
 
+export type ApplicationAuditStatus =
+  | 'INTERVIEW_FAILED' // 인터뷰 탈락
+  | 'INTERVIEW_PASSED' // 인터뷰 합격
+  | 'SCREENING_FAILED' // 서류심사 탈락
+  | 'SCREENING_PASSED' // 서류심사 합격
+  | 'SUBMITTED' // 제출
+  | 'WRITING'; // 작성중 (생성 후 | 임시저장)
+
 export interface ApplicationResult {
   interviewEndedAt: string;
   interviewStartedAt: string;
-  status:
-    | 'INTERVIEW_FAILED' // 인터뷰 탈락
-    | 'INTERVIEW_PASSED' // 인터뷰 합격
-    | 'SCREENING_FAILED' // 서류심사 탈락
-    | 'SCREENING_PASSED' // 서류심사 합격
-    | 'SUBMITTED' // 제출
-    | 'WRITING'; // 작성중 (생성 후 | 임시저장)
+  status: ApplicationAuditStatus;
 }
 
 type ConfirmationStatus =
@@ -38,6 +40,8 @@ type ConfirmationStatus =
   | 'NOT_APPLICABLE' // 서류 탈락
   | 'TO_BE_DETERMINED'; // 제출완료 || 임시저장
 
+export type ApplicationStatus = 'CREATED' | 'SUBMITTED' | 'WRITING';
+
 export interface Application {
   answers: Answer[];
   applicant: Applicant;
@@ -46,7 +50,7 @@ export interface Application {
   privacyPolicyAgreed: boolean;
   questions: Question[];
   result: ApplicationResult;
-  status: 'CREATED' | 'SUBMITTED' | 'WRITING';
+  status: ApplicationStatus;
   submittedAt: string;
   team: Team;
 }

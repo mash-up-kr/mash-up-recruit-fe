@@ -16,3 +16,6 @@ export const FAQ_NODE_PAGE = '/faq/node';
 export const FAQ_SPRING_PAGE = '/faq/spring';
 export const FAQ_IOS_PAGE = '/faq/ios';
 export const FAQ_ANDROID_PAGE = '/faq/android';
+
+export const MY_PAGE_ACCOUNT = '/my-page/account';
+export const MY_PAGE_APPLY_STATUS = '/my-page/apply-status';

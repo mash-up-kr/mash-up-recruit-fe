@@ -1,9 +1,9 @@
 import { FAQ_COMMON_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
 import { LinkTo, SignInModalDialog, MyPageTab } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
-import { MouseEventHandler, MutableRefObject, useRef, useState } from 'react';
+import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useDetectOutsideClick, useDetectViewPort, useWatchingIsScrollTop } from '@/hooks';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import ChevronBottom12 from '@/assets/svg/chevron-bottom-12.svg';
 import * as Styled from './MainNavigation.styled';
@@ -33,6 +33,14 @@ const MainNavigation = () => {
   };
 
   useDetectOutsideClick(MyPageTabWrrpaer, handleCloseTab);
+
+  useEffect(() => {
+    Router.events.on('routeChangeStart', handleCloseTab);
+
+    return () => {
+      Router.events.off('routeChangeStart', handleCloseTab);
+    };
+  }, []);
 
   return (
     <>
