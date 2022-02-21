@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { theme } from '@/styles/themes';
 
 export const resetCss = css`
   html {
@@ -132,12 +133,10 @@ export const resetCss = css`
   }
 
   body {
-    /* TODO:(하준) 기본 Font Color 나오면 변경 */
-    color: #000;
+    color: ${theme.colors.gray80};
     font-family: SpoqaHanSansNeo, sans-serif;
     line-height: 1;
-    /* TODO:(하준) 기본 BackgroundColor 나오면 변경 */
-    background-color: #fff;
+    background-color: ${theme.colors.white};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -152,8 +151,7 @@ export const resetCss = css`
   }
 
   a {
-    /* TODO:(하준) 기본 A tag Color 혹은 Font Color 나오면 변경 */
-    color: #000;
+    color: ${theme.colors.gray80};
     text-decoration: none;
   }
 
