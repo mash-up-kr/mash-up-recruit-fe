@@ -19,3 +19,25 @@ export const ApplyHeading = styled.h2`
     ${theme.a11y.visuallyHidden};
   `}
 `;
+
+export const PlatformHeading = styled.h3`
+  ${({ theme }) => css`
+    ${theme.fonts.kr.bold46};
+    color: ${theme.colors.gray80};
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.bold24}
+    }
+  `}
+`;
+
+export const PlatformRole = styled.span`
+  ${({ theme }) => css`
+    ${theme.fonts.kr.bold22};
+    color: ${theme.colors.gray80};
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.bold16}
+    }
+  `}
+`;

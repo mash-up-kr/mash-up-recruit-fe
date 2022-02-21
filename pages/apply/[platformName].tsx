@@ -3,7 +3,8 @@ import { ApplyLayout, ConfirmModalDialog } from '@/components';
 import {
   PlatformHeadings,
   PLATFORM_HEADINGS,
-} from '@/components/apply/ApplyForm/ApplyForm.component';
+  PLATFORM_ROLE,
+} from '@/components/apply/ApplyLayout/ApplyLayout.component';
 import { teamIds, teamNames, Teams } from '@/constants';
 import { usePreventPageChange } from '@/hooks';
 import { Application } from '@/types/dto';
@@ -34,6 +35,7 @@ const Apply = ({ application }: ApplyProps) => {
     <>
       <ApplyLayout
         heading={PLATFORM_HEADINGS[router.asPath as keyof PlatformHeadings]}
+        role={PLATFORM_ROLE[router.asPath as keyof PlatformHeadings]}
         application={application}
         isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
         setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
