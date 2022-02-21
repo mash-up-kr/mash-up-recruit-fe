@@ -10,6 +10,8 @@ export const AppWrapper = styled.div`
 export const Layout = styled.main`
   ${({ theme }) => css`
     position: relative;
+    display: flex;
+    flex-flow: column nowrap;
     flex-grow: 1;
     padding-top: 8rem;
 
