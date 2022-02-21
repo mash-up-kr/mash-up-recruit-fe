@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import LinkTo from '@/components/common/LinkTo/LinkTo.component';
 
 export const MyPageTabPanel = styled.div`
   position: absolute;
@@ -42,7 +43,7 @@ export const UserEmail = styled.span`
   `}
 `;
 
-export const TabContentButton = styled.button`
+export const TabLink = styled(LinkTo)`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium14};
     display: block;
