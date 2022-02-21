@@ -1,7 +1,7 @@
 import Link, { LinkProps } from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, AnchorHTMLAttributes } from 'react';
 
-interface LinkToProps extends LinkProps {
+interface LinkToProps extends LinkProps, AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: ReactNode;
   className?: string;
@@ -9,8 +9,8 @@ interface LinkToProps extends LinkProps {
 
 const LinkTo = ({ href, children, className = '', ...rest }: LinkToProps) => {
   return (
-    <Link href={href} passHref {...rest}>
-      <a href={href} className={className}>
+    <Link href={href} passHref>
+      <a href={href} className={className} {...rest}>
         {children}
       </a>
     </Link>
