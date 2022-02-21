@@ -18,6 +18,7 @@ interface LabeledInputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   currentLength?: number;
   maxContentLength?: number | null;
+  description?: string | null;
 }
 
 const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
@@ -31,6 +32,7 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
       errorMessage = '',
       currentLength = 0,
       maxContentLength = null,
+      description,
       ...restProps
     },
     ref,
@@ -39,6 +41,7 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
       <>
         <Styled.Label htmlFor={id}>{label}</Styled.Label>
         {required && <Styled.RequiredDot />}
+        <Styled.Description>{description}</Styled.Description>
         <Styled.Input
           id={id}
           name={id}
@@ -49,7 +52,7 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
           autoComplete="off"
         />
         {isError && <Styled.ErrorMessage>{errorMessage}</Styled.ErrorMessage>}
-        {maxContentLength && (
+        {maxContentLength ? (
           <Styled.WatchLengthWrapper>
             <Styled.CurrentLength
               state={(() => {
@@ -62,7 +65,7 @@ const LabeledInput = forwardRef<HTMLInputElement, LabeledInputProps>(
             </Styled.CurrentLength>
             <Styled.LimitLength>/{maxContentLength}</Styled.LimitLength>
           </Styled.WatchLengthWrapper>
-        )}
+        ) : null}
       </>
     );
   },

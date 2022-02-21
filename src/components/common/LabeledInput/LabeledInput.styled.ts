@@ -60,6 +60,15 @@ export const RequiredDot = styled.span`
   `}
 `;
 
+export const Description = styled.span`
+  ${({ theme }) => css`
+    ${theme.fonts.kr.regular13};
+    display: block;
+    margin-top: 0.2rem;
+    color: ${theme.colors.gray60};
+  `}
+`;
+
 export const ErrorMessage = styled.em`
   ${({ theme }) => css`
     ${theme.fonts.kr.regular15};
