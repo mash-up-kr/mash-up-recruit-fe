@@ -8,10 +8,15 @@ export const Layout = styled.div`
     justify-content: space-between;
     max-width: 120rem;
     margin: 0 auto;
-    padding: 0 2rem;
+
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      gap: 6rem;
+      margin: 0 2rem;
+    }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       flex-direction: column;
+      gap: 0;
     }
   `}
 `;
