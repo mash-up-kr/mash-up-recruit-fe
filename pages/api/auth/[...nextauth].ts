@@ -12,18 +12,19 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, token }) {
-      const {
-        data: { accessToken },
-      } = await applicantApiService.signIn({ googleIdToken: token.googleIdToken! });
+      if (token.accessToken) {
+        return { ...session, accessToken: token.accessToken };
+      }
 
-      // eslint-disable-next-line no-param-reassign
-      session.accessToken = accessToken;
       return session;
     },
     async jwt({ token, account }) {
       if (account) {
+        const {
+          data: { accessToken },
+        } = await applicantApiService.signIn({ googleIdToken: account.id_token! });
         // eslint-disable-next-line no-param-reassign
-        token.googleIdToken = account.id_token;
+        token.accessToken = accessToken;
       }
       return token;
     },
