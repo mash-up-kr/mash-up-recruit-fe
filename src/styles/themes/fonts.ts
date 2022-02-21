@@ -8,6 +8,12 @@ export const fonts = {
       font-family: SpoqaHanSansNeo;
       line-height: 1.5;
     `,
+    bold32: css`
+      font-weight: 700;
+      font-size: 3.2rem;
+      font-family: SpoqaHanSansNeo;
+      line-height: 1.5;
+    `,
     bold30: css`
       font-weight: 700;
       font-size: 3rem;
@@ -23,6 +29,12 @@ export const fonts = {
     bold22: css`
       font-weight: 700;
       font-size: 2.2rem;
+      font-family: SpoqaHanSansNeo;
+      line-height: 1.5;
+    `,
+    bold20: css`
+      font-weight: 700;
+      font-size: 2rem;
       font-family: SpoqaHanSansNeo;
       line-height: 1.5;
     `,
@@ -91,6 +103,12 @@ export const fonts = {
     extrabold46: css`
       font-weight: 800;
       font-size: 4.6rem;
+      font-family: Gilroy;
+      line-height: normal;
+    `,
+    extrabold32: css`
+      font-weight: 800;
+      font-size: 3.2rem;
       font-family: Gilroy;
       line-height: normal;
     `,
