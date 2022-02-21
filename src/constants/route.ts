@@ -14,3 +14,6 @@ export const APPLY_NODE_PAGE = '/apply/node';
 export const APPLY_SPRING_PAGE = '/apply/spring';
 export const APPLY_IOS_PAGE = '/apply/ios';
 export const APPLY_ANDROID_PAGE = '/apply/android';
+
+export const MY_PAGE_ACCOUNT = '/my-page/account';
+export const MY_PAGE_APPLY_STATUS = '/my-page/apply-status';
