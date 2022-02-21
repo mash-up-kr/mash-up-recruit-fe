@@ -11,4 +11,5 @@ export { default as ConfirmModalDialog } from './ConfirmModalDialog/ConfirmModal
 export { default as LabeledInput } from './LabeledInput/LabeledInput.component';
 export { default as LabeledTextArea } from './LabeledTextArea/LabeledTextArea.component';
 export { default as LabeledCheckbox } from './LabeledCheckbox/LabeledCheckbox.component';
+export { default as Accordion } from './Accordion/Accordion.component';
 export { default as MyPageTab } from './MyPageTab/MyPageTab.component';

@@ -89,7 +89,7 @@ const Modal = ({
       if (escClose) window.removeEventListener('keyup', handleCloseModalWithEscHandler);
       window.removeEventListener('keydown', handleFocusTrap);
 
-      beforeRefSnapshot?.current.focus();
+      beforeRefSnapshot?.current?.focus();
     };
   }, [beforeRef, escClose, mounted, setIsOpenModal]);
 

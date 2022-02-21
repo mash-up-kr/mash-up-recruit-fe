@@ -22,6 +22,15 @@ export const Header = styled.h3`
       padding: 0;
       background: ${theme.colors.white};
       border: 0;
+
+      @media (max-width: ${theme.breakPoint.media.tabletS}) {
+        ${theme.fonts.kr.medium16};
+
+        svg {
+          width: 2.7rem;
+          height: 2.7rem;
+        }
+      }
     }
   `}
 `;
@@ -32,5 +41,13 @@ export const Panel = styled.div`
     height: 0;
     overflow: hidden;
     transition: height 0.35s ease;
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      ${theme.fonts.kr.regular14};
+    }
   `}
+`;
+
+export const Content = styled.p`
+  white-space: pre-wrap;
 `;
