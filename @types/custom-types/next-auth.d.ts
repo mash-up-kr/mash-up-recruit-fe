@@ -9,6 +9,6 @@ declare module 'next-auth' {
 
 declare module 'next-auth/jwt' {
   export interface JWT {
-    googleIdToken?: string;
+    accessToken?: string;
   }
 }
