@@ -1,7 +1,8 @@
 import { BaseResponse } from '@/types/dto/base';
 
+export type TeamName = 'Design' | 'Web' | 'Android' | 'iOS' | 'Node' | 'Spring';
 export interface Team {
-  name: string;
+  name: TeamName;
   teamId: number;
 }
 
