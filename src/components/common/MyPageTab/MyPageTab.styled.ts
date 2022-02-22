@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import LinkTo from '@/components/common/LinkTo/LinkTo.component';
+import { HOME_PAGE } from '@/constants';
 
 export const MyPageTabPanel = styled.div`
   position: absolute;
@@ -12,73 +13,108 @@ export const MyPageTabPanel = styled.div`
   transition: 0.5s;
 `;
 
-export const MyPageTabContent = styled.div`
-  ${({ theme }) =>
-    css`
+interface MyPageTabContentProps {
+  currentPage: string;
+}
+
+export const MyPageTabContent = styled.div<MyPageTabContentProps>`
+  ${({ theme, currentPage }) => {
+    const isHomePage = currentPage === HOME_PAGE;
+    return css`
       width: 19.2rem;
       padding: 2.4rem 1.2rem 1.2rem;
-      background: ${theme.colors.white};
-      border: 0.1rem solid ${theme.colors.gray20};
+      background: ${isHomePage ? theme.colors.gray90 : theme.colors.white};
+      border: 0.1rem solid ${isHomePage ? theme.colors.gray80 : theme.colors.gray20};
       border-radius: 1.6rem;
-    `}
+    `;
+  }}
 `;
 
-export const UserName = styled.span`
-  ${({ theme }) => css`
+interface UserNameProps {
+  currentPage: string;
+}
+
+export const UserName = styled.span<UserNameProps>`
+  ${({ theme, currentPage }) => css`
     ${theme.fonts.kr.bold18};
     padding-left: 1.2rem;
+    color: ${currentPage === HOME_PAGE ? theme.colors.gray10 : theme.colors.gray80};
   `}
 `;
 
-export const UserEmail = styled.span`
-  ${({ theme }) => css`
+interface UserEmailProps {
+  currentPage: string;
+}
+
+export const UserEmail = styled.span<UserEmailProps>`
+  ${({ theme, currentPage }) => css`
     ${theme.fonts.kr.medium13};
     display: block;
     width: 16.8rem;
     margin: 0.2rem 0 1rem;
     padding-left: 1.2rem;
     overflow: hidden;
-    color: ${theme.colors.gray50};
+    color: ${currentPage === HOME_PAGE ? theme.colors.gray60 : theme.colors.gray50};
     white-space: nowrap;
     text-overflow: ellipsis;
   `}
 `;
 
-export const TabLink = styled(LinkTo)`
-  ${({ theme }) => css`
-    ${theme.fonts.kr.medium14};
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.2rem;
-    color: ${theme.colors.gray80};
-    background: ${theme.colors.white};
-    border: 0;
-    border-radius: 1.2rem;
+interface TabLinkProps {
+  currentPage: string;
+}
 
-    &:hover {
-      background: ${theme.colors.gray10};
-    }
-  `}
+export const TabLink = styled(LinkTo)<TabLinkProps>`
+  ${({ theme, currentPage }) => {
+    const isHomePage = currentPage === HOME_PAGE;
+
+    return css`
+      ${theme.fonts.kr.medium14};
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.2rem;
+      color: ${isHomePage ? theme.colors.gray10 : theme.colors.gray80};
+      background: ${isHomePage ? theme.colors.gray90 : theme.colors.white};
+      border: 0;
+      border-radius: 1.2rem;
+
+      &:hover {
+        background: ${isHomePage ? theme.colors.gray80 : theme.colors.gray10};
+      }
+
+      & > svg > path {
+        stroke: ${isHomePage ? theme.colors.gray10 : theme.colors.gray80};
+      }
+    `;
+  }}
 `;
 
-export const SignOutButton = styled.button`
-  ${({ theme }) => css`
-    ${theme.fonts.kr.medium14};
-    width: 100%;
-    padding: 1rem 0.6rem 1rem 1.2rem;
-    color: ${theme.colors.gray50};
-    text-align: start;
-    background: ${theme.colors.white};
-    border: 0;
-    border-radius: 1.2rem;
+interface SignOutButtonProps {
+  currentPage: string;
+}
 
-    & > svg {
-      margin-left: 9.5rem;
-    }
+export const SignOutButton = styled.button<SignOutButtonProps>`
+  ${({ theme, currentPage }) => {
+    const isHomePage = currentPage === HOME_PAGE;
 
-    &:hover {
-      background: ${theme.colors.gray10};
-    }
-  `}
+    return css`
+      ${theme.fonts.kr.medium14};
+      width: 100%;
+      padding: 1rem 0.6rem 1rem 1.2rem;
+      color: ${isHomePage ? theme.colors.gray10 : theme.colors.gray50};
+      text-align: start;
+      background: ${isHomePage ? theme.colors.gray90 : theme.colors.white};
+      border: 0;
+      border-radius: 1.2rem;
+
+      & > svg {
+        margin-left: 9.5rem;
+      }
+
+      &:hover {
+        background: ${isHomePage ? theme.colors.gray80 : theme.colors.gray10};
+      }
+    `;
+  }}
 `;
