@@ -86,6 +86,7 @@ const ApplyForm = ({
     watch,
     setValue,
     trigger,
+    setFocus,
     formState: { errors },
   } = useForm<ApplyFormValues>();
 
@@ -116,6 +117,16 @@ const ApplyForm = ({
     if (session.status === 'unauthenticated') return;
 
     const { userName, phone, isAgreePersonalInfo } = watch();
+
+    if (!(await trigger('userName'))) {
+      setFocus('userName');
+      return;
+    }
+
+    if (!(await trigger('phone'))) {
+      setFocus('phone');
+      return;
+    }
 
     const updateApplicationRequest = {
       applicantName: userName,
