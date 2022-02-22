@@ -49,6 +49,9 @@ const ApplyLayout = ({
   isSubmited,
 }: ApplyLayoutProps) => {
   const [isOpenAlreadySubmitedModal, setIsOpenAlreadySubmitedModal] = useState(isSubmited);
+  const [isOpenTempSavedModal, setIsOpenTempSavedModal] = useState(
+    application.status === 'WRITING',
+  );
   return (
     <>
       <Styled.Layout>
@@ -70,6 +73,14 @@ const ApplyLayout = ({
           paragraph="이미 한 번 지원서를 제출하셨다면 이제 또 다른 지원서는 제출하지 못합니다."
           setIsOpenModal={setIsOpenAlreadySubmitedModal}
           handleApprovalButton={() => setIsOpenAlreadySubmitedModal(false)}
+        />
+      )}
+      {isOpenTempSavedModal && !isSubmited && (
+        <AlertModalDialog
+          heading="이미 작성 중이던 지원서가 있습니다."
+          paragraph="작성 중이던 지원서 내용을 불러왔습니다."
+          setIsOpenModal={setIsOpenTempSavedModal}
+          handleApprovalButton={() => setIsOpenTempSavedModal(false)}
         />
       )}
     </>
