@@ -7,7 +7,7 @@ export interface AlertModalDialogProps {
   paragraph: string;
   handleApprovalButton: MouseEventHandler<HTMLButtonElement>;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
-  beforeRef: MutableRefObject<HTMLButtonElement>;
+  beforeRef?: MutableRefObject<HTMLButtonElement>;
   deemClose?: boolean;
   escClose?: boolean;
 }
