@@ -15,9 +15,10 @@ import { useState } from 'react';
 
 interface ApplyProps {
   application: Application;
+  isSubmited: boolean;
 }
 
-const Apply = ({ application }: ApplyProps) => {
+const Apply = ({ application, isSubmited }: ApplyProps) => {
   const router = useRouter();
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenSuccessSubmitedModal, setIsOpenSuccessSubmitedModal] = useState(false);
@@ -39,6 +40,7 @@ const Apply = ({ application }: ApplyProps) => {
         application={application}
         isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
         setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
+        isSubmited={isSubmited}
       />
       {isOpenConfirmModal && (
         <ConfirmModalDialog
@@ -84,6 +86,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     })
   ).data;
 
+  const isSubmited = applications.some(({ status }) => status === 'SUBMITTED');
+
   const currentApplication = applications.find(
     ({ team }) => team.teamId === teamIds[currentApplyPlatform],
   );
@@ -96,6 +100,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         application: application?.data,
+        isSubmited,
       },
     };
   }
@@ -107,6 +112,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       application: application?.data,
+      isSubmited,
     },
   };
 };

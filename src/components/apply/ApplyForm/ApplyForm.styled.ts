@@ -75,6 +75,24 @@ export const SubmitButton = styled.button`
   `}
 `;
 
+export const AlreadySubmitedButton = styled.button`
+  ${({ theme }) => css`
+    ${theme.button.type.primary}
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  `}
+`;
+
+export const SubmitedCompletedButton = styled.button`
+  ${({ theme }) => css`
+    ${theme.button.type.defaultLine}
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  `}
+`;
+
 export const BackToListLink = styled(LinkTo)`
   ${({ theme }) => css`
     ${theme.button.type.defaultLine}
@@ -84,7 +102,6 @@ export const BackToListLink = styled(LinkTo)`
     text-align: center;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      width: 100%;
       margin-top: 6rem;
     }
   `}

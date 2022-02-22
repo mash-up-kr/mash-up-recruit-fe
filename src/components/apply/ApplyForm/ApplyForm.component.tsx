@@ -6,7 +6,7 @@ import {
   LabeledInput,
   LabeledTextArea,
 } from '@/components';
-import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL } from '@/constants';
+import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL, PATH_NAME } from '@/constants';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
 import { useSession } from 'next-auth/react';
@@ -27,6 +27,7 @@ interface ApplyFormProps {
   application: Application;
   isOpenSuccessSubmitedModal: boolean;
   setIsOpenSuccessSubmitedModal: Dispatch<SetStateAction<boolean>>;
+  isSubmited: boolean;
 }
 
 interface ApplyFormValues extends FieldValues {
@@ -47,6 +48,7 @@ const ApplyForm = ({
   application,
   isOpenSuccessSubmitedModal,
   setIsOpenSuccessSubmitedModal,
+  isSubmited,
 }: ApplyFormProps) => {
   const session = useSession();
   const router = useRouter();
@@ -70,6 +72,10 @@ const ApplyForm = ({
   const questionsAndAnswers = questions.map((question, index) => {
     const questionMatchAnswer =
       answers.find(({ questionId }) => question.questionId === questionId) || answers[index];
+
+    if (isSubmited && router.pathname === PATH_NAME.APPLY_PAGE) {
+      return { question, answer: { ...questionMatchAnswer, content: '' } };
+    }
 
     return { question, answer: questionMatchAnswer };
   });
@@ -317,20 +323,34 @@ const ApplyForm = ({
           에 동의합니다.
         </LabeledCheckbox>
         <Styled.ControlSection>
-          <Styled.TempSaveButton
-            type="button"
-            disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-            onClick={handleTempSaveApplication}
-            ref={tempSaveButtonRef}
-          >
-            임시저장하기
-          </Styled.TempSaveButton>
-          <Styled.SubmitButton
-            disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-            ref={submitButtonRef}
-          >
-            제출하기
-          </Styled.SubmitButton>
+          {isSubmited ? (
+            router.pathname === PATH_NAME.APPLY_PAGE || application.status === 'SUBMITTED' ? (
+              <Styled.AlreadySubmitedButton type="button" disabled>
+                이미 제출한 지원서가 있습니다.
+              </Styled.AlreadySubmitedButton>
+            ) : (
+              <Styled.SubmitedCompletedButton type="button" disabled>
+                제출 완료된 지원서 입니다.
+              </Styled.SubmitedCompletedButton>
+            )
+          ) : (
+            <>
+              <Styled.TempSaveButton
+                type="button"
+                disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
+                onClick={handleTempSaveApplication}
+                ref={tempSaveButtonRef}
+              >
+                임시저장하기
+              </Styled.TempSaveButton>
+              <Styled.SubmitButton
+                disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
+                ref={submitButtonRef}
+              >
+                제출하기
+              </Styled.SubmitButton>
+            </>
+          )}
           <Styled.BackToListLink href={HOME_PAGE}>목록으로 돌아가기</Styled.BackToListLink>
         </Styled.ControlSection>
       </form>

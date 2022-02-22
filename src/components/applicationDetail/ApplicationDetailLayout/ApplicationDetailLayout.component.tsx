@@ -25,12 +25,14 @@ interface ApplicationDetailLayoutProps {
   application: Application;
   isOpenSuccessSubmitedModal: boolean;
   setIsOpenSuccessSubmitedModal: Dispatch<SetStateAction<boolean>>;
+  isSubmited: boolean;
 }
 
 const ApplicationDetailLayout = ({
   application,
   isOpenSuccessSubmitedModal,
   setIsOpenSuccessSubmitedModal,
+  isSubmited,
 }: ApplicationDetailLayoutProps) => {
   return (
     <section>
@@ -48,6 +50,7 @@ const ApplicationDetailLayout = ({
           application={application}
           isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
           setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
+          isSubmited={isSubmited}
         />
       </Styled.Layout>
     </section>
