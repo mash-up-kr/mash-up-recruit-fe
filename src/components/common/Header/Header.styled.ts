@@ -15,13 +15,13 @@ export const Header = styled.header<HeaderProps>`
     width: 100%;
     height: 8rem;
     padding: 1.7rem 0;
-    ${isScrollTop && currentPage === HOME_PAGE
+    backdrop-filter: blur(2rem);
+    ${currentPage === HOME_PAGE
       ? css`
-          background: ${theme.colors.black};
+          background: ${isScrollTop ? css`rgba(18, 19, 20, 0.8)` : theme.colors.gray95};
         `
       : css`
-          background: rgba(255, 255, 255, 0.7);
-          backdrop-filter: blur(2rem);
+          background: rgba(255, 255, 255, 0.8);
         `};
 
     transition: ${isHome ? '0.5s' : 0};
@@ -42,12 +42,11 @@ export const HeaderInner = styled.div`
 `;
 
 interface HeadingProps {
-  isScrollTop: boolean;
   currentPage: string;
 }
 
 export const Heading = styled.h1<HeadingProps>`
-  ${({ theme, isScrollTop, currentPage }) => css`
+  ${({ theme, currentPage }) => css`
     display: inline-block;
     width: 24rem;
     padding: 0.7rem 0 0 0.6rem;
@@ -55,7 +54,7 @@ export const Heading = styled.h1<HeadingProps>`
     span {
       ${theme.fonts.en.extrabold24}
       margin-left: 1.3rem;
-      color: ${isScrollTop && currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray90};
+      color: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray90};
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {

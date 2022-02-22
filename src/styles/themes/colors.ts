@@ -11,6 +11,7 @@ export const colors = {
   gray70: '#495057',
   gray80: '#343A40',
   gray90: '#212529',
+  gray95: '#121314',
   purple80: '#4127D1',
   purple70: '#6244FF',
   purple60: '#836BFF',

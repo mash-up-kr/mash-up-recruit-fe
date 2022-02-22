@@ -23,11 +23,7 @@ const Header = () => {
     <Styled.Header isScrollTop={isScrollTop} currentPage={asPath} isHome={isHome}>
       <Styled.HeaderInner>
         <LinkTo href={HOME_PAGE}>
-          <Styled.Heading
-            isScrollTop={isScrollTop}
-            currentPage={asPath}
-            aria-label="Mash Up Recruit"
-          >
+          <Styled.Heading currentPage={asPath} aria-label="Mash Up Recruit">
             {size === VIEWPORT_SIZE.MOBILE ? <MashUpLogo24 /> : <MashUpLogo33 />}
             <span>Mash-Up Recruit</span>
           </Styled.Heading>
