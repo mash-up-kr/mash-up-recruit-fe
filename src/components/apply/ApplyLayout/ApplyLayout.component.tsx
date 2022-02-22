@@ -8,7 +8,7 @@ import {
   APPLY_SPRING_PAGE,
 } from '@/constants';
 import { Application } from '@/types/dto';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import * as Styled from './ApplyLayout.styled';
 
 export const PLATFORM_HEADINGS = {
@@ -35,19 +35,10 @@ interface ApplyLayoutProps {
   heading: string;
   role: string;
   application: Application;
-  isOpenSuccessSubmitedModal: boolean;
-  setIsOpenSuccessSubmitedModal: Dispatch<SetStateAction<boolean>>;
   isSubmited: boolean;
 }
 
-const ApplyLayout = ({
-  heading,
-  role,
-  application,
-  isOpenSuccessSubmitedModal,
-  setIsOpenSuccessSubmitedModal,
-  isSubmited,
-}: ApplyLayoutProps) => {
+const ApplyLayout = ({ heading, role, application, isSubmited }: ApplyLayoutProps) => {
   const [isOpenAlreadySubmitedModal, setIsOpenAlreadySubmitedModal] = useState(isSubmited);
   const [isOpenTempSavedModal, setIsOpenTempSavedModal] = useState(
     application.status === 'WRITING',
@@ -59,12 +50,7 @@ const ApplyLayout = ({
         <section>
           <Styled.PlatformHeading>{heading}</Styled.PlatformHeading>
           <Styled.PlatformRole>{role}</Styled.PlatformRole>
-          <ApplyForm
-            application={application}
-            isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
-            setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
-            isSubmited={isSubmited}
-          />
+          <ApplyForm application={application} isSubmited={isSubmited} />
         </section>
       </Styled.Layout>
       {isOpenAlreadySubmitedModal && (

@@ -7,6 +7,7 @@ import {
   LabeledTextArea,
 } from '@/components';
 import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL, PATH_NAME } from '@/constants';
+import { usePreventPageChange } from '@/hooks';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
 import { useSession } from 'next-auth/react';
@@ -25,8 +26,6 @@ import * as Styled from './ApplyForm.styled';
 
 interface ApplyFormProps {
   application: Application;
-  isOpenSuccessSubmitedModal: boolean;
-  setIsOpenSuccessSubmitedModal: Dispatch<SetStateAction<boolean>>;
   isSubmited: boolean;
 }
 
@@ -44,12 +43,7 @@ const APPLY_FORM_KEYS = {
   isAgreePersonalInfo: 'isAgreePersonalInfo',
 } as const;
 
-const ApplyForm = ({
-  application,
-  isOpenSuccessSubmitedModal,
-  setIsOpenSuccessSubmitedModal,
-  isSubmited,
-}: ApplyFormProps) => {
+const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
   const session = useSession();
   const router = useRouter();
 
@@ -60,6 +54,12 @@ const ApplyForm = ({
   const [isOpenTempSaveFailedAlertModal, setIsOpenTempSaveFailedAlertModal] = useState(false);
   const [isOpenConfirmSubmitedModal, setIsOpenConfirmSubmitedModal] = useState(false);
   const [isOpenFailedSubmitedModal, setIsOpenFailedSubmitedModal] = useState(false);
+  const [isOpenBlockingConfirmModal, setIsOpenBlockingConfirmModal] = useState(false);
+  const [isOpenSuccessSubmitedModal, setIsOpenSuccessSubmitedModal] = useState(false);
+
+  const handleCloseBlockingConfirmModal = () => {
+    setIsOpenBlockingConfirmModal(false);
+  };
 
   const handleCloseTempSaveAlertModal = (
     setIsOpenAlertModal: Dispatch<SetStateAction<boolean>>,
@@ -87,8 +87,14 @@ const ApplyForm = ({
     setValue,
     trigger,
     setFocus,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<ApplyFormValues>();
+
+  const { handleMoveAfterBlocking } = usePreventPageChange(setIsOpenBlockingConfirmModal, [
+    isOpenBlockingConfirmModal,
+    isOpenSuccessSubmitedModal,
+    !isDirty,
+  ]);
 
   const handleReplacePhoneNumber: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
     const onlyNumberReg = /[^0-9]/g;
@@ -433,6 +439,17 @@ const ApplyForm = ({
           handleApprovalButton={() => setIsOpenFailedSubmitedModal(false)}
           escClose={false}
           deemClose={false}
+        />
+      )}
+      {isOpenBlockingConfirmModal && (
+        <ConfirmModalDialog
+          approvalButtonMessage="나가기"
+          cancelButtonMessage="머물기"
+          handleApprovalButton={handleMoveAfterBlocking}
+          handleCancelButton={handleCloseBlockingConfirmModal}
+          heading="지금..나가시게요..?"
+          paragraph="저장 안된 내용은..날아갈 수 있다능.."
+          setIsOpenModal={setIsOpenBlockingConfirmModal}
         />
       )}
     </>

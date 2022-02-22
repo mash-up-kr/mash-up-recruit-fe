@@ -1,10 +1,8 @@
 import { applicationApiService } from '@/api/services';
-import { ConfirmModalDialog, ApplicationDetailLayout } from '@/components';
-import { usePreventPageChange } from '@/hooks';
+import { ApplicationDetailLayout } from '@/components';
 import { Application } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
-import { useState } from 'react';
 
 interface ApplicationDetailProps {
   application: Application;
@@ -12,39 +10,7 @@ interface ApplicationDetailProps {
 }
 
 const ApplicationDetail = ({ application, isSubmited }: ApplicationDetailProps) => {
-  const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
-  const [isOpenSuccessSubmitedModal, setIsOpenSuccessSubmitedModal] = useState(false);
-
-  const { handleMoveAfterBlocking } = usePreventPageChange(setIsOpenConfirmModal, [
-    isOpenConfirmModal,
-    isOpenSuccessSubmitedModal,
-  ]);
-
-  const handleCloseConfirmModal = () => {
-    setIsOpenConfirmModal(false);
-  };
-
-  return (
-    <>
-      <ApplicationDetailLayout
-        application={application}
-        isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
-        setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
-        isSubmited={isSubmited}
-      />
-      {isOpenConfirmModal && (
-        <ConfirmModalDialog
-          approvalButtonMessage="나가기"
-          cancelButtonMessage="머물기"
-          handleApprovalButton={handleMoveAfterBlocking}
-          handleCancelButton={handleCloseConfirmModal}
-          heading="지금..나가시게요..?"
-          paragraph="저장 안된 내용은..날아갈 수 있다능.."
-          setIsOpenModal={setIsOpenConfirmModal}
-        />
-      )}
-    </>
-  );
+  return <ApplicationDetailLayout application={application} isSubmited={isSubmited} />;
 };
 
 export const getServerSideProps: GetServerSideProps<ApplicationDetailProps> = async (context) => {
