@@ -8,18 +8,32 @@ export const Dialog = styled.div`
     max-width: 45.1rem;
     background: ${theme.colors.white};
     border-radius: 2rem;
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      max-width: 26.8rem;
+    }
   `}
 `;
 
 export const DialogInner = styled.div`
-  padding: 2.4rem;
-  border-radius: 2rem 2rem 0 0;
+  ${({ theme }) => css`
+    padding: 2.4rem;
+    border-radius: 2rem 2rem 0 0;
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      padding: 2.4rem 2.4rem 1.6rem;
+    }
+  `}
 `;
 
 export const Heading = styled.h2`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold22};
     color: ${theme.colors.gray80};
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.bold18};
+    }
   `}
 `;
 
@@ -29,6 +43,11 @@ export const Paragraph = styled.p`
     margin: 1.6rem auto 0;
     color: ${theme.colors.gray60};
     white-space: pre-wrap;
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium14};
+      margin-top: 0.8rem;
+    }
   `}
 `;
 
@@ -63,6 +82,11 @@ export const CancelButton = styled.button`
         border-radius: 1.2rem;
       }
     }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium15};
+      padding: 0.85rem 1.6rem;
+    }
   `}
 `;
 
@@ -87,6 +111,11 @@ export const ApprovalButton = styled.button`
         background: rgba(0, 0, 0, 0.3);
         border-radius: 1.2rem;
       }
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium15};
+      padding: 0.85rem 1.6rem;
     }
   `}
 `;
