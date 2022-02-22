@@ -47,7 +47,3 @@ export const Panel = styled.div`
     }
   `}
 `;
-
-export const Content = styled.p`
-  white-space: pre-wrap;
-`;
