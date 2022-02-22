@@ -15,7 +15,8 @@ export const MyPageTabPanel = styled.div`
 export const MyPageTabContent = styled.div`
   ${({ theme }) =>
     css`
-      padding: 2.8rem 1.6rem 1.4rem 1.2rem;
+      width: 19.2rem;
+      padding: 2.4rem 1.2rem 1.2rem;
       background: ${theme.colors.white};
       border: 0.1rem solid ${theme.colors.gray20};
       border-radius: 1.6rem;
@@ -46,16 +47,14 @@ export const UserEmail = styled.span`
 export const TabLink = styled(LinkTo)`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium14};
-    display: block;
-    padding: 1rem 0.6rem 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.2rem;
     color: ${theme.colors.gray80};
     background: ${theme.colors.white};
     border: 0;
     border-radius: 1.2rem;
-
-    & > svg {
-      margin-left: 9.5rem;
-    }
 
     &:hover {
       background: ${theme.colors.gray10};
