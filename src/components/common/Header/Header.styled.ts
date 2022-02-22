@@ -3,28 +3,18 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 interface HeaderProps {
-  isScrollTop: boolean;
   currentPage: string;
-  isHome: boolean;
 }
 
 export const Header = styled.header<HeaderProps>`
-  ${({ theme, isScrollTop, currentPage, isHome }) => css`
+  ${({ theme, currentPage }) => css`
     position: fixed;
     z-index: ${theme.zIndex.header};
     width: 100%;
     height: 8rem;
     padding: 1.7rem 0;
+    background: ${currentPage === HOME_PAGE ? 'rgba(18, 19, 20, 0.8)' : 'rgba(255, 255, 255, 0.8)'};
     backdrop-filter: blur(2rem);
-    ${currentPage === HOME_PAGE
-      ? css`
-          background: ${isScrollTop ? css`rgba(18, 19, 20, 0.8)` : theme.colors.gray95};
-        `
-      : css`
-          background: rgba(255, 255, 255, 0.8);
-        `};
-
-    transition: ${isHome ? '0.5s' : 0};
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       height: 6rem;
