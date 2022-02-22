@@ -1,5 +1,5 @@
 import { Modal } from '@/components';
-import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from 'react';
+import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction, useEffect } from 'react';
 import * as Styled from './AlertModalDialog.styled';
 
 export interface AlertModalDialogProps {
@@ -7,9 +7,10 @@ export interface AlertModalDialogProps {
   paragraph: string;
   handleApprovalButton: MouseEventHandler<HTMLButtonElement>;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
-  beforeRef: MutableRefObject<HTMLButtonElement>;
+  beforeRef?: MutableRefObject<HTMLButtonElement>;
   deemClose?: boolean;
   escClose?: boolean;
+  enterClose?: boolean;
 }
 
 const AlertModalDialog = ({
@@ -20,7 +21,21 @@ const AlertModalDialog = ({
   setIsOpenModal,
   deemClose,
   escClose,
+  enterClose = true,
 }: AlertModalDialogProps) => {
+  const handleCloseModalWithEnterHandler = ({ key }: KeyboardEvent) => {
+    if (key === 'Enter') {
+      setIsOpenModal(false);
+    }
+  };
+
+  useEffect(() => {
+    if (enterClose) window.addEventListener('keyup', handleCloseModalWithEnterHandler);
+
+    return () => {
+      if (enterClose) window.removeEventListener('keyup', handleCloseModalWithEnterHandler);
+    };
+  });
   return (
     <Modal
       beforeRef={beforeRef}

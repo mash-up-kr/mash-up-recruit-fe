@@ -1,6 +1,5 @@
 import { ApplyForm } from '@/components';
 import { Application, TeamName } from '@/types/dto';
-import { Dispatch, SetStateAction } from 'react';
 import * as Styled from './ApplicationDetailLayout.styled';
 
 export const PLATFORM_HEADINGS: Record<TeamName, string> = {
@@ -23,15 +22,10 @@ export const PLATFORM_ROLE: Record<TeamName, string> = {
 
 interface ApplicationDetailLayoutProps {
   application: Application;
-  isOpenSuccessSubmitedModal: boolean;
-  setIsOpenSuccessSubmitedModal: Dispatch<SetStateAction<boolean>>;
+  isSubmited: boolean;
 }
 
-const ApplicationDetailLayout = ({
-  application,
-  isOpenSuccessSubmitedModal,
-  setIsOpenSuccessSubmitedModal,
-}: ApplicationDetailLayoutProps) => {
+const ApplicationDetailLayout = ({ application, isSubmited }: ApplicationDetailLayoutProps) => {
   return (
     <section>
       <Styled.ApplicationDetailHeadingWrapper>
@@ -44,11 +38,7 @@ const ApplicationDetailLayout = ({
         </Styled.ApplicationDetailHeadingInner>
       </Styled.ApplicationDetailHeadingWrapper>
       <Styled.Layout>
-        <ApplyForm
-          application={application}
-          isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
-          setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
-        />
+        <ApplyForm application={application} isSubmited={isSubmited} />
       </Styled.Layout>
     </section>
   );

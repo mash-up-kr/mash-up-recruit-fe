@@ -1,4 +1,4 @@
-import { ApplyForm } from '@/components';
+import { AlertModalDialog, ApplyForm } from '@/components';
 import {
   APPLY_ANDROID_PAGE,
   APPLY_DESIGN_PAGE,
@@ -8,7 +8,7 @@ import {
   APPLY_SPRING_PAGE,
 } from '@/constants';
 import { Application } from '@/types/dto';
-import { Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
 import * as Styled from './ApplyLayout.styled';
 
 export const PLATFORM_HEADINGS = {
@@ -35,30 +35,41 @@ interface ApplyLayoutProps {
   heading: string;
   role: string;
   application: Application;
-  isOpenSuccessSubmitedModal: boolean;
-  setIsOpenSuccessSubmitedModal: Dispatch<SetStateAction<boolean>>;
+  isSubmited: boolean;
 }
 
-const ApplyLayout = ({
-  heading,
-  role,
-  application,
-  isOpenSuccessSubmitedModal,
-  setIsOpenSuccessSubmitedModal,
-}: ApplyLayoutProps) => {
+const ApplyLayout = ({ heading, role, application, isSubmited }: ApplyLayoutProps) => {
+  const [isOpenAlreadySubmitedModal, setIsOpenAlreadySubmitedModal] = useState(isSubmited);
+  const [isOpenTempSavedModal, setIsOpenTempSavedModal] = useState(
+    application.status === 'WRITING',
+  );
   return (
-    <Styled.Layout>
-      <Styled.ApplyHeading>지원서 작성</Styled.ApplyHeading>
-      <section>
-        <Styled.PlatformHeading>{heading}</Styled.PlatformHeading>
-        <Styled.PlatformRole>{role}</Styled.PlatformRole>
-        <ApplyForm
-          application={application}
-          isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
-          setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
+    <>
+      <Styled.Layout>
+        <Styled.ApplyHeading>지원서 작성</Styled.ApplyHeading>
+        <section>
+          <Styled.PlatformHeading>{heading}</Styled.PlatformHeading>
+          <Styled.PlatformRole>{role}</Styled.PlatformRole>
+          <ApplyForm application={application} isSubmited={isSubmited} />
+        </section>
+      </Styled.Layout>
+      {isOpenAlreadySubmitedModal && (
+        <AlertModalDialog
+          heading="1인 1팀 1지원만 가능합니다!"
+          paragraph="이미 한 번 지원서를 제출하셨다면 이제 또 다른 지원서는 제출하지 못합니다."
+          setIsOpenModal={setIsOpenAlreadySubmitedModal}
+          handleApprovalButton={() => setIsOpenAlreadySubmitedModal(false)}
         />
-      </section>
-    </Styled.Layout>
+      )}
+      {isOpenTempSavedModal && !isSubmited && (
+        <AlertModalDialog
+          heading="이미 작성 중이던 지원서가 있습니다."
+          paragraph="작성 중이던 지원서 내용을 불러왔습니다."
+          setIsOpenModal={setIsOpenTempSavedModal}
+          handleApprovalButton={() => setIsOpenTempSavedModal(false)}
+        />
+      )}
+    </>
   );
 };
 

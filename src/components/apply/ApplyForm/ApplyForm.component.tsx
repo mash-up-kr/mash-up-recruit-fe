@@ -6,7 +6,8 @@ import {
   LabeledInput,
   LabeledTextArea,
 } from '@/components';
-import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL } from '@/constants';
+import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL, PATH_NAME } from '@/constants';
+import { usePreventPageChange } from '@/hooks';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
 import { useSession } from 'next-auth/react';
@@ -25,8 +26,7 @@ import * as Styled from './ApplyForm.styled';
 
 interface ApplyFormProps {
   application: Application;
-  isOpenSuccessSubmitedModal: boolean;
-  setIsOpenSuccessSubmitedModal: Dispatch<SetStateAction<boolean>>;
+  isSubmited: boolean;
 }
 
 interface ApplyFormValues extends FieldValues {
@@ -43,11 +43,7 @@ const APPLY_FORM_KEYS = {
   isAgreePersonalInfo: 'isAgreePersonalInfo',
 } as const;
 
-const ApplyForm = ({
-  application,
-  isOpenSuccessSubmitedModal,
-  setIsOpenSuccessSubmitedModal,
-}: ApplyFormProps) => {
+const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
   const session = useSession();
   const router = useRouter();
 
@@ -58,6 +54,12 @@ const ApplyForm = ({
   const [isOpenTempSaveFailedAlertModal, setIsOpenTempSaveFailedAlertModal] = useState(false);
   const [isOpenConfirmSubmitedModal, setIsOpenConfirmSubmitedModal] = useState(false);
   const [isOpenFailedSubmitedModal, setIsOpenFailedSubmitedModal] = useState(false);
+  const [isOpenBlockingConfirmModal, setIsOpenBlockingConfirmModal] = useState(false);
+  const [isOpenSuccessSubmitedModal, setIsOpenSuccessSubmitedModal] = useState(false);
+
+  const handleCloseBlockingConfirmModal = () => {
+    setIsOpenBlockingConfirmModal(false);
+  };
 
   const handleCloseTempSaveAlertModal = (
     setIsOpenAlertModal: Dispatch<SetStateAction<boolean>>,
@@ -71,6 +73,10 @@ const ApplyForm = ({
     const questionMatchAnswer =
       answers.find(({ questionId }) => question.questionId === questionId) || answers[index];
 
+    if (isSubmited && router.pathname === PATH_NAME.APPLY_PAGE) {
+      return { question, answer: { ...questionMatchAnswer, content: '' } };
+    }
+
     return { question, answer: questionMatchAnswer };
   });
 
@@ -80,8 +86,15 @@ const ApplyForm = ({
     watch,
     setValue,
     trigger,
-    formState: { errors },
+    setFocus,
+    formState: { errors, isDirty },
   } = useForm<ApplyFormValues>();
+
+  const { handleMoveAfterBlocking } = usePreventPageChange(setIsOpenBlockingConfirmModal, [
+    isOpenBlockingConfirmModal,
+    isOpenSuccessSubmitedModal,
+    !isDirty,
+  ]);
 
   const handleReplacePhoneNumber: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
     const onlyNumberReg = /[^0-9]/g;
@@ -110,6 +123,16 @@ const ApplyForm = ({
     if (session.status === 'unauthenticated') return;
 
     const { userName, phone, isAgreePersonalInfo } = watch();
+
+    if (!(await trigger('userName'))) {
+      setFocus('userName');
+      return;
+    }
+
+    if (!(await trigger('phone'))) {
+      setFocus('phone');
+      return;
+    }
 
     const updateApplicationRequest = {
       applicantName: userName,
@@ -172,6 +195,9 @@ const ApplyForm = ({
     } else setIsOpenFailedSubmitedModal(true);
   };
 
+  const isDetailPageAndSubmited =
+    isSubmited && router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL;
+
   return (
     <>
       <form onSubmit={handleSubmit(handleOpenSubmitModal)}>
@@ -191,6 +217,7 @@ const ApplyForm = ({
               placeholder="내용을 입력해주세요"
               label="이름"
               required
+              disabled={isDetailPageAndSubmited}
               $size="md"
               onBlur={() => {
                 handleValidateForm(APPLY_FORM_KEYS.userName);
@@ -215,6 +242,7 @@ const ApplyForm = ({
               placeholder="010-1234-5678"
               label="전화번호"
               required
+              disabled={isDetailPageAndSubmited}
               isError={!!errors.phone}
               errorMessage={errors.phone?.message}
               $size="md"
@@ -227,7 +255,7 @@ const ApplyForm = ({
           <Styled.PersonalInformationWrapper>
             <LabeledInput
               id={APPLY_FORM_KEYS.email}
-              value={session.data?.user?.email || ''}
+              value={applicant.email}
               disabled
               label="이메일"
               $size="md"
@@ -262,6 +290,7 @@ const ApplyForm = ({
                     label={question.content}
                     placeholder="내용을 입력해주세요."
                     required={question.required}
+                    disabled={isDetailPageAndSubmited}
                     id={uniqueQuestionId}
                     isError={!!errors[uniqueQuestionId]}
                     errorMessage={errors[uniqueQuestionId]?.message}
@@ -289,6 +318,7 @@ const ApplyForm = ({
                     id={uniqueQuestionId}
                     label={question.content}
                     required={question.required}
+                    disabled={isDetailPageAndSubmited}
                     $size="md"
                     placeholder="내용을 입력해주세요."
                     isError={!!errors[uniqueQuestionId]}
@@ -307,8 +337,9 @@ const ApplyForm = ({
         </Styled.QuestionListSection>
         <LabeledCheckbox
           {...register(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-          checked={watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
+          checked={isDetailPageAndSubmited ? true : watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
           id={APPLY_FORM_KEYS.isAgreePersonalInfo}
+          disabled={isDetailPageAndSubmited}
         >
           {/* TODO:(하준) 개인정보 수집 및 이용 동의 페이지 링크로 수정 */}
           <a href="http://devfolio.world" target="_blank" rel="noreferrer">
@@ -317,20 +348,37 @@ const ApplyForm = ({
           에 동의합니다.
         </LabeledCheckbox>
         <Styled.ControlSection>
-          <Styled.TempSaveButton
-            type="button"
-            disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-            onClick={handleTempSaveApplication}
-            ref={tempSaveButtonRef}
-          >
-            임시저장하기
-          </Styled.TempSaveButton>
-          <Styled.SubmitButton
-            disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-            ref={submitButtonRef}
-          >
-            제출하기
-          </Styled.SubmitButton>
+          {isSubmited ? (
+            router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL &&
+            application.status === 'SUBMITTED' ? (
+              <Styled.SubmitedCompletedButton type="button" disabled>
+                제출 완료된 지원서 입니다.
+              </Styled.SubmitedCompletedButton>
+            ) : (
+              isSubmited && (
+                <Styled.AlreadySubmitedButton type="button" disabled>
+                  이미 제출한 지원서가 있습니다.
+                </Styled.AlreadySubmitedButton>
+              )
+            )
+          ) : (
+            <>
+              <Styled.TempSaveButton
+                type="button"
+                disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
+                onClick={handleTempSaveApplication}
+                ref={tempSaveButtonRef}
+              >
+                임시저장하기
+              </Styled.TempSaveButton>
+              <Styled.SubmitButton
+                disabled={!watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
+                ref={submitButtonRef}
+              >
+                제출하기
+              </Styled.SubmitButton>
+            </>
+          )}
           <Styled.BackToListLink href={HOME_PAGE}>목록으로 돌아가기</Styled.BackToListLink>
         </Styled.ControlSection>
       </form>
@@ -399,6 +447,17 @@ const ApplyForm = ({
           handleApprovalButton={() => setIsOpenFailedSubmitedModal(false)}
           escClose={false}
           deemClose={false}
+        />
+      )}
+      {isOpenBlockingConfirmModal && (
+        <ConfirmModalDialog
+          approvalButtonMessage="나가기"
+          cancelButtonMessage="머물기"
+          handleApprovalButton={handleMoveAfterBlocking}
+          handleCancelButton={handleCloseBlockingConfirmModal}
+          heading="지금..나가시게요..?"
+          paragraph="저장 안된 내용은..날아갈 수 있다능.."
+          setIsOpenModal={setIsOpenBlockingConfirmModal}
         />
       )}
     </>

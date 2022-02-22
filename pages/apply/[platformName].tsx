@@ -1,57 +1,31 @@
 import { applicationApiService } from '@/api/services';
-import { ApplyLayout, ConfirmModalDialog } from '@/components';
+import { ApplyLayout } from '@/components';
 import {
   PlatformHeadings,
   PLATFORM_HEADINGS,
   PLATFORM_ROLE,
 } from '@/components/apply/ApplyLayout/ApplyLayout.component';
 import { teamIds, teamNames, Teams } from '@/constants';
-import { usePreventPageChange } from '@/hooks';
 import { Application } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 
 interface ApplyProps {
   application: Application;
+  isSubmited: boolean;
 }
 
-const Apply = ({ application }: ApplyProps) => {
+const Apply = ({ application, isSubmited }: ApplyProps) => {
   const router = useRouter();
-  const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
-  const [isOpenSuccessSubmitedModal, setIsOpenSuccessSubmitedModal] = useState(false);
-
-  const { handleMoveAfterBlocking } = usePreventPageChange(setIsOpenConfirmModal, [
-    isOpenConfirmModal,
-    isOpenSuccessSubmitedModal,
-  ]);
-
-  const handleCloseConfirmModal = () => {
-    setIsOpenConfirmModal(false);
-  };
 
   return (
-    <>
-      <ApplyLayout
-        heading={PLATFORM_HEADINGS[router.asPath as keyof PlatformHeadings]}
-        role={PLATFORM_ROLE[router.asPath as keyof PlatformHeadings]}
-        application={application}
-        isOpenSuccessSubmitedModal={isOpenSuccessSubmitedModal}
-        setIsOpenSuccessSubmitedModal={setIsOpenSuccessSubmitedModal}
-      />
-      {isOpenConfirmModal && (
-        <ConfirmModalDialog
-          approvalButtonMessage="나가기"
-          cancelButtonMessage="머물기"
-          handleApprovalButton={handleMoveAfterBlocking}
-          handleCancelButton={handleCloseConfirmModal}
-          heading="지금..나가시게요..?"
-          paragraph="저장 안된 내용은..날아갈 수 있다능.."
-          setIsOpenModal={setIsOpenConfirmModal}
-        />
-      )}
-    </>
+    <ApplyLayout
+      heading={PLATFORM_HEADINGS[router.asPath as keyof PlatformHeadings]}
+      role={PLATFORM_ROLE[router.asPath as keyof PlatformHeadings]}
+      application={application}
+      isSubmited={isSubmited}
+    />
   );
 };
 
@@ -84,6 +58,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     })
   ).data;
 
+  const isSubmited = applications.some(({ status }) => status === 'SUBMITTED');
+
   const currentApplication = applications.find(
     ({ team }) => team.teamId === teamIds[currentApplyPlatform],
   );
@@ -96,6 +72,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         application: application?.data,
+        isSubmited,
       },
     };
   }
@@ -107,6 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       application: application?.data,
+      isSubmited,
     },
   };
 };
