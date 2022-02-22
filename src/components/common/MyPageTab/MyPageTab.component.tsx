@@ -50,7 +50,7 @@ const MyPageTab = ({ isOpenMyPageTab, setIsOpenMyPageTab }: MyPageTabProps) => {
   }, [isOpenMyPageTab, session.status]);
 
   return (
-    <Styled.MyPageTabPanel ref={myPageTabPanelRef} aria-hidden={isOpenMyPageTab}>
+    <Styled.MyPageTabPanel ref={myPageTabPanelRef} aria-hidden={!isOpenMyPageTab}>
       <Styled.MyPageTabContent ref={myPageTabContentRef}>
         <Styled.UserName>{session?.data?.user?.name}님</Styled.UserName>
         <Styled.UserEmail>{session?.data?.user?.email}asfasdfa</Styled.UserEmail>
