@@ -2,17 +2,6 @@ import LinkTo from '@/components/common/LinkTo/LinkTo.component';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const PlatformHeading = styled.h3`
-  ${({ theme }) => css`
-    ${theme.fonts.kr.bold46};
-    color: ${theme.colors.gray80};
-
-    @media (max-width: ${theme.breakPoint.media.mobile}) {
-      ${theme.fonts.kr.bold24}
-    }
-  `}
-`;
-
 export const PersonalInformationSection = styled.section`
   margin-top: 6rem;
 `;

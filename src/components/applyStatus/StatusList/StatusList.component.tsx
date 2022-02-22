@@ -1,3 +1,4 @@
+import { MY_PAGE_APPLICATON_DETAIL } from '@/constants';
 import { useDetectViewPort } from '@/hooks';
 import { Application, ApplicationAuditStatus, TeamName } from '@/types/dto';
 import * as Styled from './StatusList.styled';
@@ -54,7 +55,9 @@ const StatusList = ({ applications }: StatusListProps) => {
                         <Styled.StatusText>{TEAM__NICK_NAME[team.name]}</Styled.StatusText>
                         <Styled.StatusText>{STATUS_WORDS[result.status]}</Styled.StatusText>
                         <Styled.DetailLinkWrapper>
-                          <Styled.ApplicationDetailLink href="/">
+                          <Styled.ApplicationDetailLink
+                            href={`${MY_PAGE_APPLICATON_DETAIL}/${applicationId}`}
+                          >
                             상세보기
                           </Styled.ApplicationDetailLink>
                         </Styled.DetailLinkWrapper>
@@ -93,7 +96,9 @@ const StatusList = ({ applications }: StatusListProps) => {
                           <Styled.StatusText>{STATUS_WORDS[result.status]}</Styled.StatusText>
                         </Styled.ListItemWrapper>
                         <Styled.DetailLinkWrapper>
-                          <Styled.ApplicationDetailLink href="/">
+                          <Styled.ApplicationDetailLink
+                            href={`${MY_PAGE_APPLICATON_DETAIL}/${applicationId}`}
+                          >
                             지원서 상세보기
                           </Styled.ApplicationDetailLink>
                         </Styled.DetailLinkWrapper>

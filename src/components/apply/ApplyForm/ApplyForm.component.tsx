@@ -6,15 +6,7 @@ import {
   LabeledInput,
   LabeledTextArea,
 } from '@/components';
-import {
-  APPLY_ANDROID_PAGE,
-  APPLY_DESIGN_PAGE,
-  APPLY_FRONT_END_PAGE,
-  APPLY_IOS_PAGE,
-  APPLY_NODE_PAGE,
-  APPLY_SPRING_PAGE,
-  HOME_PAGE,
-} from '@/constants';
+import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL } from '@/constants';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
 import { useSession } from 'next-auth/react';
@@ -32,7 +24,6 @@ import { FieldValues, useForm } from 'react-hook-form';
 import * as Styled from './ApplyForm.styled';
 
 interface ApplyFormProps {
-  heading: string;
   application: Application;
   isOpenSuccessSubmitedModal: boolean;
   setIsOpenSuccessSubmitedModal: Dispatch<SetStateAction<boolean>>;
@@ -52,19 +43,7 @@ const APPLY_FORM_KEYS = {
   isAgreePersonalInfo: 'isAgreePersonalInfo',
 } as const;
 
-export const PLATFORM_HEADINGS = {
-  [APPLY_FRONT_END_PAGE]: 'Frontend Developer',
-  [APPLY_ANDROID_PAGE]: 'Android Developer',
-  [APPLY_DESIGN_PAGE]: 'Product Design',
-  [APPLY_IOS_PAGE]: 'iOS Developer',
-  [APPLY_NODE_PAGE]: 'Server Developer (Node.js)',
-  [APPLY_SPRING_PAGE]: 'Server Developer (Spring)',
-} as const;
-
-export type PlatformHeadings = typeof PLATFORM_HEADINGS;
-
 const ApplyForm = ({
-  heading,
   application,
   isOpenSuccessSubmitedModal,
   setIsOpenSuccessSubmitedModal,
@@ -194,8 +173,7 @@ const ApplyForm = ({
   };
 
   return (
-    <section>
-      <Styled.PlatformHeading>{heading}</Styled.PlatformHeading>
+    <>
       <form onSubmit={handleSubmit(handleOpenSubmitModal)}>
         <Styled.PersonalInformationSection>
           <Styled.SectionHeading>개인 정보</Styled.SectionHeading>
@@ -249,7 +227,6 @@ const ApplyForm = ({
           <Styled.PersonalInformationWrapper>
             <LabeledInput
               id={APPLY_FORM_KEYS.email}
-              // TODO:(하준) 유저의 이메일로 value 삽입
               value={session.data?.user?.email || ''}
               disabled
               label="이메일"
@@ -405,8 +382,10 @@ const ApplyForm = ({
           cancelButtonMessage="홈으로"
           setIsOpenModal={setIsOpenSuccessSubmitedModal}
           handleCancelButton={() => router.push(HOME_PAGE)}
-          // TODO:(하준) 마이페이지 생성 및 상수 정의되면 수정
-          handleApprovalButton={() => router.push('/')}
+          handleApprovalButton={() => {
+            router.push(`${MY_PAGE_APPLICATON_DETAIL}/${application.applicationId}`);
+            setIsOpenSuccessSubmitedModal(false);
+          }}
           escClose={false}
           deemClose={false}
         />
@@ -422,7 +401,7 @@ const ApplyForm = ({
           deemClose={false}
         />
       )}
-    </section>
+    </>
   );
 };
 
