@@ -195,6 +195,9 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
     } else setIsOpenFailedSubmitedModal(true);
   };
 
+  const isDetailPageAndSubmited =
+    isSubmited && router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL;
+
   return (
     <>
       <form onSubmit={handleSubmit(handleOpenSubmitModal)}>
@@ -214,6 +217,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
               placeholder="내용을 입력해주세요"
               label="이름"
               required
+              disabled={isDetailPageAndSubmited}
               $size="md"
               onBlur={() => {
                 handleValidateForm(APPLY_FORM_KEYS.userName);
@@ -238,6 +242,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
               placeholder="010-1234-5678"
               label="전화번호"
               required
+              disabled={isDetailPageAndSubmited}
               isError={!!errors.phone}
               errorMessage={errors.phone?.message}
               $size="md"
@@ -285,6 +290,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
                     label={question.content}
                     placeholder="내용을 입력해주세요."
                     required={question.required}
+                    disabled={isDetailPageAndSubmited}
                     id={uniqueQuestionId}
                     isError={!!errors[uniqueQuestionId]}
                     errorMessage={errors[uniqueQuestionId]?.message}
@@ -312,6 +318,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
                     id={uniqueQuestionId}
                     label={question.content}
                     required={question.required}
+                    disabled={isDetailPageAndSubmited}
                     $size="md"
                     placeholder="내용을 입력해주세요."
                     isError={!!errors[uniqueQuestionId]}
@@ -330,8 +337,9 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
         </Styled.QuestionListSection>
         <LabeledCheckbox
           {...register(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-          checked={watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
+          checked={isDetailPageAndSubmited ? true : watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
           id={APPLY_FORM_KEYS.isAgreePersonalInfo}
+          disabled={isDetailPageAndSubmited}
         >
           {/* TODO:(하준) 개인정보 수집 및 이용 동의 페이지 링크로 수정 */}
           <a href="http://devfolio.world" target="_blank" rel="noreferrer">
