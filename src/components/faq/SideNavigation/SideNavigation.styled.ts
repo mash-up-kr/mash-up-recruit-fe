@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Navigation = styled.nav`
+export const NavigationContainer = styled.div`
   width: 23rem;
 `;
