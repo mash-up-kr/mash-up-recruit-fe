@@ -73,15 +73,14 @@ export const NavList = styled.ul<NavListProps>`
 `;
 
 interface SignInButtonProps {
-  isScrollTop: boolean;
   currentPage: string;
 }
 
 export const SignInButton = styled.button<SignInButtonProps>`
-  ${({ theme, isScrollTop, currentPage }) => css`
+  ${({ theme, currentPage }) => css`
     ${theme.fonts.kr.bold18}
     padding: 0;
-    color: ${isScrollTop && currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
+    color: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
     background: transparent;
     border: 0;
 

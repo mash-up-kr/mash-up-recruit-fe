@@ -2,7 +2,7 @@ import { FAQ_COMMON_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
 import { LinkTo, SignInModalDialog, MyPageTab } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
-import { useDetectOutsideClick, useDetectViewPort, useWatchingIsScrollTop } from '@/hooks';
+import { useDetectOutsideClick, useDetectViewPort } from '@/hooks';
 import Router, { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import ChevronBottom12 from '@/assets/svg/chevron-bottom-12.svg';
@@ -11,7 +11,6 @@ import * as Styled from './MainNavigation.styled';
 const MainNavigation = () => {
   const session = useSession();
   const { size } = useDetectViewPort();
-  const isScrollTop = useWatchingIsScrollTop();
   const { asPath } = useRouter();
 
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
@@ -45,7 +44,7 @@ const MainNavigation = () => {
   return (
     <>
       <Styled.Nav>
-        <Styled.NavList isScrollTop={isScrollTop} currentPage={asPath}>
+        <Styled.NavList currentPage={asPath}>
           <li>
             <LinkTo href={HOME_PAGE}>모집 공고</LinkTo>
           </li>
@@ -58,7 +57,6 @@ const MainNavigation = () => {
               <div ref={MyPageTabWrrpaer}>
                 <Styled.MyPageButton
                   type="button"
-                  isScrollTop={isScrollTop}
                   currentPage={asPath}
                   onClick={handleToggleMyPageTab}
                   isOpenMyPageTab={isOpenMyPageTab}
@@ -74,7 +72,6 @@ const MainNavigation = () => {
             ) : (
               <Styled.SignInButton
                 type="button"
-                isScrollTop={isScrollTop}
                 currentPage={asPath}
                 onClick={handleOpenSignInModal}
                 ref={loginButtonRef}
