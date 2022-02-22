@@ -7,16 +7,17 @@ export const Layout = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 120rem;
-    margin: 0 auto;
+    margin: 0 auto 26.9rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       gap: 6rem;
-      margin: 0 2rem;
+      margin: 0 2rem 26rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       flex-direction: column;
       gap: 0;
+      margin-bottom: 16rem;
     }
   `}
 `;
