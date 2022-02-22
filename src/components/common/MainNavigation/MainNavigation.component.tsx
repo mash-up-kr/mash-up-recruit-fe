@@ -88,7 +88,6 @@ const MainNavigation = () => {
 
       {isOpenSignInModal && (
         <SignInModalDialog
-          device="desktop"
           type="login"
           setIsOpenModal={setIsOpenSignInModal}
           beforeRef={loginButtonRef}

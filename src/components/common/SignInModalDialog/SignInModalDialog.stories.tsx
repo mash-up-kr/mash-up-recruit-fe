@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof SignInModalDialog> = (args: SignInModalDia
 };
 
 export const SignIn = Template.bind({});
-SignIn.args = { device: 'desktop', type: 'login' };
+SignIn.args = { type: 'login' };
 
 export const Apply = Template.bind({});
-Apply.args = { device: 'desktop', type: 'apply' };
+Apply.args = { type: 'apply' };
