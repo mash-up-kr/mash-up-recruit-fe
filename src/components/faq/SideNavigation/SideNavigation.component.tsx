@@ -9,9 +9,9 @@ interface SideNavigationProps {
 
 const SideNavigation = ({ platformName }: SideNavigationProps) => {
   return (
-    <Styled.Navigation>
+    <Styled.NavigationContainer>
       <Navigation platformName={platformName} />
-    </Styled.Navigation>
+    </Styled.NavigationContainer>
   );
 };
 

@@ -1,10 +1,11 @@
 import { Accordion } from '@/components';
+import { Item } from '@/components/common/BulletedList/BulletedList.component';
 import * as Styled from './QuestionList.styled';
 
 export interface Question {
   id: string;
   title: string;
-  content: string;
+  content: Item[];
 }
 
 interface QuestionListProps {
