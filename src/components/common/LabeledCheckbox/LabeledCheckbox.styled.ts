@@ -29,15 +29,20 @@ export const A11yCheckbox = styled.input`
 
 interface CustomCheckoutProps {
   isChecked: boolean;
+  disabled: boolean;
 }
 
 export const CustomCheckbox = styled.label<CustomCheckoutProps>`
-  ${({ theme, isChecked }) => css`
+  ${({ theme, isChecked, disabled }) => css`
     display: inline-block;
     width: 100%;
     height: 100%;
     padding: 0;
-    background: ${isChecked ? theme.colors.purple70 : theme.colors.white};
+    background: ${disabled && isChecked
+      ? theme.colors.gray30
+      : isChecked
+      ? theme.colors.purple70
+      : theme.colors.white};
     border: ${isChecked ? 0 : '0.1rem'} solid ${theme.colors.gray30};
     border-radius: 0.2rem;
   `}

@@ -8,14 +8,21 @@ interface LabeledCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const LabeledCheckbox = forwardRef<HTMLInputElement, LabeledCheckboxProps>(
-  ({ id, children, checked, ...restProps }, ref) => {
+  ({ id, children, checked, disabled = false, ...restProps }, ref) => {
     return (
       <Styled.LabeledCheckboxWrapper>
         <Styled.AgreePersonalInfoLabel htmlFor={id}>{children}</Styled.AgreePersonalInfoLabel>
         <Styled.CheckboxWrapper>
-          <Styled.CustomCheckbox isChecked={checked} />
+          <Styled.CustomCheckbox isChecked={checked} disabled={disabled} />
           <Styled.CustomCheckIcon />
-          <Styled.A11yCheckbox type="checkbox" id={id} name={id} ref={ref} {...restProps} />
+          <Styled.A11yCheckbox
+            type="checkbox"
+            id={id}
+            name={id}
+            ref={ref}
+            disabled={disabled}
+            {...restProps}
+          />
         </Styled.CheckboxWrapper>
       </Styled.LabeledCheckboxWrapper>
     );
