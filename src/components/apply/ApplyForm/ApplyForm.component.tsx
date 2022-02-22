@@ -227,7 +227,7 @@ const ApplyForm = ({
           <Styled.PersonalInformationWrapper>
             <LabeledInput
               id={APPLY_FORM_KEYS.email}
-              value={session.data?.user?.email || ''}
+              value={applicant.email}
               disabled
               label="이메일"
               $size="md"
