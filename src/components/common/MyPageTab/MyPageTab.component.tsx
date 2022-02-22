@@ -9,6 +9,7 @@ import {
 } from 'react';
 import ChevronRight7 from '@/assets/svg/chevron-right-7.svg';
 import { MY_PAGE_ACCOUNT, MY_PAGE_APPLY_STATUS } from '@/constants';
+import { useRouter } from 'next/router';
 import * as Styled from './MyPageTab.styled';
 
 interface MyPageTabProps {
@@ -20,6 +21,8 @@ const MyPageTab = ({ isOpenMyPageTab, setIsOpenMyPageTab }: MyPageTabProps) => {
   const session = useSession();
   const myPageTabPanelRef = useRef<HTMLDivElement>(null);
   const myPageTabContentRef = useRef<HTMLDivElement>(null);
+
+  const { asPath: currentPage } = useRouter();
 
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = () => {
     signOut();
@@ -50,20 +53,27 @@ const MyPageTab = ({ isOpenMyPageTab, setIsOpenMyPageTab }: MyPageTabProps) => {
   }, [isOpenMyPageTab, session.status]);
 
   return (
-    <Styled.MyPageTabPanel ref={myPageTabPanelRef} aria-hidden={isOpenMyPageTab}>
-      <Styled.MyPageTabContent ref={myPageTabContentRef}>
-        <Styled.UserName>{session?.data?.user?.name}님</Styled.UserName>
-        <Styled.UserEmail>{session?.data?.user?.email}asfasdfa</Styled.UserEmail>
+    <Styled.MyPageTabPanel ref={myPageTabPanelRef} aria-hidden={!isOpenMyPageTab}>
+      <Styled.MyPageTabContent ref={myPageTabContentRef} currentPage={currentPage}>
+        <Styled.UserName currentPage={currentPage}>{session?.data?.user?.name}님</Styled.UserName>
+        <Styled.UserEmail currentPage={currentPage}>
+          {session?.data?.user?.email}asfasdfa
+        </Styled.UserEmail>
 
         <Styled.TabLink
           href={MY_PAGE_ACCOUNT}
           onKeyDown={handleShiftTabCloseTab}
           tabIndex={isOpenMyPageTab ? 0 : -1}
+          currentPage={currentPage}
         >
           계정 관리
           <ChevronRight7 />
         </Styled.TabLink>
-        <Styled.TabLink href={MY_PAGE_APPLY_STATUS} tabIndex={isOpenMyPageTab ? 0 : -1}>
+        <Styled.TabLink
+          href={MY_PAGE_APPLY_STATUS}
+          tabIndex={isOpenMyPageTab ? 0 : -1}
+          currentPage={currentPage}
+        >
           지원 내역
           <ChevronRight7 />
         </Styled.TabLink>
@@ -71,6 +81,7 @@ const MyPageTab = ({ isOpenMyPageTab, setIsOpenMyPageTab }: MyPageTabProps) => {
           onClick={handleSignOut}
           onKeyDown={handleTabCloseTab}
           tabIndex={isOpenMyPageTab ? 0 : -1}
+          currentPage={currentPage}
         >
           로그아웃
         </Styled.SignOutButton>

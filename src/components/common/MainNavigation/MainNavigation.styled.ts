@@ -8,12 +8,11 @@ export const Nav = styled.nav`
 `;
 
 interface NavListProps {
-  isScrollTop: boolean;
   currentPage: string;
 }
 
 export const NavList = styled.ul<NavListProps>`
-  ${({ theme, isScrollTop, currentPage }) => css`
+  ${({ theme, currentPage }) => css`
     display: flex;
     align-items: center;
     height: 2.7rem;
@@ -39,9 +38,7 @@ export const NavList = styled.ul<NavListProps>`
       }
 
       & > a {
-        color: ${isScrollTop && currentPage === HOME_PAGE
-          ? theme.colors.white
-          : theme.colors.gray80};
+        color: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
       }
 
       & > a:hover {
@@ -76,15 +73,14 @@ export const NavList = styled.ul<NavListProps>`
 `;
 
 interface SignInButtonProps {
-  isScrollTop: boolean;
   currentPage: string;
 }
 
 export const SignInButton = styled.button<SignInButtonProps>`
-  ${({ theme, isScrollTop, currentPage }) => css`
+  ${({ theme, currentPage }) => css`
     ${theme.fonts.kr.bold18}
     padding: 0;
-    color: ${isScrollTop && currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
+    color: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
     background: transparent;
     border: 0;
 
@@ -98,16 +94,15 @@ export const SignInButton = styled.button<SignInButtonProps>`
 `;
 
 interface MyPageButtonProps {
-  isScrollTop: boolean;
   currentPage: string;
   isOpenMyPageTab: boolean;
 }
 
 export const MyPageButton = styled.button<MyPageButtonProps>`
-  ${({ theme, isScrollTop, currentPage, isOpenMyPageTab }) => css`
+  ${({ theme, currentPage, isOpenMyPageTab }) => css`
     ${theme.fonts.kr.bold18}
     padding: 0;
-    color: ${isScrollTop && currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
+    color: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
     background: transparent;
     border: 0;
 
@@ -133,9 +128,7 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
           `};
 
       & > path {
-        stroke: ${isScrollTop && currentPage === HOME_PAGE
-          ? theme.colors.white
-          : theme.colors.gray80};
+        stroke: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
       }
     }
   `}
