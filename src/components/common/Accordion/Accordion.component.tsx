@@ -2,8 +2,8 @@ import { useRef, useState } from 'react';
 import Plus from '@/assets/svg/plus.svg';
 import Minus from '@/assets/svg/minus.svg';
 import { BulletedList } from '@/components';
+import { Item } from '@/components/common/BulletedList/BulletedList.component';
 import * as Styled from './Accordion.styled';
-import { Item } from '../BulletedList/BulletedList.component';
 
 interface AccordionProps {
   id: string;
