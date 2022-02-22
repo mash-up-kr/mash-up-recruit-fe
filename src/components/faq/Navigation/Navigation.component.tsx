@@ -12,7 +12,7 @@ import {
 
 import * as Styled from './Navigation.styled';
 
-export type PlatformKey = 'common' | 'design' | 'android' | 'ios' | 'front-end' | 'node' | 'spring';
+export type PlatformKey = 'common' | 'design' | 'android' | 'ios' | 'web' | 'node' | 'spring';
 
 export type Platform = {
   key: PlatformKey;
@@ -42,7 +42,7 @@ export const platforms: Platform[] = [
     name: 'iOS Team',
   },
   {
-    key: 'front-end',
+    key: 'web',
     path: FAQ_FRONT_END_PAGE,
     name: 'Web Team',
   },
@@ -66,13 +66,13 @@ interface NavigationProps {
 const Navigation = ({ platformName, handleClickItem = () => {} }: NavigationProps) => {
   return (
     <nav>
-      <ul>
+      <Styled.List>
         {platforms.map(({ key, name, path }) => (
           <Styled.ListItem active={platformName === key} key={key} onClick={handleClickItem}>
             <LinkTo href={path}>{name}</LinkTo>
           </Styled.ListItem>
         ))}
-      </ul>
+      </Styled.List>
     </nav>
   );
 };

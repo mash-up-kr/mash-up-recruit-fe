@@ -1,4 +1,4 @@
-import { FaqLayout, FaqHeading, SideNavigation, QuestionList, ModalNavigation } from '@/components';
+import { FaqLayout, FaqHeader, SideNavigation, QuestionList, ModalNavigation } from '@/components';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { Question } from '@/components/faq/QuestionList/QuestionList.component';
@@ -13,7 +13,7 @@ const questionsMap: Record<PlatformKey, { questions: Question[] }> = {
   ios: {
     questions: [{ id: '0', title: 'iOS 질문 - 0', content: 'iOS 질문 답변 - 0' }],
   },
-  'front-end': {
+  web: {
     questions: [{ id: '0', title: 'Web 질문 - 0', content: 'Web 질문 답변 - 0' }],
   },
   android: {
@@ -43,7 +43,7 @@ const Platform: NextPage<PlatformProps> = ({ platformName, questions }) => {
   const { size } = useDetectViewPort();
   return (
     <FaqLayout>
-      <FaqHeading title="자주 묻는 질문" />
+      <FaqHeader title="자주 묻는 질문" />
       {size === VIEWPORT_SIZE.MOBILE || size === VIEWPORT_SIZE.TABLET_S ? (
         <ModalNavigation platformName={platformName} />
       ) : (
@@ -59,7 +59,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
     paths: [
       { params: { platformName: 'common' } },
       { params: { platformName: 'ios' } },
-      { params: { platformName: 'front-end' } },
+      { params: { platformName: 'web' } },
       { params: { platformName: 'android' } },
       { params: { platformName: 'spring' } },
       { params: { platformName: 'design' } },

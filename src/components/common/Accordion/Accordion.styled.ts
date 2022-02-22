@@ -14,7 +14,7 @@ export const Accordion = styled.div`
 export const Header = styled.h3`
   ${({ theme }) => css`
     button {
-      ${theme.fonts.kr.bold22};
+      ${theme.fonts.kr.bold20};
       display: flex;
       align-items: center;
       justify-content: space-between;

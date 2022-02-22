@@ -10,12 +10,12 @@ export const APPLY_IOS_PAGE = `/apply/${teamUrls.ios}`;
 export const APPLY_ANDROID_PAGE = `/apply/${teamUrls.android}`;
 
 export const FAQ_COMMON_PAGE = '/faq/common';
-export const FAQ_FRONT_END_PAGE = '/faq/front-end';
-export const FAQ_DESIGN_PAGE = '/faq/design';
-export const FAQ_NODE_PAGE = '/faq/node';
-export const FAQ_SPRING_PAGE = '/faq/spring';
-export const FAQ_IOS_PAGE = '/faq/ios';
-export const FAQ_ANDROID_PAGE = '/faq/android';
+export const FAQ_FRONT_END_PAGE = `/faq/${teamUrls.web}`;
+export const FAQ_DESIGN_PAGE = `/faq/${teamUrls.design}`;
+export const FAQ_NODE_PAGE = `/faq/${teamUrls.node}`;
+export const FAQ_SPRING_PAGE = `/faq/${teamUrls.spring}`;
+export const FAQ_IOS_PAGE = `/faq/${teamUrls.ios}`;
+export const FAQ_ANDROID_PAGE = `/faq/${teamUrls.android}`;
 
 export const MY_PAGE_ACCOUNT = '/my-page/account';
 export const MY_PAGE_APPLY_STATUS = '/my-page/apply-status';
