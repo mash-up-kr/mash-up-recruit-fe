@@ -42,6 +42,9 @@ const Modal = ({
   useEffect(() => {
     const $rootNode = document.getElementById('__next');
     $rootNode?.setAttribute('aria-hidden', 'true');
+
+    const handleLockScroll = (e: TouchEvent) => e.preventDefault();
+    window.addEventListener('touchmove', handleLockScroll, { passive: false });
     document.body.style.overflow = 'hidden';
 
     const handleCloseModalWithEscHandler = ({ key }: KeyboardEvent) => {
@@ -84,6 +87,8 @@ const Modal = ({
 
     return () => {
       $rootNode?.removeAttribute('aria-hidden');
+      window.removeEventListener('touchmove', handleLockScroll);
+
       document.body.style.overflow = 'unset';
 
       if (escClose) window.removeEventListener('keyup', handleCloseModalWithEscHandler);
@@ -95,13 +100,15 @@ const Modal = ({
 
   return (
     <Portal elementId="modal-root" mounted={mounted}>
-      <Styled.Modal
-        ref={dialogRef}
-        tabIndex={-1}
-        onClick={deemClose ? handleCloseModalWithMouseHandler : undefined}
-      >
-        {children}
-      </Styled.Modal>
+      <Styled.OverSizeModal>
+        <Styled.Modal
+          ref={dialogRef}
+          tabIndex={-1}
+          onClick={deemClose ? handleCloseModalWithMouseHandler : undefined}
+        >
+          {children}
+        </Styled.Modal>
+      </Styled.OverSizeModal>
     </Portal>
   );
 };
