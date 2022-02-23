@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import LinkTo from '@/components/common/LinkTo/LinkTo.component';
 import { HOME_PAGE } from '@/constants';
+import isPropValid from '@emotion/is-prop-valid';
 
 export const MyPageTabPanel = styled.div`
   position: absolute;
@@ -64,7 +65,9 @@ interface TabLinkProps {
   currentPage: string;
 }
 
-export const TabLink = styled(LinkTo)<TabLinkProps>`
+export const TabLink = styled(LinkTo, {
+  shouldForwardProp: (prop) => isPropValid(prop),
+})<TabLinkProps>`
   ${({ theme, currentPage }) => {
     const isHomePage = currentPage === HOME_PAGE;
 
