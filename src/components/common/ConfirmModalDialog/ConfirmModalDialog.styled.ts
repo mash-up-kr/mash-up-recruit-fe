@@ -30,6 +30,7 @@ export const Heading = styled.h2`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold22};
     color: ${theme.colors.gray80};
+    letter-spacing: -0.08rem;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.bold18};
@@ -42,6 +43,7 @@ export const Paragraph = styled.p`
     ${theme.fonts.kr.medium16}
     margin: 1.6rem auto 0;
     color: ${theme.colors.gray60};
+    letter-spacing: -0.08rem;
     white-space: pre-wrap;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
