@@ -123,6 +123,10 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
           `};
     }
 
+    & > svg > path {
+      stroke: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
+    }
+
     &:hover {
       color: ${theme.colors.purple70};
 
