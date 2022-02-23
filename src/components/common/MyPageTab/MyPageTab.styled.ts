@@ -11,7 +11,6 @@ export const MyPageTabPanel = styled.div`
   height: 0;
   overflow: hidden;
   border-radius: 1.6rem;
-  transition: 0.5s;
 `;
 
 interface MyPageTabContentProps {
@@ -24,8 +23,8 @@ export const MyPageTabContent = styled.div<MyPageTabContentProps>`
     return css`
       width: 19.2rem;
       padding: 2.4rem 1.2rem 1.2rem;
-      background: ${isHomePage ? theme.colors.gray90 : theme.colors.white};
-      border: 0.1rem solid ${isHomePage ? theme.colors.gray80 : theme.colors.gray20};
+      background: ${isHomePage ? theme.colors.gray95 : theme.colors.white};
+      border: 0.1rem solid ${isHomePage ? theme.colors.gray90 : theme.colors.gray20};
       border-radius: 1.6rem;
     `;
   }}
@@ -78,12 +77,12 @@ export const TabLink = styled(LinkTo, {
       justify-content: space-between;
       padding: 1rem 1.2rem;
       color: ${isHomePage ? theme.colors.gray10 : theme.colors.gray80};
-      background: ${isHomePage ? theme.colors.gray90 : theme.colors.white};
+      background: ${isHomePage ? theme.colors.gray95 : theme.colors.white};
       border: 0;
       border-radius: 1.2rem;
 
       &:hover {
-        background: ${isHomePage ? theme.colors.gray80 : theme.colors.gray10};
+        background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
       }
 
       & > svg > path {
@@ -107,7 +106,7 @@ export const SignOutButton = styled.button<SignOutButtonProps>`
       padding: 1rem 0.6rem 1rem 1.2rem;
       color: ${isHomePage ? theme.colors.gray10 : theme.colors.gray50};
       text-align: start;
-      background: ${isHomePage ? theme.colors.gray90 : theme.colors.white};
+      background: ${isHomePage ? theme.colors.gray95 : theme.colors.white};
       border: 0;
       border-radius: 1.2rem;
 
@@ -116,7 +115,7 @@ export const SignOutButton = styled.button<SignOutButtonProps>`
       }
 
       &:hover {
-        background: ${isHomePage ? theme.colors.gray80 : theme.colors.gray10};
+        background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
       }
     `;
   }}

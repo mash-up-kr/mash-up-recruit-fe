@@ -70,6 +70,8 @@ export const ApprovalButton = styled.button`
     margin-left: 1.2rem;
     padding: 1.3rem 2rem;
     color: ${theme.colors.white};
+    letter-spacing: -0.08rem;
+    white-space: nowrap;
     background: ${theme.colors.purple70};
     border: 0;
     border-radius: 1.2rem;
