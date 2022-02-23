@@ -13,7 +13,8 @@ export const Dialog = styled.div`
     border-radius: 2rem;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      max-width: 26.8rem;
+      min-width: 29rem;
+      max-width: 29rem;
     }
   `}
 `;
@@ -21,10 +22,11 @@ export const Dialog = styled.div`
 export const DialogContent = styled.div`
   ${({ theme }) => css`
     padding: 4rem 4rem 0rem 4rem;
-    text-align: center;
+    letter-spacing: -0.08rem;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      max-width: 26.8rem;
+      min-width: 29rem;
+      max-width: 29rem;
       padding: 4.4rem 2.4rem 2rem 2.4rem;
       text-align: left;
       border-bottom: 0.1rem solid ${theme.colors.gray20};
@@ -37,6 +39,7 @@ export const Heading = styled.h2`
     ${theme.fonts.kr.bold22}
     margin-top: 3.4rem;
     color: ${theme.colors.gray80};
+    text-align: center;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.bold16}
@@ -52,6 +55,7 @@ export const Paragraph = styled.p`
     margin: 0.8rem auto 2.4rem;
     color: ${theme.colors.gray60};
     white-space: pre-wrap;
+    text-align: center;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.regular14}
@@ -122,7 +126,7 @@ export const SignInButton = styled.button`
     max-width: 36rem;
     padding: 1.6rem 2rem;
     color: ${theme.colors.gray70};
-    letter-spacing: -0.048rem;
+    letter-spacing: -0.08rem;
     background: ${theme.colors.white};
     border: 0.1rem solid ${theme.colors.gray40};
     border-radius: 1.6rem;
@@ -140,6 +144,7 @@ export const SignInButton = styled.button`
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium14}
       padding: 1.35rem 2rem;
+      letter-spacing: -0.048rem;
 
       & > svg {
         position: absolute;
@@ -158,11 +163,11 @@ export const Notice = styled.em`
     padding: 1.6rem 0 2.4rem;
     color: ${theme.colors.gray60};
     font-style: normal;
+    letter-spacing: -0.08rem;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       display: flex;
       padding: 1.2rem 2.4rem 2rem;
-      letter-spacing: -0.08rem;
       text-align: left;
 
       & > span {

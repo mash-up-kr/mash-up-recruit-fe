@@ -55,7 +55,7 @@ const ApplyLayout = ({ heading, role, application, isSubmited }: ApplyLayoutProp
       </Styled.Layout>
       {isOpenAlreadySubmitedModal && (
         <AlertModalDialog
-          heading="1인 1팀 1지원만 가능합니다!"
+          heading="이미 제출한 지원서가 존재합니다."
           paragraph="이미 한 번 지원서를 제출하셨다면 이제 또 다른 지원서는 제출하지 못합니다."
           setIsOpenModal={setIsOpenAlreadySubmitedModal}
           handleApprovalButton={() => setIsOpenAlreadySubmitedModal(false)}

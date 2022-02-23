@@ -86,7 +86,7 @@ export const AlreadySubmitedButton = styled.button`
 
 export const SubmitedCompletedButton = styled.button`
   ${({ theme }) => css`
-    ${theme.button.type.defaultLine}
+    ${theme.button.type.primary}
     display: inline-block;
     width: 100%;
     text-align: center;

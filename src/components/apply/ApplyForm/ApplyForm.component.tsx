@@ -50,6 +50,8 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
   const tempSaveButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const submitButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
 
+  const [isTempSaved, setIsTempSaved] = useState(false);
+
   const [isOpenTempSaveSuccessAlertModal, setIsOpenTempSaveSuccessAlertModal] = useState(false);
   const [isOpenTempSaveFailedAlertModal, setIsOpenTempSaveFailedAlertModal] = useState(false);
   const [isOpenConfirmSubmitedModal, setIsOpenConfirmSubmitedModal] = useState(false);
@@ -94,6 +96,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
     isOpenBlockingConfirmModal,
     isOpenSuccessSubmitedModal,
     !isDirty,
+    isTempSaved,
   ]);
 
   const handleReplacePhoneNumber: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
@@ -155,8 +158,10 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
       updateApplicationRequest,
     });
 
-    if (tempSaveResponse.code === 'SUCCESS') setIsOpenTempSaveSuccessAlertModal(true);
-    else setIsOpenTempSaveFailedAlertModal(true);
+    if (tempSaveResponse.code === 'SUCCESS') {
+      setIsOpenTempSaveSuccessAlertModal(true);
+      setIsTempSaved(true);
+    } else setIsOpenTempSaveFailedAlertModal(true);
   };
 
   const handleOpenSubmitModal = () => {
@@ -352,12 +357,12 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
             router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL &&
             application.status === 'SUBMITTED' ? (
               <Styled.SubmitedCompletedButton type="button" disabled>
-                제출 완료된 지원서 입니다.
+                제출 완료된 지원서 입니다
               </Styled.SubmitedCompletedButton>
             ) : (
               isSubmited && (
                 <Styled.AlreadySubmitedButton type="button" disabled>
-                  이미 제출한 지원서가 있습니다.
+                  이미 제출한 지원서가 있습니다
                 </Styled.AlreadySubmitedButton>
               )
             )
@@ -399,7 +404,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
         <AlertModalDialog
           beforeRef={tempSaveButtonRef}
           heading="임시 저장 실패"
-          paragraph="다시시도해주세요 계속 실패하면 채널톡으로 문의해주세옹"
+          paragraph="다시 시도해주세요! 계속 임시 저장이 실패된다면  매쉬업 채널톡으로 문의해주세요!"
           handleApprovalButton={() =>
             handleCloseTempSaveAlertModal(setIsOpenTempSaveFailedAlertModal)
           }
@@ -411,9 +416,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
       {isOpenConfirmSubmitedModal && (
         <ConfirmModalDialog
           heading="지원서를 제출하시겠어요?"
-          paragraph={
-            '제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없습니다. \n지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다.'
-          }
+          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고부탁드립니다. 지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다."
           approvalButtonMessage="제출하기"
           cancelButtonMessage="취소"
           handleApprovalButton={handleSubmitApplication}
@@ -425,7 +428,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
       {isOpenSuccessSubmitedModal && (
         <ConfirmModalDialog
           heading="지원서 제출 완료!"
-          paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 저희와 함"
+          paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 3월 19일에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!"
           approvalButtonMessage="내 지원서 확인하기"
           cancelButtonMessage="홈으로"
           setIsOpenModal={setIsOpenSuccessSubmitedModal}

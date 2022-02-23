@@ -30,6 +30,7 @@ export const Heading = styled.h2`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold22};
     color: ${theme.colors.gray80};
+    letter-spacing: -0.08rem;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.bold18};
@@ -42,6 +43,7 @@ export const Paragraph = styled.p`
     ${theme.fonts.kr.medium16}
     margin: 1.6rem auto 0;
     color: ${theme.colors.gray60};
+    letter-spacing: -0.08rem;
     white-space: pre-wrap;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
@@ -67,6 +69,8 @@ export const CancelButton = styled.button`
     position: relative;
     padding: 1.3rem 2rem;
     color: ${theme.colors.gray80};
+    letter-spacing: -0.08rem;
+    white-space: nowrap;
     background: ${theme.colors.gray40};
     border: 0;
     border-radius: 1.2rem;
@@ -97,6 +101,8 @@ export const ApprovalButton = styled.button`
     margin-left: 1.2rem;
     padding: 1.3rem 2rem;
     color: ${theme.colors.white};
+    letter-spacing: -0.08rem;
+    white-space: nowrap;
     background: ${theme.colors.purple70};
     border: 0;
     border-radius: 1.2rem;

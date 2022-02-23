@@ -101,24 +101,19 @@ interface MyPageButtonProps {
 export const MyPageButton = styled.button<MyPageButtonProps>`
   ${({ theme, currentPage, isOpenMyPageTab }) => css`
     ${theme.fonts.kr.bold18}
+    display: flex;
+    align-items: center;
     padding: 0;
     color: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
     background: transparent;
     border: 0;
 
-    &:hover {
-      color: ${theme.colors.purple70};
-    }
-    @media (max-width: ${theme.breakPoint.media.mobile}) {
-      ${theme.fonts.kr.medium15};
-    }
     & > span {
       margin-right: 0.6rem;
     }
 
     & > svg {
-      transition: 0.4s;
-
+      color: ${theme.colors.purple70};
       ${isOpenMyPageTab
         ? css`
             transform: rotate(-180deg);
@@ -126,10 +121,18 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
         : css`
             transform: rotate(deg);
           `};
+    }
 
-      & > path {
-        stroke: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
+    &:hover {
+      color: ${theme.colors.purple70};
+
+      & > svg > path {
+        stroke: ${theme.colors.purple70};
       }
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium15};
     }
   `}
 `;
