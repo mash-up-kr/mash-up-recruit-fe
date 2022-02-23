@@ -1,11 +1,19 @@
 import { MutableRefObject, useRef, useState } from 'react';
 import { Modal, Navigation } from '@/components';
 import ChevronDown from '@/assets/svg/chevron-down.svg';
-import { PlatformKey, platforms } from '@/components/faq/Navigation/Navigation.component';
+import { platforms, PlatformKey } from '@/constants';
 import * as Styled from './ModalNavigation.styled';
 
+const platformsWithCommon = [
+  {
+    key: 'common',
+    name: '공통질문',
+  },
+  ...platforms,
+];
+
 interface ModalNavigationProps {
-  platformName: PlatformKey;
+  platformName: PlatformKey | 'common';
 }
 
 const ModalNavigation = ({ platformName }: ModalNavigationProps) => {
@@ -20,12 +28,12 @@ const ModalNavigation = ({ platformName }: ModalNavigationProps) => {
     setIsOpenModal(false);
   };
 
-  const currentRouteName = platforms.find(({ key }) => key === platformName)?.name;
+  const [{ name }] = platformsWithCommon.filter(({ key }) => key === platformName);
 
   return (
     <>
       <Styled.ModalOpenButton type="button" ref={buttonRef} onClick={handleOpenModal}>
-        {currentRouteName}
+        {name} {platformName === 'common' ? null : 'Team'}
         <ChevronDown aria-hidden />
       </Styled.ModalOpenButton>
       {isOpenModal && (
