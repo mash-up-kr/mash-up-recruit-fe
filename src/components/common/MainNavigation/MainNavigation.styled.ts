@@ -137,6 +137,10 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
+
+      & > span {
+        margin-right: 0.4rem;
+      }
     }
   `}
 `;
