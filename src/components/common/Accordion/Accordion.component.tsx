@@ -15,7 +15,7 @@ interface AccordionProps {
 const Accordion = ({ id, title, content, headingTagName = 'h3' }: AccordionProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLParagraphElement>(null);
+  const contentRef = useRef<HTMLUListElement>(null);
 
   const handleClickButton = () => {
     if (!(panelRef.current && contentRef.current)) return;
@@ -47,9 +47,7 @@ const Accordion = ({ id, title, content, headingTagName = 'h3' }: AccordionProps
         aria-labelledby={`header-${id}`}
         ref={panelRef}
       >
-        <div ref={contentRef}>
-          <BulletedList items={content} />
-        </div>
+        <BulletedList items={content} ref={contentRef} />
       </Styled.Panel>
     </Styled.Accordion>
   );

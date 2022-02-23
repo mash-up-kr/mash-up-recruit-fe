@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import * as Styled from './BulletedList.styled';
 
 export interface Item {
@@ -31,14 +31,16 @@ interface BulletedListProps {
   items: Item[];
 }
 
-const BulletedList = ({ items }: BulletedListProps) => {
+const BulletedList = forwardRef<HTMLUListElement, BulletedListProps>(({ items }, ref) => {
   return (
-    <Styled.List>
+    <Styled.List ref={ref}>
       {items.map((item) => (
         <BulletedListItem key={item.id} item={item} subItems={item.subItems} />
       ))}
     </Styled.List>
   );
-};
+});
+
+BulletedList.displayName = 'BulletedList';
 
 export default BulletedList;
