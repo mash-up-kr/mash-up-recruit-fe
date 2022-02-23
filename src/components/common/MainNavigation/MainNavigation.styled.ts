@@ -123,6 +123,10 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
           `};
     }
 
+    & > svg > path {
+      stroke: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
+    }
+
     &:hover {
       color: ${theme.colors.purple70};
 
@@ -133,6 +137,10 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
+
+      & > span {
+        margin-right: 0.4rem;
+      }
     }
   `}
 `;
