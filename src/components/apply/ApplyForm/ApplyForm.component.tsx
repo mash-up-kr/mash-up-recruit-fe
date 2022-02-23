@@ -357,12 +357,12 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
             router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL &&
             application.status === 'SUBMITTED' ? (
               <Styled.SubmitedCompletedButton type="button" disabled>
-                제출 완료된 지원서 입니다.
+                제출 완료된 지원서 입니다
               </Styled.SubmitedCompletedButton>
             ) : (
               isSubmited && (
                 <Styled.AlreadySubmitedButton type="button" disabled>
-                  이미 제출한 지원서가 있습니다.
+                  이미 제출한 지원서가 있습니다
                 </Styled.AlreadySubmitedButton>
               )
             )
