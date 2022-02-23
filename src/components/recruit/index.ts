@@ -1,0 +1,14 @@
+export { default as PlatformImage } from './PlatformImage/PlatformImage.component';
+export { default as RecruitHeader } from './RecruitHeader/RecruitHeader.component';
+export { default as Divider } from './Divider/Divider.component';
+export { default as BottomNavigation } from './BottomNavigation/BottomNavigation.component';
+export { default as NavigationHeader } from './NavigationHeader/NavigationHeader.component';
+export { default as PlatformTalent } from './PlatformTalent/PlatformTalent.component';
+export { default as PlatformInformation } from './PlatformInformation/PlatformInformation.component';
+export { default as PlatformInterviewSchedule } from './PlatformInterviewSchedule/PlatformInterviewSchedule.component';
+export { default as ActionGroup } from './ActionGroup/ActionGroup.component';
+export { default as ApplyLink } from './ApplyLink/ApplyLink.component';
+export { default as RecruitLayout } from './RecruitLayout/RecruitLayout.component';
+export { default as RecruitDate } from './RecruitDate/RecruitDate.component';
+export { default as PlatformStudy } from './PlatformStudy/PlatformStudy.component';
+export { default as RecruitContents } from './RecruitContents/RecruitContents.component';
