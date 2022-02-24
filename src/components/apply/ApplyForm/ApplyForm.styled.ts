@@ -21,14 +21,10 @@ export const PersonalInformationWrapper = styled.div`
   width: 100%;
   max-width: 53.2rem;
   margin-bottom: 3.6rem;
-`;
 
-export const ModifyEmailMessage = styled.p`
-  ${({ theme }) => css`
-    ${theme.fonts.kr.regular15};
-    margin-top: 0.6rem;
-    color: ${theme.colors.gray60};
-  `}
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `;
 
 export const QuestionListSection = styled.section`
