@@ -27,9 +27,15 @@ export interface SignInModalDialogProps {
   type: 'login' | 'apply';
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
   beforeRef: MutableRefObject<HTMLButtonElement>;
+  callbackUrl?: string;
 }
 
-const SignInModalDialog = ({ type, setIsOpenModal, beforeRef }: SignInModalDialogProps) => {
+const SignInModalDialog = ({
+  type,
+  setIsOpenModal,
+  beforeRef,
+  callbackUrl,
+}: SignInModalDialogProps) => {
   const { size } = useDetectViewPort();
 
   const handleCloseSignInModal: MouseEventHandler<HTMLButtonElement> = () => {
@@ -37,7 +43,7 @@ const SignInModalDialog = ({ type, setIsOpenModal, beforeRef }: SignInModalDialo
   };
 
   const handleSignIn: MouseEventHandler<HTMLButtonElement> = () => {
-    signIn('google');
+    signIn('google', { callbackUrl });
   };
 
   return (
