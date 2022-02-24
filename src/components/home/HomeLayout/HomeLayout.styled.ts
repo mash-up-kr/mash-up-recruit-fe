@@ -6,11 +6,11 @@ export const Layout = styled.div`
     min-height: 200vh;
     margin-top: -8rem;
     padding-top: 8rem;
+    padding-bottom: 20rem;
     background: ${theme.colors.black};
 
-    /* TODO:(하준) 테스트용, 실제 페이지 UI 작업시 삭제 */
-    & * {
-      color: ${theme.colors.white};
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      padding-bottom: 16rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
