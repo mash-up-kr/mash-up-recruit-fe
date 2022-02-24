@@ -17,6 +17,7 @@ export const Input = styled.input<StyledInputProps>`
     color: ${theme.colors.gray80};
     border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.gray30};
     border-radius: 1.2rem;
+    outline: none;
 
     &::selection {
       background: ${theme.colors.purple40};
@@ -27,7 +28,7 @@ export const Input = styled.input<StyledInputProps>`
     }
 
     &:focus {
-      outline: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple70};
+      border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple70};
     }
 
     &:disabled {

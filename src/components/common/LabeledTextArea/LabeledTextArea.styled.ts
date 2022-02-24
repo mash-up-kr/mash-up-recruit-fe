@@ -17,6 +17,7 @@ export const TextArea = styled.textarea<StyledTextAreaProps>`
     border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.gray30};
     border-radius: 1.2rem;
     resize: none;
+    outline: 0;
 
     &::selection {
       background: ${theme.colors.purple40};
@@ -27,15 +28,15 @@ export const TextArea = styled.textarea<StyledTextAreaProps>`
     }
 
     &:focus {
-      outline: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple70};
+      border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple70};
     }
 
     &:disabled {
-      -webkit-text-fill-color: ${theme.colors.gray60};
       color: ${theme.colors.gray60};
       background: ${theme.colors.gray5};
       border: 0.1rem solid ${theme.colors.gray30};
       opacity: 1;
+      -webkit-text-fill-color: ${theme.colors.gray60};
     }
 
     &::placeholder {
