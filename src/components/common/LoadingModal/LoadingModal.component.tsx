@@ -1,21 +1,20 @@
-import loadingSpinner from '@/assets/images/loading-spinner.gif';
 import { Modal } from '@/components';
-import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
+import Lottie from 'react-lottie';
+import * as mashUpSpinnerLottie from '@/assets/lottie/mash-up-spinner.json';
 
 interface LoadingModalProps {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
 const LoadingModal = ({ setIsOpenModal }: LoadingModalProps) => {
+  const lottieOption = {
+    animationData: mashUpSpinnerLottie,
+  };
+
   return (
     <Modal setIsOpenModal={setIsOpenModal} deemClose={false} escClose={false}>
-      <Image
-        src={loadingSpinner.src}
-        width={loadingSpinner.width / 3}
-        height={loadingSpinner.height / 3}
-        alt="로딩중"
-      />
+      <Lottie options={lottieOption} width={800} height={800} isClickToPauseDisabled />
     </Modal>
   );
 };
