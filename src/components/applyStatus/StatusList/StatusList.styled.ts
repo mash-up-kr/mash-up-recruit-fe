@@ -20,6 +20,18 @@ export const StatusListSection = styled.div`
   `}
 `;
 
+export const HeadingWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      flex-flow: column nowrap;
+      align-items: flex-start;
+    }
+  `}
+`;
+
 export const Heading = styled.h2`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold30};
@@ -27,6 +39,39 @@ export const Heading = styled.h2`
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.bold24};
+      order: 1;
+    }
+  `}
+`;
+
+export const SubmissionNotice = styled.span`
+  ${({ theme }) => css`
+    ${theme.fonts.kr.regular14}
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+    padding: 1.2rem 1.6rem 1.1rem;
+    color: ${theme.colors.white};
+    background: ${theme.colors.purple60};
+    border-radius: 1.6rem;
+
+    & > svg {
+      margin-right: 1rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      ${theme.fonts.kr.regular14}
+      display: flex;
+      order: 0;
+      margin-bottom: 3.6rem;
+      margin-left: 0;
+      padding: 1.2rem 1.6rem 1.1rem;
+      vertical-align: bottom;
+
+      & > svg {
+        margin-right: 1.6rem;
+      }
     }
   `}
 `;

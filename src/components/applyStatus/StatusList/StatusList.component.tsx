@@ -1,6 +1,7 @@
 import { MY_PAGE_APPLICATION_DETAIL } from '@/constants';
 import { useDetectViewPort } from '@/hooks';
 import { Application, ApplicationAuditStatus, TeamName } from '@/types/dto';
+import Loudspeaker from '@/assets/svg/loudspeaker.svg';
 import * as Styled from './StatusList.styled';
 
 interface StatusListProps {
@@ -30,7 +31,15 @@ const StatusList = ({ applications }: StatusListProps) => {
   const { size } = useDetectViewPort();
   return (
     <Styled.StatusListSection>
-      <Styled.Heading>지원 현황</Styled.Heading>
+      <Styled.HeadingWrapper>
+        <Styled.Heading>지원 현황</Styled.Heading>
+        {applications.length > 1 && (
+          <Styled.SubmissionNotice>
+            <Loudspeaker />
+            최종 제출은 딱 하나의 지원서만 가능합니다.
+          </Styled.SubmissionNotice>
+        )}
+      </Styled.HeadingWrapper>
       <Styled.MainWrapper>
         <Styled.ListWrapper>
           {size === 'desktop' || size === 'tablet_l' ? (
