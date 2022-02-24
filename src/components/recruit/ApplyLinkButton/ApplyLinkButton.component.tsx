@@ -34,6 +34,7 @@ const ApplyLinkButton = ({ applyPath }: ApplyLinkProps) => {
           type="apply"
           setIsOpenModal={setIsOpenSignInModal}
           beforeRef={buttonRef}
+          callbackUrl={applyPath}
         />
       )}
     </>
