@@ -74,7 +74,7 @@ export const ListItem = styled.li`
     width: 38rem;
     height: 38rem;
     background: ${theme.colors.white};
-    border-radius: 5rem;
+    border-radius: 5.4rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       width: calc(50% - 0.9rem);
