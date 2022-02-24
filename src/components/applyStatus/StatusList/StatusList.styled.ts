@@ -131,6 +131,7 @@ export const StatusText = styled.span`
       height: 0;
       padding: 0;
       text-align: left;
+      vertical-align: baseline;
     }
   `}
 `;
