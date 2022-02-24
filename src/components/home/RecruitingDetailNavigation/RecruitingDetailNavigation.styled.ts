@@ -108,6 +108,7 @@ export const Card = styled.div`
 
     button {
       ${theme.fonts.en.extrabold15};
+      margin: 0;
       padding: 1.9rem 2rem;
       color: ${theme.colors.purple70};
       background: ${theme.colors.white};
