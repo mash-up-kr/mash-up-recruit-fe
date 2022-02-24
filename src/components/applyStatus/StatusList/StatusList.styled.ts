@@ -25,7 +25,7 @@ export const HeadingWrapper = styled.div`
     display: flex;
     align-items: center;
 
-    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
       flex-flow: column nowrap;
       align-items: flex-start;
     }
@@ -39,7 +39,6 @@ export const Heading = styled.h2`
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.bold24};
-      order: 1;
     }
   `}
 `;
@@ -47,7 +46,7 @@ export const Heading = styled.h2`
 export const SubmissionNotice = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.kr.regular14}
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 2rem;
@@ -60,14 +59,13 @@ export const SubmissionNotice = styled.span`
       margin-right: 1rem;
     }
 
-    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.regular14}
-      display: flex;
-      order: 0;
+      order: -1;
+      width: 100%;
       margin-bottom: 3.6rem;
       margin-left: 0;
-      padding: 1.2rem 1.6rem 1.1rem;
-      vertical-align: bottom;
+      padding: 1.4rem 1.6rem 1.4rem;
 
       & > svg {
         margin-right: 1.6rem;
