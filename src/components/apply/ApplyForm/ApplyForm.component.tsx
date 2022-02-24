@@ -5,6 +5,7 @@ import {
   LabeledCheckbox,
   LabeledInput,
   LabeledTextArea,
+  LoadingModal,
 } from '@/components';
 import { HOME_PAGE, MY_PAGE_APPLICATION_DETAIL, PATH_NAME } from '@/constants';
 import { usePreventPageChange } from '@/hooks';
@@ -49,6 +50,8 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
 
   const tempSaveButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const submitButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
+
+  const [isRequesting, setIsRequesting] = useState(false);
 
   const [isTempSaved, setIsTempSaved] = useState(false);
 
@@ -152,16 +155,21 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       }),
     };
 
-    const tempSaveResponse = await applicationApiService.tempSaveApplication({
-      accessToken: session.data?.accessToken,
-      applicationId,
-      updateApplicationRequest,
-    });
+    setIsRequesting(true);
+    try {
+      await applicationApiService.tempSaveApplication({
+        accessToken: session.data?.accessToken,
+        applicationId,
+        updateApplicationRequest,
+      });
 
-    if (tempSaveResponse.code === 'SUCCESS') {
+      setIsRequesting(false);
       setIsOpenTempSaveSuccessAlertModal(true);
       setIsTempSaved(true);
-    } else setIsOpenTempSaveFailedAlertModal(true);
+    } catch (error) {
+      setIsRequesting(false);
+      setIsOpenTempSaveFailedAlertModal(true);
+    }
   };
 
   const handleOpenSubmitModal = () => {
@@ -188,16 +196,22 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       }),
     };
 
-    const applicationSubmitResponse = await applicationApiService.submitApplication({
-      accessToken: session.data?.accessToken,
-      applicationId,
-      applicationSubmitRequest,
-    });
+    setIsRequesting(true);
 
-    if (applicationSubmitResponse.code === 'SUCCESS') {
+    try {
+      await applicationApiService.submitApplication({
+        accessToken: session.data?.accessToken,
+        applicationId,
+        applicationSubmitRequest,
+      });
+
+      setIsRequesting(false);
       setIsOpenConfirmSubmittedModal(false);
       setIsOpenSuccessSubmittedModal(true);
-    } else setIsOpenFailedSubmittedModal(true);
+    } catch (error) {
+      setIsRequesting(false);
+      setIsOpenFailedSubmittedModal(true);
+    }
   };
 
   const isDetailPageAndSubmitted =
@@ -463,6 +477,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           setIsOpenModal={setIsOpenBlockingConfirmModal}
         />
       )}
+      {isRequesting && <LoadingModal setIsOpenModal={setIsRequesting} />}
     </>
   );
 };

@@ -17,6 +17,7 @@ const usePreventPageChangeWithConfirmModal = (
       if (Router.asPath !== toPath && blocking) {
         setOpenConfirmModal(true);
         setAfterBlockingPath(toPath);
+        Router.events.emit('routeChangeError');
         throw 'Route Change Blocking';
       }
     };
