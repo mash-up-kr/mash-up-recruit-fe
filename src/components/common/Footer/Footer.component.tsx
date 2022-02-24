@@ -1,9 +1,11 @@
+import GithubWhite32 from '@/assets/svg/github-white-32.svg';
 import Mail32 from '@/assets/svg/mail-32.svg';
 import Tistory32 from '@/assets/svg/tistory-32.svg';
 import Behance32 from '@/assets/svg/behance-32.svg';
 import Facebook32 from '@/assets/svg/facebook-32.svg';
 import Instagram32 from '@/assets/svg/instagram-32.svg';
 import { useRouter } from 'next/router';
+import { HOME_PAGE } from '@/constants';
 import * as Styled from './Footer.styled';
 
 const Footer = () => {
@@ -13,6 +15,16 @@ const Footer = () => {
       <Styled.FooterInner>
         <Styled.Copyright currentPage={asPath}>© Mash-Up 2022. Made in Seoul.</Styled.Copyright>
         <Styled.ExternalLinkWrapper currentPage={asPath}>
+          <a href="https://github.com/mash-up-kr/" target="_blank" rel="noreferrer">
+            {asPath === HOME_PAGE ? (
+              <Styled.GithubIconWrapper>
+                <Styled.GithubIconBackground />
+                <Styled.GithubIconDark />
+              </Styled.GithubIconWrapper>
+            ) : (
+              <GithubWhite32 />
+            )}
+          </a>
           <a href="mailto:recruit.mashup@gmail.com">
             <Mail32 />
           </a>
