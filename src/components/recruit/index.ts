@@ -7,7 +7,7 @@ export { default as PlatformTalent } from './PlatformTalent/PlatformTalent.compo
 export { default as PlatformInformation } from './PlatformInformation/PlatformInformation.component';
 export { default as PlatformInterviewSchedule } from './PlatformInterviewSchedule/PlatformInterviewSchedule.component';
 export { default as ActionGroup } from './ActionGroup/ActionGroup.component';
-export { default as ApplyLink } from './ApplyLink/ApplyLink.component';
+export { default as ApplyLinkButton } from './ApplyLinkButton/ApplyLinkButton.component';
 export { default as RecruitLayout } from './RecruitLayout/RecruitLayout.component';
 export { default as RecruitDate } from './RecruitDate/RecruitDate.component';
 export { default as PlatformStudy } from './PlatformStudy/PlatformStudy.component';
