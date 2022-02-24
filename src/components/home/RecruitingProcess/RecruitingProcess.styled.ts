@@ -79,7 +79,7 @@ export const ListItem = styled.li`
       right: 0;
       bottom: 0;
       left: 0;
-      background: radial-gradient(circle, transparent 11rem, ${theme.colors.black} 11.1rem);
+      background: radial-gradient(circle, transparent 11rem, ${theme.colors.gray95} 11.1rem);
       content: '';
     }
 
@@ -88,7 +88,7 @@ export const ListItem = styled.li`
       left: 100%;
       width: 2.5rem;
       height: 100%;
-      background: ${theme.colors.black};
+      background: ${theme.colors.gray95};
       content: '';
     }
 
@@ -127,7 +127,7 @@ export const ListItem = styled.li`
         left: -50%;
         width: 50%;
         height: 100%;
-        background: ${theme.colors.black};
+        background: ${theme.colors.gray95};
         content: '';
       }
 
@@ -137,7 +137,7 @@ export const ListItem = styled.li`
         bottom: 0;
         width: 50%;
         height: 100%;
-        background: ${theme.colors.black};
+        background: ${theme.colors.gray95};
         content: '';
       }
     }
@@ -149,7 +149,7 @@ export const ListItem = styled.li`
         right: 0;
         bottom: 0;
         left: 0;
-        background: radial-gradient(circle, transparent 8rem, ${theme.colors.black} 8.1rem);
+        background: radial-gradient(circle, transparent 8rem, ${theme.colors.gray95} 8.1rem);
         content: '';
       }
     }
@@ -186,7 +186,7 @@ export const ListItem = styled.li`
         right: -100%;
         width: 100%;
         height: 11rem;
-        background: ${theme.colors.black};
+        background: ${theme.colors.gray95};
         content: '';
       }
 
@@ -200,7 +200,7 @@ export const ListItem = styled.li`
         bottom: 0;
         width: 100%;
         height: 11rem;
-        background: ${theme.colors.black};
+        background: ${theme.colors.gray95};
         content: '';
       }
     }
