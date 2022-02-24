@@ -7,7 +7,7 @@ import {
   LabeledTextArea,
   LoadingModal,
 } from '@/components';
-import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL, PATH_NAME } from '@/constants';
+import { HOME_PAGE, MY_PAGE_APPLICATION_DETAIL, PATH_NAME } from '@/constants';
 import { usePreventPageChange } from '@/hooks';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
@@ -210,7 +210,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
   };
 
   const isDetailPageAndSubmitted =
-    isSubmitted && router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL;
+    isSubmitted && router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL;
 
   return (
     <>
@@ -363,16 +363,16 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
         </LabeledCheckbox>
         <Styled.ControlSection>
           {isSubmitted ? (
-            router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL &&
+            router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL &&
             application.status === 'SUBMITTED' ? (
-              <Styled.SubmitedCompletedButton type="button" disabled>
+              <Styled.SubmittedCompletedButton type="button" disabled>
                 제출 완료된 지원서 입니다
-              </Styled.SubmitedCompletedButton>
+              </Styled.SubmittedCompletedButton>
             ) : (
               isSubmitted && (
-                <Styled.AlreadySubmitedButton type="button" disabled>
+                <Styled.AlreadySubmittedButton type="button" disabled>
                   이미 제출한 지원서가 있습니다
-                </Styled.AlreadySubmitedButton>
+                </Styled.AlreadySubmittedButton>
               )
             )
           ) : (
@@ -443,7 +443,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           setIsOpenModal={setIsOpenSuccessSubmittedModal}
           handleCancelButton={() => router.push(HOME_PAGE)}
           handleApprovalButton={() => {
-            router.push(`${MY_PAGE_APPLICATON_DETAIL}/${application.applicationId}`);
+            router.push(`${MY_PAGE_APPLICATION_DETAIL}/${application.applicationId}`);
             setIsOpenSuccessSubmittedModal(false);
           }}
           escClose={false}

@@ -39,7 +39,7 @@ interface ApplyLayoutProps {
 }
 
 const ApplyLayout = ({ heading, role, application, isSubmitted }: ApplyLayoutProps) => {
-  const [isOpenAlreadySubmitedModal, setIsOpenAlreadySubmittedModal] = useState(isSubmitted);
+  const [isOpenAlreadySubmittedModal, setIsOpenAlreadySubmittedModal] = useState(isSubmitted);
   const [isOpenTempSavedModal, setIsOpenTempSavedModal] = useState(
     application.status === 'WRITING',
   );
@@ -53,7 +53,7 @@ const ApplyLayout = ({ heading, role, application, isSubmitted }: ApplyLayoutPro
           <ApplyForm application={application} isSubmitted={isSubmitted} />
         </section>
       </Styled.Layout>
-      {isOpenAlreadySubmitedModal && (
+      {isOpenAlreadySubmittedModal && (
         <AlertModalDialog
           heading="이미 제출한 지원서가 존재합니다."
           paragraph="이미 한 번 지원서를 제출하셨다면 이제 또 다른 지원서는 제출하지 못합니다."

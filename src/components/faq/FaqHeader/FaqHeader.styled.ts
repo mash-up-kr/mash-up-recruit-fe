@@ -6,6 +6,7 @@ export const Heading = styled.h2`
     ${theme.fonts.kr.bold46};
     flex-basis: 100%;
     margin: 8.4rem 0 5rem;
+    color: ${theme.colors.gray80};
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       ${theme.fonts.kr.bold32};

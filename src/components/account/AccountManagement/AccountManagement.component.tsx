@@ -1,12 +1,12 @@
 import { Applicant } from '@/types/dto';
 import { signOut } from 'next-auth/react';
-import * as Styled from './AccountManagament.styled';
+import * as Styled from './AccountManagement.styled';
 
-interface AccountManagamentProps {
+interface AccountManagementProps {
   userInfo: Applicant;
 }
 
-const AccountManagament = ({ userInfo }: AccountManagamentProps) => {
+const AccountManagement = ({ userInfo }: AccountManagementProps) => {
   const handleSignOut = () => {
     signOut();
   };
@@ -31,4 +31,4 @@ const AccountManagament = ({ userInfo }: AccountManagamentProps) => {
   );
 };
 
-export default AccountManagament;
+export default AccountManagement;

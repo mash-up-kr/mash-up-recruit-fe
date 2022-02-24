@@ -1,10 +1,10 @@
-import { HomeLayout, LinkTo } from '@/components';
-import { APPLY_FRONT_END_PAGE } from '@/constants';
+import { HomeLayout, RecruitingDetailNavigation, RecruitingProcess } from '@/components';
 
 const Home = () => {
   return (
     <HomeLayout>
-      <LinkTo href={APPLY_FRONT_END_PAGE}>지원하기</LinkTo>
+      <RecruitingProcess />
+      <RecruitingDetailNavigation />
     </HomeLayout>
   );
 };

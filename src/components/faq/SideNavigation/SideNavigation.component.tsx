@@ -1,10 +1,10 @@
 import { Navigation } from '@/components';
-import { PlatformKey } from '@/components/faq/Navigation/Navigation.component';
+import { PlatformKey } from '@/constants';
 
 import * as Styled from './SideNavigation.styled';
 
 interface SideNavigationProps {
-  platformName?: PlatformKey;
+  platformName: PlatformKey | 'common';
 }
 
 const SideNavigation = ({ platformName }: SideNavigationProps) => {

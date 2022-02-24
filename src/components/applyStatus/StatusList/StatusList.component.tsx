@@ -1,4 +1,4 @@
-import { MY_PAGE_APPLICATON_DETAIL } from '@/constants';
+import { MY_PAGE_APPLICATION_DETAIL } from '@/constants';
 import { useDetectViewPort } from '@/hooks';
 import { Application, ApplicationAuditStatus, TeamName } from '@/types/dto';
 import * as Styled from './StatusList.styled';
@@ -42,9 +42,9 @@ const StatusList = ({ applications }: StatusListProps) => {
                 <Styled.StatusListHeading>지원서</Styled.StatusListHeading>
               </Styled.StatusListHeader>
               {applications.length === 0 ? (
-                <Styled.NoSubmitedApplication>
+                <Styled.NoSubmittedApplication>
                   아직 지원하신 내용이 없습니다.
-                </Styled.NoSubmitedApplication>
+                </Styled.NoSubmittedApplication>
               ) : (
                 <Styled.StatusList>
                   {applications.map(({ applicant, team, applicationId, result }) => {
@@ -56,7 +56,7 @@ const StatusList = ({ applications }: StatusListProps) => {
                         <Styled.StatusText>{STATUS_WORDS[result.status]}</Styled.StatusText>
                         <Styled.DetailLinkWrapper>
                           <Styled.ApplicationDetailLink
-                            href={`${MY_PAGE_APPLICATON_DETAIL}/${applicationId}`}
+                            href={`${MY_PAGE_APPLICATION_DETAIL}/${applicationId}`}
                           >
                             상세보기
                           </Styled.ApplicationDetailLink>
@@ -71,9 +71,9 @@ const StatusList = ({ applications }: StatusListProps) => {
             // eslint-disable-next-line react/jsx-no-useless-fragment
             <>
               {applications.length === 0 ? (
-                <Styled.NoSubmitedApplication>
+                <Styled.NoSubmittedApplication>
                   아직 지원하신 내용이 없습니다.
-                </Styled.NoSubmitedApplication>
+                </Styled.NoSubmittedApplication>
               ) : (
                 <Styled.StatusList>
                   {applications.map(({ applicant, team, applicationId, result }) => {
@@ -97,7 +97,7 @@ const StatusList = ({ applications }: StatusListProps) => {
                         </Styled.ListItemWrapper>
                         <Styled.DetailLinkWrapper>
                           <Styled.ApplicationDetailLink
-                            href={`${MY_PAGE_APPLICATON_DETAIL}/${applicationId}`}
+                            href={`${MY_PAGE_APPLICATION_DETAIL}/${applicationId}`}
                           >
                             지원서 상세보기
                           </Styled.ApplicationDetailLink>

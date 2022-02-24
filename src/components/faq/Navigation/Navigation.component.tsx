@@ -1,75 +1,33 @@
 import { LinkTo } from '@/components';
 
-import {
-  FAQ_COMMON_PAGE,
-  FAQ_SPRING_PAGE,
-  FAQ_ANDROID_PAGE,
-  FAQ_DESIGN_PAGE,
-  FAQ_FRONT_END_PAGE,
-  FAQ_IOS_PAGE,
-  FAQ_NODE_PAGE,
-} from '@/constants';
+import { FAQ_COMMON_PAGE, PlatformKey, platforms } from '@/constants';
 
 import * as Styled from './Navigation.styled';
 
-export type PlatformKey = 'common' | 'design' | 'android' | 'ios' | 'web' | 'node' | 'spring';
-
-export type Platform = {
-  key: PlatformKey;
-  path: string;
-  name: string;
-};
-
-export const platforms: Platform[] = [
+const platformsWithCommon = [
   {
     key: 'common',
-    path: FAQ_COMMON_PAGE,
     name: '공통질문',
+    path: {
+      faq: FAQ_COMMON_PAGE,
+    },
   },
-  {
-    key: 'design',
-    path: FAQ_DESIGN_PAGE,
-    name: 'Product Design Team',
-  },
-  {
-    key: 'android',
-    path: FAQ_ANDROID_PAGE,
-    name: 'Android Team',
-  },
-  {
-    key: 'ios',
-    path: FAQ_IOS_PAGE,
-    name: 'iOS Team',
-  },
-  {
-    key: 'web',
-    path: FAQ_FRONT_END_PAGE,
-    name: 'Web Team',
-  },
-  {
-    key: 'node',
-    path: FAQ_NODE_PAGE,
-    name: 'Node Team',
-  },
-  {
-    key: 'spring',
-    path: FAQ_SPRING_PAGE,
-    name: 'Spring Team',
-  },
+  ...platforms,
 ];
-
 interface NavigationProps {
-  platformName?: PlatformKey;
+  platformName: PlatformKey | 'common';
   handleClickItem?: () => void;
 }
 
-const Navigation = ({ platformName, handleClickItem = () => {} }: NavigationProps) => {
+const Navigation = ({ platformName, handleClickItem }: NavigationProps) => {
   return (
     <nav>
       <Styled.List>
-        {platforms.map(({ key, name, path }) => (
+        {platformsWithCommon.map(({ path, name, key }) => (
           <Styled.ListItem active={platformName === key} key={key} onClick={handleClickItem}>
-            <LinkTo href={path}>{name}</LinkTo>
+            <LinkTo href={path.faq}>
+              {name} {key !== 'common' && 'Team'}
+            </LinkTo>
           </Styled.ListItem>
         ))}
       </Styled.List>
