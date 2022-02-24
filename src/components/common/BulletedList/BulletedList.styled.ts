@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 export const List = styled.ul`
   ${({ theme }) => css`
-    ${theme.fonts.kr.medium15};
+    ${theme.fonts.kr.medium16};
     margin-left: 2.4rem;
     color: ${theme.colors.gray70};
     list-style-type: disc;
