@@ -29,11 +29,14 @@ const TEAM__NICK_NAME: Record<TeamName, string> = {
 
 const StatusList = ({ applications }: StatusListProps) => {
   const { size } = useDetectViewPort();
+
+  const isSubmitted = applications.find(({ status }) => status === 'SUBMITTED');
+
   return (
     <Styled.StatusListSection>
       <Styled.HeadingWrapper>
         <Styled.Heading>지원 현황</Styled.Heading>
-        {applications.length > 1 && (
+        {applications.length > 1 && !isSubmitted && (
           <Styled.SubmissionNotice>
             <Loudspeaker />
             최종 제출은 딱 하나의 지원서만 가능합니다.
