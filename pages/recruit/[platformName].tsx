@@ -14,7 +14,7 @@ import {
   ActionGroup,
   RecruitLayout,
   RecruitContents,
-  ApplyLink,
+  ApplyLinkButton,
   BulletedList,
 } from '@/components';
 
@@ -57,7 +57,7 @@ const Platform: NextPage<PlatformProps> = ({ platformName }) => {
           <BulletedList items={currentPlatformInterview} />
         </PlatformInterviewSchedule>
         <ActionGroup>
-          <ApplyLink href={currentPlatformPath.apply} />
+          <ApplyLinkButton applyPath={currentPlatformPath.apply} />
         </ActionGroup>
       </RecruitContents>
       <Divider />

@@ -1,4 +1,3 @@
-import LinkTo from '@/components/common/LinkTo/LinkTo.component';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -17,7 +16,7 @@ export const Container = styled.div`
   `}
 `;
 
-export const Link = styled(LinkTo)`
+export const LinkButton = styled.button`
   ${({ theme }) => css`
     ${theme.button.type.primary};
     display: block;
