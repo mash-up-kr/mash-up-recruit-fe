@@ -156,18 +156,20 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
     };
 
     setIsRequesting(true);
+    try {
+      await applicationApiService.tempSaveApplication({
+        accessToken: session.data?.accessToken,
+        applicationId,
+        updateApplicationRequest,
+      });
 
-    const tempSaveResponse = await applicationApiService.tempSaveApplication({
-      accessToken: session.data?.accessToken,
-      applicationId,
-      updateApplicationRequest,
-    });
-
-    if (tempSaveResponse.code === 'SUCCESS') {
       setIsRequesting(false);
       setIsOpenTempSaveSuccessAlertModal(true);
       setIsTempSaved(true);
-    } else setIsOpenTempSaveFailedAlertModal(true);
+    } catch (error) {
+      setIsRequesting(false);
+      setIsOpenTempSaveFailedAlertModal(true);
+    }
   };
 
   const handleOpenSubmitModal = () => {
@@ -196,17 +198,20 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
 
     setIsRequesting(true);
 
-    const applicationSubmitResponse = await applicationApiService.submitApplication({
-      accessToken: session.data?.accessToken,
-      applicationId,
-      applicationSubmitRequest,
-    });
+    try {
+      await applicationApiService.submitApplication({
+        accessToken: session.data?.accessToken,
+        applicationId,
+        applicationSubmitRequest,
+      });
 
-    if (applicationSubmitResponse.code === 'SUCCESS') {
       setIsRequesting(false);
       setIsOpenConfirmSubmittedModal(false);
       setIsOpenSuccessSubmittedModal(true);
-    } else setIsOpenFailedSubmittedModal(true);
+    } catch (error) {
+      setIsRequesting(false);
+      setIsOpenFailedSubmittedModal(true);
+    }
   };
 
   const isDetailPageAndSubmitted =
