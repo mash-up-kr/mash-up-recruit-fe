@@ -52,6 +52,7 @@ export const SubmissionNotice = styled.span`
     margin-left: 2rem;
     padding: 1.2rem 1.6rem 1.1rem;
     color: ${theme.colors.white};
+    word-break: keep-all;
     background: ${theme.colors.purple60};
     border-radius: 1.6rem;
 
