@@ -9,6 +9,7 @@ interface StyledInputProps {
 
 export const Input = styled.input<StyledInputProps>`
   ${({ theme, $size, isError }) => css`
+    ${theme.fonts.kr.regular15};
     ${theme.input.size[$size]}
     display: block;
     width: 100%;
@@ -30,9 +31,11 @@ export const Input = styled.input<StyledInputProps>`
     }
 
     &:disabled {
+      -webkit-text-fill-color: ${theme.colors.gray60};
       color: ${theme.colors.gray60};
       background: ${theme.colors.gray5};
       border: 0.1rem solid ${theme.colors.gray30};
+      opacity: 1;
     }
 
     &::placeholder {

@@ -8,7 +8,7 @@ interface StyledTextAreaProps {
 export const TextArea = styled.textarea<StyledTextAreaProps>`
   ${({ theme, isError }) => css`
     display: block;
-    ${theme.fonts.kr.medium15};
+    ${theme.fonts.kr.regular15};
     width: 100%;
     height: 20rem;
     margin-top: 0.6rem;
@@ -31,9 +31,11 @@ export const TextArea = styled.textarea<StyledTextAreaProps>`
     }
 
     &:disabled {
+      -webkit-text-fill-color: ${theme.colors.gray60};
       color: ${theme.colors.gray60};
       background: ${theme.colors.gray5};
       border: 0.1rem solid ${theme.colors.gray30};
+      opacity: 1;
     }
 
     &::placeholder {
