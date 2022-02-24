@@ -26,10 +26,14 @@ export const DialogInner = styled.div`
   `}
 `;
 
-export const Heading = styled.h2`
-  ${({ theme }) => css`
+interface HeaderProps {
+  isError: boolean;
+}
+
+export const Heading = styled.h2<HeaderProps>`
+  ${({ theme, isError }) => css`
     ${theme.fonts.kr.bold22};
-    color: ${theme.colors.gray80};
+    color: ${isError ? theme.colors.red50 : theme.colors.gray80};
     letter-spacing: -0.08rem;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {

@@ -423,6 +423,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           setIsOpenModal={setIsOpenTempSaveFailedAlertModal}
           deemClose={false}
           escClose={false}
+          isError
         />
       )}
       {isOpenConfirmSubmittedModal && (
@@ -463,6 +464,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           handleApprovalButton={() => setIsOpenFailedSubmittedModal(false)}
           escClose={false}
           deemClose={false}
+          isError
         />
       )}
       {isOpenBlockingConfirmModal && (
