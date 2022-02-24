@@ -281,9 +281,6 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               required
               type="email"
             />
-            <Styled.ModifyEmailMessage>
-              이메일 수정은 마이페이지에서 가능합니다.
-            </Styled.ModifyEmailMessage>
           </Styled.PersonalInformationWrapper>
         </Styled.PersonalInformationSection>
         <Styled.QuestionListSection>
