@@ -13,10 +13,10 @@ import { useRouter } from 'next/router';
 
 interface ApplyProps {
   application: Application;
-  isSubmited: boolean;
+  isSubmitted: boolean;
 }
 
-const Apply = ({ application, isSubmited }: ApplyProps) => {
+const Apply = ({ application, isSubmitted }: ApplyProps) => {
   const router = useRouter();
 
   return (
@@ -24,7 +24,7 @@ const Apply = ({ application, isSubmited }: ApplyProps) => {
       heading={PLATFORM_HEADINGS[router.asPath as keyof PlatformHeadings]}
       role={PLATFORM_ROLE[router.asPath as keyof PlatformHeadings]}
       application={application}
-      isSubmited={isSubmited}
+      isSubmitted={isSubmitted}
     />
   );
 };
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     })
   ).data;
 
-  const isSubmited = applications.some(({ status }) => status === 'SUBMITTED');
+  const isSubmitted = applications.some(({ status }) => status === 'SUBMITTED');
 
   const currentApplication = applications.find(
     ({ team }) => team.teamId === teamIds[currentApplyPlatform],
@@ -72,7 +72,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         application: application?.data,
-        isSubmited,
+        isSubmitted,
       },
     };
   }
@@ -84,7 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       application: application?.data,
-      isSubmited,
+      isSubmitted,
     },
   };
 };

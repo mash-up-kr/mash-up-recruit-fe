@@ -6,11 +6,11 @@ import { getSession } from 'next-auth/react';
 
 interface ApplicationDetailProps {
   application: Application;
-  isSubmited: boolean;
+  isSubmitted: boolean;
 }
 
-const ApplicationDetail = ({ application, isSubmited }: ApplicationDetailProps) => {
-  return <ApplicationDetailLayout application={application} isSubmited={isSubmited} />;
+const ApplicationDetail = ({ application, isSubmitted }: ApplicationDetailProps) => {
+  return <ApplicationDetailLayout application={application} isSubmitted={isSubmitted} />;
 };
 
 export const getServerSideProps: GetServerSideProps<ApplicationDetailProps> = async (context) => {
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps<ApplicationDetailProps> = as
 
   const applications = applicationsRes.data;
 
-  const isSubmited = applications.some(({ status }) => status === 'SUBMITTED');
+  const isSubmitted = applications.some(({ status }) => status === 'SUBMITTED');
 
   const application = applications.find(
     ({ applicationId }) => applicationId === parseInt(context.params?.applicationId as string, 10),
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps<ApplicationDetailProps> = as
   return {
     props: {
       application,
-      isSubmited,
+      isSubmitted,
     },
   };
 };

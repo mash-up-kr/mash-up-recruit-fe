@@ -22,10 +22,10 @@ export const PLATFORM_ROLE: Record<TeamName, string> = {
 
 interface ApplicationDetailLayoutProps {
   application: Application;
-  isSubmited: boolean;
+  isSubmitted: boolean;
 }
 
-const ApplicationDetailLayout = ({ application, isSubmited }: ApplicationDetailLayoutProps) => {
+const ApplicationDetailLayout = ({ application, isSubmitted }: ApplicationDetailLayoutProps) => {
   return (
     <section>
       <Styled.ApplicationDetailHeadingWrapper>
@@ -38,7 +38,7 @@ const ApplicationDetailLayout = ({ application, isSubmited }: ApplicationDetailL
         </Styled.ApplicationDetailHeadingInner>
       </Styled.ApplicationDetailHeadingWrapper>
       <Styled.Layout>
-        <ApplyForm application={application} isSubmited={isSubmited} />
+        <ApplyForm application={application} isSubmitted={isSubmitted} />
       </Styled.Layout>
     </section>
   );
