@@ -9,6 +9,7 @@ export const ModalOpenButton = styled.button`
     justify-content: space-between;
     margin-bottom: 3rem;
     padding: 2.5rem 3rem;
+    color: ${theme.colors.gray80};
     border-radius: 2rem;
   `}
 `;

@@ -6,7 +6,7 @@ import {
   LabeledInput,
   LabeledTextArea,
 } from '@/components';
-import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL, PATH_NAME } from '@/constants';
+import { HOME_PAGE, MY_PAGE_APPLICATION_DETAIL, PATH_NAME } from '@/constants';
 import { usePreventPageChange } from '@/hooks';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
@@ -201,7 +201,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
   };
 
   const isDetailPageAndSubmited =
-    isSubmited && router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL;
+    isSubmited && router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL;
 
   return (
     <>
@@ -354,7 +354,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
         </LabeledCheckbox>
         <Styled.ControlSection>
           {isSubmited ? (
-            router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL &&
+            router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL &&
             application.status === 'SUBMITTED' ? (
               <Styled.SubmitedCompletedButton type="button" disabled>
                 제출 완료된 지원서 입니다
@@ -434,7 +434,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
           setIsOpenModal={setIsOpenSuccessSubmitedModal}
           handleCancelButton={() => router.push(HOME_PAGE)}
           handleApprovalButton={() => {
-            router.push(`${MY_PAGE_APPLICATON_DETAIL}/${application.applicationId}`);
+            router.push(`${MY_PAGE_APPLICATION_DETAIL}/${application.applicationId}`);
             setIsOpenSuccessSubmitedModal(false);
           }}
           escClose={false}

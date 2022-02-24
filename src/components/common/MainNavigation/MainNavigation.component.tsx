@@ -17,7 +17,7 @@ const MainNavigation = () => {
   const [isOpenMyPageTab, setIsOpenMyPageTab] = useState(false);
 
   const loginButtonRef = useRef<HTMLButtonElement>(null) as MutableRefObject<HTMLButtonElement>;
-  const MyPageTabWrrpaer = useRef<HTMLDivElement>(null);
+  const MyPageTabWrapper = useRef<HTMLDivElement>(null);
 
   const handleOpenSignInModal: MouseEventHandler<HTMLButtonElement> = () => {
     setIsOpenSignInModal(true);
@@ -31,7 +31,7 @@ const MainNavigation = () => {
     setIsOpenMyPageTab(false);
   };
 
-  useDetectOutsideClick(MyPageTabWrrpaer, handleCloseTab);
+  useDetectOutsideClick(MyPageTabWrapper, handleCloseTab);
 
   useEffect(() => {
     Router.events.on('routeChangeStart', handleCloseTab);
@@ -54,7 +54,7 @@ const MainNavigation = () => {
           </li>
           <li>
             {session.status === 'authenticated' ? (
-              <div ref={MyPageTabWrrpaer}>
+              <div ref={MyPageTabWrapper}>
                 <Styled.MyPageButton
                   type="button"
                   currentPage={asPath}

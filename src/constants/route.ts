@@ -19,7 +19,7 @@ export const FAQ_ANDROID_PAGE = `/faq/${teamUrls.android}`;
 
 export const MY_PAGE_ACCOUNT = '/my-page/account';
 export const MY_PAGE_APPLY_STATUS = '/my-page/apply-status';
-export const MY_PAGE_APPLICATON_DETAIL = '/my-page/application-detail'; // 사용시 `/${id}` 넣어줄것 (동적 라우트)
+export const MY_PAGE_APPLICATION_DETAIL = '/my-page/application-detail'; // 사용시 `/${id}` 넣어줄것 (동적 라우트)
 
 export const RECRUIT_FRONT_END_PAGE = `/recruit/${teamUrls.web}`;
 export const RECRUIT_DESIGN_PAGE = `/recruit/${teamUrls.design}`;
@@ -33,5 +33,5 @@ export const PATH_NAME = {
   FAQ_PAGE: '/faq/[platformName]',
   MY_PAGE_ACCOUNT: '/my-page/account',
   MY_PAGE_APPLY_STATUS: '/my-page/apply-status',
-  MY_PAGE_APPLICATON_DETAIL: '/my-page/application-detail/[applicationId]',
+  MY_PAGE_APPLICATION_DETAIL: '/my-page/application-detail/[applicationId]',
 };
