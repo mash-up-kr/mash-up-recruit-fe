@@ -12,6 +12,7 @@ const STATUS_WORDS: Record<ApplicationAuditStatus, string> = {
   SUBMITTED: '제출 완료',
   SCREENING_FAILED: '서류 불합격',
   SCREENING_PASSED: '서류 합격',
+  SCREENING_EXPIRED: '기한 만료',
   INTERVIEW_FAILED: '면접 불합격',
   INTERVIEW_PASSED: '최종 합격',
 };
