@@ -1,5 +1,5 @@
 import { Applicant } from '@/types/dto';
-import { AccountManagament } from '@/components';
+import { AccountManagement } from '@/components';
 import * as Styled from './AccountLayout.styled';
 
 interface AccountLayoutProps {
@@ -9,7 +9,7 @@ interface AccountLayoutProps {
 const AccountLayout = ({ userInfo }: AccountLayoutProps) => {
   return (
     <Styled.Layout>
-      <AccountManagament userInfo={userInfo} />
+      <AccountManagement userInfo={userInfo} />
     </Styled.Layout>
   );
 };

@@ -171,7 +171,7 @@ export const ApplicationDetailLink = styled(LinkTo)`
   `}
 `;
 
-export const NoSubmitedApplication = styled.span`
+export const NoSubmittedApplication = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold18};
     display: block;
