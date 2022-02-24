@@ -5,6 +5,7 @@ import {
   LabeledCheckbox,
   LabeledInput,
   LabeledTextArea,
+  LoadingModal,
 } from '@/components';
 import { HOME_PAGE, MY_PAGE_APPLICATON_DETAIL, PATH_NAME } from '@/constants';
 import { usePreventPageChange } from '@/hooks';
@@ -26,7 +27,7 @@ import * as Styled from './ApplyForm.styled';
 
 interface ApplyFormProps {
   application: Application;
-  isSubmited: boolean;
+  isSubmitted: boolean;
 }
 
 interface ApplyFormValues extends FieldValues {
@@ -43,21 +44,23 @@ const APPLY_FORM_KEYS = {
   isAgreePersonalInfo: 'isAgreePersonalInfo',
 } as const;
 
-const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
+const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
   const session = useSession();
   const router = useRouter();
 
   const tempSaveButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const submitButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
 
+  const [isRequesting, setIsRequesting] = useState(false);
+
   const [isTempSaved, setIsTempSaved] = useState(false);
 
   const [isOpenTempSaveSuccessAlertModal, setIsOpenTempSaveSuccessAlertModal] = useState(false);
   const [isOpenTempSaveFailedAlertModal, setIsOpenTempSaveFailedAlertModal] = useState(false);
-  const [isOpenConfirmSubmitedModal, setIsOpenConfirmSubmitedModal] = useState(false);
-  const [isOpenFailedSubmitedModal, setIsOpenFailedSubmitedModal] = useState(false);
+  const [isOpenConfirmSubmittedModal, setIsOpenConfirmSubmittedModal] = useState(false);
+  const [isOpenFailedSubmittedModal, setIsOpenFailedSubmittedModal] = useState(false);
   const [isOpenBlockingConfirmModal, setIsOpenBlockingConfirmModal] = useState(false);
-  const [isOpenSuccessSubmitedModal, setIsOpenSuccessSubmitedModal] = useState(false);
+  const [isOpenSuccessSubmittedModal, setIsOpenSuccessSubmittedModal] = useState(false);
 
   const handleCloseBlockingConfirmModal = () => {
     setIsOpenBlockingConfirmModal(false);
@@ -75,7 +78,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
     const questionMatchAnswer =
       answers.find(({ questionId }) => question.questionId === questionId) || answers[index];
 
-    if (isSubmited && router.pathname === PATH_NAME.APPLY_PAGE) {
+    if (isSubmitted && router.pathname === PATH_NAME.APPLY_PAGE) {
       return { question, answer: { ...questionMatchAnswer, content: '' } };
     }
 
@@ -94,7 +97,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
 
   const { handleMoveAfterBlocking } = usePreventPageChange(setIsOpenBlockingConfirmModal, [
     isOpenBlockingConfirmModal,
-    isOpenSuccessSubmitedModal,
+    isOpenSuccessSubmittedModal,
     !isDirty,
     isTempSaved,
   ]);
@@ -152,6 +155,8 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
       }),
     };
 
+    setIsRequesting(true);
+
     const tempSaveResponse = await applicationApiService.tempSaveApplication({
       accessToken: session.data?.accessToken,
       applicationId,
@@ -159,13 +164,14 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
     });
 
     if (tempSaveResponse.code === 'SUCCESS') {
+      setIsRequesting(false);
       setIsOpenTempSaveSuccessAlertModal(true);
       setIsTempSaved(true);
     } else setIsOpenTempSaveFailedAlertModal(true);
   };
 
   const handleOpenSubmitModal = () => {
-    setIsOpenConfirmSubmitedModal(true);
+    setIsOpenConfirmSubmittedModal(true);
   };
 
   const handleSubmitApplication = async () => {
@@ -188,6 +194,8 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
       }),
     };
 
+    setIsRequesting(true);
+
     const applicationSubmitResponse = await applicationApiService.submitApplication({
       accessToken: session.data?.accessToken,
       applicationId,
@@ -195,13 +203,14 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
     });
 
     if (applicationSubmitResponse.code === 'SUCCESS') {
-      setIsOpenConfirmSubmitedModal(false);
-      setIsOpenSuccessSubmitedModal(true);
-    } else setIsOpenFailedSubmitedModal(true);
+      setIsRequesting(false);
+      setIsOpenConfirmSubmittedModal(false);
+      setIsOpenSuccessSubmittedModal(true);
+    } else setIsOpenFailedSubmittedModal(true);
   };
 
-  const isDetailPageAndSubmited =
-    isSubmited && router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL;
+  const isDetailPageAndSubmitted =
+    isSubmitted && router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL;
 
   return (
     <>
@@ -222,7 +231,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
               placeholder="내용을 입력해주세요"
               label="이름"
               required
-              disabled={isDetailPageAndSubmited}
+              disabled={isDetailPageAndSubmitted}
               $size="md"
               onBlur={() => {
                 handleValidateForm(APPLY_FORM_KEYS.userName);
@@ -247,7 +256,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
               placeholder="010-1234-5678"
               label="전화번호"
               required
-              disabled={isDetailPageAndSubmited}
+              disabled={isDetailPageAndSubmitted}
               isError={!!errors.phone}
               errorMessage={errors.phone?.message}
               $size="md"
@@ -295,7 +304,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
                     label={question.content}
                     placeholder="내용을 입력해주세요."
                     required={question.required}
-                    disabled={isDetailPageAndSubmited}
+                    disabled={isDetailPageAndSubmitted}
                     id={uniqueQuestionId}
                     isError={!!errors[uniqueQuestionId]}
                     errorMessage={errors[uniqueQuestionId]?.message}
@@ -323,7 +332,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
                     id={uniqueQuestionId}
                     label={question.content}
                     required={question.required}
-                    disabled={isDetailPageAndSubmited}
+                    disabled={isDetailPageAndSubmitted}
                     $size="md"
                     placeholder="내용을 입력해주세요."
                     isError={!!errors[uniqueQuestionId]}
@@ -342,9 +351,9 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
         </Styled.QuestionListSection>
         <LabeledCheckbox
           {...register(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-          checked={isDetailPageAndSubmited ? true : watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
+          checked={isDetailPageAndSubmitted ? true : watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
           id={APPLY_FORM_KEYS.isAgreePersonalInfo}
-          disabled={isDetailPageAndSubmited}
+          disabled={isDetailPageAndSubmitted}
         >
           {/* TODO:(하준) 개인정보 수집 및 이용 동의 페이지 링크로 수정 */}
           <a href="http://devfolio.world" target="_blank" rel="noreferrer">
@@ -353,14 +362,14 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
           에 동의합니다.
         </LabeledCheckbox>
         <Styled.ControlSection>
-          {isSubmited ? (
+          {isSubmitted ? (
             router.pathname === PATH_NAME.MY_PAGE_APPLICATON_DETAIL &&
             application.status === 'SUBMITTED' ? (
               <Styled.SubmitedCompletedButton type="button" disabled>
                 제출 완료된 지원서 입니다
               </Styled.SubmitedCompletedButton>
             ) : (
-              isSubmited && (
+              isSubmitted && (
                 <Styled.AlreadySubmitedButton type="button" disabled>
                   이미 제출한 지원서가 있습니다
                 </Styled.AlreadySubmitedButton>
@@ -413,41 +422,41 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
           escClose={false}
         />
       )}
-      {isOpenConfirmSubmitedModal && (
+      {isOpenConfirmSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서를 제출하시겠어요?"
           paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고부탁드립니다. 지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다."
           approvalButtonMessage="제출하기"
           cancelButtonMessage="취소"
           handleApprovalButton={handleSubmitApplication}
-          handleCancelButton={() => setIsOpenConfirmSubmitedModal(false)}
-          setIsOpenModal={setIsOpenConfirmSubmitedModal}
+          handleCancelButton={() => setIsOpenConfirmSubmittedModal(false)}
+          setIsOpenModal={setIsOpenConfirmSubmittedModal}
           beforeRef={submitButtonRef}
         />
       )}
-      {isOpenSuccessSubmitedModal && (
+      {isOpenSuccessSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서 제출 완료!"
           paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 3월 19일에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!"
           approvalButtonMessage="내 지원서 확인하기"
           cancelButtonMessage="홈으로"
-          setIsOpenModal={setIsOpenSuccessSubmitedModal}
+          setIsOpenModal={setIsOpenSuccessSubmittedModal}
           handleCancelButton={() => router.push(HOME_PAGE)}
           handleApprovalButton={() => {
             router.push(`${MY_PAGE_APPLICATON_DETAIL}/${application.applicationId}`);
-            setIsOpenSuccessSubmitedModal(false);
+            setIsOpenSuccessSubmittedModal(false);
           }}
           escClose={false}
           deemClose={false}
         />
       )}
-      {isOpenFailedSubmitedModal && (
+      {isOpenFailedSubmittedModal && (
         <AlertModalDialog
           heading="지원서 제출 실패"
           paragraph="다시시도해주세요 계속 실패하면 채널톡으로 문의해주세옹"
           beforeRef={submitButtonRef}
-          setIsOpenModal={setIsOpenFailedSubmitedModal}
-          handleApprovalButton={() => setIsOpenFailedSubmitedModal(false)}
+          setIsOpenModal={setIsOpenFailedSubmittedModal}
+          handleApprovalButton={() => setIsOpenFailedSubmittedModal(false)}
           escClose={false}
           deemClose={false}
         />
@@ -463,6 +472,7 @@ const ApplyForm = ({ application, isSubmited }: ApplyFormProps) => {
           setIsOpenModal={setIsOpenBlockingConfirmModal}
         />
       )}
+      {isRequesting && <LoadingModal setIsOpenModal={setIsRequesting} />}
     </>
   );
 };
