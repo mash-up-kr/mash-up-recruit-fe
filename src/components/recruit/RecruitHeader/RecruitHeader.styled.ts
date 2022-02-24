@@ -6,6 +6,7 @@ export const Container = styled.div`
     width: 100%;
     max-width: 78.4rem;
     margin: 3.6rem auto 0;
+    color: ${theme.colors.gray80};
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       max-width: 60rem;

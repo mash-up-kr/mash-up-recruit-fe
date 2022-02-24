@@ -20,6 +20,7 @@ export const ListItem = styled.li`
     width: 100%;
     max-width: 78.4rem;
     height: 8.6rem;
+    color: ${theme.colors.gray70};
     border-radius: 1.6rem;
 
     &:hover {
@@ -56,6 +57,7 @@ export const PlatformContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     max-width: 45.4rem;
+    color: ${theme.colors.gray70};
 
     span:first-of-type {
       ${theme.fonts.en.extrabold26};
