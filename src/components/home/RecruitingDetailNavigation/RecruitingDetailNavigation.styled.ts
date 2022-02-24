@@ -102,6 +102,10 @@ export const Card = styled.div`
       transform: translate(1.2rem, -1.2rem);
     }
 
+    a {
+      width: 12.1rem;
+    }
+
     button {
       ${theme.fonts.en.extrabold15};
       padding: 1.9rem 2rem;
