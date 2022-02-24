@@ -22,7 +22,7 @@ const MyPageTab = ({ isOpenMyPageTab, setIsOpenMyPageTab }: MyPageTabProps) => {
   const myPageTabPanelRef = useRef<HTMLDivElement>(null);
   const myPageTabContentRef = useRef<HTMLDivElement>(null);
 
-  const { asPath: currentPage } = useRouter();
+  const { pathname: currentPage } = useRouter();
 
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = () => {
     signOut();
@@ -56,9 +56,7 @@ const MyPageTab = ({ isOpenMyPageTab, setIsOpenMyPageTab }: MyPageTabProps) => {
     <Styled.MyPageTabPanel ref={myPageTabPanelRef} aria-hidden={!isOpenMyPageTab}>
       <Styled.MyPageTabContent ref={myPageTabContentRef} currentPage={currentPage}>
         <Styled.UserName currentPage={currentPage}>{session?.data?.user?.name}님</Styled.UserName>
-        <Styled.UserEmail currentPage={currentPage}>
-          {session?.data?.user?.email}asfasdfa
-        </Styled.UserEmail>
+        <Styled.UserEmail currentPage={currentPage}>{session?.data?.user?.email}</Styled.UserEmail>
 
         <Styled.TabLink
           href={MY_PAGE_ACCOUNT}

@@ -7,12 +7,14 @@ import { useRouter } from 'next/router';
 import * as Styled from './Footer.styled';
 
 const Footer = () => {
-  const { asPath } = useRouter();
+  const { pathname: currentPage } = useRouter();
   return (
-    <Styled.Footer currentPage={asPath}>
+    <Styled.Footer currentPage={currentPage}>
       <Styled.FooterInner>
-        <Styled.Copyright currentPage={asPath}>© Mash-Up 2022. Made in Seoul.</Styled.Copyright>
-        <Styled.ExternalLinkWrapper currentPage={asPath}>
+        <Styled.Copyright currentPage={currentPage}>
+          © Mash-Up 2022. Made in Seoul.
+        </Styled.Copyright>
+        <Styled.ExternalLinkWrapper currentPage={currentPage}>
           <a href="mailto:recruit.mashup@gmail.com">
             <Mail32 />
           </a>

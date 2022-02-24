@@ -1,10 +1,11 @@
 import type { AppProps } from 'next/app';
-import { Global, ThemeProvider } from '@emotion/react';
+import { css, Global, ThemeProvider } from '@emotion/react';
 import { globalStyles, theme } from '@/styles';
 import { Layout, LoadingModal } from '@/components';
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { HOME_PAGE } from '@/constants';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isRouteChange, setIsRouteChange] = useState(false);
@@ -27,7 +28,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Global styles={globalStyles} />
+      <Global
+        styles={css`
+          ${globalStyles}
+
+          html {
+            scroll-behavior: ${router.pathname === HOME_PAGE ? 'smooth' : 'auto'};
+          }
+        `}
+      />
       <SessionProvider session={pageProps.session}>
         <ThemeProvider theme={theme}>
           <Layout>

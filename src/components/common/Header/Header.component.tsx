@@ -8,13 +8,13 @@ import * as Styled from './Header.styled';
 
 const Header = () => {
   const { size } = useDetectViewPort();
-  const { asPath } = useRouter();
+  const { pathname: currentPage } = useRouter();
 
   return (
-    <Styled.Header currentPage={asPath}>
+    <Styled.Header currentPage={currentPage}>
       <Styled.HeaderInner>
         <LinkTo href={HOME_PAGE}>
-          <Styled.Heading currentPage={asPath} aria-label="Mash Up Recruit">
+          <Styled.Heading currentPage={currentPage} aria-label="Mash Up Recruit">
             {size === VIEWPORT_SIZE.MOBILE ? <MashUpLogo24 /> : <MashUpLogo33 />}
             <span>Mash-Up Recruit</span>
           </Styled.Heading>

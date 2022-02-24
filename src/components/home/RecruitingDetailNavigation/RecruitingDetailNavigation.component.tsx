@@ -1,11 +1,13 @@
 import { LinkTo } from '@/components';
-import { platforms } from '@/constants';
+import { platforms, RECRUIT_DETAILS_HEADER_ID } from '@/constants';
 import * as Styled from './RecruitingDetailNavigation.styled';
 
 const RecruitingDetailNavigation = () => {
   return (
     <Styled.Container>
-      <Styled.Heading id="header">We&apos;re looking for Rookies!</Styled.Heading>
+      <Styled.Heading id={RECRUIT_DETAILS_HEADER_ID}>
+        We&apos;re looking for Rookies!
+      </Styled.Heading>
       <Styled.SubTitle>
         저희는 개인의 성장에 재미와 열정을 갖고 있는 학생과 직장인들이 모여있는 Mash-Up입니다.
         <br />
