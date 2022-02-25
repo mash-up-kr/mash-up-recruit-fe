@@ -9,7 +9,7 @@ interface TitleProps {
 export const Title = styled.span<TitleProps>`
   ${({ emoji }) => css`
     display: flex;
-    align-items: center;
+
     justify-content: space-between;
     ${emoji &&
     css`
