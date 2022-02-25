@@ -46,11 +46,13 @@ export const List = styled.ul`
       display: grid;
       grid-template-rows: repeat(2, 1fr);
       grid-template-columns: repeat(6, 1fr);
+      width: 72.7rem;
       height: 47rem;
       margin: 0 auto;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      width: 53.6rem;
       height: 35rem;
     }
 
@@ -58,6 +60,7 @@ export const List = styled.ul`
       display: grid;
       grid-template-rows: repeat(6, 1fr);
       grid-template-columns: repeat(2, 1fr);
+      width: 33rem;
       height: 62rem;
     }
   `}
