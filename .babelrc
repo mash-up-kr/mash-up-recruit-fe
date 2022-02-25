@@ -10,5 +10,12 @@
       }
     ]
   ],
-  "plugins": ["@emotion"]
+  "plugins": [
+    [
+      "@emotion",
+      {
+        "labelFormat": "[filename]--[local]"
+      }
+    ]
+  ]
 }
