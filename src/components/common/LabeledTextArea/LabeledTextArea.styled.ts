@@ -16,8 +16,8 @@ export const TextArea = styled.textarea<StyledTextAreaProps>`
     color: ${theme.colors.gray70};
     border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.gray30};
     border-radius: 1.2rem;
-    resize: none;
     outline: 0;
+    resize: none;
 
     &::selection {
       background: ${theme.colors.purple40};
