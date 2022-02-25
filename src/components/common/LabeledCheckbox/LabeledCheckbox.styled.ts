@@ -25,6 +25,10 @@ export const A11yCheckbox = styled.input`
   transform: translate3d(-50%, -50%, 0);
   cursor: pointer;
   opacity: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 interface CustomCheckoutProps {
