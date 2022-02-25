@@ -3,8 +3,10 @@ import * as Styled from './RecruitingProcess.styled';
 const RecruitingProcess = () => {
   return (
     <Styled.Container>
-      <Styled.Heading>Recruiting Process</Styled.Heading>
-      <Styled.List>
+      <Styled.Heading data-aos="fade-up" data-aos-duration="600">
+        Recruiting Process
+      </Styled.Heading>
+      <Styled.List data-aos="fade-up" data-aos-duration="800">
         <Styled.ListItem>
           <Styled.SubHeading>서류 접수</Styled.SubHeading>
           <Styled.Date>

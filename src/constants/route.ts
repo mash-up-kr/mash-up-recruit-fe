@@ -1,7 +1,7 @@
 import { teamUrls } from './team';
 
 export const HOME_PAGE = '/';
-export const RECRUIT_DETAILS_HEADER_ID = 'recruit-details';
+export const RECRUIT_DETAILS_ID = 'recruit-details';
 
 export const APPLY_FRONT_END_PAGE = `/apply/${teamUrls.web}`;
 export const APPLY_DESIGN_PAGE = `/apply/${teamUrls.design}`;

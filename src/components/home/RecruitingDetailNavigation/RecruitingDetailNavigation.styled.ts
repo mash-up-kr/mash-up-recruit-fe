@@ -6,31 +6,27 @@ export const Container = styled.div`
     max-width: 120rem;
     margin: 5.8rem auto;
     color: ${theme.colors.gray20};
+    scroll-margin-top: 9.5rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       max-width: none;
       margin: 0;
       padding: 0 2rem;
+      scroll-margin-top: 8.8rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      scroll-margin-top: 6.8rem;
     }
   `}
 `;
 
 export const Heading = styled.h2`
   ${({ theme }) => css`
-    scroll-margin-top: 9.5rem;
-
     ${theme.fonts.en.extrabold46};
-
-    @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      scroll-margin-top: 8.8rem;
-    }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.en.extrabold32};
-    }
-
-    @media (max-width: ${theme.breakPoint.media.mobile}) {
-      scroll-margin-top: 6.8rem;
     }
   `}
 `;
