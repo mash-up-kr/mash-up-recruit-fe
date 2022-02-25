@@ -11,7 +11,7 @@ export const Footer = styled.footer<FooterProps>`
     width: 100%;
     height: 11.2rem;
     padding: 4rem 0;
-    background: ${currentPage === HOME_PAGE ? theme.colors.gray90 : theme.colors.white};
+    background: ${currentPage === HOME_PAGE ? theme.colors.gray95 : theme.colors.white};
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       flex-flow: column nowrap;

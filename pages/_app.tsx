@@ -21,7 +21,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
     return () => {
       router.events.off('routeChangeStart', handleShowLoadingSpinner);
-      router.events.off('hashChangeComplete', handleHideLoadingSpinner);
+      router.events.off('routeChangeComplete', handleHideLoadingSpinner);
       router.events.off('routeChangeError', handleHideLoadingSpinner);
     };
   }, [router.events]);
@@ -33,7 +33,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           ${globalStyles}
 
           html {
-            scroll-behavior: ${router.pathname === HOME_PAGE ? 'smooth' : 'auto'};
+            background: ${router.pathname === HOME_PAGE ? theme.colors.gray95 : theme.colors.white};
           }
         `}
       />
