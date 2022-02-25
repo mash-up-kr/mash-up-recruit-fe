@@ -10,7 +10,7 @@ export const Header = styled.header<HeaderProps>`
   ${({ theme, currentPage }) => css`
     position: fixed;
     z-index: ${theme.zIndex.header};
-    width: 100%;
+    width: 100vw;
     height: 8rem;
     padding: 1.7rem 0;
     background: ${currentPage === HOME_PAGE ? 'rgba(18, 19, 20, 0.8)' : 'rgba(255, 255, 255, 0.8)'};

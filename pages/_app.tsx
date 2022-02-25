@@ -33,6 +33,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           ${globalStyles}
 
           html {
+            width: 100vw;
+            overflow-x: hidden;
             background: ${router.pathname === HOME_PAGE ? theme.colors.gray95 : theme.colors.white};
           }
         `}
