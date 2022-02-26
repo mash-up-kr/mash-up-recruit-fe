@@ -22,7 +22,7 @@ const MyPageTab = ({ isOpenMyPageTab, setIsOpenMyPageTab }: MyPageTabProps) => {
   const myPageTabPanelRef = useRef<HTMLDivElement>(null);
   const myPageTabContentRef = useRef<HTMLDivElement>(null);
 
-  const { asPath: currentPage } = useRouter();
+  const { pathname: currentPage } = useRouter();
 
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = () => {
     signOut();

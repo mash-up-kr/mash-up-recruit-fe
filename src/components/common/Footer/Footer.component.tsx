@@ -9,14 +9,16 @@ import { HOME_PAGE } from '@/constants';
 import * as Styled from './Footer.styled';
 
 const Footer = () => {
-  const { asPath } = useRouter();
+  const { pathname: currentPage } = useRouter();
   return (
-    <Styled.Footer currentPage={asPath}>
+    <Styled.Footer currentPage={currentPage}>
       <Styled.FooterInner>
-        <Styled.Copyright currentPage={asPath}>© Mash-Up 2022. Made in Seoul.</Styled.Copyright>
-        <Styled.ExternalLinkWrapper currentPage={asPath}>
+        <Styled.Copyright currentPage={currentPage}>
+          © Mash-Up 2022. Made in Seoul.
+        </Styled.Copyright>
+        <Styled.ExternalLinkWrapper currentPage={currentPage}>
           <a href="https://github.com/mash-up-kr/" target="_blank" rel="noreferrer">
-            {asPath === HOME_PAGE ? (
+            {currentPage === HOME_PAGE ? (
               <Styled.GithubIconWrapper>
                 <Styled.GithubIconBackground />
                 <Styled.GithubIconDark />

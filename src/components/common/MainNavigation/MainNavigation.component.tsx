@@ -11,7 +11,7 @@ import * as Styled from './MainNavigation.styled';
 const MainNavigation = () => {
   const session = useSession();
   const { size } = useDetectViewPort();
-  const { asPath } = useRouter();
+  const { pathname: currentPage } = useRouter();
 
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
   const [isOpenMyPageTab, setIsOpenMyPageTab] = useState(false);
@@ -44,7 +44,7 @@ const MainNavigation = () => {
   return (
     <>
       <Styled.Nav>
-        <Styled.NavList currentPage={asPath}>
+        <Styled.NavList currentPage={currentPage}>
           <li>
             <LinkTo href={HOME_PAGE}>모집 공고</LinkTo>
           </li>
@@ -57,7 +57,7 @@ const MainNavigation = () => {
               <div ref={MyPageTabWrapper}>
                 <Styled.MyPageButton
                   type="button"
-                  currentPage={asPath}
+                  currentPage={currentPage}
                   onClick={handleToggleMyPageTab}
                   isOpenMyPageTab={isOpenMyPageTab}
                 >
@@ -72,7 +72,7 @@ const MainNavigation = () => {
             ) : (
               <Styled.SignInButton
                 type="button"
-                currentPage={asPath}
+                currentPage={currentPage}
                 onClick={handleOpenSignInModal}
                 ref={loginButtonRef}
               >
