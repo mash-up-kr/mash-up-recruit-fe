@@ -210,6 +210,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       setIsOpenSuccessSubmittedModal(true);
     } catch (error) {
       setIsRequesting(false);
+      setIsOpenConfirmSubmittedModal(false);
       setIsOpenFailedSubmittedModal(true);
     }
   };
@@ -415,13 +416,14 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
         <AlertModalDialog
           beforeRef={tempSaveButtonRef}
           heading="임시 저장 실패"
-          paragraph="다시 시도해주세요! 계속 임시 저장이 실패된다면  매쉬업 채널톡으로 문의해주세요!"
+          paragraph="다시 시도해주세요! 계속 임시 저장이 실패된다면 매쉬업 채널톡으로 문의해주세요!"
           handleApprovalButton={() =>
             handleCloseTempSaveAlertModal(setIsOpenTempSaveFailedAlertModal)
           }
           setIsOpenModal={setIsOpenTempSaveFailedAlertModal}
           deemClose={false}
           escClose={false}
+          isError
         />
       )}
       {isOpenConfirmSubmittedModal && (
@@ -446,6 +448,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           handleCancelButton={() => router.push(HOME_PAGE)}
           handleApprovalButton={() => {
             router.push(`${MY_PAGE_APPLICATION_DETAIL}/${application.applicationId}`);
+            setIsTempSaved(true);
             setIsOpenSuccessSubmittedModal(false);
           }}
           escClose={false}
@@ -455,12 +458,13 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       {isOpenFailedSubmittedModal && (
         <AlertModalDialog
           heading="지원서 제출 실패"
-          paragraph="다시시도해주세요 계속 실패하면 채널톡으로 문의해주세옹"
+          paragraph="다시 시도해주세요! 계속 제출하기가 실패된다면 매쉬업 채널톡으로 문의해주세요!"
           beforeRef={submitButtonRef}
           setIsOpenModal={setIsOpenFailedSubmittedModal}
           handleApprovalButton={() => setIsOpenFailedSubmittedModal(false)}
           escClose={false}
           deemClose={false}
+          isError
         />
       )}
       {isOpenBlockingConfirmModal && (
