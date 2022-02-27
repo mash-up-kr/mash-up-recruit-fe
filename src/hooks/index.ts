@@ -2,3 +2,4 @@ export { default as usePreventPageChange } from './usePreventPageChangeWithConfi
 export { default as useDetectViewPort } from './useDetectViewPort';
 export { default as useWatchingIsScrollTop } from './useWatchingIsScrollTop';
 export { default as useDetectOutsideClick } from './useDetectOutsideClick';
+export { default as useAOS } from './useAOS';

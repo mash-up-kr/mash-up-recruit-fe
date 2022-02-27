@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import Plus from '@/assets/svg/plus.svg';
 import Minus from '@/assets/svg/minus.svg';
 import { BulletedList } from '@/components';
@@ -7,7 +7,7 @@ import * as Styled from './Accordion.styled';
 
 interface AccordionProps {
   id: string;
-  title: string;
+  title: ReactNode;
   content: Item[];
   headingTagName?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }

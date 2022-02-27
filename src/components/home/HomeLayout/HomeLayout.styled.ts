@@ -7,7 +7,7 @@ export const Layout = styled.div`
     margin-top: -8rem;
     padding-top: 8rem;
     padding-bottom: 20rem;
-    background: ${theme.colors.black};
+    background: ${theme.colors.gray95};
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       padding-bottom: 16rem;

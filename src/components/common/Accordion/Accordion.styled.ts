@@ -22,6 +22,7 @@ export const Header = styled.h3`
       width: 100%;
       padding: 0;
       color: ${theme.colors.gray80};
+      text-align: left;
       background: ${theme.colors.white};
       border: 0;
 

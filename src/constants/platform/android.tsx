@@ -67,11 +67,11 @@ const android = {
   ],
   questions: [
     {
-      id: 'android-1',
-      title: '어떤 활동을 진행하나요?',
+      id: 'android-question-1',
+      title: { text: '어떤 활동을 진행하나요?' },
       content: [
         {
-          id: 'android-1-1',
+          id: 'android-question-1-1',
           content: (
             <>
               이번 Mash-UP 안드로이드 12기는 세미나, 프로젝트, 스터디 등 다양한 활동으로
@@ -84,11 +84,11 @@ const android = {
       ],
     },
     {
-      id: 'android-2',
-      title: '어느정도 안드로이드 개발을 할 줄 알아야 하나요?',
+      id: 'android-question-2',
+      title: { text: '어느정도 안드로이드 개발을 할 줄 알아야 하나요?' },
       content: [
         {
-          id: 'android-2-1',
+          id: 'android-question-2-1',
           content: (
             <>
               안드로이드 팀에는 기본적으로 학생부터 직장인까지 열정 넘치는 분들은 누구나 참여
@@ -102,11 +102,11 @@ const android = {
       ],
     },
     {
-      id: 'android-3',
-      title: '프로젝트의 스펙은 어떻게 되나요?',
+      id: 'android-question-3',
+      title: { text: '프로젝트의 스펙은 어떻게 되나요?' },
       content: [
         {
-          id: 'android-3-1',
+          id: 'android-question-3-1',
           content: (
             <>
               프로젝트마다 팀원끼리 상의해서 스펙을 다르게 가져갑니다. 자신이 평소 사용해보고 싶었던

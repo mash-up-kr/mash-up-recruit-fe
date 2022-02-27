@@ -1,4 +1,4 @@
-import { FAQ_COMMON_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
+import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID, VIEWPORT_SIZE } from '@/constants';
 import { LinkTo, SignInModalDialog, MyPageTab } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
@@ -46,7 +46,7 @@ const MainNavigation = () => {
       <Styled.Nav>
         <Styled.NavList currentPage={currentPage}>
           <li>
-            <LinkTo href={HOME_PAGE}>모집 공고</LinkTo>
+            <LinkTo href={`${HOME_PAGE}#${RECRUIT_DETAILS_ID}`}>모집 공고</LinkTo>
           </li>
           <li>
             <LinkTo href={FAQ_COMMON_PAGE}>자주 묻는 질문</LinkTo>

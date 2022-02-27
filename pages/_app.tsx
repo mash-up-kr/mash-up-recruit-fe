@@ -1,10 +1,11 @@
 import type { AppProps } from 'next/app';
-import { Global, ThemeProvider } from '@emotion/react';
+import { css, Global, ThemeProvider } from '@emotion/react';
 import { globalStyles, theme } from '@/styles';
 import { GlobalSEO, Layout, LoadingModal } from '@/components';
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { HOME_PAGE } from '@/constants';
 import ChannelService from '@/utils/services/ChannelService';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -26,7 +27,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
     return () => {
       router.events.off('routeChangeStart', handleShowLoadingSpinner);
-      router.events.off('hashChangeComplete', handleHideLoadingSpinner);
+      router.events.off('routeChangeComplete', handleHideLoadingSpinner);
       router.events.off('routeChangeError', handleHideLoadingSpinner);
     };
   }, [router.events]);
@@ -34,7 +35,17 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <GlobalSEO />
-      <Global styles={globalStyles} />
+      <Global
+        styles={css`
+          ${globalStyles}
+
+          html {
+            width: 100vw;
+            overflow-x: hidden;
+            background: ${router.pathname === HOME_PAGE ? theme.colors.gray95 : theme.colors.white};
+          }
+        `}
+      />
       <SessionProvider session={pageProps.session}>
         <ThemeProvider theme={theme}>
           <Layout>

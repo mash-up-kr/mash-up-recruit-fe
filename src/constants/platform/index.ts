@@ -27,7 +27,7 @@ export type Path = {
 
 export type Question = {
   id: string;
-  title: string;
+  title: { emoji?: string; text: string };
   content: Item[];
 };
 
