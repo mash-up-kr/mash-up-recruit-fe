@@ -11,6 +11,7 @@ export interface AlertModalDialogProps {
   deemClose?: boolean;
   escClose?: boolean;
   enterClose?: boolean;
+  isError?: boolean;
 }
 
 const AlertModalDialog = ({
@@ -22,6 +23,7 @@ const AlertModalDialog = ({
   deemClose,
   escClose,
   enterClose = true,
+  isError = false,
 }: AlertModalDialogProps) => {
   const handleCloseModalWithEnterHandler = ({ key }: KeyboardEvent) => {
     if (key === 'Enter') {
@@ -45,7 +47,7 @@ const AlertModalDialog = ({
     >
       <Styled.Dialog>
         <Styled.DialogInner>
-          <Styled.Heading>{heading}</Styled.Heading>
+          <Styled.Heading isError={isError}>{heading}</Styled.Heading>
           <Styled.Paragraph>{paragraph}</Styled.Paragraph>
         </Styled.DialogInner>
         <Styled.DialogFooter>

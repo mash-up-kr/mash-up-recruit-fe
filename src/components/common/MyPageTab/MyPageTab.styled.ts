@@ -71,7 +71,7 @@ export const TabLink = styled(LinkTo, {
     const isHomePage = currentPage === HOME_PAGE;
 
     return css`
-      ${theme.fonts.kr.medium14};
+      ${theme.fonts.kr.medium16};
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -101,10 +101,10 @@ export const SignOutButton = styled.button<SignOutButtonProps>`
     const isHomePage = currentPage === HOME_PAGE;
 
     return css`
-      ${theme.fonts.kr.medium14};
+      ${theme.fonts.kr.medium16};
       width: 100%;
       padding: 1rem 0.6rem 1rem 1.2rem;
-      color: ${isHomePage ? theme.colors.gray10 : theme.colors.gray50};
+      color: ${isHomePage ? theme.colors.gray60 : theme.colors.gray50};
       text-align: start;
       background: ${isHomePage ? theme.colors.gray95 : theme.colors.white};
       border: 0;

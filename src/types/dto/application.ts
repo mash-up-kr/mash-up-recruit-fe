@@ -21,6 +21,7 @@ export type ApplicationAuditStatus =
   | 'INTERVIEW_PASSED' // 인터뷰 합격
   | 'SCREENING_FAILED' // 서류심사 탈락
   | 'SCREENING_PASSED' // 서류심사 합격
+  | 'SCREENING_EXPIRED' // 제출 기한 만료
   | 'SUBMITTED' // 제출
   | 'WRITING'; // 작성중 (생성 후 | 임시저장)
 
