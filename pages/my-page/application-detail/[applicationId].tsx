@@ -2,7 +2,8 @@ import { applicationApiService } from '@/api/services';
 import { ApplicationDetailLayout } from '@/components';
 import { Application } from '@/types/dto';
 import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authOptions } from 'pages/api/auth/[...nextauth]';
 
 interface ApplicationDetailProps {
   application: Application;
@@ -14,7 +15,7 @@ const ApplicationDetail = ({ application, isSubmitted }: ApplicationDetailProps)
 };
 
 export const getServerSideProps: GetServerSideProps<ApplicationDetailProps> = async (context) => {
-  const session = await getSession(context);
+  const session = await getServerSession(context, authOptions);
 
   if (!session) {
     return {
