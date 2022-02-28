@@ -286,7 +286,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
         </Styled.PersonalInformationSection>
         <Styled.QuestionListSection>
           <Styled.SectionHeading>질문 목록</Styled.SectionHeading>
-          {questionsAndAnswers?.map(({ question, answer }) => {
+          {questionsAndAnswers?.map(({ question, answer }, index) => {
             const uniqueQuestionId = `question-${question.questionId}`;
             return (
               <Styled.QuestionWrapper key={uniqueQuestionId}>
@@ -304,7 +304,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                       value: answer?.content,
                     })}
                     maxLength={question.maxContentLength || 10000}
-                    label={question.content}
+                    label={`${index + 1}. ${question.content}`}
                     placeholder="내용을 입력해주세요."
                     required={question.required}
                     disabled={isDetailPageAndSubmitted}
@@ -333,7 +333,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                     })}
                     maxLength={question.maxContentLength || 10000}
                     id={uniqueQuestionId}
-                    label={question.content}
+                    label={`${index + 1}. ${question.content}`}
                     required={question.required}
                     disabled={isDetailPageAndSubmitted}
                     $size="md"
