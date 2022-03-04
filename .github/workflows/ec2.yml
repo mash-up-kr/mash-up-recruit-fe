@@ -5,6 +5,11 @@ on:
     branches:
       - qa/ec2-ci-cd
 
+env:
+  S3_BUCKET_NAME: dev-recruit.mash-up
+  CODE_DEPLOY_APPLICATION_NAME: dev-recruit-cd
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dev-recruit
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,9 +42,6 @@ jobs:
           DESTINATION_URL: ${{ secrets.DESTINATION_URL }}
           SOURCE_PATH: ${{ secrets.SOURCE_PATH }}
           NEXT_PUBLIC_CHANNEL_PLUGIN: ${{ secrets.NEXT_PUBLIC_CHANNEL_PLUGIN }}
-          S3_BUCKET_NAME: dev-recruit.mash-up
-          CODE_DEPLOY_APPLICATION_NAME: dev-recruit-cd
-          CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dev-recruit
 
       - name: Install dependencies
         run: yarn install
