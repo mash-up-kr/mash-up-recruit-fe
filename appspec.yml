@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/deploy/dev-recruit
+    overwrite: yes
+
+permissions:
+  - object: /
+    pattern: '**'
+    owner: ubuntu
+    group: ubuntu
+
+hooks:
