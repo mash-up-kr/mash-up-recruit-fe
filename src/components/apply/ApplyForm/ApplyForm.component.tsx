@@ -358,8 +358,11 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           id={APPLY_FORM_KEYS.isAgreePersonalInfo}
           disabled={isDetailPageAndSubmitted}
         >
-          {/* TODO:(하준) 개인정보 수집 및 이용 동의 페이지 링크로 수정 */}
-          <a href="http://devfolio.world" target="_blank" rel="noreferrer">
+          <a
+            href="https://snow-chestnut-45b.notion.site/Mash-Up-Recruit-62a5f6dabcb34e61ba8f26c4fb3a21f0"
+            target="_blank"
+            rel="noreferrer"
+          >
             개인정보 수집 및 이용
           </a>
           에 동의합니다.
