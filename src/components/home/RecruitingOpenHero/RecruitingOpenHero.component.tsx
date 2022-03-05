@@ -2,13 +2,11 @@ import Yeah from '@/assets/svg/yeah.svg';
 import DoubleUnderline from '@/assets/svg/double-underline.svg';
 import GenerationRight from '@/assets/images/generation-right-2x.png';
 import Image from 'next/image';
-import { useDetectViewPort } from '@/hooks';
 import { RecruitingPeriodDesktop } from '@/components';
 import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION } from '@/constants';
 import * as Styled from './RecruitingOpenHero.styled';
 
 const RecruitingOpenHero = () => {
-  const { size } = useDetectViewPort();
   return (
     <Styled.Container>
       <Styled.Contents>
@@ -40,7 +38,7 @@ const RecruitingOpenHero = () => {
         </span>
         <DoubleUnderline />
         <Yeah />
-        {size === 'desktop' && <RecruitingPeriodDesktop />}
+        <RecruitingPeriodDesktop />
       </Styled.Contents>
     </Styled.Container>
   );

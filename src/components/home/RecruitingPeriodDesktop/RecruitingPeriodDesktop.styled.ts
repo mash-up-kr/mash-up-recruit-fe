@@ -25,6 +25,10 @@ export const Container = styled.div`
       top: -11.288rem;
       right: -14.8rem;
     }
+
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      display: none;
+    }
   `}
 `;
 
