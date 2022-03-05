@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/deploy/dev-recruit
+    destination: /home/ubuntu/deploy/mash-up-dev-recruit-fe
     overwrite: yes
 
 permissions:
@@ -12,3 +12,7 @@ permissions:
     group: ubuntu
 
 hooks:
+  AfterInstall:
+    - location: codedeploy/after-install.sh
+      timeout: 300
+      runas: ubuntu

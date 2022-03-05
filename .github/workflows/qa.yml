@@ -50,7 +50,7 @@ jobs:
         run: yarn build
 
       - name: Make zip file
-        run: zip -qq -r ./$GITHUB_SHA.zip .
+        run: zip -qq -r ./$GITHUB_SHA.zip . -x "node_modules/*"
         shell: bash
 
       - name: Configure AWS credentials
