@@ -1,7 +1,10 @@
-name: CI-CD
+name: dev-recruit CI-CD
 
 on:
   push:
+    branches:
+      - qa/ec2-ci-cd
+  pull_request:
     branches:
       - qa/ec2-ci-cd
 
