@@ -9,12 +9,11 @@ export const Container = styled.div`
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       max-width: none;
-      margin: 20rem 0;
-      padding: 0 2rem;
+      margin: 20rem 2rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      margin: 12rem 0;
+      margin: 12rem 2rem;
     }
   `}
 `;
