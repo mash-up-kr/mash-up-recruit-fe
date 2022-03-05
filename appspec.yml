@@ -14,5 +14,5 @@ permissions:
 hooks:
   AfterInstall:
     - location: codedeploy/after-install.sh
-      timeout: 300
+      timeout: 600
       runas: ubuntu
