@@ -1,7 +1,7 @@
 import { MY_PAGE_APPLICATION_DETAIL } from '@/constants';
 import { useDetectViewPort } from '@/hooks';
 import { Application, ApplicationAuditStatus, TeamName } from '@/types/dto';
-import Loudspeaker from '@/assets/svg/loudspeaker.svg';
+import Loudspeaker from '@/assets/svg/loudspeaker-16.svg';
 import * as Styled from './StatusList.styled';
 
 interface StatusListProps {

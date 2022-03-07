@@ -46,6 +46,7 @@ const Modal = ({
     const handleLockScroll = (e: TouchEvent) => e.preventDefault();
     window.addEventListener('touchmove', handleLockScroll, { passive: false });
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflowY = 'hidden';
 
     const handleCloseModalWithEscHandler = ({ key }: KeyboardEvent) => {
       if (key === 'Escape') {
@@ -90,6 +91,7 @@ const Modal = ({
       window.removeEventListener('touchmove', handleLockScroll);
 
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflowY = 'unset';
 
       if (escClose) window.removeEventListener('keyup', handleCloseModalWithEscHandler);
       window.removeEventListener('keydown', handleFocusTrap);

@@ -10,8 +10,7 @@ export const Container = styled.div`
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       max-width: none;
-      margin: 0;
-      padding: 0 2rem;
+      margin: 0 2rem;
       scroll-margin-top: 8.8rem;
     }
 

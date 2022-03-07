@@ -286,7 +286,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
         </Styled.PersonalInformationSection>
         <Styled.QuestionListSection>
           <Styled.SectionHeading>질문 목록</Styled.SectionHeading>
-          {questionsAndAnswers?.map(({ question, answer }) => {
+          {questionsAndAnswers?.map(({ question, answer }, index) => {
             const uniqueQuestionId = `question-${question.questionId}`;
             return (
               <Styled.QuestionWrapper key={uniqueQuestionId}>
@@ -304,7 +304,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                       value: answer?.content,
                     })}
                     maxLength={question.maxContentLength || 10000}
-                    label={question.content}
+                    label={`${index + 1}. ${question.content}`}
                     placeholder="내용을 입력해주세요."
                     required={question.required}
                     disabled={isDetailPageAndSubmitted}
@@ -333,7 +333,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                     })}
                     maxLength={question.maxContentLength || 10000}
                     id={uniqueQuestionId}
-                    label={question.content}
+                    label={`${index + 1}. ${question.content}`}
                     required={question.required}
                     disabled={isDetailPageAndSubmitted}
                     $size="md"
@@ -358,8 +358,11 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           id={APPLY_FORM_KEYS.isAgreePersonalInfo}
           disabled={isDetailPageAndSubmitted}
         >
-          {/* TODO:(하준) 개인정보 수집 및 이용 동의 페이지 링크로 수정 */}
-          <a href="http://devfolio.world" target="_blank" rel="noreferrer">
+          <a
+            href="https://snow-chestnut-45b.notion.site/Mash-Up-Recruit-62a5f6dabcb34e61ba8f26c4fb3a21f0"
+            target="_blank"
+            rel="noreferrer"
+          >
             개인정보 수집 및 이용
           </a>
           에 동의합니다.
@@ -429,7 +432,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       {isOpenConfirmSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서를 제출하시겠어요?"
-          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고부탁드립니다. 지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다."
+          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고 부탁드립니다. 지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다."
           approvalButtonMessage="제출하기"
           cancelButtonMessage="취소"
           handleApprovalButton={handleSubmitApplication}
