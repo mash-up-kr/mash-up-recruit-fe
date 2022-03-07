@@ -15,7 +15,7 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = (
   date: Date,
 ): RecruitingProgressStatus => {
   const kstDate = getKSTDateFromDate(date);
-  const currentDate = date === kstDate ? date : kstDate;
+  const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
   if (currentDate < RECRUITING_START_KST_DATE) {
     return 'PREVIOUS';
   }
