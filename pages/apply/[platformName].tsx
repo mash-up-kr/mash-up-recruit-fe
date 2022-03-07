@@ -10,6 +10,7 @@ import { Application } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
 
 interface ApplyProps {
   application: Application;
@@ -30,6 +31,17 @@ const Apply = ({ application, isSubmitted }: ApplyProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
+
+  if (recruitingProgressStatus !== 'IN-PROGRESS') {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/',
+      },
+    };
+  }
+
   const currentApplyPlatform = teamNames[context.params?.platformName as Teams];
 
   if (!currentApplyPlatform) {

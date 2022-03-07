@@ -94,11 +94,29 @@ export const fonts = {
     `,
   },
   en: {
+    extrabold150: css`
+      font-weight: 800;
+      font-size: 15rem;
+      font-family: Gilroy;
+      line-height: 18.4rem;
+    `,
     extrabold100: css`
       font-weight: 800;
       font-size: 10rem;
       font-family: Gilroy;
-      line-height: normal;
+      line-height: 12.3rem;
+    `,
+    extrabold80: css`
+      font-weight: 800;
+      font-size: 8rem;
+      font-family: Gilroy;
+      line-height: 9.8rem;
+    `,
+    extrabold60: css`
+      font-weight: 800;
+      font-size: 6rem;
+      font-family: Gilroy;
+      line-height: 7.4rem;
     `,
     extrabold46: css`
       font-weight: 800;

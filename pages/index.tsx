@@ -1,4 +1,11 @@
-import { HomeLayout, RecruitingDetailNavigation, RecruitingProcess } from '@/components';
+import {
+  HomeLayout,
+  RecruitingDetailNavigation,
+  RecruitingProcess,
+  WelcomeHero,
+  RecruitingOpenHero,
+  RecruitingPeriod,
+} from '@/components';
 import { useAOS } from '@/hooks';
 
 const Home = () => {
@@ -6,6 +13,9 @@ const Home = () => {
 
   return (
     <HomeLayout>
+      <WelcomeHero />
+      <RecruitingOpenHero />
+      <RecruitingPeriod />
       <RecruitingProcess />
       <RecruitingDetailNavigation />
     </HomeLayout>
