@@ -15,13 +15,14 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = (
   date: Date,
 ): RecruitingProgressStatus => {
   const kstDate = getKSTDateFromDate(date);
-  if (kstDate < RECRUITING_START_KST_DATE) {
+  const currentDate = date === kstDate ? date : kstDate;
+  if (currentDate < RECRUITING_START_KST_DATE) {
     return 'PREVIOUS';
   }
-  if (RECRUITING_START_KST_DATE <= kstDate && kstDate <= RECRUITING_END_KST_DATE) {
+  if (RECRUITING_START_KST_DATE <= currentDate && currentDate <= RECRUITING_END_KST_DATE) {
     return 'IN-PROGRESS';
   }
-  if (RECRUITING_END_KST_DATE < kstDate) {
+  if (RECRUITING_END_KST_DATE < currentDate) {
     return 'AFTER';
   }
   return 'INVALID';
