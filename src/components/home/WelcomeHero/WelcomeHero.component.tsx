@@ -3,7 +3,6 @@ import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION } from '@/constants';
 import Image from 'next/image';
 import WelcomeHeroLeft from '@/assets/images/welcome-hero-left-2x.png';
 import WelcomeHeroRight from '@/assets/images/welcome-hero-right-2x.png';
-
 import * as Styled from './WelcomeHero.styled';
 
 const WelcomeHero = () => {
