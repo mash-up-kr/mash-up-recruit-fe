@@ -1,17 +1,9 @@
-name: dev-recruit CI-CD
+name: dev-recruit prebuild
 
 on:
-  push:
-    branches:
-      - qa/ec2-ci-cd
   pull_request:
     branches:
-      - qa/ec2-ci-cd
-
-env:
-  S3_BUCKET_NAME: dev-recruit.mash-up
-  CODE_DEPLOY_APPLICATION_NAME: dev-recruit-cd
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dev-recruit
+      - qa/*
 
 jobs:
   build:
@@ -51,26 +43,3 @@ jobs:
 
       - name: build next app
         run: yarn build
-
-      - name: Make zip file
-        run: zip -qq -r ./$GITHUB_SHA.zip . -x "node_modules/*"
-        shell: bash
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
-
-      - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
-
-        # [6]
-      - name: Code Deploy
-        run: |
-          aws deploy create-deployment \
-          --deployment-config-name CodeDeployDefault.AllAtOnce \
-          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
-          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
-          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
