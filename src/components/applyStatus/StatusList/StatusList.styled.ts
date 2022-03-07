@@ -45,32 +45,25 @@ export const Heading = styled.h2`
 
 export const SubmissionNotice = styled.span`
   ${({ theme }) => css`
-    ${theme.fonts.kr.regular14}
+    ${theme.fonts.kr.regular13}
     display: flex;
     align-items: center;
-    justify-content: center;
     margin-left: 2rem;
-    padding: 1.2rem 1.6rem 1.1rem;
+    padding: 1.2rem 1.2rem 1.1rem;
     color: ${theme.colors.white};
-    word-break: keep-all;
+    letter-spacing: -0.08rem;
     background: ${theme.colors.purple60};
     border-radius: 1.6rem;
 
     & > svg {
-      margin-right: 1rem;
+      margin-right: 0.6rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      ${theme.fonts.kr.regular14}
-      order: -1;
-      width: 100%;
-      margin-bottom: 3.6rem;
+      align-items: flex-start;
+      margin-top: 0.8rem;
+      margin-bottom: 1.7rem;
       margin-left: 0;
-      padding: 1.4rem 1.6rem 1.4rem;
-
-      & > svg {
-        margin-right: 1.6rem;
-      }
     }
   `}
 `;
