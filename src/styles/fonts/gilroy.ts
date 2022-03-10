@@ -6,9 +6,9 @@ const gilroy = css`
     font-family: 'Gilroy';
     font-style: normal;
     src: local('Gilroy Light'), local('Gilroy-Light'),
-      url('/fonts/Gilroy-Light.woff2') format('woff2'),
-      url('/fonts/Gilroy-Light.woff') format('woff'),
-      url('/fonts/Gilroy-Light.ttf') format('truetype');
+      url('https://static.mash-up.kr/fonts/Gilroy-Light.woff2') format('woff2'),
+      url('https://static.mash-up.kr/fonts/Gilroy-Light.woff') format('woff'),
+      url('https://static.mash-up.kr/fonts/Gilroy-Light.ttf') format('truetype');
     font-display: swap;
   }
 
@@ -17,9 +17,9 @@ const gilroy = css`
     font-family: 'Gilroy';
     font-style: normal;
     src: local('Gilroy Extrabold'), local('Gilroy-Extrabold'),
-      url('/fonts/Gilroy-Extrabold.woff2') format('woff2'),
-      url('/fonts/Gilroy-Extrabold.woff') format('woff'),
-      url('/fonts/Gilroy-Extrabold.ttf') format('truetype');
+      url('https://static.mash-up.kr/fonts/Gilroy-Extrabold.woff2') format('woff2'),
+      url('https://static.mash-up.kr/fonts/Gilroy-Extrabold.woff') format('woff'),
+      url('https://static.mash-up.kr/fonts/Gilroy-Extrabold.ttf') format('truetype');
     font-display: swap;
   }
 `;
