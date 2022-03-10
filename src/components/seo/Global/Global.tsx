@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import favicon from 'public/favicon.ico';
-import ogImage from '@/assets/images/ig-image.png';
+import ogImage from '@/assets/images/og-image.png';
 
 const GlobalSEO = () => {
   return (
