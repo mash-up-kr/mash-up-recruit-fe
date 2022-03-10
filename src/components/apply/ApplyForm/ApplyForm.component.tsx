@@ -234,7 +234,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               isError={!!errors.userName}
               errorMessage={errors.userName?.message}
               id={APPLY_FORM_KEYS.userName}
-              placeholder="내용을 입력해주세요"
+              placeholder="이름을 입력해주세요"
               label="이름"
               required
               disabled={isDetailPageAndSubmitted}
@@ -259,7 +259,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               type="tel"
               onChange={handleReplacePhoneNumber}
               id={APPLY_FORM_KEYS.phone}
-              placeholder="010-1234-5678"
+              placeholder="전화번호를 입력해주세요"
               label="전화번호"
               required
               disabled={isDetailPageAndSubmitted}
