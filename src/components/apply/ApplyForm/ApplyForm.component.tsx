@@ -230,7 +230,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                 required: '이름은 필수로 입력해야 해요!',
                 value: applicant.name,
               })}
-              maxLength={30}
+              maxLength={20}
               isError={!!errors.userName}
               errorMessage={errors.userName?.message}
               id={APPLY_FORM_KEYS.userName}
