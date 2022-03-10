@@ -12,35 +12,35 @@ class MyDocument extends Document {
       <Html lang="ko">
         <Head>
           <link
-            href="/fonts/Gilroy-Light.woff2"
+            href="https://static.mash-up.kr/fonts/Gilroy-Light.woff2"
             rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
-            href="/fonts/Gilroy-Extrabold.woff2"
+            href="https://static.mash-up.kr/fonts/Gilroy-Extrabold.woff2"
             rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
-            href="/fonts/SpoqaHanSansNeo-Regular.woff2"
+            href="https://static.mash-up.kr/fonts/SpoqaHanSansNeo-Regular.woff2"
             rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
-            href="/fonts/SpoqaHanSansNeo-Medium.woff2"
+            href="https://static.mash-up.kr/fonts/SpoqaHanSansNeo-Medium.woff2"
             rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
-            href="/fonts/SpoqaHanSansNeo-Bold.woff2"
+            href="https://static.mash-up.kr/fonts/SpoqaHanSansNeo-Bold.woff2"
             rel="preload"
             as="font"
             type="font/woff2"
