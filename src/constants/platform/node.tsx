@@ -102,7 +102,10 @@ const node = {
               이전 기수 노드팀 활동을 자세히 보려면 블로그를 참고하세요! 12기 포스팅의 주인공은
               여러분!
               <br />
-              <a href="https://mash-up.tistory.com/search/노드팀">
+              <a
+                href="https://mash-up.tistory.com/search/노드팀"
+                style={{ textDecoration: 'underline' }}
+              >
                 https://mash-up.tistory.com/search/노드팀
               </a>
             </>
