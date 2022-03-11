@@ -37,8 +37,8 @@ jobs:
           BASE_URL: ${{ secrets.DEPLOY_BASE_URL }}
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
           NEXTAUTH_URL: ${{ secrets.DEPLOY_NEXTAUTH_URL }}
-          GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
-          GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+          GOOGLE_ID: ${{ secrets.DEPLOY_GOOGLE_ID }}
+          GOOGLE_SECRET: ${{ secrets.DEPLOY_GOOGLE_SECRET }}
           DESTINATION_URL: ${{ secrets.DEPLOY_DESTINATION_URL }}
           SOURCE_PATH: ${{ secrets.SOURCE_PATH }}
           NEXT_PUBLIC_CHANNEL_PLUGIN: ${{ secrets.NEXT_PUBLIC_CHANNEL_PLUGIN }}
