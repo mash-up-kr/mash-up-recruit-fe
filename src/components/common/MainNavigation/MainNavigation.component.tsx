@@ -1,4 +1,4 @@
-import { FAQ_COMMON_PAGE, HOME_PAGE, VIEWPORT_SIZE } from '@/constants';
+import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID, VIEWPORT_SIZE } from '@/constants';
 import { LinkTo, SignInModalDialog, MyPageTab } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
@@ -11,7 +11,7 @@ import * as Styled from './MainNavigation.styled';
 const MainNavigation = () => {
   const session = useSession();
   const { size } = useDetectViewPort();
-  const { asPath } = useRouter();
+  const { pathname: currentPage } = useRouter();
 
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
   const [isOpenMyPageTab, setIsOpenMyPageTab] = useState(false);
@@ -44,9 +44,9 @@ const MainNavigation = () => {
   return (
     <>
       <Styled.Nav>
-        <Styled.NavList currentPage={asPath}>
+        <Styled.NavList currentPage={currentPage}>
           <li>
-            <LinkTo href={HOME_PAGE}>모집 공고</LinkTo>
+            <LinkTo href={`${HOME_PAGE}#${RECRUIT_DETAILS_ID}`}>모집 공고</LinkTo>
           </li>
           <li>
             <LinkTo href={FAQ_COMMON_PAGE}>자주 묻는 질문</LinkTo>
@@ -57,7 +57,7 @@ const MainNavigation = () => {
               <div ref={MyPageTabWrapper}>
                 <Styled.MyPageButton
                   type="button"
-                  currentPage={asPath}
+                  currentPage={currentPage}
                   onClick={handleToggleMyPageTab}
                   isOpenMyPageTab={isOpenMyPageTab}
                 >
@@ -72,7 +72,7 @@ const MainNavigation = () => {
             ) : (
               <Styled.SignInButton
                 type="button"
-                currentPage={asPath}
+                currentPage={currentPage}
                 onClick={handleOpenSignInModal}
                 ref={loginButtonRef}
               >

@@ -27,7 +27,7 @@ export const DialogContent = styled.div`
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       min-width: 29rem;
       max-width: 29rem;
-      padding: 4.4rem 2.4rem 2rem 2.4rem;
+      padding: 6.4rem 2.4rem 2rem 2.4rem;
       text-align: left;
       border-bottom: 0.1rem solid ${theme.colors.gray20};
     }
@@ -93,27 +93,20 @@ export const CloseButton = styled.button`
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      top: 1.2rem;
-      right: 1.2rem;
-      width: 2.4rem;
-      height: 2.4rem;
-      border-radius: 0.655rem;
-
-      &:hover {
-        & > div {
-          border-radius: 0.655rem;
-        }
-      }
+      top: 1rem;
+      right: 1rem;
 
       & > svg {
-        width: 0.655rem;
-        height: 0.655rem;
+        width: 1.2rem;
+        height: 1.2rem;
       }
     }
   `}
 `;
 
-export const CloseButtonDeem = styled.div``;
+export const CloseButtonDeem = styled.div`
+  border-radius: 1.2rem;
+`;
 
 export const SignInButton = styled.button`
   ${({ theme }) => css`

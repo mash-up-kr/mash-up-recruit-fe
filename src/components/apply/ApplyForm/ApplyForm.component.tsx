@@ -22,7 +22,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { Controller, FieldValues, useForm } from 'react-hook-form';
 import * as Styled from './ApplyForm.styled';
 
 interface ApplyFormProps {
@@ -92,6 +92,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
     setValue,
     trigger,
     setFocus,
+    control,
     formState: { errors, isDirty },
   } = useForm<ApplyFormValues>();
 
@@ -210,6 +211,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       setIsOpenSuccessSubmittedModal(true);
     } catch (error) {
       setIsRequesting(false);
+      setIsOpenConfirmSubmittedModal(false);
       setIsOpenFailedSubmittedModal(true);
     }
   };
@@ -224,23 +226,34 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           <Styled.SectionHeading>개인 정보</Styled.SectionHeading>
 
           <Styled.PersonalInformationWrapper>
-            <LabeledInput
-              {...register(APPLY_FORM_KEYS.userName, {
+            <Controller
+              name={APPLY_FORM_KEYS.userName}
+              control={control}
+              rules={{
                 required: '이름은 필수로 입력해야 해요!',
-                value: applicant.name,
-              })}
-              maxLength={30}
-              isError={!!errors.userName}
-              errorMessage={errors.userName?.message}
-              id={APPLY_FORM_KEYS.userName}
-              placeholder="내용을 입력해주세요"
-              label="이름"
-              required
-              disabled={isDetailPageAndSubmitted}
-              $size="md"
-              onBlur={() => {
-                handleValidateForm(APPLY_FORM_KEYS.userName);
+                maxLength: 24,
               }}
+              defaultValue={applicant.name}
+              render={({ field }) => (
+                <LabeledInput
+                  {...field}
+                  onChange={({ target }) => {
+                    if (target.value.length > 24) return;
+                    field.onChange(target.value);
+                  }}
+                  isError={!!errors.userName}
+                  errorMessage={errors.userName?.message}
+                  id={APPLY_FORM_KEYS.userName}
+                  placeholder="내용을 입력해주세요"
+                  label="이름"
+                  required
+                  disabled={isDetailPageAndSubmitted}
+                  $size="md"
+                  onBlur={() => {
+                    handleValidateForm(APPLY_FORM_KEYS.userName);
+                  }}
+                />
+              )}
             />
           </Styled.PersonalInformationWrapper>
 
@@ -258,7 +271,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               type="tel"
               onChange={handleReplacePhoneNumber}
               id={APPLY_FORM_KEYS.phone}
-              placeholder="010-1234-5678"
+              placeholder="전화번호를 입력해주세요"
               label="전화번호"
               required
               disabled={isDetailPageAndSubmitted}
@@ -285,13 +298,15 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
         </Styled.PersonalInformationSection>
         <Styled.QuestionListSection>
           <Styled.SectionHeading>질문 목록</Styled.SectionHeading>
-          {questionsAndAnswers?.map(({ question, answer }) => {
+          {questionsAndAnswers?.map(({ question, answer }, index) => {
             const uniqueQuestionId = `question-${question.questionId}`;
             return (
               <Styled.QuestionWrapper key={uniqueQuestionId}>
                 {question.questionType === 'MULTI_LINE_TEXT' ? (
-                  <LabeledTextArea
-                    {...register(uniqueQuestionId, {
+                  <Controller
+                    name={uniqueQuestionId}
+                    control={control}
+                    rules={{
                       required: {
                         value: question.required,
                         message: '필수로 입력해야하는 항목이에요!',
@@ -300,26 +315,40 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                         value: question.maxContentLength || 10000,
                         message: '최대 글자수를 초과하였습니다.',
                       },
-                      value: answer?.content,
-                    })}
-                    maxLength={question.maxContentLength || 10000}
-                    label={question.content}
-                    placeholder="내용을 입력해주세요."
-                    required={question.required}
-                    disabled={isDetailPageAndSubmitted}
-                    id={uniqueQuestionId}
-                    isError={!!errors[uniqueQuestionId]}
-                    errorMessage={errors[uniqueQuestionId]?.message}
-                    onBlur={() => {
-                      handleValidateForm(uniqueQuestionId);
                     }}
-                    currentLength={watch(uniqueQuestionId)?.length}
-                    maxContentLength={question.maxContentLength}
-                    description={question.description}
+                    defaultValue={answer?.content}
+                    render={({ field }) => (
+                      <LabeledTextArea
+                        {...field}
+                        onChange={({ target }) => {
+                          const { maxContentLength } = question;
+                          if (!maxContentLength && target.value.length > 10000) return;
+
+                          if (maxContentLength && maxContentLength < target.value.length) return;
+
+                          field.onChange(target.value);
+                        }}
+                        label={`${index + 1}. ${question.content}`}
+                        placeholder="내용을 입력해주세요."
+                        required={question.required}
+                        disabled={isDetailPageAndSubmitted}
+                        id={uniqueQuestionId}
+                        isError={!!errors[uniqueQuestionId]}
+                        errorMessage={errors[uniqueQuestionId]?.message}
+                        onBlur={() => {
+                          handleValidateForm(uniqueQuestionId);
+                        }}
+                        currentLength={watch(uniqueQuestionId)?.length}
+                        maxContentLength={question.maxContentLength}
+                        description={question.description}
+                      />
+                    )}
                   />
                 ) : (
-                  <LabeledInput
-                    {...register(uniqueQuestionId, {
+                  <Controller
+                    name={uniqueQuestionId}
+                    control={control}
+                    rules={{
                       required: {
                         value: question.required,
                         message: '필수로 입력해야하는 항목이에요!',
@@ -328,23 +357,35 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                         value: question.maxContentLength || 10000,
                         message: '최대 글자수를 초과하였습니다.',
                       },
-                      value: answer?.content,
-                    })}
-                    maxLength={question.maxContentLength || 10000}
-                    id={uniqueQuestionId}
-                    label={question.content}
-                    required={question.required}
-                    disabled={isDetailPageAndSubmitted}
-                    $size="md"
-                    placeholder="내용을 입력해주세요."
-                    isError={!!errors[uniqueQuestionId]}
-                    errorMessage={errors[uniqueQuestionId]?.message}
-                    onBlur={() => {
-                      handleValidateForm(uniqueQuestionId);
                     }}
-                    currentLength={watch(uniqueQuestionId)?.length}
-                    maxContentLength={question.maxContentLength}
-                    description={question.description}
+                    defaultValue={answer?.content}
+                    render={({ field }) => (
+                      <LabeledInput
+                        {...field}
+                        onChange={({ target }) => {
+                          const { maxContentLength } = question;
+                          if (!maxContentLength && target.value.length > 10000) return;
+
+                          if (maxContentLength && maxContentLength < target.value.length) return;
+
+                          field.onChange(target.value);
+                        }}
+                        id={uniqueQuestionId}
+                        label={`${index + 1}. ${question.content}`}
+                        required={question.required}
+                        disabled={isDetailPageAndSubmitted}
+                        $size="md"
+                        placeholder="내용을 입력해주세요."
+                        isError={!!errors[uniqueQuestionId]}
+                        errorMessage={errors[uniqueQuestionId]?.message}
+                        onBlur={() => {
+                          handleValidateForm(uniqueQuestionId);
+                        }}
+                        currentLength={watch(uniqueQuestionId)?.length}
+                        maxContentLength={question.maxContentLength}
+                        description={question.description}
+                      />
+                    )}
                   />
                 )}
               </Styled.QuestionWrapper>
@@ -357,8 +398,11 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           id={APPLY_FORM_KEYS.isAgreePersonalInfo}
           disabled={isDetailPageAndSubmitted}
         >
-          {/* TODO:(하준) 개인정보 수집 및 이용 동의 페이지 링크로 수정 */}
-          <a href="http://devfolio.world" target="_blank" rel="noreferrer">
+          <a
+            href="https://snow-chestnut-45b.notion.site/Mash-Up-Recruit-62a5f6dabcb34e61ba8f26c4fb3a21f0"
+            target="_blank"
+            rel="noreferrer"
+          >
             개인정보 수집 및 이용
           </a>
           에 동의합니다.
@@ -415,19 +459,20 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
         <AlertModalDialog
           beforeRef={tempSaveButtonRef}
           heading="임시 저장 실패"
-          paragraph="다시 시도해주세요! 계속 임시 저장이 실패된다면  매쉬업 채널톡으로 문의해주세요!"
+          paragraph="다시 시도해주세요! 계속 임시 저장이 실패된다면 매쉬업 채널톡으로 문의해주세요!"
           handleApprovalButton={() =>
             handleCloseTempSaveAlertModal(setIsOpenTempSaveFailedAlertModal)
           }
           setIsOpenModal={setIsOpenTempSaveFailedAlertModal}
           deemClose={false}
           escClose={false}
+          isError
         />
       )}
       {isOpenConfirmSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서를 제출하시겠어요?"
-          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고부탁드립니다. 지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다."
+          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고 부탁드립니다. 지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다."
           approvalButtonMessage="제출하기"
           cancelButtonMessage="취소"
           handleApprovalButton={handleSubmitApplication}
@@ -446,6 +491,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           handleCancelButton={() => router.push(HOME_PAGE)}
           handleApprovalButton={() => {
             router.push(`${MY_PAGE_APPLICATION_DETAIL}/${application.applicationId}`);
+            setIsTempSaved(true);
             setIsOpenSuccessSubmittedModal(false);
           }}
           escClose={false}
@@ -455,12 +501,13 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       {isOpenFailedSubmittedModal && (
         <AlertModalDialog
           heading="지원서 제출 실패"
-          paragraph="다시시도해주세요 계속 실패하면 채널톡으로 문의해주세옹"
+          paragraph="다시 시도해주세요! 계속 제출하기가 실패된다면 매쉬업 채널톡으로 문의해주세요!"
           beforeRef={submitButtonRef}
           setIsOpenModal={setIsOpenFailedSubmittedModal}
           handleApprovalButton={() => setIsOpenFailedSubmittedModal(false)}
           escClose={false}
           deemClose={false}
+          isError
         />
       )}
       {isOpenBlockingConfirmModal && (

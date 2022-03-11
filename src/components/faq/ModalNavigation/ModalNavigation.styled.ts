@@ -1,8 +1,12 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const ModalOpenButton = styled.button`
-  ${({ theme }) => css`
+interface StyledModalOpenButtonProps {
+  isOpenModal: boolean;
+}
+
+export const ModalOpenButton = styled.button<StyledModalOpenButtonProps>`
+  ${({ theme, isOpenModal }) => css`
     ${theme.fonts.kr.bold18};
     display: flex;
     align-items: center;
@@ -10,7 +14,12 @@ export const ModalOpenButton = styled.button`
     margin-bottom: 3rem;
     padding: 2.5rem 3rem;
     color: ${theme.colors.gray80};
+    background: ${theme.colors.gray10};
     border-radius: 2rem;
+
+    svg {
+      transform: ${isOpenModal ? 'rotate(180deg)' : 'rotate(0)'};
+    }
   `}
 `;
 

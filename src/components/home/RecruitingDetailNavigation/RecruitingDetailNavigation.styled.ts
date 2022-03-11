@@ -6,11 +6,33 @@ export const Container = styled.div`
     max-width: 120rem;
     margin: 5.8rem auto;
     color: ${theme.colors.gray20};
+    scroll-margin-top: 9.5rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: none;
-      margin: 0;
-      padding: 0 2rem;
+      scroll-margin-top: 8.8rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      scroll-margin-top: 6.8rem;
+    }
+  `}
+`;
+
+export const Contents = styled.div`
+  ${({ theme }) => css`
+    max-width: 120rem;
+    margin: 0 auto;
+
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      max-width: 72.8rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      max-width: 53.6rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      max-width: 33.5rem;
     }
   `}
 `;
@@ -64,7 +86,7 @@ export const ListItem = styled.li`
     width: 38rem;
     height: 38rem;
     background: ${theme.colors.white};
-    border-radius: 5rem;
+    border-radius: 5.4rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       width: calc(50% - 0.9rem);
@@ -92,8 +114,13 @@ export const Card = styled.div`
       transform: translate(1.2rem, -1.2rem);
     }
 
+    a {
+      width: 12.1rem;
+    }
+
     button {
       ${theme.fonts.en.extrabold15};
+      margin: 0;
       padding: 1.9rem 2rem;
       color: ${theme.colors.purple70};
       background: ${theme.colors.white};

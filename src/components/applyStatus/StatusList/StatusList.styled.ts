@@ -1,4 +1,5 @@
 import LinkTo from '@/components/common/LinkTo/LinkTo.component';
+import { ApplicationAuditStatus } from '@/types/dto';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -19,6 +20,18 @@ export const StatusListSection = styled.div`
   `}
 `;
 
+export const HeadingWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      flex-flow: column nowrap;
+      align-items: flex-start;
+    }
+  `}
+`;
+
 export const Heading = styled.h2`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold30};
@@ -26,6 +39,31 @@ export const Heading = styled.h2`
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.bold24};
+    }
+  `}
+`;
+
+export const SubmissionNotice = styled.span`
+  ${({ theme }) => css`
+    ${theme.fonts.kr.regular13}
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+    padding: 1.2rem 1.2rem 1.1rem;
+    color: ${theme.colors.white};
+    letter-spacing: -0.08rem;
+    background: ${theme.colors.purple60};
+    border-radius: 1.6rem;
+
+    & > svg {
+      margin-right: 0.6rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      align-items: flex-start;
+      margin-top: 0.8rem;
+      margin-bottom: 1.7rem;
+      margin-left: 0;
     }
   `}
 `;
@@ -120,7 +158,38 @@ export const StatusText = styled.span`
     align-items: center;
     justify-content: center;
     width: 20%;
+    min-height: 9.9rem;
+    text-align: center;
+    vertical-align: middle;
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      ${theme.fonts.kr.medium14};
+      display: inline-block;
+      width: 63%;
+      height: auto;
+      min-height: 0;
+      padding: 0;
+      text-align: left;
+      vertical-align: top;
+    }
+  `}
+`;
+
+interface ApplicationStatusProps {
+  status: ApplicationAuditStatus;
+}
+
+export const ApplicationStatus = styled.span<ApplicationStatusProps>`
+  ${({ theme, status }) => css`
+    ${theme.fonts.kr.bold18};
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
     height: 9.9rem;
+    color: ${status === 'INTERVIEW_PASSED' || status === 'SCREENING_PASSED'
+      ? theme.colors.purple70
+      : theme.colors.gray80};
     text-align: center;
     vertical-align: middle;
 
@@ -131,6 +200,7 @@ export const StatusText = styled.span`
       height: 0;
       padding: 0;
       text-align: left;
+      vertical-align: baseline;
     }
   `}
 `;

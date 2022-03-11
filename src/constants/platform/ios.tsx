@@ -66,10 +66,10 @@ const ios = {
   questions: [
     {
       id: 'ios-question-1',
-      title: '🙋🏻 iOS 어느 정도 개발해야 지원할 수 있나요?',
+      title: { emoji: '🙋🏻', text: 'iOS 어느 정도 개발해야 지원할 수 있나요?' },
       content: [
         {
-          id: 'ios-1-1',
+          id: 'ios-question-1-1',
           content: (
             <>
               매쉬업은 학생부터 직장인까지 누구나 참여 가능합니다. iOS 개발자 또한 시작한 지 얼마 안
@@ -82,11 +82,11 @@ const ios = {
       ],
     },
     {
-      id: 'ios-2',
-      title: '💑  멘토 / 멘티 프로그램은 어떻게 진행되나요?',
+      id: 'ios-question-2',
+      title: { emoji: '💑', text: '멘토 / 멘티 프로그램은 어떻게 진행되나요?' },
       content: [
         {
-          id: 'ios-2-1',
+          id: 'ios-question-2-1',
           content: (
             <>
               리드 / 미들급의 멘토와 주니어, 학생으로 이루어진 멘티가 공통으로 관심있어 하는 주제를
@@ -100,11 +100,11 @@ const ios = {
       ],
     },
     {
-      id: 'ios-3',
-      title: '📚  스터디는 어떻게 진행되나요?',
+      id: 'ios-question-3',
+      title: { emoji: '📚', text: '스터디는 어떻게 진행되나요?' },
       content: [
         {
-          id: 'ios-3-1',
+          id: 'ios-question-3-1',
           content: (
             <>
               이번 iOS팀의 스터디는 매주 화요일(8시 ~ 10시) 2시간 동안 진행됩니다.
@@ -121,11 +121,11 @@ const ios = {
       ],
     },
     {
-      id: 'ios-4',
-      title: '🛠  프로젝트 진행시 개발의 스펙은 어떻게 되나요?',
+      id: 'ios-question-4',
+      title: { emoji: '🛠', text: '프로젝트 진행시 개발의 스펙은 어떻게 되나요?' },
       content: [
         {
-          id: 'ios-4-1',
+          id: 'ios-question-4-1',
           content: (
             <>
               다양한 사람들이 모여있는 만큼 때문에 특정 스펙에 의존하지 않습니다. 실제 프로젝트를

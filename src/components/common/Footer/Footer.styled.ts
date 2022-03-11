@@ -1,6 +1,7 @@
 import { HOME_PAGE } from '@/constants';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import GithubDark32 from '@/assets/svg/github-dark-32.svg';
 
 interface FooterProps {
   currentPage: string;
@@ -11,7 +12,7 @@ export const Footer = styled.footer<FooterProps>`
     width: 100%;
     height: 11.2rem;
     padding: 4rem 0;
-    background: ${currentPage === HOME_PAGE ? theme.colors.gray90 : theme.colors.white};
+    background: ${currentPage === HOME_PAGE ? theme.colors.gray95 : theme.colors.white};
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       flex-flow: column nowrap;
@@ -49,6 +50,30 @@ export const Copyright = styled.small<CopyrightProps>`
   `}
 `;
 
+export const GithubIconWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 3.2rem;
+  height: 3.2rem;
+`;
+
+export const GithubIconBackground = styled.span`
+  ${({ theme }) => css`
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    width: 2.85rem;
+    height: 2.85rem;
+    background-color: ${theme.colors.white};
+    border-radius: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  `}
+`;
+
+export const GithubIconDark = styled(GithubDark32)`
+  position: absolute;
+`;
+
 interface ExternalLinkWrapperProps {
   currentPage: string;
 }
@@ -56,10 +81,10 @@ interface ExternalLinkWrapperProps {
 export const ExternalLinkWrapper = styled.div<ExternalLinkWrapperProps>`
   ${({ theme, currentPage }) => css`
     & > a {
-      margin: 0 1.5rem;
+      margin: 0 0.75rem;
 
       & > svg > circle {
-        fill: ${currentPage === HOME_PAGE ? theme.colors.gray70 : theme.colors.gray40};
+        fill: ${currentPage === HOME_PAGE ? theme.colors.gray80 : theme.colors.gray40};
       }
     }
   `}

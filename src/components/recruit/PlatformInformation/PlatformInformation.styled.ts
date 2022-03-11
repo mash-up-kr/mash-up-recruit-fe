@@ -17,6 +17,6 @@ export const Heading = styled.h3`
 
 export const Paragraph = styled.p`
   ${({ theme }) => css`
-    ${theme.fonts.kr.medium15};
+    ${theme.fonts.kr.medium16};
   `}
 `;

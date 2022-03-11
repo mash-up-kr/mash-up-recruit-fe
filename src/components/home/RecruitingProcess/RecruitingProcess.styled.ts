@@ -3,18 +3,34 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   ${({ theme }) => css`
-    max-width: 120rem;
     margin: 30rem auto;
     color: ${theme.colors.gray20};
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: none;
-      margin: 20rem 0;
-      padding: 0 2rem;
+      margin: 20rem auto;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      margin: 12rem 0;
+      margin: 12rem auto;
+    }
+  `}
+`;
+
+export const Contents = styled.div`
+  ${({ theme }) => css`
+    max-width: 120rem;
+    margin: 0 auto;
+
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      max-width: 72.8rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      max-width: 53.6rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      max-width: 33.5rem;
     }
   `}
 `;
@@ -47,10 +63,10 @@ export const List = styled.ul`
       grid-template-rows: repeat(2, 1fr);
       grid-template-columns: repeat(6, 1fr);
       height: 47rem;
-      margin: 0 auto;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      width: 53.6rem;
       height: 35rem;
     }
 
@@ -58,6 +74,7 @@ export const List = styled.ul`
       display: grid;
       grid-template-rows: repeat(6, 1fr);
       grid-template-columns: repeat(2, 1fr);
+      width: 33rem;
       height: 62rem;
     }
   `}
@@ -79,7 +96,7 @@ export const ListItem = styled.li`
       right: 0;
       bottom: 0;
       left: 0;
-      background: radial-gradient(circle, transparent 11rem, ${theme.colors.black} 11.1rem);
+      background: radial-gradient(circle, transparent 11rem, ${theme.colors.gray95} 11.1rem);
       content: '';
     }
 
@@ -88,7 +105,7 @@ export const ListItem = styled.li`
       left: 100%;
       width: 2.5rem;
       height: 100%;
-      background: ${theme.colors.black};
+      background: ${theme.colors.gray95};
       content: '';
     }
 
@@ -127,7 +144,7 @@ export const ListItem = styled.li`
         left: -50%;
         width: 50%;
         height: 100%;
-        background: ${theme.colors.black};
+        background: ${theme.colors.gray95};
         content: '';
       }
 
@@ -137,7 +154,7 @@ export const ListItem = styled.li`
         bottom: 0;
         width: 50%;
         height: 100%;
-        background: ${theme.colors.black};
+        background: ${theme.colors.gray95};
         content: '';
       }
     }
@@ -149,7 +166,7 @@ export const ListItem = styled.li`
         right: 0;
         bottom: 0;
         left: 0;
-        background: radial-gradient(circle, transparent 8rem, ${theme.colors.black} 8.1rem);
+        background: radial-gradient(circle, transparent 8rem, ${theme.colors.gray95} 8.1rem);
         content: '';
       }
     }
@@ -186,7 +203,7 @@ export const ListItem = styled.li`
         right: -100%;
         width: 100%;
         height: 11rem;
-        background: ${theme.colors.black};
+        background: ${theme.colors.gray95};
         content: '';
       }
 
@@ -200,7 +217,7 @@ export const ListItem = styled.li`
         bottom: 0;
         width: 100%;
         height: 11rem;
-        background: ${theme.colors.black};
+        background: ${theme.colors.gray95};
         content: '';
       }
     }

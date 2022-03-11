@@ -9,6 +9,7 @@ interface StyledInputProps {
 
 export const Input = styled.input<StyledInputProps>`
   ${({ theme, $size, isError }) => css`
+    ${theme.fonts.kr.regular15};
     ${theme.input.size[$size]}
     display: block;
     width: 100%;
@@ -16,6 +17,7 @@ export const Input = styled.input<StyledInputProps>`
     color: ${theme.colors.gray80};
     border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.gray30};
     border-radius: 1.2rem;
+    outline: none;
 
     &::selection {
       background: ${theme.colors.purple40};
@@ -26,13 +28,15 @@ export const Input = styled.input<StyledInputProps>`
     }
 
     &:focus {
-      outline: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple70};
+      border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple70};
     }
 
     &:disabled {
+      -webkit-text-fill-color: ${theme.colors.gray60};
       color: ${theme.colors.gray60};
       background: ${theme.colors.gray5};
       border: 0.1rem solid ${theme.colors.gray30};
+      opacity: 1;
     }
 
     &::placeholder {
