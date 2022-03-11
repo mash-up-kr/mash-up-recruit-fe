@@ -22,7 +22,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { Controller, FieldValues, useForm } from 'react-hook-form';
 import * as Styled from './ApplyForm.styled';
 
 interface ApplyFormProps {
@@ -92,6 +92,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
     setValue,
     trigger,
     setFocus,
+    control,
     formState: { errors, isDirty },
   } = useForm<ApplyFormValues>();
 
@@ -225,23 +226,34 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           <Styled.SectionHeading>개인 정보</Styled.SectionHeading>
 
           <Styled.PersonalInformationWrapper>
-            <LabeledInput
-              {...register(APPLY_FORM_KEYS.userName, {
+            <Controller
+              name={APPLY_FORM_KEYS.userName}
+              control={control}
+              rules={{
                 required: '이름은 필수로 입력해야 해요!',
-                value: applicant.name,
-              })}
-              maxLength={30}
-              isError={!!errors.userName}
-              errorMessage={errors.userName?.message}
-              id={APPLY_FORM_KEYS.userName}
-              placeholder="이름을 입력해주세요"
-              label="이름"
-              required
-              disabled={isDetailPageAndSubmitted}
-              $size="md"
-              onBlur={() => {
-                handleValidateForm(APPLY_FORM_KEYS.userName);
+                maxLength: 24,
               }}
+              defaultValue={applicant.name}
+              render={({ field }) => (
+                <LabeledInput
+                  {...field}
+                  onChange={({ target }) => {
+                    if (target.value.length > 24) return;
+                    field.onChange(target.value);
+                  }}
+                  isError={!!errors.userName}
+                  errorMessage={errors.userName?.message}
+                  id={APPLY_FORM_KEYS.userName}
+                  placeholder="내용을 입력해주세요"
+                  label="이름"
+                  required
+                  disabled={isDetailPageAndSubmitted}
+                  $size="md"
+                  onBlur={() => {
+                    handleValidateForm(APPLY_FORM_KEYS.userName);
+                  }}
+                />
+              )}
             />
           </Styled.PersonalInformationWrapper>
 
@@ -291,8 +303,10 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
             return (
               <Styled.QuestionWrapper key={uniqueQuestionId}>
                 {question.questionType === 'MULTI_LINE_TEXT' ? (
-                  <LabeledTextArea
-                    {...register(uniqueQuestionId, {
+                  <Controller
+                    name={uniqueQuestionId}
+                    control={control}
+                    rules={{
                       required: {
                         value: question.required,
                         message: '필수로 입력해야하는 항목이에요!',
@@ -301,26 +315,40 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                         value: question.maxContentLength || 10000,
                         message: '최대 글자수를 초과하였습니다.',
                       },
-                      value: answer?.content,
-                    })}
-                    maxLength={question.maxContentLength || 10000}
-                    label={`${index + 1}. ${question.content}`}
-                    placeholder="내용을 입력해주세요."
-                    required={question.required}
-                    disabled={isDetailPageAndSubmitted}
-                    id={uniqueQuestionId}
-                    isError={!!errors[uniqueQuestionId]}
-                    errorMessage={errors[uniqueQuestionId]?.message}
-                    onBlur={() => {
-                      handleValidateForm(uniqueQuestionId);
                     }}
-                    currentLength={watch(uniqueQuestionId)?.length}
-                    maxContentLength={question.maxContentLength}
-                    description={question.description}
+                    defaultValue={answer?.content}
+                    render={({ field }) => (
+                      <LabeledTextArea
+                        {...field}
+                        onChange={({ target }) => {
+                          const { maxContentLength } = question;
+                          if (!maxContentLength && target.value.length > 10000) return;
+
+                          if (maxContentLength && maxContentLength < target.value.length) return;
+
+                          field.onChange(target.value);
+                        }}
+                        label={`${index + 1}. ${question.content}`}
+                        placeholder="내용을 입력해주세요."
+                        required={question.required}
+                        disabled={isDetailPageAndSubmitted}
+                        id={uniqueQuestionId}
+                        isError={!!errors[uniqueQuestionId]}
+                        errorMessage={errors[uniqueQuestionId]?.message}
+                        onBlur={() => {
+                          handleValidateForm(uniqueQuestionId);
+                        }}
+                        currentLength={watch(uniqueQuestionId)?.length}
+                        maxContentLength={question.maxContentLength}
+                        description={question.description}
+                      />
+                    )}
                   />
                 ) : (
-                  <LabeledInput
-                    {...register(uniqueQuestionId, {
+                  <Controller
+                    name={uniqueQuestionId}
+                    control={control}
+                    rules={{
                       required: {
                         value: question.required,
                         message: '필수로 입력해야하는 항목이에요!',
@@ -329,23 +357,35 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                         value: question.maxContentLength || 10000,
                         message: '최대 글자수를 초과하였습니다.',
                       },
-                      value: answer?.content,
-                    })}
-                    maxLength={question.maxContentLength || 10000}
-                    id={uniqueQuestionId}
-                    label={`${index + 1}. ${question.content}`}
-                    required={question.required}
-                    disabled={isDetailPageAndSubmitted}
-                    $size="md"
-                    placeholder="내용을 입력해주세요."
-                    isError={!!errors[uniqueQuestionId]}
-                    errorMessage={errors[uniqueQuestionId]?.message}
-                    onBlur={() => {
-                      handleValidateForm(uniqueQuestionId);
                     }}
-                    currentLength={watch(uniqueQuestionId)?.length}
-                    maxContentLength={question.maxContentLength}
-                    description={question.description}
+                    defaultValue={answer?.content}
+                    render={({ field }) => (
+                      <LabeledInput
+                        {...field}
+                        onChange={({ target }) => {
+                          const { maxContentLength } = question;
+                          if (!maxContentLength && target.value.length > 10000) return;
+
+                          if (maxContentLength && maxContentLength < target.value.length) return;
+
+                          field.onChange(target.value);
+                        }}
+                        id={uniqueQuestionId}
+                        label={`${index + 1}. ${question.content}`}
+                        required={question.required}
+                        disabled={isDetailPageAndSubmitted}
+                        $size="md"
+                        placeholder="내용을 입력해주세요."
+                        isError={!!errors[uniqueQuestionId]}
+                        errorMessage={errors[uniqueQuestionId]?.message}
+                        onBlur={() => {
+                          handleValidateForm(uniqueQuestionId);
+                        }}
+                        currentLength={watch(uniqueQuestionId)?.length}
+                        maxContentLength={question.maxContentLength}
+                        description={question.description}
+                      />
+                    )}
                   />
                 )}
               </Styled.QuestionWrapper>
