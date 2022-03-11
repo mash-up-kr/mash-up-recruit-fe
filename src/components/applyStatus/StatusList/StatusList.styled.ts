@@ -158,7 +158,7 @@ export const StatusText = styled.span`
     align-items: center;
     justify-content: center;
     width: 20%;
-    height: 9.9rem;
+    min-height: 9.9rem;
     text-align: center;
     vertical-align: middle;
 
@@ -166,10 +166,11 @@ export const StatusText = styled.span`
       ${theme.fonts.kr.medium14};
       display: inline-block;
       width: 63%;
-      height: 0;
+      height: auto;
+      min-height: 0;
       padding: 0;
       text-align: left;
-      vertical-align: baseline;
+      vertical-align: top;
     }
   `}
 `;

@@ -40,7 +40,12 @@ const WelcomeHero = () => {
             <Image src={WelcomeHeroRight.src} layout="fill" alt="" priority />
           </Styled.RightImageContainer>
         </Styled.Crewz>
-        <Hi />
+        <Styled.HiContainer
+          data-aos="fade-up"
+          data-aos-duration={AOS_DEFAULT_DURATION + 3 * AOS_BASE_DURATION_DISTANCE}
+        >
+          <Hi />
+        </Styled.HiContainer>
       </Styled.Contents>
     </Styled.Container>
   );

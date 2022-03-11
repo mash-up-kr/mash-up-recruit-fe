@@ -1,0 +1,72 @@
+name: recruit CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  S3_BUCKET_NAME: recruit.mash-up.kr
+  CODE_DEPLOY_APPLICATION_NAME: recruit-code-deploy
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: recruit
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Generate Environment Variables File
+        run: |
+          echo "ANALYZE=$ANALYZE" >> .env.local
+          echo "BASE_URL=$BASE_URL" >> .env.local
+          echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET" >> .env.local
+          echo "NEXTAUTH_URL=$NEXTAUTH_URL" >> .env.local
+          echo "GOOGLE_ID=$GOOGLE_ID" >> .env.local
+          echo "GOOGLE_SECRET=$GOOGLE_SECRET" >> .env.local
+          echo "DESTINATION_URL=$DESTINATION_URL" >> .env.local
+          echo "SOURCE_PATH=$SOURCE_PATH" >> .env.local
+          echo "NEXT_PUBLIC_CHANNEL_PLUGIN=$NEXT_PUBLIC_CHANNEL_PLUGIN" >> .env.local
+        env:
+          ANALYZE: ${{ secrets.ANALYZE }}
+          BASE_URL: ${{ secrets.DEPLOY_BASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.DEPLOY_NEXTAUTH_URL }}
+          GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+          GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+          DESTINATION_URL: ${{ secrets.DEPLOY_DESTINATION_URL }}
+          SOURCE_PATH: ${{ secrets.SOURCE_PATH }}
+          NEXT_PUBLIC_CHANNEL_PLUGIN: ${{ secrets.NEXT_PUBLIC_CHANNEL_PLUGIN }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build next app
+        run: yarn build
+
+      - name: Make zip file
+        run: zip -qq -r ./$GITHUB_SHA.zip . -x "node_modules/*"
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Upload to S3
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
+
+      - name: Code Deploy
+        run: |
+          aws deploy create-deployment \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip

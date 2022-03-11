@@ -31,7 +31,10 @@ const spring = {
       id: 'spring-study-1',
       content: (
         <>
-          스프링 프로젝트<a href="https://spring.io/projects">(https://spring.io/projects)</a>{' '}
+          스프링 프로젝트
+          <a href="https://spring.io/projects" style={{ textDecoration: 'underline' }}>
+            (https://spring.io/projects)
+          </a>{' '}
           하나씩 적용
         </>
       ),
@@ -140,8 +143,10 @@ const spring = {
               content: (
                 <>
                   12기에는 “스프링 프로젝트(
-                  <a href="https://spring.io/projects">https://spring.io/projects</a>)” 스터디를
-                  진행할 예정이에요.
+                  <a href="https://spring.io/projects" style={{ textDecoration: 'underline' }}>
+                    https://spring.io/projects
+                  </a>
+                  )” 스터디를 진행할 예정이에요.
                   <br />
                   (지난 11기에는 “코틀린 인 액션” 스터디를 진행하였습니다.)
                 </>

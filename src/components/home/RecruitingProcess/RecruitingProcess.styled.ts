@@ -3,17 +3,34 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   ${({ theme }) => css`
-    max-width: 120rem;
     margin: 30rem auto;
     color: ${theme.colors.gray20};
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: none;
-      margin: 20rem 2rem;
+      margin: 20rem auto;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      margin: 12rem 2rem;
+      margin: 12rem auto;
+    }
+  `}
+`;
+
+export const Contents = styled.div`
+  ${({ theme }) => css`
+    max-width: 120rem;
+    margin: 0 auto;
+
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      max-width: 72.8rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      max-width: 53.6rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      max-width: 33.5rem;
     }
   `}
 `;
@@ -45,9 +62,7 @@ export const List = styled.ul`
       display: grid;
       grid-template-rows: repeat(2, 1fr);
       grid-template-columns: repeat(6, 1fr);
-      width: 72.7rem;
       height: 47rem;
-      margin: 0 auto;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {

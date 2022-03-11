@@ -21,7 +21,9 @@ const RecruitingPeriod = () => {
             <time dateTime="2022-03-15">03.15</time>
           </Styled.EndDate>
         </Styled.EndDateContainer>
-        <PeriodBackground />
+        <Styled.PeriodBackgroundContainer data-aos="fade-up">
+          <PeriodBackground />
+        </Styled.PeriodBackgroundContainer>
       </Styled.Contents>
     </Styled.Container>
   );

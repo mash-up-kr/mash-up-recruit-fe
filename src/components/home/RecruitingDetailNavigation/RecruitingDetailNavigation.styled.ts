@@ -9,13 +9,30 @@ export const Container = styled.div`
     scroll-margin-top: 9.5rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: none;
-      margin: 0 2rem;
       scroll-margin-top: 8.8rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       scroll-margin-top: 6.8rem;
+    }
+  `}
+`;
+
+export const Contents = styled.div`
+  ${({ theme }) => css`
+    max-width: 120rem;
+    margin: 0 auto;
+
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      max-width: 72.8rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      max-width: 53.6rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      max-width: 33.5rem;
     }
   `}
 `;
