@@ -271,7 +271,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               type="tel"
               onChange={handleReplacePhoneNumber}
               id={APPLY_FORM_KEYS.phone}
-              placeholder="010-1234-5678"
+              placeholder="전화번호를 입력해주세요"
               label="전화번호"
               required
               disabled={isDetailPageAndSubmitted}
