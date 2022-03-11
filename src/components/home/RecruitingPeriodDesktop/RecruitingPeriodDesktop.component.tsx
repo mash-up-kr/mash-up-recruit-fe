@@ -16,7 +16,9 @@ const RecruitingPeriodDesktop = () => {
         <span>End Date</span>
         <time dateTime="2022-03-15">03.15</time>
       </Styled.EndDate>
-      <PeriodBackgroundDesktop />
+      <Styled.PeriodBackgroundDesktopContainer data-aos="fade-up">
+        <PeriodBackgroundDesktop />
+      </Styled.PeriodBackgroundDesktopContainer>
     </Styled.Container>
   );
 };

@@ -32,7 +32,12 @@ const ModalNavigation = ({ platformName }: ModalNavigationProps) => {
 
   return (
     <>
-      <Styled.ModalOpenButton type="button" ref={buttonRef} onClick={handleOpenModal}>
+      <Styled.ModalOpenButton
+        type="button"
+        ref={buttonRef}
+        onClick={handleOpenModal}
+        isOpenModal={isOpenModal}
+      >
         {name} {platformName === 'common' ? null : 'Team'}
         <ChevronDown aria-hidden />
       </Styled.ModalOpenButton>

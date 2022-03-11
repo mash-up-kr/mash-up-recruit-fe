@@ -5,7 +5,7 @@ export const Container = styled.div`
   ${({ theme }) => css`
     position: absolute;
     top: 0rem;
-    left: 93.9rem;
+    left: 79.9rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -18,12 +18,6 @@ export const Container = styled.div`
 
     time {
       ${theme.fonts.en.extrabold100};
-    }
-
-    svg {
-      position: absolute;
-      top: -11.288rem;
-      right: -14.8rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
@@ -40,4 +34,10 @@ export const StartDate = styled.div`
 export const EndDate = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const PeriodBackgroundDesktopContainer = styled.div`
+  position: absolute;
+  top: -12.788rem;
+  right: -14.8rem;
 `;

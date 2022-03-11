@@ -36,8 +36,12 @@ const RecruitingOpenHero = () => {
         >
           OPEN
         </span>
-        <DoubleUnderline />
-        <Yeah />
+        <Styled.DoubleUnderlineContainer>
+          <DoubleUnderline />
+        </Styled.DoubleUnderlineContainer>
+        <Styled.YeahContainer>
+          <Yeah />
+        </Styled.YeahContainer>
         <RecruitingPeriodDesktop />
       </Styled.Contents>
     </Styled.Container>
