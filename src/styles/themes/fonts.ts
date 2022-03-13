@@ -20,6 +20,12 @@ export const fonts = {
       font-family: SpoqaHanSansNeo;
       line-height: 1.5;
     `,
+    bold26: css`
+      font-weight: 700;
+      font-size: 2.6rem;
+      font-family: SpoqaHanSansNeo;
+      line-height: 1.5;
+    `,
     bold24: css`
       font-weight: 700;
       font-size: 2.4rem;
