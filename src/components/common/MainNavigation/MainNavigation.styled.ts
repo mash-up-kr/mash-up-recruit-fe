@@ -9,17 +9,18 @@ export const Nav = styled.nav`
 
 interface NavListProps {
   currentPage: string;
+  isSessionLoading: boolean;
 }
 
 export const NavList = styled.ul<NavListProps>`
-  ${({ theme, currentPage }) => css`
+  ${({ theme, currentPage, isSessionLoading }) => css`
     display: flex;
     align-items: center;
     height: 2.7rem;
 
     & > li {
       ${theme.fonts.kr.bold18}
-      margin: 0 2rem;
+      margin: 0 ${isSessionLoading ? '1rem' : '2rem'};
 
       &:first-of-type {
         margin-left: 0;
@@ -27,14 +28,12 @@ export const NavList = styled.ul<NavListProps>`
       &:nth-of-type(2) {
         display: flex;
         align-items: center;
-        margin-right: 0;
         svg {
           margin-left: 4rem;
         }
       }
       &:last-of-type {
         margin-right: 0;
-        margin-left: 4rem;
       }
 
       & > a {
