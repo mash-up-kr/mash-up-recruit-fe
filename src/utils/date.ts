@@ -3,7 +3,7 @@ const [RECRUITING_START_KST_DATE, RECRUITING_END_KST_DATE] = [
   new Date('2022-03-15T23:59:59+09:00'),
 ];
 
-type RecruitingProgressStatus = 'PREVIOUS' | 'IN-PROGRESS' | 'AFTER' | 'INVALID';
+export type RecruitingProgressStatus = 'PREVIOUS' | 'IN-PROGRESS' | 'AFTER' | 'INVALID';
 
 const getKSTDateFromDate = (date: Date) => {
   const utcUnixTime = date.getTime() + date.getTimezoneOffset() * 60 * 1000;
