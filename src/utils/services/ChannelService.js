@@ -56,6 +56,14 @@ class ChannelService {
   shutdown() {
     window.ChannelIO('shutdown');
   }
+
+  showChannelButton() {
+    window.ChannelIO('showChannelButton');
+  }
+
+  hideChannelButton() {
+    window.ChannelIO('hideChannelButton');
+  }
 }
 
 export default ChannelService;
