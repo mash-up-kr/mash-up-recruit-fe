@@ -1,6 +1,6 @@
 const [RECRUITING_START_KST_DATE, RECRUITING_END_KST_DATE] = [
-  new Date('2022-03-02T00:00:00+09:00'),
-  new Date('2022-03-15T23:59:59+09:00'),
+  new Date('2022-03-16T00:00:00+09:00'),
+  new Date('2022-03-29T23:59:59+09:00'),
 ];
 
 export type RecruitingProgressStatus = 'PREVIOUS' | 'IN-PROGRESS' | 'AFTER' | 'INVALID';
