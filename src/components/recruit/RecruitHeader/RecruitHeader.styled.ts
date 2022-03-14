@@ -9,14 +9,14 @@ export const Container = styled.div`
     color: ${theme.colors.gray80};
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: 60rem;
-      margin: 3rem 2rem 0;
+      max-width: 68rem;
+      margin: 3rem auto;
+      padding: 0 2rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       max-width: none;
       margin: 3rem 0 0;
-      padding: 0 2rem;
     }
   `}
 `;

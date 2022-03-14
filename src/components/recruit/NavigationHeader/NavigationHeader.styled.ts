@@ -10,9 +10,13 @@ export const Heading = styled.h2`
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       ${theme.fonts.en.extrabold32};
-      max-width: none;
-      margin: 0 0 3.6rem;
+      max-width: 68rem;
+      margin: 0 auto 3.6rem;
       padding: 0 2rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      max-width: none;
     }
   `}
 `;
