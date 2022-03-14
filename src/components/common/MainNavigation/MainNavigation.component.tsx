@@ -1,5 +1,5 @@
 import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID, VIEWPORT_SIZE } from '@/constants';
-import { LinkTo, SignInModalDialog, MyPageTab } from '@/components';
+import { LinkTo, MyPageTab, SignInModal } from '@/components';
 import DivisionLine from '@/assets/svg/division-line.svg';
 import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useDetectOutsideClick, useDetectViewPort } from '@/hooks';
@@ -84,7 +84,7 @@ const MainNavigation = () => {
       </Styled.Nav>
 
       {isOpenSignInModal && (
-        <SignInModalDialog
+        <SignInModal
           type="login"
           setIsOpenModal={setIsOpenSignInModal}
           beforeRef={loginButtonRef}
