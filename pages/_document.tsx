@@ -46,6 +46,8 @@ class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
+          <link rel="stylesheet" href="https://static.mash-up.kr/fonts/gilroy.css" />
+          <link rel="stylesheet" href="https://static.mash-up.kr/fonts/spoqaHanSansNeo.css" />
         </Head>
         <body>
           <Main />
