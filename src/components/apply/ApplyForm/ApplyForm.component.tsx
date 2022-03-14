@@ -7,7 +7,7 @@ import {
   LabeledTextArea,
   LoadingModal,
 } from '@/components';
-import { HOME_PAGE, MY_PAGE_APPLICATION_DETAIL, PATH_NAME } from '@/constants';
+import { HOME_PAGE, MY_PAGE_APPLY_STATUS, PATH_NAME } from '@/constants';
 import { usePreventPageChange } from '@/hooks';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
@@ -447,12 +447,14 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           beforeRef={tempSaveButtonRef}
           heading="임시 저장 완료!"
           paragraph="기간 내에 지원서는 꼭! 잊지말고 제출해주세요!"
-          handleApprovalButton={() =>
-            handleCloseTempSaveAlertModal(setIsOpenTempSaveSuccessAlertModal)
-          }
+          handleApprovalButton={() => {
+            router.push(MY_PAGE_APPLY_STATUS);
+            handleCloseTempSaveAlertModal(setIsOpenTempSaveSuccessAlertModal);
+          }}
           setIsOpenModal={setIsOpenTempSaveSuccessAlertModal}
           deemClose={false}
           escClose={false}
+          enterClose={false}
         />
       )}
       {isOpenTempSaveFailedAlertModal && (
@@ -484,13 +486,13 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       {isOpenSuccessSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서 제출 완료!"
-          paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 3월 19일에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!"
+          paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 4월 2일(토) 오전 10시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!"
           approvalButtonMessage="내 지원서 확인하기"
           cancelButtonMessage="홈으로"
           setIsOpenModal={setIsOpenSuccessSubmittedModal}
           handleCancelButton={() => router.push(HOME_PAGE)}
           handleApprovalButton={() => {
-            router.push(`${MY_PAGE_APPLICATION_DETAIL}/${application.applicationId}`);
+            router.push(MY_PAGE_APPLY_STATUS);
             setIsTempSaved(true);
             setIsOpenSuccessSubmittedModal(false);
           }}
