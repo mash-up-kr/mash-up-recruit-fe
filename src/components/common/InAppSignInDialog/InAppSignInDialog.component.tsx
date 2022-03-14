@@ -1,5 +1,5 @@
 import { InAppBrowser, getInAppBrowser } from '@/utils/userAgent';
-import { useCopyToClipboard } from '@/hooks';
+import { useCopyToClipboard, useToast } from '@/hooks';
 import * as Styled from './InAppSignInDialog.styled';
 
 const TARGET_URL = 'https://recruit.mash-up.kr';
@@ -18,9 +18,12 @@ export interface InAppSignInDialogProps {
 
 const InAppSignInDialog = ({ handleSuccessCopy, handleCloseButton }: InAppSignInDialogProps) => {
   const browserName = browserNameMap[getInAppBrowser(window.navigator) as InAppBrowser];
-
+  const toast = useToast();
   const { copy } = useCopyToClipboard(TARGET_URL, {
-    onSuccess: handleSuccessCopy,
+    onSuccess: () => {
+      toast({ text: '링크 복사 완료!' });
+      handleSuccessCopy();
+    },
   });
 
   return (
