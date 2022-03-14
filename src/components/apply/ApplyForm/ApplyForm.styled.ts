@@ -1,6 +1,7 @@
 import LinkTo from '@/components/common/LinkTo/LinkTo.component';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import ChevronRight7 from '@/assets/svg/chevron-right-7.svg';
 
 export const PersonalInformationSection = styled.section`
   margin-top: 6rem;
@@ -91,14 +92,15 @@ export const SubmittedCompletedButton = styled.button`
 
 export const BackToListLink = styled(LinkTo)`
   ${({ theme }) => css`
-    ${theme.button.type.defaultLine}
-    display: inline-block;
-    width: 100%;
-    margin-top: 1.6rem;
-    text-align: center;
-
-    @media (max-width: ${theme.breakPoint.media.mobile}) {
-      margin-top: 6rem;
-    }
+    ${theme.fonts.kr.medium16};
+    display: inline-flex;
+    align-items: center;
+    margin-top: 4rem;
   `}
+`;
+
+export const ChevronLeft = styled(ChevronRight7)`
+  margin-right: 1.1rem;
+  margin-left: 1rem;
+  transform: rotate(180deg);
 `;

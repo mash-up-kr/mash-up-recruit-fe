@@ -439,7 +439,10 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               </Styled.SubmitButton>
             </>
           )}
-          <Styled.BackToListLink href={HOME_PAGE}>목록으로 돌아가기</Styled.BackToListLink>
+          <Styled.BackToListLink href={`/recruit/${application.team.name.toLowerCase()}`}>
+            <Styled.ChevronLeft />
+            목록으로 돌아가기
+          </Styled.BackToListLink>
         </Styled.ControlSection>
       </form>
       {isOpenTempSaveSuccessAlertModal && (
