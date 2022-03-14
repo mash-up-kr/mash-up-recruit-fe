@@ -18,3 +18,4 @@ export { default as SignInDialog } from './SignInDialog/SignInDialog.component';
 export { default as InAppSignInDialog } from './InAppSignInDialog/InAppSignInDialog.component';
 export { default as SignInModal } from './SignInModal/SignInModal.component';
 export { default as Skeleton } from './Skeleton/Skeleton.component';
+export { default as Lottie } from './Lottie/Lottie.component';
