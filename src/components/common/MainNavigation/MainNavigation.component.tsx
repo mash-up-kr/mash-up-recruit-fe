@@ -1,17 +1,19 @@
 import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID } from '@/constants';
 import { LinkTo, SignInModalDialog, MyPageTab, Skeleton } from '@/components';
-import { MouseEventHandler, MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
+import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useDetectOutsideClick } from '@/hooks';
 import Router, { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import ChevronBottom12 from '@/assets/svg/chevron-bottom-12.svg';
+import { colors } from '@/styles';
 import * as Styled from './MainNavigation.styled';
 
 const MainNavigation = () => {
   const session = useSession();
   const { pathname: currentPage } = useRouter();
 
-  const isSessionLoading = useMemo(() => session.status === 'loading', [session.status]);
+  const isSessionLoading = session.status === 'loading';
+  const skeletonColor = currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20;
 
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
   const [isOpenMyPageTab, setIsOpenMyPageTab] = useState(false);
@@ -46,13 +48,13 @@ const MainNavigation = () => {
       <Styled.Nav>
         <Styled.NavList currentPage={currentPage} isSessionLoading={isSessionLoading}>
           <li>
-            <Skeleton color="rgba(255, 255, 255, 0.08)" width="10rem" isLoading={isSessionLoading}>
+            <Skeleton color={skeletonColor} width="10rem" isLoading={isSessionLoading}>
               <LinkTo href={`${HOME_PAGE}#${RECRUIT_DETAILS_ID}`}>모집 공고</LinkTo>
             </Skeleton>
           </li>
           <li>
             <Skeleton
-              color="rgba(255, 255, 255, 0.08)"
+              color={skeletonColor}
               width="10rem"
               height="2.7rem"
               isLoading={isSessionLoading}
@@ -61,7 +63,7 @@ const MainNavigation = () => {
             </Skeleton>
           </li>
           <li>
-            <Skeleton color="rgba(255, 255, 255, 0.08)" width="10rem" isLoading={isSessionLoading}>
+            <Skeleton color={skeletonColor} width="10rem" isLoading={isSessionLoading}>
               {session.status === 'authenticated' ? (
                 <div ref={MyPageTabWrapper}>
                   <Styled.MyPageButton
