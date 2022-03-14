@@ -16,7 +16,7 @@ const ApplyLinkButton = ({ applyPath }: ApplyLinkProps) => {
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
 
   const isRecruitingInProgress =
-    getRecruitingProgressStatusFromRecruitingPeriod(new Date()) === 'IN-PROGRESS';
+    getRecruitingProgressStatusFromRecruitingPeriod(new Date()) === 'IN-RECRUITING';
 
   const handleLinkButtonClick = () => {
     if (session.status !== 'authenticated') {
