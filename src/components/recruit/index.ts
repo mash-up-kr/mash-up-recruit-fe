@@ -1,4 +1,4 @@
-export { default as PlatformImage } from './PlatformImage/PlatformImage.component';
+export { default as PlatformHero } from './PlatformHero/PlatformHero.component';
 export { default as RecruitHeader } from './RecruitHeader/RecruitHeader.component';
 export { default as Divider } from './Divider/Divider.component';
 export { default as BottomNavigation } from './BottomNavigation/BottomNavigation.component';
