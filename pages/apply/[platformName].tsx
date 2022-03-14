@@ -33,7 +33,7 @@ const Apply = ({ application, isSubmitted }: ApplyProps) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
 
-  if (recruitingProgressStatus !== 'IN-PROGRESS') {
+  if (recruitingProgressStatus !== 'IN-RECRUITING') {
     return {
       redirect: {
         permanent: false,
