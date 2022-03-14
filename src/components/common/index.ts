@@ -20,3 +20,4 @@ export { default as SignInModal } from './SignInModal/SignInModal.component';
 export { default as Skeleton } from './Skeleton/Skeleton.component';
 export { default as Lottie } from './Lottie/Lottie.component';
 export { default as ChannelTalk } from './ChannelTalk/ChannelTalk.component';
+export { default as Toast } from './Toast/Toast.component';
