@@ -1,6 +1,6 @@
 import { applicationApiService } from '@/api/services';
 import { ApplyStatusLayout } from '@/components';
-import { HOME_PAGE } from '@/constants';
+import { ERROR_PAGE, HOME_PAGE } from '@/constants';
 import { Application } from '@/types/dto';
 import {
   getRecruitingProgressStatusFromRecruitingPeriod,
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { props: { applications, recruitingProgressStatus } };
   } catch (error) {
     return {
-      redirect: { destination: HOME_PAGE, permanent: false },
+      redirect: { destination: ERROR_PAGE, permanent: false },
     };
   }
 };
