@@ -65,6 +65,8 @@ const ApplyLayout = ({ heading, role, application, isSubmitted }: ApplyLayoutPro
           setIsOpenModal={setIsOpenAlreadySubmittedModal}
           handleApprovalButton={() => setIsOpenAlreadySubmittedModal(false)}
           handleCancelButton={() => router.push(MY_PAGE_APPLY_STATUS)}
+          deemClose={false}
+          escClose={false}
         />
       )}
       {isOpenTempSavedModal && !isSubmitted && (
