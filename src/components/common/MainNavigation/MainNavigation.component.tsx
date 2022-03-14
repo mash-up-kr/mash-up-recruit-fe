@@ -1,5 +1,5 @@
 import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID } from '@/constants';
-import { LinkTo, SignInModalDialog, MyPageTab, Skeleton } from '@/components';
+import { LinkTo, SignInModal, MyPageTab, Skeleton } from '@/components';
 import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useDetectOutsideClick } from '@/hooks';
 import Router, { useRouter } from 'next/router';
@@ -96,7 +96,7 @@ const MainNavigation = () => {
       </Styled.Nav>
 
       {isOpenSignInModal && (
-        <SignInModalDialog
+        <SignInModal
           type="login"
           setIsOpenModal={setIsOpenSignInModal}
           beforeRef={loginButtonRef}

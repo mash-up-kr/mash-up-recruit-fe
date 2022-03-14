@@ -9,8 +9,12 @@ export const List = styled.ul`
     color: ${theme.colors.gray70};
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: none;
+      max-width: 68rem;
       padding: 0 2rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      max-width: none;
     }
   `}
 `;

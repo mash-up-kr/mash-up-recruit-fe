@@ -11,9 +11,13 @@ export const Container = styled.div`
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: none;
-      margin: 6rem 0;
+      max-width: 68rem;
+      margin: 6rem auto;
       padding: 0 2rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      max-width: none;
     }
   `}
 `;
