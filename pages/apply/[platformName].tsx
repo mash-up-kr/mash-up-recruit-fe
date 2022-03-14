@@ -5,7 +5,7 @@ import {
   PLATFORM_HEADINGS,
   PLATFORM_ROLE,
 } from '@/components/apply/ApplyLayout/ApplyLayout.component';
-import { teamIds, teamNames, Teams } from '@/constants';
+import { ERROR_PAGE, HOME_PAGE, NOT_FOUND_PAGE, teamIds, teamNames, Teams } from '@/constants';
 import { Application } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       redirect: {
         permanent: false,
-        destination: '/',
+        destination: HOME_PAGE,
       },
     };
   }
@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       redirect: {
         permanent: false,
-        destination: '/',
+        destination: NOT_FOUND_PAGE,
       },
     };
   }
@@ -59,27 +59,40 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       redirect: {
         permanent: false,
-        destination: '/',
+        destination: HOME_PAGE,
       },
     };
   }
 
-  const applications = (
-    await applicationApiService.getApplications({
-      accessToken: session?.accessToken,
-    })
-  ).data;
+  try {
+    const applications = (
+      await applicationApiService.getApplications({
+        accessToken: session?.accessToken,
+      })
+    ).data;
 
-  const isSubmitted = applications.some(({ status }) => status === 'SUBMITTED');
+    const isSubmitted = applications.some(({ status }) => status === 'SUBMITTED');
 
-  const currentApplication = applications.find(
-    ({ team }) => team.teamId === teamIds[currentApplyPlatform],
-  );
+    const currentApplication = applications.find(
+      ({ team }) => team.teamId === teamIds[currentApplyPlatform],
+    );
 
-  if (!currentApplication) {
-    const application = await applicationApiService.createMyApplication({
+    if (!currentApplication) {
+      const application = await applicationApiService.createMyApplication({
+        accessToken: session.accessToken,
+        teamId: teamIds[currentApplyPlatform],
+      });
+      return {
+        props: {
+          application: application?.data,
+          isSubmitted,
+        },
+      };
+    }
+
+    const application = await applicationApiService.getApplicationDetail({
       accessToken: session.accessToken,
-      teamId: teamIds[currentApplyPlatform],
+      applicationId: currentApplication.applicationId,
     });
     return {
       props: {
@@ -87,18 +100,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         isSubmitted,
       },
     };
+  } catch (error) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: ERROR_PAGE,
+      },
+    };
   }
-
-  const application = await applicationApiService.getApplicationDetail({
-    accessToken: session.accessToken,
-    applicationId: currentApplication.applicationId,
-  });
-  return {
-    props: {
-      application: application?.data,
-      isSubmitted,
-    },
-  };
 };
 
 export default Apply;
