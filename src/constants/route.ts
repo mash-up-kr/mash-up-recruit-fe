@@ -35,4 +35,5 @@ export const PATH_NAME = {
   MY_PAGE_ACCOUNT: '/my-page/account',
   MY_PAGE_APPLY_STATUS: '/my-page/apply-status',
   MY_PAGE_APPLICATION_DETAIL: '/my-page/application-detail/[applicationId]',
+  RECRUIT_PAGE: '/recruit/[platformName]',
 };

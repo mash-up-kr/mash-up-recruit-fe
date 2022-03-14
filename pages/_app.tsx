@@ -1,12 +1,11 @@
 import type { AppProps } from 'next/app';
 import { css, Global, ThemeProvider } from '@emotion/react';
 import { globalStyles, theme } from '@/styles';
-import { GlobalSEO, Layout, LoadingModal } from '@/components';
+import { ChannelTalk, GlobalSEO, Layout, LoadingModal } from '@/components';
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { HOME_PAGE } from '@/constants';
-import ChannelService from '@/utils/services/ChannelService';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isRouteChange, setIsRouteChange] = useState(false);
@@ -19,11 +18,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     router.events.on('routeChangeStart', handleShowLoadingSpinner);
     router.events.on('routeChangeComplete', handleHideLoadingSpinner);
     router.events.on('routeChangeError', handleHideLoadingSpinner);
-
-    const channelServiceInstance = new ChannelService();
-    channelServiceInstance.boot({
-      pluginKey: process.env.NEXT_PUBLIC_CHANNEL_PLUGIN,
-    });
 
     return () => {
       router.events.off('routeChangeStart', handleShowLoadingSpinner);
@@ -50,6 +44,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <ThemeProvider theme={theme}>
           <Layout>
             <Component {...pageProps} />
+            <ChannelTalk />
             {isRouteChange && <LoadingModal setIsOpenModal={setIsRouteChange} />}
           </Layout>
         </ThemeProvider>
