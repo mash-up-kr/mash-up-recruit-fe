@@ -18,19 +18,20 @@ export const Container = styled.div`
 
 export const Contents = styled.div`
   ${({ theme }) => css`
-    max-width: 120rem;
+    max-width: 124rem;
     margin: 0 auto;
+    padding: 0 2rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: 72.8rem;
+      max-width: 76.8rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
-      max-width: 53.6rem;
+      max-width: 57.6rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      max-width: 33.5rem;
+      max-width: 37.5rem;
     }
   `}
 `;
@@ -92,25 +93,27 @@ export const ListItem = styled.li`
 
     &:before {
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: radial-gradient(circle, transparent 11rem, ${theme.colors.gray95} 11.1rem);
+      top: -0.1rem;
+      right: -0.1rem;
+      bottom: -0.1rem;
+      left: -0.1rem;
+      background: radial-gradient(circle, transparent 10.9rem, ${theme.colors.gray95} 11rem);
       content: '';
     }
 
     &:not(:last-of-type):after {
       position: absolute;
+      top: -0.1rem;
       left: 100%;
       width: 2.5rem;
-      height: 100%;
+      height: 101%;
       background: ${theme.colors.gray95};
       content: '';
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       width: 100%;
+
       &:first-of-type {
         grid-column: 1/3;
       }
@@ -141,19 +144,19 @@ export const ListItem = styled.li`
       &:nth-of-type(4):after {
         position: absolute;
         top: 0;
-        left: -50%;
-        width: 50%;
-        height: 100%;
+        left: -51%;
+        width: 51%;
+        height: 101%;
         background: ${theme.colors.gray95};
         content: '';
       }
 
       &:last-of-type:after {
         position: absolute;
-        right: -50%;
-        bottom: 0;
-        width: 50%;
-        height: 100%;
+        right: -51%;
+        bottom: -0.1rem;
+        width: 51%;
+        height: 101%;
         background: ${theme.colors.gray95};
         content: '';
       }
@@ -162,10 +165,10 @@ export const ListItem = styled.li`
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       &:before {
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        top: -0.1rem;
+        right: -0.1rem;
+        bottom: -0.1rem;
+        left: -0.1rem;
         background: radial-gradient(circle, transparent 8rem, ${theme.colors.gray95} 8.1rem);
         content: '';
       }
@@ -199,9 +202,9 @@ export const ListItem = styled.li`
 
       &:first-of-type:after {
         position: absolute;
-        top: 0;
-        right: -100%;
-        width: 100%;
+        top: -0.1rem;
+        right: -101%;
+        width: 101%;
         height: 11rem;
         background: ${theme.colors.gray95};
         content: '';
@@ -213,9 +216,9 @@ export const ListItem = styled.li`
 
       &:last-of-type:after {
         position: absolute;
-        right: -100%;
-        bottom: 0;
-        width: 100%;
+        right: -101%;
+        bottom: -0.1rem;
+        width: 101%;
         height: 11rem;
         background: ${theme.colors.gray95};
         content: '';

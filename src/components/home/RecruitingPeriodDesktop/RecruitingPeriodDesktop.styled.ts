@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   ${({ theme }) => css`
     position: absolute;
-    top: 0rem;
-    left: 79.9rem;
+    top: -1.5rem;
+    left: 81.9rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -40,4 +40,30 @@ export const PeriodBackgroundDesktopContainer = styled.div`
   position: absolute;
   top: -12.788rem;
   right: -14.8rem;
+  width: 48.7rem;
+  height: 72.9rem;
+`;
+
+export const PeriodArrowContainer = styled.div`
+  position: absolute;
+  top: 64rem;
+  width: 6rem;
+  height: 9rem;
+  line-height: 0;
+`;
+
+export const ComputerContainer = styled.div`
+  position: absolute;
+  left: 12.7rem;
+  width: 36rem;
+  height: 50rem;
+`;
+
+export const FireContainer = styled.div`
+  position: absolute;
+  top: 60.8rem;
+  left: 26.1rem;
+  width: 10rem;
+  height: 10rem;
+  line-height: 0;
 `;

@@ -6,19 +6,19 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     height: calc(100vh - 8rem);
-    min-height: 90rem;
+    min-height: 102.4rem;
 
     span {
       display: block;
     }
 
-    @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      min-height: 80rem;
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      min-height: 72rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      height: calc(100vh - 6.4rem);
-      min-height: 60rem;
+      height: calc(100vh - 6rem);
+      min-height: 66.7rem;
     }
   `}
 `;
@@ -29,26 +29,25 @@ export const Contents = styled.div`
     position: relative;
     flex: 1 0 0;
     width: 100%;
-    max-width: 120rem;
+    max-width: 124rem;
     margin: 0 auto;
+    padding: 0 2rem;
     color: ${theme.colors.white};
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       ${theme.fonts.en.extrabold100};
-      max-width: 64rem;
-      height: 60rem;
+      max-width: 76.8rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.en.extrabold80};
-      max-width: 42.7rem;
+      max-width: 57.6rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.en.extrabold60};
 
-      max-width: 32rem;
-      height: 43.5rem;
+      max-width: 37.5rem;
     }
   `}
 `;
@@ -105,8 +104,8 @@ export const RookieRecruiting = styled.div`
 export const DoubleUnderlineContainer = styled.span`
   ${({ theme }) => css`
     position: absolute;
-    top: 63.613rem;
-    left: 0rem;
+    top: 66.7rem;
+    left: 2rem;
     line-height: 0;
 
     svg {
@@ -114,8 +113,7 @@ export const DoubleUnderlineContainer = styled.span`
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      top: 60rem;
-      left: 0rem;
+      top: 58rem;
 
       svg {
         width: 26.5rem;
@@ -125,7 +123,6 @@ export const DoubleUnderlineContainer = styled.span`
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       top: 46.6rem;
-      left: 0rem;
 
       svg {
         width: 23rem;
@@ -135,7 +132,6 @@ export const DoubleUnderlineContainer = styled.span`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       top: 35rem;
-      left: 0rem;
 
       svg {
         width: 16rem;
@@ -147,38 +143,31 @@ export const DoubleUnderlineContainer = styled.span`
 export const YeahContainer = styled.div`
   ${({ theme }) => css`
     position: absolute;
-    top: 54.612rem;
+    top: 51.6rem;
     left: 38.9rem;
+    width: 34rem;
+    height: 30rem;
     line-height: 0;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      top: 49.4rem;
-      left: 26.6rem;
-
-      svg {
-        width: 27.5rem;
-        height: 24.3rem;
-      }
+      top: 46.5rem;
+      left: 28.5rem;
+      width: 27.5rem;
+      height: 24.3rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
-      top: 39rem;
-      left: 22.4rem;
-
-      svg {
-        width: 27.5rem;
-        height: 24.3rem;
-      }
+      top: 37rem;
+      left: 24.4rem;
+      width: 27.5rem;
+      height: 24.3rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      top: 30rem;
-      left: 16rem;
-
-      svg {
-        width: 15.3rem;
-        height: 13.5rem;
-      }
+      top: 29rem;
+      left: 18rem;
+      width: 15.3rem;
+      height: 13.5rem;
     }
   `}
 `;
