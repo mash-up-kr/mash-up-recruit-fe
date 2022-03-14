@@ -1,9 +1,28 @@
+export const getInAppBrowser = (navigator: Navigator) => {
+  const { userAgent: ua } = navigator;
+
+  switch (true) {
+    case /KAKAO/i.test(ua):
+      return 'KAKAO';
+    case /INSTAGRAM/i.test(ua):
+      return 'INSTAGRAM';
+    case /NAVER/i.test(ua):
+      return 'NAVER';
+    case /\[FB/i.test(ua):
+      return 'FACEBOOK';
+    default:
+      return null;
+  }
+};
+
+export type InAppBrowser = NonNullable<ReturnType<typeof getInAppBrowser>>;
+
 const getUserAgentBrowser = (navigator: Navigator) => {
   const { userAgent: ua, vendor } = navigator;
   const android = /(android)/i.test(ua);
 
   switch (true) {
-    case /KAKAO/i.test(ua) || /INSTAGRAM/i.test(ua) || /NAVER/i.test(ua) || /\[FB/i.test(ua):
+    case /NAVER|KAKAO|Instagram|\[FB/i.test(ua):
       return 'IN-APP';
     case /CriOS/.test(ua):
       return 'Chrome for iOS';
@@ -32,4 +51,30 @@ export type UserAgentBrowser = NonNullable<ReturnType<typeof getUserAgentBrowser
 
 export const detectBrowser = (browser: UserAgentBrowser) => {
   return getUserAgentBrowser(window.navigator) === browser;
+};
+
+const getUserAgentOS = (navigator: Navigator) => {
+  const { userAgent: ua, platform } = navigator;
+  switch (true) {
+    case /Android/.test(ua):
+      return 'Android';
+    case /iPhone|iPad|iPod/.test(platform):
+      return 'iOS';
+    case /Win/.test(platform):
+      return 'Windows';
+    case /Mac/.test(platform):
+      return 'Mac';
+    case /CrOS/.test(ua):
+      return 'Chrome OS';
+    case /Firefox/.test(ua):
+      return 'Firefox OS';
+    default:
+      return null;
+  }
+};
+
+export type UserAgentOS = NonNullable<ReturnType<typeof getUserAgentOS>>;
+
+export const detectOS = (os: UserAgentOS) => {
+  return getUserAgentOS(window.navigator) === os;
 };

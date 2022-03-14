@@ -2,10 +2,12 @@ import { MY_PAGE_APPLICATION_DETAIL } from '@/constants';
 import { useDetectViewPort } from '@/hooks';
 import { Application, ApplicationAuditStatus, TeamName } from '@/types/dto';
 import Loudspeaker from '@/assets/svg/loudspeaker-16.svg';
+import { RecruitingProgressStatus } from '@/utils/date';
 import * as Styled from './StatusList.styled';
 
 interface StatusListProps {
   applications: Application[];
+  recruitingProgressStatus: RecruitingProgressStatus;
 }
 
 const STATUS_WORDS: Record<ApplicationAuditStatus, string> = {
@@ -27,13 +29,16 @@ const TEAM__NICK_NAME: Record<TeamName, string> = {
   Spring: 'Spring Team',
 };
 
-const StatusList = ({ applications }: StatusListProps) => {
+const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps) => {
   const { size } = useDetectViewPort();
 
   const isSubmitted = applications.find(({ status }) => status === 'SUBMITTED');
 
   return (
-    <Styled.StatusListSection>
+    <Styled.StatusListSection
+      isSubmitted={!!isSubmitted}
+      recruitingProgressStatus={recruitingProgressStatus}
+    >
       <Styled.HeadingWrapper>
         <Styled.Heading>지원 현황</Styled.Heading>
         {applications.length > 1 && !isSubmitted && (

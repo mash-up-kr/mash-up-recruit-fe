@@ -1,17 +1,19 @@
-import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID, VIEWPORT_SIZE } from '@/constants';
-import { LinkTo, SignInModalDialog, MyPageTab } from '@/components';
-import DivisionLine from '@/assets/svg/division-line.svg';
+import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID } from '@/constants';
+import { LinkTo, SignInModal, MyPageTab, Skeleton } from '@/components';
 import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
-import { useDetectOutsideClick, useDetectViewPort } from '@/hooks';
+import { useDetectOutsideClick } from '@/hooks';
 import Router, { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import ChevronBottom12 from '@/assets/svg/chevron-bottom-12.svg';
+import { colors } from '@/styles';
 import * as Styled from './MainNavigation.styled';
 
 const MainNavigation = () => {
   const session = useSession();
-  const { size } = useDetectViewPort();
   const { pathname: currentPage } = useRouter();
+
+  const isSessionLoading = session.status === 'loading';
+  const skeletonColor = currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20;
 
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
   const [isOpenMyPageTab, setIsOpenMyPageTab] = useState(false);
@@ -44,47 +46,57 @@ const MainNavigation = () => {
   return (
     <>
       <Styled.Nav>
-        <Styled.NavList currentPage={currentPage}>
+        <Styled.NavList currentPage={currentPage} isSessionLoading={isSessionLoading}>
           <li>
-            <LinkTo href={`${HOME_PAGE}#${RECRUIT_DETAILS_ID}`}>모집 공고</LinkTo>
+            <Skeleton color={skeletonColor} width="10rem" isLoading={isSessionLoading}>
+              <LinkTo href={`${HOME_PAGE}#${RECRUIT_DETAILS_ID}`}>모집 공고</LinkTo>
+            </Skeleton>
           </li>
           <li>
-            <LinkTo href={FAQ_COMMON_PAGE}>자주 묻는 질문</LinkTo>
-            <DivisionLine width={size === VIEWPORT_SIZE.MOBILE ? '1' : '2'} />
+            <Skeleton
+              color={skeletonColor}
+              width="10rem"
+              height="2.7rem"
+              isLoading={isSessionLoading}
+            >
+              <LinkTo href={FAQ_COMMON_PAGE}>자주 묻는 질문</LinkTo>
+            </Skeleton>
           </li>
           <li>
-            {session.status === 'authenticated' ? (
-              <div ref={MyPageTabWrapper}>
-                <Styled.MyPageButton
+            <Skeleton color={skeletonColor} width="10rem" isLoading={isSessionLoading}>
+              {session.status === 'authenticated' ? (
+                <div ref={MyPageTabWrapper}>
+                  <Styled.MyPageButton
+                    type="button"
+                    currentPage={currentPage}
+                    onClick={handleToggleMyPageTab}
+                    isOpenMyPageTab={isOpenMyPageTab}
+                  >
+                    <span>내 페이지</span>
+                    <ChevronBottom12 />
+                  </Styled.MyPageButton>
+                  <MyPageTab
+                    isOpenMyPageTab={isOpenMyPageTab}
+                    setIsOpenMyPageTab={setIsOpenMyPageTab}
+                  />
+                </div>
+              ) : (
+                <Styled.SignInButton
                   type="button"
                   currentPage={currentPage}
-                  onClick={handleToggleMyPageTab}
-                  isOpenMyPageTab={isOpenMyPageTab}
+                  onClick={handleOpenSignInModal}
+                  ref={loginButtonRef}
                 >
-                  <span>내 페이지</span>
-                  <ChevronBottom12 />
-                </Styled.MyPageButton>
-                <MyPageTab
-                  isOpenMyPageTab={isOpenMyPageTab}
-                  setIsOpenMyPageTab={setIsOpenMyPageTab}
-                />
-              </div>
-            ) : (
-              <Styled.SignInButton
-                type="button"
-                currentPage={currentPage}
-                onClick={handleOpenSignInModal}
-                ref={loginButtonRef}
-              >
-                로그인
-              </Styled.SignInButton>
-            )}
+                  로그인
+                </Styled.SignInButton>
+              )}
+            </Skeleton>
           </li>
         </Styled.NavList>
       </Styled.Nav>
 
       {isOpenSignInModal && (
-        <SignInModalDialog
+        <SignInModal
           type="login"
           setIsOpenModal={setIsOpenSignInModal}
           beforeRef={loginButtonRef}

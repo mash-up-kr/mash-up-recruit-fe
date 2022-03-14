@@ -8,8 +8,7 @@ export const Container = styled.div`
     margin: 6rem auto;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: none;
-      margin: 6rem 0;
+      max-width: 68rem;
       padding: 0 2rem;
     }
   `}

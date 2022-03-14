@@ -40,6 +40,10 @@ export type Platform = {
   study: Item[];
   interview: Item[];
   talent: Item[];
+  hero: {
+    color: string;
+    emojis: any[];
+  };
 };
 
 export const platformMap: Record<PlatformKey, Platform> = {

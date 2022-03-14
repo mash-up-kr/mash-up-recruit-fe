@@ -1,20 +1,27 @@
 import LinkTo from '@/components/common/LinkTo/LinkTo.component';
 import { ApplicationAuditStatus } from '@/types/dto';
+import { RecruitingProgressStatus } from '@/utils/date';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const StatusListSection = styled.div`
-  ${({ theme }) => css`
+interface StatusListSectionProps {
+  isSubmitted: boolean;
+  recruitingProgressStatus: RecruitingProgressStatus;
+}
+
+export const StatusListSection = styled.div<StatusListSectionProps>`
+  ${({ theme, isSubmitted }) => css`
     position: relative;
     max-width: 120rem;
-    margin: 16rem auto;
+    margin: ${isSubmitted ? '3rem' : '16rem'} auto 16rem;
     padding: 5rem 5rem 3rem;
     background: ${theme.colors.white};
     border: 0.1rem solid ${theme.colors.gray20};
     border-radius: 3rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
-      margin-top: 5.5rem;
+      margin-top: ${isSubmitted ? '3rem' : '3.6rem'};
+      margin-bottom: 10rem;
       padding: 3.6rem 3.6rem 0;
     }
   `}
@@ -105,7 +112,14 @@ export const StatusListHeading = styled.span`
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.medium14};
-      width: 37%;
+      width: 12rem;
+      margin-right: 1.6rem;
+      text-align: left;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium14};
+      width: 8rem;
       text-align: left;
     }
   `}
@@ -165,7 +179,7 @@ export const StatusText = styled.span`
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.medium14};
       display: inline-block;
-      width: 63%;
+      width: auto;
       height: auto;
       min-height: 0;
       padding: 0;
@@ -196,7 +210,7 @@ export const ApplicationStatus = styled.span<ApplicationStatusProps>`
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.medium14};
       display: inline-block;
-      width: 63%;
+      width: auto;
       height: 0;
       padding: 0;
       text-align: left;

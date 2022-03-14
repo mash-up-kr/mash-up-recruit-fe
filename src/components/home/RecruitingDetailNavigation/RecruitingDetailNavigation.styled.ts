@@ -3,7 +3,6 @@ import { css } from '@emotion/react';
 
 export const Container = styled.div`
   ${({ theme }) => css`
-    max-width: 120rem;
     margin: 5.8rem auto;
     color: ${theme.colors.gray20};
     scroll-margin-top: 9.5rem;
@@ -20,19 +19,20 @@ export const Container = styled.div`
 
 export const Contents = styled.div`
   ${({ theme }) => css`
-    max-width: 120rem;
+    max-width: 124rem;
     margin: 0 auto;
+    padding: 0 2rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      max-width: 72.8rem;
+      max-width: 76.8rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
-      max-width: 53.6rem;
+      max-width: 57.6rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      max-width: 33.5rem;
+      max-width: 37.5rem;
     }
   `}
 `;

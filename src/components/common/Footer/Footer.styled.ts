@@ -14,10 +14,10 @@ export const Footer = styled.footer<FooterProps>`
     padding: 4rem 0;
     background: ${currentPage === HOME_PAGE ? theme.colors.gray95 : theme.colors.white};
 
-    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
       flex-flow: column nowrap;
-      height: 11rem;
-      padding: 2rem 0;
+      height: 17rem;
+      padding: 2rem 0 8rem;
     }
   `}
 `;
@@ -33,7 +33,7 @@ export const FooterInner = styled.div`
     margin: 0 auto;
     padding: 0 2rem;
 
-    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
       flex-flow: column nowrap;
     }
   `}

@@ -3,7 +3,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { PlatformKey, platformMap, platforms } from '@/constants';
 import {
   RecruitHeader,
-  PlatformImage,
+  PlatformHero,
   Divider,
   BottomNavigation,
   NavigationHeader,
@@ -35,13 +35,14 @@ const Platform: NextPage<PlatformProps> = ({ platformName }) => {
     study: currentPlatformStudy,
     talent: currentPlatformTalent,
     interview: currentPlatformInterview,
+    hero: currentPlatformHero,
   } = platformMap[platformName];
 
   const otherPlatforms = platforms.filter(({ key }) => key !== platformName);
 
   return (
     <RecruitLayout>
-      <PlatformImage />
+      <PlatformHero color={currentPlatformHero.color} emojis={currentPlatformHero.emojis} />
       <RecruitHeader name={currentPlatformName} role={currentPlatformRole} />
       <RecruitContents>
         <PlatformInformation name={currentPlatformName}>

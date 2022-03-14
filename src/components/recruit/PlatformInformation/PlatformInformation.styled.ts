@@ -18,5 +18,15 @@ export const Heading = styled.h3`
 export const Paragraph = styled.p`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
+
+    width: 100%;
+
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      width: 60rem;
+    }
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      width: 100%;
+    }
   `}
 `;
