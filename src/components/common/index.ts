@@ -15,3 +15,4 @@ export { default as Accordion } from './Accordion/Accordion.component';
 export { default as MyPageTab } from './MyPageTab/MyPageTab.component';
 export { default as BulletedList } from './BulletedList/BulletedList.component';
 export { default as LoadingModal } from './LoadingModal/LoadingModal.component';
+export { default as Skeleton } from './Skeleton/Skeleton.component';
