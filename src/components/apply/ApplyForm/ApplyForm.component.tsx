@@ -408,7 +408,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                   isError={!!errors.department}
                   errorMessage={errors.department?.message}
                   id={APPLY_FORM_KEYS.department}
-                  placeholder="소속을 입력해주세요."
+                  placeholder="소속을 입력해주세요 ex) 회사, 학교, 취준생..."
                   label="소속"
                   required
                   disabled={isDetailPageAndSubmitted}
@@ -602,7 +602,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       {isOpenConfirmSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서를 제출하시겠어요?"
-          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고 부탁드립니다. 지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다."
+          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고 부탁드립니다. 지원 관련 문의는 채널톡으로 해주시면 됩니다."
           approvalButtonMessage="제출하기"
           cancelButtonMessage="취소"
           handleApprovalButton={handleSubmitApplication}
