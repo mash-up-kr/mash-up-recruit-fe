@@ -214,12 +214,15 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
   const handleSubmitApplication = async () => {
     if (session.status === 'unauthenticated') return;
 
-    const { userName, phone, isAgreePersonalInfo } = watch();
+    const { userName, phone, isAgreePersonalInfo, birthdate, department, residence } = watch();
 
     const applicationSubmitRequest = {
       applicantName: userName,
       phoneNumber: phone,
       privacyPolicyAgreed: isAgreePersonalInfo,
+      birthdate,
+      department,
+      residence,
       answers: questionsAndAnswers.map(({ question, answer }) => {
         const uniqueQuestionId = `question-${question.questionId}`;
 
@@ -345,8 +348,8 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               label="생년월일"
               required
               disabled={isDetailPageAndSubmitted}
-              isError={!!errors.birthDate}
-              errorMessage={errors.birthDate?.message}
+              isError={!!errors.birthdate}
+              errorMessage={errors.birthdate?.message}
               $size="md"
               onBlur={() => {
                 handleValidateForm(APPLY_FORM_KEYS.birthdate);
