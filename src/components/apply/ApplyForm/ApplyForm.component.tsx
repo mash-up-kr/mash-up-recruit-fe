@@ -408,7 +408,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                   isError={!!errors.department}
                   errorMessage={errors.department?.message}
                   id={APPLY_FORM_KEYS.department}
-                  placeholder="소속을 입력해주세요."
+                  placeholder="소속을 입력해주세요 ex) 회사, 학교, 취준생..."
                   label="소속"
                   required
                   disabled={isDetailPageAndSubmitted}
