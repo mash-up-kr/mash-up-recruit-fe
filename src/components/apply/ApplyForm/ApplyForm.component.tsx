@@ -155,7 +155,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
   const handleTempSaveApplication: MouseEventHandler<HTMLButtonElement> = async () => {
     if (session.status === 'unauthenticated') return;
 
-    const { userName, phone, isAgreePersonalInfo } = watch();
+    const { userName, phone, isAgreePersonalInfo, birthDate, department, residence } = watch();
 
     if (!(await trigger(APPLY_FORM_KEYS.userName))) {
       setFocus(APPLY_FORM_KEYS.userName);
@@ -176,6 +176,9 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       applicantName: userName,
       phoneNumber: phone,
       privacyPolicyAgreed: isAgreePersonalInfo,
+      birthDate,
+      department,
+      residence,
       answers: questionsAndAnswers.map(({ question, answer }) => {
         const uniqueQuestionId = `question-${question.questionId}`;
 
