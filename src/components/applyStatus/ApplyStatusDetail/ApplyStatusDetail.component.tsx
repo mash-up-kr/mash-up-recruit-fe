@@ -17,7 +17,7 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
 
   if (
     submittedApplication.result.status === 'SUBMITTED' &&
-    recruitingProgressStatus === 'AFTER-SCREENING-ANNOUNCED'
+    recruitingProgressStatus === 'IN-RECRUITING'
   )
     return (
       <Styled.StatusDetail>

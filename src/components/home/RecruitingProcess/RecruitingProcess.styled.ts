@@ -230,6 +230,7 @@ export const ListItem = styled.li`
 export const SubHeading = styled.h3`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold22};
+    letter-spacing: -0.08rem;
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.bold18};
     }
@@ -239,8 +240,24 @@ export const SubHeading = styled.h3`
 export const Date = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
+    letter-spacing: -0.08rem;
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.regular13};
+    }
+  `}
+`;
+
+export const Note = styled.span`
+  ${({ theme }) => css`
+    ${theme.fonts.kr.medium16};
+    margin-top: 0.2rem;
+    letter-spacing: -0.08rem;
+    opacity: 0.5;
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      ${theme.fonts.kr.regular13};
+    }
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      margin-top: 0;
     }
   `}
 `;

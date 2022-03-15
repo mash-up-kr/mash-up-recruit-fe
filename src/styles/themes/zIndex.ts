@@ -3,6 +3,7 @@ export const zIndex = {
   header: 5,
   modal: 10,
   dialog: 15,
+  toast: 20,
 };
 
 export type ZIndexType = typeof zIndex;

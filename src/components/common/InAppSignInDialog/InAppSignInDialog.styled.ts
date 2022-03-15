@@ -35,6 +35,7 @@ export const Heading = styled.h2`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.bold18};
+      letter-spacing: -0.09rem;
     }
   `}
 `;
@@ -50,6 +51,7 @@ export const Paragraph = styled.p`
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium14};
       margin-top: 0.8rem;
+      letter-spacing: -0.042rem;
     }
   `}
 `;
