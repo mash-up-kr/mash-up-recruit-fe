@@ -24,7 +24,7 @@ const RecruitingProcess = () => {
             <Styled.Note>오전 10시</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
-            <Styled.SubHeading>온라인 화상 면접</Styled.SubHeading>
+            <Styled.SubHeading>온/오프라인 면접</Styled.SubHeading>
             <Styled.Date>
               <time dateTime="2022-04-09">04.09(토)</time>&nbsp;~&nbsp;
               <time dateTime="2022-04-10">04.10(일)</time>
