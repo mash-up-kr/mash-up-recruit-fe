@@ -11,6 +11,7 @@ import { HOME_PAGE, MY_PAGE_APPLY_STATUS, PATH_NAME } from '@/constants';
 import { usePreventPageChange } from '@/hooks';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
+import { isValidDate } from '@/utils/validDateString';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import {
@@ -34,6 +35,9 @@ interface ApplyFormValues extends FieldValues {
   userName: string;
   email: string;
   phone: string;
+  birthDate: string;
+  residence: string;
+  department: string;
   isAgreePersonalInfo: boolean;
 }
 
@@ -41,6 +45,9 @@ const APPLY_FORM_KEYS = {
   userName: 'userName',
   email: 'email',
   phone: 'phone',
+  birthDate: 'birthDate',
+  residence: 'residence',
+  department: 'department',
   isAgreePersonalInfo: 'isAgreePersonalInfo',
 } as const;
 
@@ -122,6 +129,25 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
     setValue(APPLY_FORM_KEYS.phone, replacedPhoneNumber);
   };
 
+  const handleReplaceLocalDate: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
+    const onlyNumberReg = /[^0-9]/g;
+
+    if (onlyNumberReg.exec(currentTarget.value)) {
+      setValue(APPLY_FORM_KEYS.birthDate, currentTarget.value.replace(onlyNumberReg, ''));
+    }
+
+    const restNumber = currentTarget.value.slice(4);
+    const localDateArr = [
+      currentTarget.value.slice(0, 4),
+      restNumber.slice(0, 2),
+      restNumber.slice(2),
+    ];
+
+    const replacedLocalDate = localDateArr.filter((isEmptyStr) => isEmptyStr).join('-');
+
+    setValue(APPLY_FORM_KEYS.birthDate, replacedLocalDate);
+  };
+
   const handleValidateForm = (formKey: ValueOf<ApplyFormValues>) => {
     trigger(formKey);
   };
@@ -131,13 +157,18 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
 
     const { userName, phone, isAgreePersonalInfo } = watch();
 
-    if (!(await trigger('userName'))) {
-      setFocus('userName');
+    if (!(await trigger(APPLY_FORM_KEYS.userName))) {
+      setFocus(APPLY_FORM_KEYS.userName);
       return;
     }
 
-    if (!(await trigger('phone'))) {
-      setFocus('phone');
+    if (!(await trigger(APPLY_FORM_KEYS.phone))) {
+      setFocus(APPLY_FORM_KEYS.phone);
+      return;
+    }
+
+    if (!(await trigger(APPLY_FORM_KEYS.birthDate))) {
+      setFocus(APPLY_FORM_KEYS.birthDate);
       return;
     }
 
@@ -293,6 +324,94 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               $size="md"
               required
               type="email"
+            />
+          </Styled.PersonalInformationWrapper>
+
+          <Styled.PersonalInformationWrapper>
+            <LabeledInput
+              {...register(APPLY_FORM_KEYS.birthDate, {
+                required: '생년월일은 필수로 입력해야 해요!',
+                value: applicant.birthDate,
+                validate: (value) => isValidDate(value) || '생년월일 형식이 올바르지 않습니다.',
+              })}
+              maxLength={10}
+              type="text"
+              onChange={handleReplaceLocalDate}
+              id={APPLY_FORM_KEYS.birthDate}
+              placeholder="생년월일을 입력해주세요 ex) 2000-01-15"
+              label="생년월일"
+              required
+              disabled={isDetailPageAndSubmitted}
+              isError={!!errors.birthDate}
+              errorMessage={errors.birthDate?.message}
+              $size="md"
+              onBlur={() => {
+                handleValidateForm(APPLY_FORM_KEYS.birthDate);
+              }}
+            />
+          </Styled.PersonalInformationWrapper>
+
+          <Styled.PersonalInformationWrapper>
+            <Controller
+              name={APPLY_FORM_KEYS.residence}
+              control={control}
+              rules={{
+                required: '거주지역은 필수로 입력해야 해요!',
+                maxLength: 30,
+              }}
+              defaultValue={applicant.residence}
+              render={({ field }) => (
+                <LabeledInput
+                  {...field}
+                  onChange={({ target }) => {
+                    if (target.value.length > 30) return;
+                    field.onChange(target.value);
+                  }}
+                  isError={!!errors.residence}
+                  errorMessage={errors.residence?.message}
+                  id={APPLY_FORM_KEYS.residence}
+                  placeholder="거주지역을 입력해주세요 ex) 서울시 강남구"
+                  label="거주지역"
+                  required
+                  disabled={isDetailPageAndSubmitted}
+                  $size="md"
+                  onBlur={() => {
+                    handleValidateForm(APPLY_FORM_KEYS.residence);
+                  }}
+                />
+              )}
+            />
+          </Styled.PersonalInformationWrapper>
+
+          <Styled.PersonalInformationWrapper>
+            <Controller
+              name={APPLY_FORM_KEYS.department}
+              control={control}
+              rules={{
+                required: '소속은 필수로 입력해야 해요!',
+                maxLength: 50,
+              }}
+              defaultValue={applicant.department}
+              render={({ field }) => (
+                <LabeledInput
+                  {...field}
+                  onChange={({ target }) => {
+                    if (target.value.length > 50) return;
+                    field.onChange(target.value);
+                  }}
+                  isError={!!errors.department}
+                  errorMessage={errors.department?.message}
+                  id={APPLY_FORM_KEYS.department}
+                  placeholder="소속을 입력해주세요."
+                  label="소속"
+                  required
+                  disabled={isDetailPageAndSubmitted}
+                  $size="md"
+                  onBlur={() => {
+                    handleValidateForm(APPLY_FORM_KEYS.department);
+                  }}
+                />
+              )}
             />
           </Styled.PersonalInformationWrapper>
         </Styled.PersonalInformationSection>
