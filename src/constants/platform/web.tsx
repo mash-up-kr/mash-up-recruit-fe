@@ -92,7 +92,7 @@ const web = {
     },
     {
       id: 'web-question-2',
-      title: { emoji: '🥸', text: '세미나 진행은 어떻게 되나요?' },
+      title: { emoji: '⚡️', text: '세미나 진행은 어떻게 되나요?' },
       content: [
         {
           id: 'web-question-2-1',
@@ -132,7 +132,7 @@ const web = {
     },
     {
       id: 'web-question-4',
-      title: { text: '👀 리액트를 잘 몰라도 괜찮을까요?' },
+      title: { emoji: '👀', text: '리액트를 잘 몰라도 괜찮을까요?' },
       content: [
         {
           id: 'web-question-4-1',
@@ -147,7 +147,7 @@ const web = {
     },
     {
       id: 'web-question-5',
-      title: { emoji: '⚡️', text: '웹 팀은 어떤 사람들이 모여있나요?' },
+      title: { emoji: '🤼', text: '웹 팀은 어떤 사람들이 모여있나요?' },
       content: [
         {
           id: 'web-question-5-1',
