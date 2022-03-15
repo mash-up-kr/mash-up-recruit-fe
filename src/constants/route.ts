@@ -1,5 +1,8 @@
 import { teamUrls } from './team';
 
+export const NOT_FOUND_PAGE = '/not-found';
+export const ERROR_PAGE = '/error';
+
 export const HOME_PAGE = '/';
 export const RECRUIT_DETAILS_ID = 'recruit-details';
 

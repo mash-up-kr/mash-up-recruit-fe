@@ -4,9 +4,7 @@ name: 'Chromatic'
 # Event for the workflow
 on:
   push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
+    branches: [develop]
 
 # List of jobs
 jobs:

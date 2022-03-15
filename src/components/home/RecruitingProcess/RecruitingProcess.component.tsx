@@ -14,28 +14,32 @@ const RecruitingProcess = () => {
               <time dateTime="2022-03-16">03.16(수)</time>&nbsp;~&nbsp;
               <time dateTime="2022-03-29">03.29(화)</time>
             </Styled.Date>
+            <Styled.Note>23:59:59 마감</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>서류 결과 발표</Styled.SubHeading>
             <Styled.Date>
               <time dateTime="2022-04-02">04.02(토)</time>
             </Styled.Date>
+            <Styled.Note>오전 10시</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
-            <Styled.SubHeading>온라인 화상 면접</Styled.SubHeading>
+            <Styled.SubHeading>온/오프라인 면접</Styled.SubHeading>
             <Styled.Date>
               <time dateTime="2022-04-09">04.09(토)</time>&nbsp;~&nbsp;
               <time dateTime="2022-04-10">04.10(일)</time>
             </Styled.Date>
+            <Styled.Note>추후 연락</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>최종 합격 발표</Styled.SubHeading>
             <Styled.Date>
               <time dateTime="2022-04-12">04.12(화)</time>
             </Styled.Date>
+            <Styled.Note>오전 10시</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
-            <Styled.SubHeading>12기 합류</Styled.SubHeading>
+            <Styled.SubHeading>12기 OT</Styled.SubHeading>
             <Styled.Date>
               <time dateTime="2022-04-16">04.16(토)</time>
             </Styled.Date>

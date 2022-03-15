@@ -1,6 +1,6 @@
 import { applicantApiService } from '@/api/services';
 import { AccountLayout } from '@/components';
-import { HOME_PAGE } from '@/constants';
+import { ERROR_PAGE, HOME_PAGE } from '@/constants';
 import { Applicant } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
@@ -23,17 +23,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const response = await applicantApiService.getMyApplicantData({
-    accessToken: session.accessToken,
-  });
+  try {
+    const applicantRes = await applicantApiService.getMyApplicantData({
+      accessToken: session.accessToken,
+    });
 
-  if (response.code !== 'SUCCESS') {
+    const userInfo = applicantRes.data;
+
+    return { props: { userInfo } };
+  } catch (error) {
     return {
-      redirect: { destination: HOME_PAGE, permanent: false },
+      redirect: {
+        permanent: false,
+        destination: ERROR_PAGE,
+      },
     };
   }
-
-  const userInfo = response.data;
-
-  return { props: { userInfo } };
 };

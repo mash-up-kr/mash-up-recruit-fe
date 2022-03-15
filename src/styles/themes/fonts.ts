@@ -132,7 +132,7 @@ export const fonts = {
     `,
     extrabold32: css`
       font-weight: 800;
-      font-size: 3.2rem;
+      font-size: 3.201rem;
       font-family: Gilroy;
       line-height: normal;
     `,

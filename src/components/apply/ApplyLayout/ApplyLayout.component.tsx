@@ -1,4 +1,4 @@
-import { AlertModalDialog, ApplyForm } from '@/components';
+import { AlertModalDialog, ApplyForm, ConfirmModalDialog } from '@/components';
 import {
   APPLY_ANDROID_PAGE,
   APPLY_DESIGN_PAGE,
@@ -6,8 +6,10 @@ import {
   APPLY_IOS_PAGE,
   APPLY_NODE_PAGE,
   APPLY_SPRING_PAGE,
+  MY_PAGE_APPLY_STATUS,
 } from '@/constants';
 import { Application } from '@/types/dto';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import * as Styled from './ApplyLayout.styled';
 
@@ -43,6 +45,7 @@ const ApplyLayout = ({ heading, role, application, isSubmitted }: ApplyLayoutPro
   const [isOpenTempSavedModal, setIsOpenTempSavedModal] = useState(
     application.status === 'WRITING',
   );
+  const router = useRouter();
   return (
     <>
       <Styled.Layout>
@@ -54,11 +57,16 @@ const ApplyLayout = ({ heading, role, application, isSubmitted }: ApplyLayoutPro
         </section>
       </Styled.Layout>
       {isOpenAlreadySubmittedModal && (
-        <AlertModalDialog
-          heading="이미 제출한 지원서가 존재합니다."
-          paragraph="이미 한 번 지원서를 제출하셨다면 이제 또 다른 지원서는 제출하지 못합니다."
+        <ConfirmModalDialog
+          heading="제출한 지원서가 있어서 구경만 가능해요!"
+          paragraph="중복 지원은 불가해서 추가적인 지원서 제출은 불가해요. 팀 지원서들은 전부 구경 가능하답니다."
+          approvalButtonMessage="확인"
+          cancelButtonMessage="지원현황으로 갈래요"
           setIsOpenModal={setIsOpenAlreadySubmittedModal}
           handleApprovalButton={() => setIsOpenAlreadySubmittedModal(false)}
+          handleCancelButton={() => router.push(MY_PAGE_APPLY_STATUS)}
+          deemClose={false}
+          escClose={false}
         />
       )}
       {isOpenTempSavedModal && !isSubmitted && (
