@@ -137,15 +137,15 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
     }
 
     const restNumber = currentTarget.value.slice(4);
-    const phoneNumberArr = [
+    const localDateArr = [
       currentTarget.value.slice(0, 4),
       restNumber.slice(0, 2),
       restNumber.slice(2),
     ];
 
-    const replacedPhoneNumber = phoneNumberArr.filter((isEmptyStr) => isEmptyStr).join('-');
+    const replacedLocalDate = localDateArr.filter((isEmptyStr) => isEmptyStr).join('-');
 
-    setValue(APPLY_FORM_KEYS.birthDate, replacedPhoneNumber);
+    setValue(APPLY_FORM_KEYS.birthDate, replacedLocalDate);
   };
 
   const handleValidateForm = (formKey: ValueOf<ApplyFormValues>) => {
