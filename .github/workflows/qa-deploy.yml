@@ -32,6 +32,7 @@ jobs:
           echo "DESTINATION_URL=$DESTINATION_URL" >> .env.local
           echo "SOURCE_PATH=$SOURCE_PATH" >> .env.local
           echo "NEXT_PUBLIC_CHANNEL_PLUGIN=$NEXT_PUBLIC_CHANNEL_PLUGIN" >> .env.local
+          echo "NEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS" >> .env.local
         env:
           ANALYZE: ${{ secrets.ANALYZE }}
           BASE_URL: ${{ secrets.BASE_URL }}
@@ -42,6 +43,7 @@ jobs:
           DESTINATION_URL: ${{ secrets.DESTINATION_URL }}
           SOURCE_PATH: ${{ secrets.SOURCE_PATH }}
           NEXT_PUBLIC_CHANNEL_PLUGIN: ${{ secrets.NEXT_PUBLIC_CHANNEL_PLUGIN }}
+          NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS }}
 
       - name: Install dependencies
         run: yarn install

@@ -11,6 +11,7 @@ import { HOME_PAGE, MY_PAGE_APPLY_STATUS, PATH_NAME } from '@/constants';
 import { usePreventPageChange } from '@/hooks';
 import { ValueOf } from '@/types';
 import { Application } from '@/types/dto';
+import { isValidDate } from '@/utils/validDateString';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import {
@@ -34,6 +35,9 @@ interface ApplyFormValues extends FieldValues {
   userName: string;
   email: string;
   phone: string;
+  birthdate: string;
+  residence: string;
+  department: string;
   isAgreePersonalInfo: boolean;
 }
 
@@ -41,6 +45,9 @@ const APPLY_FORM_KEYS = {
   userName: 'userName',
   email: 'email',
   phone: 'phone',
+  birthdate: 'birthdate',
+  residence: 'residence',
+  department: 'department',
   isAgreePersonalInfo: 'isAgreePersonalInfo',
 } as const;
 
@@ -122,6 +129,25 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
     setValue(APPLY_FORM_KEYS.phone, replacedPhoneNumber);
   };
 
+  const handleReplaceLocalDate: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
+    const onlyNumberReg = /[^0-9]/g;
+
+    if (onlyNumberReg.exec(currentTarget.value)) {
+      setValue(APPLY_FORM_KEYS.birthdate, currentTarget.value.replace(onlyNumberReg, ''));
+    }
+
+    const restNumber = currentTarget.value.slice(4);
+    const localDateArr = [
+      currentTarget.value.slice(0, 4),
+      restNumber.slice(0, 2),
+      restNumber.slice(2),
+    ];
+
+    const replacedLocalDate = localDateArr.filter((isEmptyStr) => isEmptyStr).join('-');
+
+    setValue(APPLY_FORM_KEYS.birthdate, replacedLocalDate);
+  };
+
   const handleValidateForm = (formKey: ValueOf<ApplyFormValues>) => {
     trigger(formKey);
   };
@@ -129,15 +155,20 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
   const handleTempSaveApplication: MouseEventHandler<HTMLButtonElement> = async () => {
     if (session.status === 'unauthenticated') return;
 
-    const { userName, phone, isAgreePersonalInfo } = watch();
+    const { userName, phone, isAgreePersonalInfo, birthdate, department, residence } = watch();
 
-    if (!(await trigger('userName'))) {
-      setFocus('userName');
+    if (!(await trigger(APPLY_FORM_KEYS.userName))) {
+      setFocus(APPLY_FORM_KEYS.userName);
       return;
     }
 
-    if (!(await trigger('phone'))) {
-      setFocus('phone');
+    if (!(await trigger(APPLY_FORM_KEYS.phone))) {
+      setFocus(APPLY_FORM_KEYS.phone);
+      return;
+    }
+
+    if (!(await trigger(APPLY_FORM_KEYS.birthdate))) {
+      setFocus(APPLY_FORM_KEYS.birthdate);
       return;
     }
 
@@ -145,6 +176,9 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       applicantName: userName,
       phoneNumber: phone,
       privacyPolicyAgreed: isAgreePersonalInfo,
+      birthdate,
+      department,
+      residence,
       answers: questionsAndAnswers.map(({ question, answer }) => {
         const uniqueQuestionId = `question-${question.questionId}`;
 
@@ -180,12 +214,15 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
   const handleSubmitApplication = async () => {
     if (session.status === 'unauthenticated') return;
 
-    const { userName, phone, isAgreePersonalInfo } = watch();
+    const { userName, phone, isAgreePersonalInfo, birthdate, department, residence } = watch();
 
     const applicationSubmitRequest = {
       applicantName: userName,
       phoneNumber: phone,
       privacyPolicyAgreed: isAgreePersonalInfo,
+      birthdate,
+      department,
+      residence,
       answers: questionsAndAnswers.map(({ question, answer }) => {
         const uniqueQuestionId = `question-${question.questionId}`;
 
@@ -293,6 +330,94 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               $size="md"
               required
               type="email"
+            />
+          </Styled.PersonalInformationWrapper>
+
+          <Styled.PersonalInformationWrapper>
+            <LabeledInput
+              {...register(APPLY_FORM_KEYS.birthdate, {
+                required: '생년월일은 필수로 입력해야 해요!',
+                value: applicant.birthdate,
+                validate: (value) => isValidDate(value) || '생년월일 형식이 올바르지 않습니다.',
+              })}
+              maxLength={10}
+              type="text"
+              onChange={handleReplaceLocalDate}
+              id={APPLY_FORM_KEYS.birthdate}
+              placeholder="생년월일을 입력해주세요 ex) 2000-01-15"
+              label="생년월일"
+              required
+              disabled={isDetailPageAndSubmitted}
+              isError={!!errors.birthdate}
+              errorMessage={errors.birthdate?.message}
+              $size="md"
+              onBlur={() => {
+                handleValidateForm(APPLY_FORM_KEYS.birthdate);
+              }}
+            />
+          </Styled.PersonalInformationWrapper>
+
+          <Styled.PersonalInformationWrapper>
+            <Controller
+              name={APPLY_FORM_KEYS.residence}
+              control={control}
+              rules={{
+                required: '거주지역은 필수로 입력해야 해요!',
+                maxLength: 30,
+              }}
+              defaultValue={applicant.residence}
+              render={({ field }) => (
+                <LabeledInput
+                  {...field}
+                  onChange={({ target }) => {
+                    if (target.value.length > 30) return;
+                    field.onChange(target.value);
+                  }}
+                  isError={!!errors.residence}
+                  errorMessage={errors.residence?.message}
+                  id={APPLY_FORM_KEYS.residence}
+                  placeholder="거주지역을 입력해주세요 ex) 서울시 강남구"
+                  label="거주지역"
+                  required
+                  disabled={isDetailPageAndSubmitted}
+                  $size="md"
+                  onBlur={() => {
+                    handleValidateForm(APPLY_FORM_KEYS.residence);
+                  }}
+                />
+              )}
+            />
+          </Styled.PersonalInformationWrapper>
+
+          <Styled.PersonalInformationWrapper>
+            <Controller
+              name={APPLY_FORM_KEYS.department}
+              control={control}
+              rules={{
+                required: '소속은 필수로 입력해야 해요!',
+                maxLength: 50,
+              }}
+              defaultValue={applicant.department}
+              render={({ field }) => (
+                <LabeledInput
+                  {...field}
+                  onChange={({ target }) => {
+                    if (target.value.length > 50) return;
+                    field.onChange(target.value);
+                  }}
+                  isError={!!errors.department}
+                  errorMessage={errors.department?.message}
+                  id={APPLY_FORM_KEYS.department}
+                  placeholder="소속을 입력해주세요 ex) 회사, 학교, 취준생..."
+                  label="소속"
+                  required
+                  disabled={isDetailPageAndSubmitted}
+                  $size="md"
+                  onBlur={() => {
+                    handleValidateForm(APPLY_FORM_KEYS.department);
+                  }}
+                />
+              )}
             />
           </Styled.PersonalInformationWrapper>
         </Styled.PersonalInformationSection>
@@ -477,7 +602,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       {isOpenConfirmSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서를 제출하시겠어요?"
-          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고 부탁드립니다. 지원 관련 문의는 recruit.mashup@gmail.com으로 해주시면 됩니다."
+          paragraph="제출하시면 더 이상 지원서를 수정하거나 삭제할 수 없으며, 중복 지원은 불가한 점 참고 부탁드립니다. 지원 관련 문의는 채널톡으로 해주시면 됩니다."
           approvalButtonMessage="제출하기"
           cancelButtonMessage="취소"
           handleApprovalButton={handleSubmitApplication}

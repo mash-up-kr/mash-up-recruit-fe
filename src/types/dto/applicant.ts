@@ -5,6 +5,9 @@ export interface Applicant {
   email: string;
   name: string;
   phoneNumber: string;
+  birthdate: string;
+  residence: string;
+  department: string;
   status: 'ACTIVE' | 'WITHDRAWAL';
 }
 

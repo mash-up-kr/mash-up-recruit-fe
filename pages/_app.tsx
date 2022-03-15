@@ -6,10 +6,12 @@ import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { HOME_PAGE } from '@/constants';
+import { useGoogleAnalytics } from '@/hooks';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isRouteChange, setIsRouteChange] = useState(false);
   const router = useRouter();
+  const GoogleAnalyticsScripts = useGoogleAnalytics();
 
   useEffect(() => {
     const handleShowLoadingSpinner = () => setIsRouteChange(true);
@@ -28,6 +30,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
+      <GoogleAnalyticsScripts />
       <GlobalSEO />
       <Global
         styles={css`
