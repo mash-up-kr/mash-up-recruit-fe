@@ -73,7 +73,7 @@ const web = {
   questions: [
     {
       id: 'web-question-1',
-      title: { text: '🥰 웹팀은 주로 어떤 활동을 하나요?' },
+      title: { emoji: '🥰', text: '웹팀은 주로 어떤 활동을 하나요?' },
       content: [
         {
           id: 'web-question-1-1',
@@ -92,7 +92,7 @@ const web = {
     },
     {
       id: 'web-question-2',
-      title: { text: '🥸 세미나 진행은 어떻게 되나요?' },
+      title: { emoji: '🥸', text: '세미나 진행은 어떻게 되나요?' },
       content: [
         {
           id: 'web-question-2-1',
@@ -117,7 +117,7 @@ const web = {
     },
     {
       id: 'web-question-3',
-      title: { text: '🔥 스터디 진행은 어떻게 되나요?' },
+      title: { emoji: '⚡️', text: '스터디 진행은 어떻게 되나요?' },
       content: [
         {
           id: 'web-question-3-1',
@@ -147,7 +147,7 @@ const web = {
     },
     {
       id: 'web-question-5',
-      title: { text: '🤼 웹 팀은 어떤 사람들이 모여있나요?' },
+      title: { emoji: '🤼', text: '웹 팀은 어떤 사람들이 모여있나요?' },
       content: [
         {
           id: 'web-question-5-1',
@@ -172,7 +172,7 @@ const web = {
     },
     {
       id: 'web-question-6',
-      title: { text: '🍺 웹 팀의 목표는 무엇인가요?' },
+      title: { emoji: '🍺', text: '웹 팀의 목표는 무엇인가요?' },
       content: [
         {
           id: 'web-question-6-1',
