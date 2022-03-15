@@ -35,7 +35,7 @@ interface ApplyFormValues extends FieldValues {
   userName: string;
   email: string;
   phone: string;
-  birthDate: string;
+  birthdate: string;
   residence: string;
   department: string;
   isAgreePersonalInfo: boolean;
@@ -45,7 +45,7 @@ const APPLY_FORM_KEYS = {
   userName: 'userName',
   email: 'email',
   phone: 'phone',
-  birthDate: 'birthDate',
+  birthdate: 'birthdate',
   residence: 'residence',
   department: 'department',
   isAgreePersonalInfo: 'isAgreePersonalInfo',
@@ -133,7 +133,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
     const onlyNumberReg = /[^0-9]/g;
 
     if (onlyNumberReg.exec(currentTarget.value)) {
-      setValue(APPLY_FORM_KEYS.birthDate, currentTarget.value.replace(onlyNumberReg, ''));
+      setValue(APPLY_FORM_KEYS.birthdate, currentTarget.value.replace(onlyNumberReg, ''));
     }
 
     const restNumber = currentTarget.value.slice(4);
@@ -145,7 +145,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
 
     const replacedLocalDate = localDateArr.filter((isEmptyStr) => isEmptyStr).join('-');
 
-    setValue(APPLY_FORM_KEYS.birthDate, replacedLocalDate);
+    setValue(APPLY_FORM_KEYS.birthdate, replacedLocalDate);
   };
 
   const handleValidateForm = (formKey: ValueOf<ApplyFormValues>) => {
@@ -155,7 +155,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
   const handleTempSaveApplication: MouseEventHandler<HTMLButtonElement> = async () => {
     if (session.status === 'unauthenticated') return;
 
-    const { userName, phone, isAgreePersonalInfo, birthDate, department, residence } = watch();
+    const { userName, phone, isAgreePersonalInfo, birthdate, department, residence } = watch();
 
     if (!(await trigger(APPLY_FORM_KEYS.userName))) {
       setFocus(APPLY_FORM_KEYS.userName);
@@ -167,8 +167,8 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       return;
     }
 
-    if (!(await trigger(APPLY_FORM_KEYS.birthDate))) {
-      setFocus(APPLY_FORM_KEYS.birthDate);
+    if (!(await trigger(APPLY_FORM_KEYS.birthdate))) {
+      setFocus(APPLY_FORM_KEYS.birthdate);
       return;
     }
 
@@ -176,7 +176,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       applicantName: userName,
       phoneNumber: phone,
       privacyPolicyAgreed: isAgreePersonalInfo,
-      birthDate,
+      birthdate,
       department,
       residence,
       answers: questionsAndAnswers.map(({ question, answer }) => {
@@ -332,15 +332,15 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
 
           <Styled.PersonalInformationWrapper>
             <LabeledInput
-              {...register(APPLY_FORM_KEYS.birthDate, {
+              {...register(APPLY_FORM_KEYS.birthdate, {
                 required: '생년월일은 필수로 입력해야 해요!',
-                value: applicant.birthDate,
+                value: applicant.birthdate,
                 validate: (value) => isValidDate(value) || '생년월일 형식이 올바르지 않습니다.',
               })}
               maxLength={10}
               type="text"
               onChange={handleReplaceLocalDate}
-              id={APPLY_FORM_KEYS.birthDate}
+              id={APPLY_FORM_KEYS.birthdate}
               placeholder="생년월일을 입력해주세요 ex) 2000-01-15"
               label="생년월일"
               required
@@ -349,7 +349,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               errorMessage={errors.birthDate?.message}
               $size="md"
               onBlur={() => {
-                handleValidateForm(APPLY_FORM_KEYS.birthDate);
+                handleValidateForm(APPLY_FORM_KEYS.birthdate);
               }}
             />
           </Styled.PersonalInformationWrapper>
