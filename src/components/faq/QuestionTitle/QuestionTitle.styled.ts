@@ -14,7 +14,10 @@ export const Title = styled.span<TitleProps>`
     ${emoji &&
     css`
       &:before {
-        margin-right: 0.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.4rem;
         content: '${emoji}';
       }
     `}
