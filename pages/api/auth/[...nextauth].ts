@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { applicantApiService } from '@/api/services';
+import { ERROR_PAGE } from '@/constants';
 
 export default NextAuth({
   providers: [
@@ -9,6 +10,9 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
+  pages: {
+    error: ERROR_PAGE,
+  },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, token }) {
