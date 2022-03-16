@@ -144,11 +144,3 @@ export const SignOutButton = styled.button`
     }
   `}
 `;
-
-export const UserAgent = styled.div`
-  ${({ theme }) => css`
-    ${theme.fonts.en.extrabold18};
-    margin-top: 2rem;
-    margin-bottom: 10rem;
-  `}
-`;
