@@ -10,6 +10,10 @@ export const getInAppBrowser = (navigator: Navigator) => {
       return 'NAVER';
     case /\[FB/i.test(ua):
       return 'FACEBOOK';
+    case /campuspickApp/i.test(ua):
+      return 'CAMPUS_PICK';
+    case /everytimeApp/i.test(ua):
+      return 'EVERY_TIME';
     default:
       return null;
   }
@@ -22,7 +26,7 @@ const getUserAgentBrowser = (navigator: Navigator) => {
   const android = /(android)/i.test(ua);
 
   switch (true) {
-    case /NAVER|KAKAO|Instagram|\[FB/i.test(ua):
+    case /NAVER|KAKAO|Instagram|\[FB|campuspickApp|everytimeApp/i.test(ua):
       return 'IN-APP';
     case /CriOS/.test(ua):
       return 'Chrome for iOS';
