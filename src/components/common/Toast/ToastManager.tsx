@@ -10,7 +10,7 @@ import {
   ToastContainer,
 } from './Toast.component';
 
-type CreateToastOptions = Partial<Pick<ToastOptions, 'duration' | 'position' | 'id'>>;
+type CreateToastOptions = Partial<Pick<ToastOptions, 'duration' | 'position' | 'id' | 'persist'>>;
 
 export interface ToastMethods {
   // eslint-disable-next-line no-unused-vars
@@ -95,6 +95,7 @@ export class ToastManager extends Component<ToastManagerProps, ToastState> {
       message,
       position,
       duration: options.duration,
+      persist: options.persist,
       onRequestRemove: () => this.removeToast(id, position),
       requestClose: false,
     };
