@@ -93,9 +93,18 @@ export const SubmittedCompletedButton = styled.button`
 export const BackToListLink = styled(LinkTo)`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
-    display: inline-flex;
-    align-items: center;
-    margin-top: 4rem;
+    display: inline-block;
+    margin-top: 3.2rem;
+    padding: 0.8rem 1.2rem 0.6rem 0.2rem;
+    border-radius: 0.8rem;
+
+    & > span {
+      vertical-align: middle;
+    }
+
+    &:hover {
+      background: ${theme.colors.gray10};
+    }
   `}
 `;
 
