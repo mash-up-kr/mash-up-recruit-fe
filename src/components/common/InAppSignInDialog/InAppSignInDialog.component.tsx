@@ -23,8 +23,11 @@ const InAppSignInDialog = ({ handleSuccessCopy, handleCloseButton }: InAppSignIn
   const toast = useToast();
   const { copy } = useCopyToClipboard(TARGET_URL, {
     onSuccess: () => {
-      toast({ text: '링크 복사 완료!' });
+      toast({ text: '링크 복사 완료!', status: 'success' });
       handleSuccessCopy();
+    },
+    onError: () => {
+      toast({ text: '링크 복사 실패. 다시 시도해주세요!', status: 'error' });
     },
   });
 
