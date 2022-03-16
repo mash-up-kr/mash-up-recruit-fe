@@ -4,11 +4,13 @@ import * as Styled from './InAppSignInDialog.styled';
 
 const TARGET_URL = 'https://recruit.mash-up.kr';
 
-const browserNameMap = {
+const browserNameMap: Record<InAppBrowser, string> = {
   KAKAO: '카카오톡',
   FACEBOOK: '페이스북',
   INSTAGRAM: '인스타그램',
   NAVER: '네이버',
+  CAMPUS_PICK: '캠퍼스픽',
+  EVERY_TIME: '에브리타임',
 } as const;
 
 export interface InAppSignInDialogProps {
