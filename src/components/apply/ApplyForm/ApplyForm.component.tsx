@@ -566,7 +566,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           )}
           <Styled.BackToListLink href={`/recruit/${application.team.name.toLowerCase()}`}>
             <Styled.ChevronLeft />
-            목록으로 돌아가기
+            <span>목록으로 돌아가기</span>
           </Styled.BackToListLink>
         </Styled.ControlSection>
       </form>
