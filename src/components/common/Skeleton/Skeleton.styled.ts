@@ -7,10 +7,11 @@ interface SkeletonProps {
   borderRadius?: number;
   color: string;
   isLoading: boolean;
+  isAnimation: boolean;
 }
 
 export const Skeleton = styled.div<SkeletonProps>`
-  ${({ width, height, borderRadius, color, isLoading }) => css`
+  ${({ width, height, borderRadius, color, isLoading, isAnimation }) => css`
     @keyframes fade {
       from {
         opacity: 1;
@@ -28,7 +29,7 @@ export const Skeleton = styled.div<SkeletonProps>`
     height: ${height};
     background: ${color};
     border-radius: ${borderRadius ?? '1rem'};
-    animation: 0.6s linear infinite fade;
+    animation: ${isAnimation ? '0.6s' : 0} linear infinite fade;
 
     & * {
       opacity: ${isLoading ? 0 : 1};
