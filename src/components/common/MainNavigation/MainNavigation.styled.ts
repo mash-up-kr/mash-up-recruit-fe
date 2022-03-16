@@ -1,6 +1,7 @@
 import { HOME_PAGE } from '@/constants';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import Skeleton from '@/components/common/Skeleton/Skeleton.component';
 
 export const Nav = styled.nav`
   position: relative;
@@ -48,15 +49,14 @@ export const NavList = styled.ul<NavListProps>`
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       & > li {
         ${theme.fonts.kr.medium15};
-
+        display: flex;
+        align-items: center;
         margin: 0 1rem;
 
         &:first-of-type {
           margin-left: 0;
         }
         &:nth-of-type(2) {
-          display: flex;
-          align-items: center;
           margin-right: 0;
           svg {
             margin-left: 2rem;
@@ -140,6 +140,18 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
       & > span {
         margin-right: 0.4rem;
       }
+    }
+  `}
+`;
+
+export const ListItemSkeleton = styled(Skeleton)`
+  ${({ theme }) => css`
+    width: 10rem;
+    height: 2.7rem;
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      width: 7.2rem;
+      height: 1.8rem;
     }
   `}
 `;

@@ -1,5 +1,5 @@
 import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID } from '@/constants';
-import { LinkTo, SignInModal, MyPageTab, Skeleton } from '@/components';
+import { LinkTo, SignInModal, MyPageTab } from '@/components';
 import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useDetectOutsideClick } from '@/hooks';
 import Router, { useRouter } from 'next/router';
@@ -13,7 +13,6 @@ const MainNavigation = () => {
   const { pathname: currentPage } = useRouter();
 
   const isSessionLoading = session.status === 'loading';
-  const skeletonColor = currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20;
 
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
   const [isOpenMyPageTab, setIsOpenMyPageTab] = useState(false);
@@ -48,22 +47,26 @@ const MainNavigation = () => {
       <Styled.Nav>
         <Styled.NavList currentPage={currentPage} isSessionLoading={isSessionLoading}>
           <li>
-            <Skeleton color={skeletonColor} width="10rem" isLoading={isSessionLoading}>
+            <Styled.ListItemSkeleton
+              color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
+              isLoading={isSessionLoading}
+            >
               <LinkTo href={`${HOME_PAGE}#${RECRUIT_DETAILS_ID}`}>모집 공고</LinkTo>
-            </Skeleton>
+            </Styled.ListItemSkeleton>
           </li>
           <li>
-            <Skeleton
-              color={skeletonColor}
-              width="10rem"
-              height="2.7rem"
+            <Styled.ListItemSkeleton
+              color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
               isLoading={isSessionLoading}
             >
               <LinkTo href={FAQ_COMMON_PAGE}>자주 묻는 질문</LinkTo>
-            </Skeleton>
+            </Styled.ListItemSkeleton>
           </li>
           <li>
-            <Skeleton color={skeletonColor} width="10rem" isLoading={isSessionLoading}>
+            <Styled.ListItemSkeleton
+              color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
+              isLoading={isSessionLoading}
+            >
               {session.status === 'authenticated' ? (
                 <div ref={MyPageTabWrapper}>
                   <Styled.MyPageButton
@@ -90,7 +93,7 @@ const MainNavigation = () => {
                   로그인
                 </Styled.SignInButton>
               )}
-            </Skeleton>
+            </Styled.ListItemSkeleton>
           </li>
         </Styled.NavList>
       </Styled.Nav>
