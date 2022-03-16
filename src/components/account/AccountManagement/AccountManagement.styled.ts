@@ -51,7 +51,14 @@ export const InfoList = styled.ul`
 `;
 
 export const InfoListItem = styled.li`
-  width: 100%;
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+
+    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+      display: block;
+    }
+  `}
 `;
 
 export const ItemHeading = styled.span`
@@ -135,5 +142,13 @@ export const SignOutButton = styled.button`
       margin-top: 6rem;
       margin-left: 0;
     }
+  `}
+`;
+
+export const UserAgent = styled.div`
+  ${({ theme }) => css`
+    ${theme.fonts.en.extrabold18};
+    margin-top: 2rem;
+    margin-bottom: 10rem;
   `}
 `;

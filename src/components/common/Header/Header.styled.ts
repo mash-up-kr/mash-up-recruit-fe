@@ -1,6 +1,7 @@
 import { HOME_PAGE } from '@/constants';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import MashUpLogo33 from '@/assets/svg/mash-up-logo-33.svg';
 
 interface HeaderProps {
   currentPage: string;
@@ -54,6 +55,15 @@ export const Heading = styled.h1<HeadingProps>`
       span {
         ${theme.a11y.visuallyHidden}
       }
+    }
+  `}
+`;
+
+export const MashUpLogo = styled(MashUpLogo33)`
+  ${({ theme }) => css`
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      width: 1.9rem;
+      height: 1.9rem;
     }
   `}
 `;
