@@ -8,6 +8,8 @@ interface SkeletonProps {
   color: string;
   isLoading: boolean;
   children?: ReactNode;
+  className?: string;
+  isAnimation?: boolean;
 }
 
 const Skeleton = ({
@@ -17,6 +19,8 @@ const Skeleton = ({
   color,
   isLoading,
   children,
+  className = '',
+  isAnimation = false,
 }: SkeletonProps) => {
   if (!children)
     return isLoading ? (
@@ -26,6 +30,8 @@ const Skeleton = ({
         borderRadius={borderRadius}
         isLoading={isLoading}
         color={color}
+        className={className}
+        isAnimation={isAnimation}
       />
     ) : null;
 
@@ -36,6 +42,8 @@ const Skeleton = ({
       borderRadius={borderRadius}
       isLoading={isLoading}
       color={color}
+      className={className}
+      isAnimation={isAnimation}
     >
       {children}
     </Styled.Skeleton>
