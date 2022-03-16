@@ -19,10 +19,7 @@ const SignInModal = ({ beforeRef, setIsOpenModal, type, callbackUrl }: SignInMod
   return (
     <Modal beforeRef={beforeRef} setIsOpenModal={setIsOpenModal}>
       {isInAppBrowser ? (
-        <InAppSignInDialog
-          handleSuccessCopy={handleCloseModal}
-          handleCloseButton={handleCloseModal}
-        />
+        <InAppSignInDialog handleCloseDialog={handleCloseModal} />
       ) : (
         <SignInDialog type={type} handleCloseButton={handleCloseModal} callbackUrl={callbackUrl} />
       )}
