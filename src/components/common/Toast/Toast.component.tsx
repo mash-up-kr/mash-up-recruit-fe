@@ -27,6 +27,7 @@ export interface ToastOptions {
   position: ToastPosition;
   requestClose?: boolean;
   status: Status;
+  persist?: boolean;
 }
 
 export type ToastState = Record<ToastPosition, ToastOptions[]>;
@@ -39,16 +40,22 @@ export const ToastContainer = ({
   onRequestRemove,
   requestClose = false,
   duration,
+  persist,
 }: ToastContainerProps) => {
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      onRequestRemove();
-    }, duration);
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    if (!persist) {
+      timeoutId = setTimeout(() => {
+        onRequestRemove();
+      }, duration);
+    }
 
     return () => {
-      clearTimeout(timerId);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
-  }, [duration, onRequestRemove]);
+  }, [duration, onRequestRemove, persist]);
 
   useEffect(() => {
     if (requestClose) {
@@ -62,15 +69,15 @@ export const ToastContainer = ({
 interface ToastProps
   extends RenderProps,
     Partial<Pick<ToastOptions, 'duration' | 'position' | 'status'>> {
-  text?: string;
+  content?: ReactNode;
 }
 
-const Toast = ({ text, onClose, status = 'success' }: ToastProps) => {
+const Toast = ({ content, onClose, status = 'success' }: ToastProps) => {
   return (
     <Styled.Toast status={status}>
       <Styled.Contents>
         <Styled.Badge>{status === 'success' ? <SuccessBadge /> : <ErrorBadge />}</Styled.Badge>
-        <Styled.Text>{text}</Styled.Text>
+        <Styled.Text>{content}</Styled.Text>
       </Styled.Contents>
       <Styled.CloseButton onClick={onClose}>
         {status === 'success' ? <SuccessClose /> : <ErrorClose />}
