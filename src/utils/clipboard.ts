@@ -32,8 +32,5 @@ const copyExecCommand = (text: string) => {
 };
 
 export const copyToClipboard = async (text: string) => {
-  if (!navigator.clipboard) {
-    return copyExecCommand(text);
-  }
-  return navigator.clipboard.writeText(text);
+  return copyExecCommand(text);
 };
