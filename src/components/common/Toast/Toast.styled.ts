@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Status } from './Toast.component';
 
 export const ToastContainer = styled.li`
   display: flex;
@@ -7,8 +8,12 @@ export const ToastContainer = styled.li`
   align-items: center;
 `;
 
-export const Toast = styled.div`
-  ${({ theme }) => css`
+interface StyledToastProps {
+  status: Status;
+}
+
+export const Toast = styled.div<StyledToastProps>`
+  ${({ theme, status }) => css`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,8 +21,8 @@ export const Toast = styled.div`
     height: 6.4rem;
     margin: 2rem 0;
     padding: 1.6rem;
-    background: ${theme.colors.purple10};
-    border: 0.1rem solid ${theme.colors.purple40};
+    background: ${status === 'success' ? theme.colors.purple10 : theme.colors.red10};
+    border: 0.1rem solid ${status === 'success' ? theme.colors.purple40 : theme.colors.red40};
     border-radius: 1.6rem;
     box-shadow: 0px 4px 20px rgba(33, 37, 41, 0.15);
     pointer-events: auto;

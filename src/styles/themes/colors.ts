@@ -18,9 +18,11 @@ export const colors = {
   purple40: '#C2B6FF',
   purple20: '#E8E4FF',
   purple10: '#F1EFFF',
+  red10: '#FFEFF2',
+  red20: '#FFE2E7',
+  red40: '#FFC4CF',
   red50: '#F35D78',
   red70: '#FC4162',
-  red20: '#FFE2E7',
 } as const;
 
 export type ColorType = typeof colors;

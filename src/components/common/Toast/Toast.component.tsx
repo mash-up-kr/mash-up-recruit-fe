@@ -1,6 +1,8 @@
 import { ReactNode, useEffect } from 'react';
-import Success from '@/assets/svg/success.svg';
-import Close from '@/assets/svg/close.svg';
+import SuccessBadge from '@/assets/svg/success-badge.svg';
+import ErrorBadge from '@/assets/svg/error-badge.svg';
+import SuccessClose from '@/assets/svg/success-close.svg';
+import ErrorClose from '@/assets/svg/error-close.svg';
 import * as Styled from './Toast.styled';
 
 export type ToastId = string;
@@ -15,6 +17,8 @@ export type ToastMessage = (props: RenderProps) => ReactNode;
 
 export type ToastPosition = 'top' | 'bottom';
 
+export type Status = 'success' | 'error';
+
 export interface ToastOptions {
   message: ToastMessage;
   id: ToastId;
@@ -22,6 +26,7 @@ export interface ToastOptions {
   onRequestRemove: () => void;
   position: ToastPosition;
   requestClose?: boolean;
+  status: Status;
 }
 
 export type ToastState = Record<ToastPosition, ToastOptions[]>;
@@ -54,21 +59,21 @@ export const ToastContainer = ({
   return <Styled.ToastContainer>{message({ id, onClose: onRequestRemove })}</Styled.ToastContainer>;
 };
 
-interface ToastProps extends RenderProps, Partial<Pick<ToastOptions, 'duration' | 'position'>> {
+interface ToastProps
+  extends RenderProps,
+    Partial<Pick<ToastOptions, 'duration' | 'position' | 'status'>> {
   text?: string;
 }
 
-const Toast = ({ text, onClose }: ToastProps) => {
+const Toast = ({ text, onClose, status = 'success' }: ToastProps) => {
   return (
-    <Styled.Toast>
+    <Styled.Toast status={status}>
       <Styled.Contents>
-        <Styled.Badge>
-          <Success />
-        </Styled.Badge>
+        <Styled.Badge>{status === 'success' ? <SuccessBadge /> : <ErrorBadge />}</Styled.Badge>
         <Styled.Text>{text}</Styled.Text>
       </Styled.Contents>
       <Styled.CloseButton onClick={onClose}>
-        <Close />
+        {status === 'success' ? <SuccessClose /> : <ErrorClose />}
       </Styled.CloseButton>
     </Styled.Toast>
   );
