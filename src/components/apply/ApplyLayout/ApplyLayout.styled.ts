@@ -9,7 +9,7 @@ export const Layout = styled.div`
     padding: 8rem 2rem 12.3rem;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      padding: 3.6rem 2rem 9.9rem;
+      padding: 3.6rem 2rem 9.3rem;
     }
   `}
 `;
