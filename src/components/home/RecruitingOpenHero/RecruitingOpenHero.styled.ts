@@ -5,19 +5,18 @@ export const Container = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    height: calc(100vh - 8rem);
+    height: 100vh;
     min-height: 102.4rem;
 
     span {
       display: block;
     }
 
-    @media (max-width: ${theme.breakPoint.media.tabletS}) {
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
       min-height: 72rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      height: calc(100vh - 6rem);
       min-height: 66.7rem;
     }
   `}
