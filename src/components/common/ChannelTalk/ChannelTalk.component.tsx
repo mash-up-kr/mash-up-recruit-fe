@@ -10,7 +10,6 @@ const ChannelTalk = () => {
   const { size } = useDetectViewPort();
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') return;
     setChannelServiceInstance(new ChannelService());
   }, []);
 

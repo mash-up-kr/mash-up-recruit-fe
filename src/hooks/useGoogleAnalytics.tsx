@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useCallback } from 'react';
 import Script from 'next/script';
+import { isProduction } from '@/utils/assertion';
 
 const pageview = (url: URL) => {
   window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
@@ -12,7 +13,7 @@ const useGoogleAnalytics = () => {
   const router = useRouter();
 
   const handleRouteChange = (url: URL) => {
-    if (process.env.NODE_ENV !== 'production') return;
+    if (!isProduction) return;
     pageview(url);
   };
 
