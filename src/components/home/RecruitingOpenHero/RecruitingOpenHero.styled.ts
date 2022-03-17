@@ -32,21 +32,24 @@ export const Contents = styled.div`
     margin: 0 auto;
     padding: 0 2rem;
     color: ${theme.colors.white};
+    transform: translateY(-4.6rem);
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       ${theme.fonts.en.extrabold100};
       max-width: 76.8rem;
+      transform: translateY(-7rem);
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.en.extrabold80};
       max-width: 57.6rem;
+      transform: translateY(-6rem);
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.en.extrabold60};
-
       max-width: 37.5rem;
+      transform: translateY(-3.3rem);
     }
   `}
 `;
