@@ -136,6 +136,10 @@ export const SignOutButton = styled.button`
       }
     }
 
+    &:active {
+      background: ${theme.colors.gray10};
+    }
+
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.bold16};
       position: absolute;

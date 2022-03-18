@@ -249,6 +249,10 @@ export const ApplicationDetailLink = styled(LinkTo)`
       }
     }
 
+    &:active {
+      background: ${theme.colors.gray40};
+    }
+
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.bold16};
       width: 100%;

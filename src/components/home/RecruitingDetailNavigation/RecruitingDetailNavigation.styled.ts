@@ -116,6 +116,10 @@ export const Card = styled.div`
       }
     }
 
+    &:active {
+      transform: translate(1.2rem, -1.2rem);
+    }
+
     a {
       width: 12.1rem;
     }
@@ -138,6 +142,10 @@ export const Card = styled.div`
         &:hover {
           transform: translate(0.6rem, -0.6rem);
         }
+      }
+
+      &:active {
+        transform: translate(0.6rem, -0.6rem);
       }
 
       button {

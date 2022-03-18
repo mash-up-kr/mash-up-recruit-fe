@@ -33,6 +33,10 @@ export const ListItem = styled.li`
       }
     }
 
+    &:active {
+      background: ${theme.colors.gray10};
+    }
+
     & > a {
       display: flex;
       align-items: center;
@@ -53,6 +57,10 @@ export const ListItem = styled.li`
         & > a:hover {
           background: ${theme.colors.white};
         }
+      }
+
+      & > a:active {
+        background: ${theme.colors.white};
       }
     }
   `}

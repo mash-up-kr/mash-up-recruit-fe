@@ -29,6 +29,10 @@ export const TextArea = styled.textarea<StyledTextAreaProps>`
       }
     }
 
+    &:active {
+      border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple40};
+    }
+
     &:focus {
       border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple70};
     }

@@ -87,6 +87,10 @@ export const TabLink = styled(LinkTo, {
         }
       }
 
+      &:active {
+        background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
+      }
+
       & > svg > path {
         stroke: ${isHomePage ? theme.colors.gray10 : theme.colors.gray80};
       }
@@ -120,6 +124,10 @@ export const SignOutButton = styled.button<SignOutButtonProps>`
         &:hover {
           background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
         }
+      }
+
+      &:active {
+        background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
       }
     `;
   }}

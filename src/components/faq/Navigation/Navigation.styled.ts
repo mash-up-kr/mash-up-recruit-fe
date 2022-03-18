@@ -35,6 +35,11 @@ export const ListItem = styled.li<StyledLiProps>`
       }
     }
 
+    &:active {
+      background: ${theme.colors.gray10};
+      border-radius: 1rem;
+    }
+
     & > a {
       display: block;
       padding: 1.6rem;

@@ -107,6 +107,10 @@ export const BackToListLink = styled(LinkTo)`
         background: ${theme.colors.gray10};
       }
     }
+
+    &:active {
+      background: ${theme.colors.gray10};
+    }
   `}
 `;
 

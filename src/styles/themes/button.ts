@@ -20,6 +20,10 @@ export const button = {
         }
       }
 
+      &:active {
+        background: ${colors.purple80};
+      }
+
       &:disabled {
         background: ${colors.purple40};
       }
@@ -38,6 +42,10 @@ export const button = {
         &:hover {
           background: ${colors.purple20};
         }
+      }
+
+      &:active {
+        background: ${colors.purple20};
       }
 
       &:disabled {
@@ -60,6 +68,10 @@ export const button = {
         &:hover {
           background: ${colors.gray10};
         }
+      }
+
+      &:active {
+        background: ${colors.gray10};
       }
 
       &:disabled {

@@ -46,6 +46,10 @@ export const NavList = styled.ul<NavListProps>`
           color: ${theme.colors.purple70};
         }
       }
+
+      & > a:active {
+        color: ${theme.colors.purple70};
+      }
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
@@ -89,6 +93,10 @@ export const SignInButton = styled.button<SignInButtonProps>`
       &:hover {
         color: ${theme.colors.purple70};
       }
+    }
+
+    &:active {
+      color: ${theme.colors.purple70};
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
@@ -138,6 +146,14 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
         & > svg > path {
           stroke: ${theme.colors.purple70};
         }
+      }
+    }
+
+    &:active {
+      color: ${theme.colors.purple70};
+
+      & > svg > path {
+        stroke: ${theme.colors.purple70};
       }
     }
 

@@ -94,6 +94,18 @@ export const ApprovalButton = styled.button`
       }
     }
 
+    &:active {
+      & > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 1.2rem;
+      }
+    }
+
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
       padding: 0.85rem 1.6rem;
