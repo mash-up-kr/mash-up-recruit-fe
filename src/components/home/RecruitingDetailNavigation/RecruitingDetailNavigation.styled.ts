@@ -110,8 +110,10 @@ export const Card = styled.div`
     border-radius: 5rem;
     transition: transform 0.35s ease;
 
-    &:hover {
-      transform: translate(1.2rem, -1.2rem);
+    @media (hover: hover) {
+      &:hover {
+        transform: translate(1.2rem, -1.2rem);
+      }
     }
 
     a {
@@ -132,8 +134,10 @@ export const Card = styled.div`
       height: 20rem;
       padding: 3.6rem;
 
-      &:hover {
-        transform: translate(0.6rem, -0.6rem);
+      @media (hover: hover) {
+        &:hover {
+          transform: translate(0.6rem, -0.6rem);
+        }
       }
 
       button {

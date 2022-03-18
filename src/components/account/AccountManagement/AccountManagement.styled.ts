@@ -130,8 +130,10 @@ export const SignOutButton = styled.button`
     border: 0;
     border-radius: 1rem;
 
-    &:hover {
-      background: ${theme.colors.gray10};
+    @media (hover: hover) {
+      &:hover {
+        background: ${theme.colors.gray10};
+      }
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {

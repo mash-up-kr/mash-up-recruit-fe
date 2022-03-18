@@ -80,15 +80,17 @@ export const CloseButton = styled.button`
     border: 0;
     border-radius: 1.2rem;
 
-    &:hover {
-      & > div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 1.2rem;
+    @media (hover: hover) {
+      &:hover {
+        & > div {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 1.2rem;
+        }
       }
     }
 
@@ -129,9 +131,11 @@ export const SignInButton = styled.button`
       left: 2.4rem;
     }
 
-    &:hover {
-      background: ${theme.colors.gray10};
-      border: 0.1rem solid ${theme.colors.gray40};
+    @media (hover: hover) {
+      &:hover {
+        background: ${theme.colors.gray10};
+        border: 0.1rem solid ${theme.colors.gray40};
+      }
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {

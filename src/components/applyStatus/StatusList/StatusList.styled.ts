@@ -243,8 +243,10 @@ export const ApplicationDetailLink = styled(LinkTo)`
     background: ${theme.colors.gray20};
     border-radius: 1.6rem;
 
-    &:hover {
-      background: ${theme.colors.gray40};
+    @media (hover: hover) {
+      &:hover {
+        background: ${theme.colors.gray40};
+      }
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {

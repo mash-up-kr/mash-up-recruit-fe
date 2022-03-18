@@ -27,8 +27,10 @@ export const ListItem = styled.li`
     color: ${theme.colors.gray70};
     border-radius: 1.6rem;
 
-    &:hover {
-      background: ${theme.colors.gray10};
+    @media (hover: hover) {
+      &:hover {
+        background: ${theme.colors.gray10};
+      }
     }
 
     & > a {
@@ -47,8 +49,10 @@ export const ListItem = styled.li`
         padding: 0;
       }
 
-      & > a:hover {
-        background: ${theme.colors.white};
+      @media (hover: hover) {
+        & > a:hover {
+          background: ${theme.colors.white};
+        }
       }
     }
   `}

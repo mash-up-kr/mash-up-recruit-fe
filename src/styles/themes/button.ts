@@ -14,8 +14,10 @@ export const button = {
       border-radius: 1.6rem;
       transition: 0.3s;
 
-      &:hover {
-        background: ${colors.purple80};
+      @media (hover: hover) {
+        &:hover {
+          background: ${colors.purple80};
+        }
       }
 
       &:disabled {
@@ -32,8 +34,10 @@ export const button = {
       border-radius: 1.6rem;
       transition: 0.3s;
 
-      &:hover {
-        background: ${colors.purple20};
+      @media (hover: hover) {
+        &:hover {
+          background: ${colors.purple20};
+        }
       }
 
       &:disabled {
@@ -52,8 +56,10 @@ export const button = {
       border-radius: 1.6rem;
       transition: 0.3s;
 
-      &:hover {
-        background: ${colors.gray10};
+      @media (hover: hover) {
+        &:hover {
+          background: ${colors.gray10};
+        }
       }
 
       &:disabled {

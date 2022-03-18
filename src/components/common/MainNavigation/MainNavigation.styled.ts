@@ -41,8 +41,10 @@ export const NavList = styled.ul<NavListProps>`
         color: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
       }
 
-      & > a:hover {
-        color: ${theme.colors.purple70};
+      @media (hover: hover) {
+        & > a:hover {
+          color: ${theme.colors.purple70};
+        }
       }
     }
 
@@ -83,9 +85,12 @@ export const SignInButton = styled.button<SignInButtonProps>`
     background: transparent;
     border: 0;
 
-    &:hover {
-      color: ${theme.colors.purple70};
+    @media (hover: hover) {
+      &:hover {
+        color: ${theme.colors.purple70};
+      }
     }
+
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
     }
@@ -126,11 +131,13 @@ export const MyPageButton = styled.button<MyPageButtonProps>`
       stroke: ${currentPage === HOME_PAGE ? theme.colors.white : theme.colors.gray80};
     }
 
-    &:hover {
-      color: ${theme.colors.purple70};
+    @media (hover: hover) {
+      &:hover {
+        color: ${theme.colors.purple70};
 
-      & > svg > path {
-        stroke: ${theme.colors.purple70};
+        & > svg > path {
+          stroke: ${theme.colors.purple70};
+        }
       }
     }
 

@@ -102,8 +102,10 @@ export const BackToListLink = styled(LinkTo)`
       vertical-align: middle;
     }
 
-    &:hover {
-      background: ${theme.colors.gray10};
+    @media (hover: hover) {
+      &:hover {
+        background: ${theme.colors.gray10};
+      }
     }
   `}
 `;

@@ -28,9 +28,11 @@ export const ListItem = styled.li<StyledLiProps>`
       }
     }
 
-    &:hover {
-      background: ${theme.colors.gray10};
-      border-radius: 1rem;
+    @media (hover: hover) {
+      &:hover {
+        background: ${theme.colors.gray10};
+        border-radius: 1rem;
+      }
     }
 
     & > a {
