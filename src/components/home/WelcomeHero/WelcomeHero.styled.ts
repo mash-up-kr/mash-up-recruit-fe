@@ -6,15 +6,15 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     height: calc(100vh - 8rem);
-    min-height: 102.4rem;
+    min-height: calc(102.4rem - 8rem);
 
-    @media (max-width: ${theme.breakPoint.media.tabletS}) {
-      min-height: 72rem;
+    @media (max-width: ${theme.breakPoint.media.tabletL}) {
+      min-height: calc(72rem - 8rem);
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       height: calc(100vh - 6rem);
-      min-height: 66.7rem;
+      min-height: calc(66.7rem - 6rem);
     }
   `}
 `;
@@ -35,22 +35,21 @@ export const Contents = styled.div`
       ${theme.fonts.en.extrabold100};
       max-width: 76.8rem;
       height: 51.6rem;
+      transform: translateY(-2.2rem);
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.en.extrabold80};
       max-width: 57.6rem;
       height: 39.2rem;
+      transform: translateY(-4.4rem);
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.en.extrabold60};
       max-width: 37.5rem;
       height: 29.6rem;
-    }
-
-    @media (max-width: ${theme.breakPoint.media.mobile}) {
-      transform: translateY(-6rem);
+      transform: translateY(-6.8rem);
     }
   `}
 `;

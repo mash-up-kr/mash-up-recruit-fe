@@ -10,7 +10,7 @@ export const aosDefaultConfig = {
   disableMutationObserver: true,
   debounceDelay: 50,
   throttleDelay: 99,
-  offset: 120,
+  offset: 100,
   delay: 0,
   duration: AOS_DEFAULT_DURATION,
   easing: 'ease',
