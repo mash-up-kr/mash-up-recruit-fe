@@ -14,7 +14,13 @@ export const button = {
       border-radius: 1.6rem;
       transition: 0.3s;
 
-      &:hover {
+      @media (hover: hover) {
+        &:hover {
+          background: ${colors.purple80};
+        }
+      }
+
+      &:active {
         background: ${colors.purple80};
       }
 
@@ -32,7 +38,13 @@ export const button = {
       border-radius: 1.6rem;
       transition: 0.3s;
 
-      &:hover {
+      @media (hover: hover) {
+        &:hover {
+          background: ${colors.purple20};
+        }
+      }
+
+      &:active {
         background: ${colors.purple20};
       }
 
@@ -52,7 +64,13 @@ export const button = {
       border-radius: 1.6rem;
       transition: 0.3s;
 
-      &:hover {
+      @media (hover: hover) {
+        &:hover {
+          background: ${colors.gray10};
+        }
+      }
+
+      &:active {
         background: ${colors.gray10};
       }
 

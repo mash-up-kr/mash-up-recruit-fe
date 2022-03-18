@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { HOME_PAGE } from '@/constants';
 import { useGoogleAnalytics } from '@/hooks';
+import { isProduction } from '@/utils/assertion';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isRouteChange, setIsRouteChange] = useState(false);
@@ -47,7 +48,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <ThemeProvider theme={theme}>
           <Layout>
             <Component {...pageProps} />
-            <ChannelTalk />
+            {isProduction && <ChannelTalk />}
             {isRouteChange && <LoadingModal setIsOpenModal={setIsRouteChange} />}
           </Layout>
         </ThemeProvider>

@@ -81,7 +81,13 @@ export const TabLink = styled(LinkTo, {
       border: 0;
       border-radius: 1.2rem;
 
-      &:hover {
+      @media (hover: hover) {
+        &:hover {
+          background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
+        }
+      }
+
+      &:active {
         background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
       }
 
@@ -114,7 +120,13 @@ export const SignOutButton = styled.button<SignOutButtonProps>`
         margin-left: 9.5rem;
       }
 
-      &:hover {
+      @media (hover: hover) {
+        &:hover {
+          background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
+        }
+      }
+
+      &:active {
         background: ${isHomePage ? theme.colors.gray90 : theme.colors.gray10};
       }
     `;
