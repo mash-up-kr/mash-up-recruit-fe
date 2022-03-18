@@ -27,7 +27,13 @@ export const ListItem = styled.li`
     color: ${theme.colors.gray70};
     border-radius: 1.6rem;
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        background: ${theme.colors.gray10};
+      }
+    }
+
+    &:active {
       background: ${theme.colors.gray10};
     }
 
@@ -47,7 +53,13 @@ export const ListItem = styled.li`
         padding: 0;
       }
 
-      & > a:hover {
+      @media (hover: hover) {
+        & > a:hover {
+          background: ${theme.colors.white};
+        }
+      }
+
+      & > a:active {
         background: ${theme.colors.white};
       }
     }

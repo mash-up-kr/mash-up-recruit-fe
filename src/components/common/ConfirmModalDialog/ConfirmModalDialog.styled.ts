@@ -75,7 +75,21 @@ export const CancelButton = styled.button`
     border: 0;
     border-radius: 1.2rem;
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        & > div {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 1.2rem;
+        }
+      }
+    }
+
+    &:active {
       & > div {
         position: absolute;
         top: 0;
@@ -107,15 +121,29 @@ export const ApprovalButton = styled.button`
     border: 0;
     border-radius: 1.2rem;
 
-    &:hover {
-      & > div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 1.2rem;
+    @media (hover: hover) {
+      &:hover {
+        & > div {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 1.2rem;
+        }
+      }
+
+      &:active {
+        & > div {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 1.2rem;
+        }
       }
     }
 
