@@ -1,6 +1,6 @@
-import { MY_PAGE_APPLICATION_DETAIL } from '@/constants';
+import { MY_PAGE_APPLICATION_DETAIL, TEAM_NICK_NAME } from '@/constants';
 import { useDetectViewPort } from '@/hooks';
-import { Application, ApplicationAuditStatus, TeamName } from '@/types/dto';
+import { Application, ApplicationAuditStatus } from '@/types/dto';
 import Loudspeaker from '@/assets/svg/loudspeaker-16.svg';
 import { RecruitingProgressStatus } from '@/utils/date';
 import * as Styled from './StatusList.styled';
@@ -18,15 +18,6 @@ const STATUS_WORDS: Record<ApplicationAuditStatus, string> = {
   SCREENING_EXPIRED: '기한 만료',
   INTERVIEW_FAILED: '면접 불합격',
   INTERVIEW_PASSED: '최종 합격', // purple70
-};
-
-const TEAM__NICK_NAME: Record<TeamName, string> = {
-  Design: 'Product Design Team',
-  Android: 'Android Team',
-  iOS: 'iOS Team',
-  Web: 'Web Team',
-  Node: 'Node Team',
-  Spring: 'Spring Team',
 };
 
 const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps) => {
@@ -50,7 +41,7 @@ const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps)
       </Styled.HeadingWrapper>
       <Styled.MainWrapper>
         <Styled.ListWrapper>
-          {size === 'desktop' || size === 'tablet_l' ? (
+          {size === 'desktop' || size === 'tablet_l' || size === 'tablet_m' ? (
             <>
               <Styled.StatusListHeader>
                 <Styled.StatusListHeading>기수</Styled.StatusListHeading>
@@ -70,7 +61,7 @@ const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps)
                       <Styled.StatusListItem key={applicationId}>
                         <Styled.StatusText>12기</Styled.StatusText>
                         <Styled.StatusText>{applicant.name}</Styled.StatusText>
-                        <Styled.StatusText>{TEAM__NICK_NAME[team.name]}</Styled.StatusText>
+                        <Styled.StatusText>{TEAM_NICK_NAME[team.name]}</Styled.StatusText>
                         <Styled.ApplicationStatus status={result.status}>
                           {STATUS_WORDS[result.status]}
                         </Styled.ApplicationStatus>
@@ -109,7 +100,7 @@ const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps)
                         </Styled.ListItemWrapper>
                         <Styled.ListItemWrapper>
                           <Styled.StatusListHeading>플랫폼</Styled.StatusListHeading>
-                          <Styled.StatusText>{TEAM__NICK_NAME[team.name]}</Styled.StatusText>
+                          <Styled.StatusText>{TEAM_NICK_NAME[team.name]}</Styled.StatusText>
                         </Styled.ListItemWrapper>
                         <Styled.ListItemWrapper>
                           <Styled.StatusListHeading>지원상태</Styled.StatusListHeading>
