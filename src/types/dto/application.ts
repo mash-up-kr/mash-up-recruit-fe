@@ -32,14 +32,14 @@ export interface ApplicationResult {
 }
 
 type ConfirmationStatus =
+  | 'TO_BE_DETERMINED' // 미검토
+  | 'INTERVIEW_CONFIRM_WAITING' // 면접 응답 대기중 - 서류 합격
+  | 'INTERVIEW_CONFIRM_ACCEPTED' // 면접 승인
+  | 'INTERVIEW_CONFIRM_REJECTED' // 면접 거절
+  | 'FINAL_CONFIRM_WAITING' // 최종 합격 응답 대기 - 인터뷰 합격
   | 'FINAL_CONFIRM_ACCEPTED' // 최종 합격 승인
   | 'FINAL_CONFIRM_REJECTED' // 최종 합격 거절
-  | 'FINAL_CONFIRM_WAITING' // 최종 합격 응답 대기 - 인터뷰 합격
-  | 'INTERVIEW_CONFIRM_ACCEPTED' // 인터뷰 승인
-  | 'INTERVIEW_CONFIRM_REJECTED' // 인터뷰 거절
-  | 'INTERVIEW_CONFIRM_WAITING' // 인터뷰 응답 대기 - 서류 합격
-  | 'NOT_APPLICABLE' // 서류 탈락
-  | 'TO_BE_DETERMINED'; // 제출완료 || 임시저장
+  | 'NOT_APPLICABLE'; // 해당 없음
 
 export type ApplicationStatus = 'CREATED' | 'SUBMITTED' | 'WRITING';
 
