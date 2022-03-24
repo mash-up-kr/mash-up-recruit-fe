@@ -11,6 +11,7 @@ const browserNameMap: Record<InAppBrowser, string> = {
   NAVER: '네이버',
   CAMPUS_PICK: '캠퍼스픽',
   EVERY_TIME: '에브리타임',
+  LINKEDIN: '링크드인',
 } as const;
 
 export interface InAppSignInDialogProps {
