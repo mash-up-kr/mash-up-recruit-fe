@@ -84,7 +84,7 @@ export const button = {
       ${fonts.kr.medium16};
       height: 5.6rem;
       padding: 1.6rem 1.95rem;
-      color: ${colors.gray70};
+      color: ${colors.gray60};
       background: ${colors.white};
       border: 0.1rem solid transparent;
       border-radius: 1.6rem;
