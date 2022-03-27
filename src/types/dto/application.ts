@@ -90,7 +90,7 @@ export interface TempSaveApplicationResponse extends BaseResponse<Application> {
 
 export interface ConfirmApplicantRequest extends BaseRequest {
   applicationId: number;
-  updateConfirmationRequest: ConfirmationStatus;
+  updateConfirmationRequest: { status: ConfirmationStatus };
 }
 export interface ConfirmApplicantResponse extends BaseResponse<Application> {}
 
