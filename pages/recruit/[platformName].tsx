@@ -16,6 +16,7 @@ import {
   RecruitContents,
   ApplyLinkButton,
   BulletedList,
+  SEO,
 } from '@/components';
 
 interface Params extends ParsedUrlQuery {
@@ -42,6 +43,10 @@ const Platform: NextPage<PlatformProps> = ({ platformName }) => {
 
   return (
     <RecruitLayout>
+      <SEO
+        title={`모집 공고 - ${currentPlatformName}`}
+        openGraph={{ url: `https://recruit.mash-up.kr${currentPlatformPath.recruit}` }}
+      />
       <PlatformHero color={currentPlatformHero.color} emojis={currentPlatformHero.emojis} />
       <RecruitHeader name={currentPlatformName} role={currentPlatformRole} />
       <RecruitContents>
