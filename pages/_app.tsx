@@ -1,13 +1,14 @@
 import type { AppProps } from 'next/app';
 import { css, Global, ThemeProvider } from '@emotion/react';
 import { globalStyles, theme } from '@/styles';
-import { ChannelTalk, GlobalSEO, Layout, LoadingModal } from '@/components';
+import { ChannelTalk, Layout, LoadingModal, DefaultSEO } from '@/components';
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { HOME_PAGE } from '@/constants';
 import { useGoogleAnalytics } from '@/hooks';
 import { isProduction } from '@/utils/assertion';
+import { seoDefaultConfig } from '@/constants/seo';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isRouteChange, setIsRouteChange] = useState(false);
@@ -32,7 +33,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <GoogleAnalyticsScripts />
-      <GlobalSEO />
+      <DefaultSEO {...seoDefaultConfig} />
       <Global
         styles={css`
           ${globalStyles}
