@@ -22,3 +22,4 @@ export { default as Lottie } from './Lottie/Lottie.component';
 export { default as ChannelTalk } from './ChannelTalk/ChannelTalk.component';
 export { default as Toast } from './Toast/Toast.component';
 export { default as IgnorePropsFragment } from './IgnorePropsFragment/IgnorePropsFragment.component';
+export { default as ErrorAlertModalDialog } from './ErrorAlertModalDialog/ErrorAlertModalDialog.component';
