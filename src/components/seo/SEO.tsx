@@ -83,17 +83,14 @@ const buildOpenGraphImageTags = (
   { defaultWidth, defaultHeight }: { defaultWidth?: number; defaultHeight?: number } = {},
 ) => {
   return images.reduce((tags, image, index) => {
-    // eslint-disable-next-line react/no-array-index-key
     tags.push(<meta key={`og:image:${index}`} property="og:image" content={image.url} />);
 
     if (image.alt) {
-      // eslint-disable-next-line react/no-array-index-key
       tags.push(<meta key={`og:image:alt${index}`} property="og:image:alt" content={image.alt} />);
     }
 
     if (image.type) {
       tags.push(
-        // eslint-disable-next-line react/no-array-index-key
         <meta key={`og:image:type${index}`} property="og:image:type" content={image.type} />,
       );
     }
@@ -101,7 +98,6 @@ const buildOpenGraphImageTags = (
     if (image.width) {
       tags.push(
         <meta
-          // eslint-disable-next-line react/no-array-index-key
           key={`og:image:width${index}`}
           property="og:image:width"
           content={image.width.toString()}
@@ -110,7 +106,6 @@ const buildOpenGraphImageTags = (
     } else if (defaultWidth) {
       tags.push(
         <meta
-          // eslint-disable-next-line react/no-array-index-key
           key={`og:image:width:${index}`}
           property="og:image:width"
           content={defaultWidth.toString()}
@@ -121,7 +116,6 @@ const buildOpenGraphImageTags = (
     if (image.height) {
       tags.push(
         <meta
-          // eslint-disable-next-line react/no-array-index-key
           key={`og:image:height${index}`}
           property="og:image:height"
           content={image.height.toString()}
@@ -130,7 +124,6 @@ const buildOpenGraphImageTags = (
     } else if (defaultHeight) {
       tags.push(
         <meta
-          // eslint-disable-next-line react/no-array-index-key
           key={`og:image:height${index}`}
           property="og:image:height"
           content={defaultHeight.toString()}
