@@ -1,4 +1,11 @@
-import { FaqLayout, FaqHeader, SideNavigation, QuestionList, ModalNavigation } from '@/components';
+import {
+  FaqLayout,
+  FaqHeader,
+  SideNavigation,
+  QuestionList,
+  ModalNavigation,
+  SEO,
+} from '@/components';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { useDetectViewPort } from '@/hooks';
@@ -152,9 +159,13 @@ interface PlatformProps {
 
 const Platform: NextPage<PlatformProps> = ({ platformName }) => {
   const { size } = useDetectViewPort();
-  const { questions } = platformWithCommonMap[platformName];
+  const { name, questions, path } = platformWithCommonMap[platformName];
   return (
     <FaqLayout>
+      <SEO
+        title={`자주 묻는 질문 - ${name}`}
+        openGraph={{ url: `https://recruit.mash-up.kr${path.faq}` }}
+      />
       <FaqHeader title="자주 묻는 질문" />
       {size === VIEWPORT_SIZE.MOBILE || size === VIEWPORT_SIZE.TABLET_S ? (
         <ModalNavigation platformName={platformName} />

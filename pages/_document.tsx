@@ -11,6 +11,7 @@ class MyDocument extends Document {
     return (
       <Html lang="ko">
         <Head>
+          <meta charSet="UTF-8" />
           <link
             href="https://static.mash-up.kr/fonts/Gilroy-Light.woff2"
             rel="preload"
