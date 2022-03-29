@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { HOME_PAGE } from '@/constants';
 import { useGoogleAnalytics } from '@/hooks';
 import { isProduction } from '@/utils/assertion';
-import { seoDefaultConfig } from '@/constants/seo';
+import { defaultSEOConfig } from '@/constants/seo';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isRouteChange, setIsRouteChange] = useState(false);
@@ -33,7 +33,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <GoogleAnalyticsScripts />
-      <DefaultSEO {...seoDefaultConfig} />
+      <DefaultSEO {...defaultSEOConfig} />
       <Global
         styles={css`
           ${globalStyles}

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { ReactNode } from 'react';
+import { titleTemplate } from '@/constants/seo';
 
 interface BaseMetaTag {
   content: string;
@@ -58,8 +59,6 @@ interface OpenGraph {
 
 export interface SEOProps {
   title?: string;
-  titleTemplate?: string;
-  defaultTitle?: string;
   description?: string;
   openGraph?: OpenGraph;
   additionalMetaTags?: MetaTag[];
@@ -68,20 +67,9 @@ export interface SEOProps {
 
 export interface DefaultSEOProps extends SEOProps {
   keywords?: string[];
-  defaultOpenGraphImageWidth?: number;
-  defaultOpenGraphImageHeight?: number;
 }
 
-const defaults = {
-  templateTitle: '',
-  defaultOpenGraphImageWidth: 0,
-  defaultOpenGraphImageHeight: 0,
-};
-
-const buildOpenGraphImageTags = (
-  images: OpenGraphImage[],
-  { defaultWidth, defaultHeight }: { defaultWidth?: number; defaultHeight?: number } = {},
-) => {
+const buildOpenGraphImageTags = (images: OpenGraphImage[]) => {
   return images.reduce((tags, image, index) => {
     tags.push(<meta key={`og:image:${index}`} property="og:image" content={image.url} />);
 
@@ -103,14 +91,6 @@ const buildOpenGraphImageTags = (
           content={image.width.toString()}
         />,
       );
-    } else if (defaultWidth) {
-      tags.push(
-        <meta
-          key={`og:image:width:${index}`}
-          property="og:image:width"
-          content={defaultWidth.toString()}
-        />,
-      );
     }
 
     if (image.height) {
@@ -119,14 +99,6 @@ const buildOpenGraphImageTags = (
           key={`og:image:height${index}`}
           property="og:image:height"
           content={image.height.toString()}
-        />,
-      );
-    } else if (defaultHeight) {
-      tags.push(
-        <meta
-          key={`og:image:height${index}`}
-          property="og:image:height"
-          content={defaultHeight.toString()}
         />,
       );
     }
@@ -140,19 +112,7 @@ interface BuildTagsParams extends DefaultSEOProps, SEOProps {}
 const buildTags = (config: BuildTagsParams) => {
   const tagsToRender: ReactNode[] = [];
 
-  if (config.titleTemplate) {
-    defaults.templateTitle = config.titleTemplate;
-  }
-
-  let updatedTitle = '';
-  if (config.title) {
-    updatedTitle = config.title;
-    if (defaults.templateTitle) {
-      updatedTitle = defaults.templateTitle.replace(/%s/g, updatedTitle);
-    }
-  } else if (config.defaultTitle) {
-    updatedTitle = config.defaultTitle;
-  }
+  const updatedTitle = config.title ? `${titleTemplate}${config.title}` : '';
 
   if (updatedTitle) {
     tagsToRender.push(<title key="title">{updatedTitle}</title>);
@@ -186,21 +146,8 @@ const buildTags = (config: BuildTagsParams) => {
     tagsToRender.push(<meta key="og:type" property="og:type" content={config.openGraph.type} />);
   }
 
-  if (config.defaultOpenGraphImageWidth) {
-    defaults.defaultOpenGraphImageWidth = config.defaultOpenGraphImageWidth;
-  }
-
-  if (config.defaultOpenGraphImageHeight) {
-    defaults.defaultOpenGraphImageHeight = config.defaultOpenGraphImageHeight;
-  }
-
   if (config.openGraph?.images?.length) {
-    tagsToRender.push(
-      ...buildOpenGraphImageTags(config.openGraph.images, {
-        defaultWidth: defaults.defaultOpenGraphImageWidth,
-        defaultHeight: defaults.defaultOpenGraphImageHeight,
-      }),
-    );
+    tagsToRender.push(...buildOpenGraphImageTags(config.openGraph.images));
   }
 
   if (config.additionalMetaTags?.length) {
@@ -226,29 +173,21 @@ const buildTags = (config: BuildTagsParams) => {
 
 export const DefaultSEO = ({
   title,
-  titleTemplate,
-  defaultTitle,
   description,
   openGraph,
   additionalLinkTags,
   additionalMetaTags,
   keywords,
-  defaultOpenGraphImageWidth,
-  defaultOpenGraphImageHeight,
 }: DefaultSEOProps) => {
   return (
     <Head>
       {buildTags({
         title,
-        titleTemplate,
-        defaultTitle,
         description,
         openGraph,
         additionalLinkTags,
         additionalMetaTags,
         keywords,
-        defaultOpenGraphImageWidth,
-        defaultOpenGraphImageHeight,
       })}
     </Head>
   );
@@ -256,8 +195,6 @@ export const DefaultSEO = ({
 
 const SEO = ({
   title,
-  titleTemplate,
-  defaultTitle,
   description,
   openGraph,
   additionalLinkTags,
@@ -267,8 +204,6 @@ const SEO = ({
     <Head>
       {buildTags({
         title,
-        titleTemplate,
-        defaultTitle,
         description,
         openGraph,
         additionalLinkTags,
