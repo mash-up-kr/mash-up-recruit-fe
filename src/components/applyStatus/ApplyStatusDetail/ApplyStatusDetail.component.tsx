@@ -13,17 +13,18 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
     (application) => application.status === 'SUBMITTED',
   );
 
-  if (!submittedApplication) return null;
+  if (!submittedApplication || recruitingProgressStatus === 'AFTER-FIRST-SEMINAR') return null;
 
   if (
-    submittedApplication.result.status === 'SUBMITTED' &&
-    recruitingProgressStatus === 'IN-RECRUITING'
-  )
+    recruitingProgressStatus === 'IN-RECRUITING' ||
+    recruitingProgressStatus === 'END-RECRUITING'
+  ) {
     return (
       <Styled.StatusDetail>
         <ScreeningWait />
       </Styled.StatusDetail>
     );
+  }
 
   return null;
 };
