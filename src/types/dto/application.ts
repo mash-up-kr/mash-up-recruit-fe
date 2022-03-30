@@ -26,8 +26,9 @@ export type ApplicationAuditStatus =
   | 'WRITING'; // 작성중 (생성 후 | 임시저장)
 
 export interface ApplicationResult {
-  interviewEndedAt: string;
-  interviewStartedAt: string;
+  interviewEndedAt: string | null;
+  interviewStartedAt: string | null;
+  interviewGuideLink: string | null;
   status: ApplicationAuditStatus;
 }
 
