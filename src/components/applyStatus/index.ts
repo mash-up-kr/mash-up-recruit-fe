@@ -2,3 +2,12 @@ export { default as ApplyStatusLayout } from './ApplyStatusLayout/ApplyStatusLay
 export { default as StatusList } from './StatusList/StatusList.component';
 export { default as ApplyStatusDetail } from './ApplyStatusDetail/ApplyStatusDetail.component';
 export { default as ScreeningWait } from './ScreeningWait/ScreeningWait.component';
+export { default as ScreeningPass } from './ScreeningPass/ScreeningPass.component';
+export { default as ProcessFail } from './ProcessFail/ProcessFail.component';
+export { default as ScreeningFail } from './ScreeningFail/ScreeningFail.component';
+export { default as ScreeningReject } from './ScreeningReject/ScreeningReject.component';
+export { default as InterviewAccept } from './InterviewAccept/InterviewAccept.component';
+export { default as InterviewPass } from './InterviewPass/InterviewPass.component';
+export { default as InterviewFail } from './InterviewFail/InterviewFail.component';
+export { default as FinalConfirmAccept } from './FinalConfirmAccept/FinalConfirmAccept.component';
+export { default as FinalConfirmReject } from './FinalConfirmReject/FinalConfirmReject.component';
