@@ -105,7 +105,7 @@ const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassPr
               ? `${month}월 ${date}일(${dayKr}) ${
                   isAfternoon ? '오후' : '오전'
                 } ${hour12Format}시 ${minute}분`
-              : '채널톡으로 문의 해주세요.'}
+              : '채널톡으로 문의해주세요.'}
           </Styled.InterviewDate>
           <Styled.InterviewExplanationList>
             <li>

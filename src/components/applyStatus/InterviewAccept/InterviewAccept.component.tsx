@@ -33,7 +33,7 @@ const InterviewAccept = ({ application }: InterviewAcceptProps) => {
             ? `${month}월 ${date}일(${dayKr}) ${isAfternoon ? '오후' : '오전'} ${hour12Format}시${
                 minute !== '00' ? `${minute}분` : ''
               }`
-            : '채널톡으로 문의 해주세요.'}
+            : '채널톡으로 문의해주세요.'}
         </Styled.InterviewDetailContent>
         <Styled.InterviewDetailHeading>면접 장소</Styled.InterviewDetailHeading>
         <Styled.InterviewDetailContent>Zoom</Styled.InterviewDetailContent>
