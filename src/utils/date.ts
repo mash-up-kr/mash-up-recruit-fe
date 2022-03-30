@@ -1,3 +1,5 @@
+const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+
 const [
   RECRUITMENT_START_KST_DATE, // 서류 접수 시작
   RECRUITMENT_END_KST_DATE, // 서류 접수 종료
@@ -57,4 +59,23 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = (
     return 'AFTER-FIRST-SEMINAR';
   }
   return 'INVALID';
+};
+
+const convertSingleDigitMinuteToDoubleDigit = (beforeConvertMinute: number) => {
+  return beforeConvertMinute.toString().length === 1
+    ? `0${beforeConvertMinute}`
+    : beforeConvertMinute;
+};
+
+export const getValueOfDateIntoObj = (dateInstance: Date) => {
+  const month = dateInstance.getMonth() + 1;
+  const date = dateInstance.getDate();
+  const hour24Format = dateInstance.getHours();
+  const isAfternoon = dateInstance.getHours() > 12;
+  const hour12Format = isAfternoon ? hour24Format - 12 : hour24Format;
+  const minute = convertSingleDigitMinuteToDoubleDigit(dateInstance.getMinutes());
+  const day = dateInstance.getDay();
+  const dayKr = DAYS[dateInstance.getDay()];
+
+  return { month, date, hour24Format, hour12Format, isAfternoon, minute, day, dayKr };
 };
