@@ -34,7 +34,6 @@ export const NoticeSection = styled.div`
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletM}) {
-      width: 100%;
       padding: 0;
     }
   `}
@@ -86,7 +85,6 @@ export const OtDetailSection = styled.div`
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletM}) {
-      width: 100%;
       margin-top: 4rem;
       margin-left: 0;
       padding: 2.4rem;
