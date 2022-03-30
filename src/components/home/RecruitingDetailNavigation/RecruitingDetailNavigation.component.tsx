@@ -12,6 +12,7 @@ import * as Styled from './RecruitingDetailNavigation.styled';
 const cardsCountInRowByViewPortSizeMap: Record<ViewPort, number> = {
   desktop: 3,
   tablet_l: 2,
+  tablet_m: 2,
   tablet_s: 2,
   mobile: 1,
 };

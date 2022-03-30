@@ -1,4 +1,5 @@
 import { ValueOf } from '@/types';
+import { TeamName } from '@/types/dto';
 
 export const teamUrls = {
   design: 'design',
@@ -25,6 +26,15 @@ export const teamIds = {
   [teamNames.ios]: 8,
   [teamNames.node]: 9,
   [teamNames.spring]: 10,
+} as const;
+
+export const TEAM_NICK_NAME: Record<TeamName, string> = {
+  Design: 'Product Design Team',
+  Android: 'Android Team',
+  iOS: 'iOS Team',
+  Web: 'Web Team',
+  Node: 'Node Team',
+  Spring: 'Spring Team',
 } as const;
 
 export type Teams = ValueOf<typeof teamUrls>;
