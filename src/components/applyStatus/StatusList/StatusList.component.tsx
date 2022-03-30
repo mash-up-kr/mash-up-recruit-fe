@@ -3,6 +3,7 @@ import { useDetectViewPort } from '@/hooks';
 import { Application, ApplicationAuditStatus } from '@/types/dto';
 import Loudspeaker from '@/assets/svg/loudspeaker-16.svg';
 import { RecruitingProgressStatus } from '@/utils/date';
+import unescape from 'lodash-es/unescape';
 import * as Styled from './StatusList.styled';
 
 interface StatusListProps {
@@ -60,7 +61,7 @@ const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps)
                     return (
                       <Styled.StatusListItem key={applicationId}>
                         <Styled.StatusText>12기</Styled.StatusText>
-                        <Styled.StatusText>{applicant.name}</Styled.StatusText>
+                        <Styled.StatusText>{unescape(applicant.name)}</Styled.StatusText>
                         <Styled.StatusText>{TEAM_NICK_NAME[team.name]}</Styled.StatusText>
                         <Styled.ApplicationStatus status={result.status}>
                           {STATUS_WORDS[result.status]}
@@ -96,7 +97,7 @@ const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps)
                         </Styled.ListItemWrapper>
                         <Styled.ListItemWrapper>
                           <Styled.StatusListHeading>이름</Styled.StatusListHeading>
-                          <Styled.StatusText>{applicant.name}</Styled.StatusText>
+                          <Styled.StatusText>{unescape(applicant.name)}</Styled.StatusText>
                         </Styled.ListItemWrapper>
                         <Styled.ListItemWrapper>
                           <Styled.StatusListHeading>플랫폼</Styled.StatusListHeading>

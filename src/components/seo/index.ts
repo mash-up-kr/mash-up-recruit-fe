@@ -1,1 +1,1 @@
-export { default as GlobalSEO } from './Global/Global';
+export { default as SEO, DefaultSEO } from './SEO';
