@@ -12,8 +12,9 @@ const InterviewFail = ({ application }: InterviewFailProps) => {
   const { size } = useDetectViewPort();
   return (
     <ProcessFail
-      heading={`Mash-Up 12기 ${size === 'mobile' ? '\n' : ''}Rookie Recruiting
-  Web Team 면접 결과 안내`}
+      heading={`Mash-Up 12기 ${size === 'mobile' ? '\n' : ''}Rookie Recruiting \n${
+        TEAM_NICK_NAME[team.name]
+      } 면접 결과 안내`}
       paragraph={`안녕하세요, ${
         applicant.name
       }님! Mash-Up입니다. 먼저 Mash-Up 12기에 많은 관심 가져 주시고, 귀한 시간 내어 지원해 주셔서 감사합니다. 보내주신 지원서와 면접 경험을 바탕으로 면밀히 살펴보고 ${
