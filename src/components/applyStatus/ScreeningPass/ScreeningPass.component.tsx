@@ -109,7 +109,7 @@ const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassPr
           </Styled.InterviewDate>
           <Styled.InterviewExplanationList>
             <li>
-              4월 3일(일) 오전 10시까지 면접 참여 여부 선택 안할 시 면접 불참으로 간주되니 빠른 응답
+              4월 4일(월) 오전 10시까지 면접 참여 여부 선택 안할 시 면접 불참으로 간주되니 빠른 응답
               부탁드립니다.
             </li>
             <li>
