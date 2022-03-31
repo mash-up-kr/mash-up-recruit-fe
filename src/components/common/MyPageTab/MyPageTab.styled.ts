@@ -37,6 +37,7 @@ interface UserNameProps {
 export const UserName = styled.span<UserNameProps>`
   ${({ theme, currentPage }) => css`
     ${theme.fonts.kr.bold18};
+    display: inline-block;
     padding-left: 1.2rem;
     color: ${currentPage === HOME_PAGE ? theme.colors.gray10 : theme.colors.gray80};
   `}
