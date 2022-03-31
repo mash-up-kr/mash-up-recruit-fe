@@ -565,7 +565,15 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               </Styled.SubmitButton>
             </>
           )}
-          <Styled.BackToListLink href={`/recruit/${application.team.name.toLowerCase()}`}>
+          <Styled.BackToListLink
+            href={
+              router.pathname === PATH_NAME.APPLY_PAGE
+                ? `/recruit/${application.team.name.toLowerCase()}`
+                : router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL
+                ? MY_PAGE_APPLY_STATUS
+                : HOME_PAGE
+            }
+          >
             <Styled.ChevronLeft />
             <span>목록으로 돌아가기</span>
           </Styled.BackToListLink>
