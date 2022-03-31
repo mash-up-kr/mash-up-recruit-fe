@@ -565,7 +565,15 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               </Styled.SubmitButton>
             </>
           )}
-          <Styled.BackToListLink href={`/recruit/${application.team.name.toLowerCase()}`}>
+          <Styled.BackToListLink
+            href={
+              router.pathname === PATH_NAME.APPLY_PAGE
+                ? `/recruit/${application.team.name.toLowerCase()}`
+                : router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL
+                ? MY_PAGE_APPLY_STATUS
+                : HOME_PAGE
+            }
+          >
             <Styled.ChevronLeft />
             <span>목록으로 돌아가기</span>
           </Styled.BackToListLink>
@@ -615,7 +623,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       {isOpenSuccessSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서 제출 완료!"
-          paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 4월 2일(토) 오전 10시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!"
+          paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 4월 3일(일) 오전 10시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!"
           approvalButtonMessage="내 지원서 확인하기"
           cancelButtonMessage="홈으로"
           setIsOpenModal={setIsOpenSuccessSubmittedModal}

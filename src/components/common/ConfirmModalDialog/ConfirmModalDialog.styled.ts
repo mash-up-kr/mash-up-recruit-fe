@@ -31,6 +31,7 @@ export const Heading = styled.h2`
     ${theme.fonts.kr.bold22};
     color: ${theme.colors.gray80};
     letter-spacing: -0.08rem;
+    white-space: pre-wrap;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.bold18};
