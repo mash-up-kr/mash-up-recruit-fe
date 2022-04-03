@@ -65,7 +65,7 @@ export const getValueOfDateIntoObj = (dateInstance: Date) => {
   const month = dateInstance.getMonth() + 1;
   const date = dateInstance.getDate();
   const hour24Format = dateInstance.getHours();
-  const isAfternoon = dateInstance.getHours() > 12;
+  const isAfternoon = dateInstance.getHours() >= 12;
   const hour12Format = isAfternoon ? hour24Format - 12 : hour24Format;
   const minute = dateInstance.getMinutes().toString().padStart(2, '0');
   const day = dateInstance.getDay();
