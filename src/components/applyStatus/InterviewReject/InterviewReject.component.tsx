@@ -1,11 +1,11 @@
 import { Application } from '@/types/dto';
 import { ProcessFail } from '@/components';
 
-interface ScreeningRejectProps {
+interface InterviewRejectProps {
   application: Application;
 }
 
-const ScreeningReject = ({ application }: ScreeningRejectProps) => {
+const InterviewReject = ({ application }: InterviewRejectProps) => {
   const { applicant } = application;
   return (
     <ProcessFail
@@ -15,4 +15,4 @@ const ScreeningReject = ({ application }: ScreeningRejectProps) => {
   );
 };
 
-export default ScreeningReject;
+export default InterviewReject;

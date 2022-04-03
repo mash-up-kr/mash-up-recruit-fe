@@ -2,7 +2,7 @@ import {
   ScreeningWait,
   ScreeningPass,
   ScreeningFail,
-  ScreeningReject,
+  InterviewReject,
   InterviewAccept,
   InterviewPass,
   InterviewFail,
@@ -82,7 +82,7 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
             }
 
             if (submittedApplication.confirmationStatus === 'INTERVIEW_CONFIRM_REJECTED') {
-              return <ScreeningReject application={submittedApplication} />;
+              return <InterviewReject application={submittedApplication} />;
             }
           }
 
@@ -112,7 +112,7 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
             submittedApplication.result.status === 'SCREENING_PASSED' &&
             submittedApplication.confirmationStatus === 'INTERVIEW_CONFIRM_REJECTED'
           ) {
-            return <ScreeningReject application={submittedApplication} />;
+            return <InterviewReject application={submittedApplication} />;
           }
 
           if (submittedApplication.result.status === 'INTERVIEW_PASSED') {
