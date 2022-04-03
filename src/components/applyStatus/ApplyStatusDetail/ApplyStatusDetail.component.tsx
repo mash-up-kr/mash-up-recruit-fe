@@ -40,6 +40,10 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
 
   if (!submittedApplication || recruitingProgressStatus === 'AFTER-FIRST-SEMINAR') return null;
 
+  if (submittedApplication.applicationId === 313) {
+    console.log(submittedApplication);
+  }
+
   if (
     recruitingProgressStatus === 'IN-RECRUITING' ||
     recruitingProgressStatus === 'END-RECRUITING'
