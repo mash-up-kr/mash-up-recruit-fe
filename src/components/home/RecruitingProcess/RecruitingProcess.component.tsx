@@ -36,7 +36,7 @@ const RecruitingProcess = () => {
             <Styled.Date>
               <time dateTime="2022-04-12">04.12(화)</time>
             </Styled.Date>
-            <Styled.Note>오전 10시</Styled.Note>
+            <Styled.Note>오후 7시</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>12기 OT</Styled.SubHeading>
