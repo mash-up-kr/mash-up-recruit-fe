@@ -48,6 +48,9 @@ export const Heading = styled.h2`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.bold18};
+      margin-top: 0.8rem;
+      text-align: center;
+      word-break: keep-all;
     }
   `}
 `;
@@ -61,7 +64,10 @@ export const Paragraph = styled.p`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium14};
+      width: 19rem;
       margin-top: 0.8rem;
+      text-align: center;
+      word-break: keep-all;
     }
   `}
 `;
@@ -80,6 +86,11 @@ export const PlaceHolderLabel = styled.label`
     color: ${theme.colors.green70};
     background: ${theme.colors.green20};
     border-radius: 0.8rem;
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.medium14};
+      margin-top: 0.8rem;
+    }
   `}
 `;
 
@@ -110,6 +121,10 @@ export const Input = styled.input<InputProps>`
       &:hover {
         border-color: ${isError ? theme.colors.red50 : theme.colors.purple70};
       }
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.regular14};
     }
   `}
 `;
@@ -173,7 +188,6 @@ export const CancelButton = styled.button`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
-      padding: 0.85rem 1.6rem;
     }
   `}
 `;
@@ -218,7 +232,6 @@ export const ApprovalButton = styled.button`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
-      padding: 0.85rem 1.6rem;
     }
   `}
 `;
