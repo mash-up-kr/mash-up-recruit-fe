@@ -35,12 +35,7 @@ const ConfirmRejectModalDialog = ({
   escClose,
   inputPlaceholder,
 }: ConfirmRejectModalDialogProps) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ConfirmRejectFormValues>();
-  console.log(errors);
+  const { register, handleSubmit } = useForm<ConfirmRejectFormValues>();
 
   return (
     <Modal
