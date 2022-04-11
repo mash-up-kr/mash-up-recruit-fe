@@ -40,8 +40,6 @@ const ConfirmAcceptModalDialog = ({
     formState: { errors },
   } = useForm<ConfirmAcceptFormValues>();
 
-  console.log(errors);
-
   const CONFIRM_PLACE_HOLDER = 'confirmPlaceHolder';
 
   return (
