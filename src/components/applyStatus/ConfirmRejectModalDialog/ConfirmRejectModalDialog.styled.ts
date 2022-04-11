@@ -50,6 +50,7 @@ export const Heading = styled.h2`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.bold18};
+      margin-top: 0.8rem;
       text-align: center;
     }
   `}
@@ -66,6 +67,7 @@ export const Paragraph = styled.p`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium16};
+      margin-top: 0.8rem;
       text-align: center;
     }
   `}
@@ -101,7 +103,7 @@ export const Input = styled.input`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.regular14};
-      margin-top: 1.2rem;
+      margin-top: 0.8rem;
     }
   `}
 `;
@@ -156,7 +158,6 @@ export const CancelButton = styled.button`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
-      padding: 0.85rem 1.6rem;
     }
   `}
 `;
@@ -202,7 +203,6 @@ export const ApprovalButton = styled.button`
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.medium15};
-      padding: 0.85rem 1.6rem;
     }
   `}
 `;
