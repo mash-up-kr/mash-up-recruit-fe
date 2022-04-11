@@ -12,3 +12,4 @@ export { default as InterviewFail } from './InterviewFail/InterviewFail.componen
 export { default as FinalConfirmAccept } from './FinalConfirmAccept/FinalConfirmAccept.component';
 export { default as FinalConfirmReject } from './FinalConfirmReject/FinalConfirmReject.component';
 export { default as ConfirmRejectModalDialog } from './ConfirmRejectModalDialog/ConfirmRejectModalDialog.component';
+export { default as ConfirmAcceptModalDialog } from './ConfirmAcceptModalDialog/ConfirmAcceptModalDialog.component';
