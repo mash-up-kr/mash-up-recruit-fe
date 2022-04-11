@@ -68,15 +68,21 @@ export const fonts = {
       font-family: SpoqaHanSansNeo;
       line-height: 1.5;
     `,
-    regular15: css`
-      font-weight: 400;
-      font-size: 1.5rem;
-      font-family: SpoqaHanSansNeo;
-      line-height: 1.5;
-    `,
     medium14: css`
       font-weight: 500;
       font-size: 1.4rem;
+      font-family: SpoqaHanSansNeo;
+      line-height: 1.5;
+    `,
+    regular16: css`
+      font-weight: 400;
+      font-size: 1.6rem;
+      font-family: SpoqaHanSansNeo;
+      line-height: 1.5;
+    `,
+    regular15: css`
+      font-weight: 400;
+      font-size: 1.5rem;
       font-family: SpoqaHanSansNeo;
       line-height: 1.5;
     `,
