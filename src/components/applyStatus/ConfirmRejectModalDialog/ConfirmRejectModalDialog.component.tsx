@@ -1,7 +1,6 @@
 import { Modal } from '@/components';
 import { Dispatch, MouseEventHandler, MutableRefObject, SetStateAction } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import SadMinsoo from '@/assets/svg/sad-minsoo.svg';
 import * as Styled from './ConfirmRejectModalDialog.styled';
 
 export interface ConfirmRejectFormValues {
@@ -46,7 +45,7 @@ const ConfirmRejectModalDialog = ({
     >
       <Styled.Dialog>
         <Styled.DialogInner>
-          <SadMinsoo />
+          <Styled.SadMinsoo />
           <Styled.Heading>{heading}</Styled.Heading>
           <Styled.Paragraph>{paragraph}</Styled.Paragraph>
           <Styled.Form onSubmit={handleSubmit(handleApprovalButton)}>
@@ -54,6 +53,7 @@ const ConfirmRejectModalDialog = ({
               type="text"
               {...register('confirmInput')}
               placeholder={inputPlaceholder}
+              autoComplete="off"
             />
           </Styled.Form>
         </Styled.DialogInner>

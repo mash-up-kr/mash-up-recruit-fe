@@ -1,16 +1,17 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import SadMinsooSvg from '@/assets/svg/sad-minsoo.svg';
 
 export const Dialog = styled.div`
   ${({ theme }) => css`
     z-index: ${theme.zIndex.dialog};
     width: 100%;
-    max-width: 45.1rem;
+    max-width: 50rem;
     background: ${theme.colors.white};
     border-radius: 2rem;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      max-width: 26.8rem;
+      max-width: 29rem;
     }
   `}
 `;
@@ -29,6 +30,15 @@ export const DialogInner = styled.div`
   `}
 `;
 
+export const SadMinsoo = styled(SadMinsooSvg)`
+  ${({ theme }) => css`
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      width: 10rem;
+      height: 10rem;
+    }
+  `}
+`;
+
 export const Heading = styled.h2`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold22};
@@ -36,9 +46,11 @@ export const Heading = styled.h2`
     color: ${theme.colors.gray80};
     letter-spacing: -0.08rem;
     white-space: pre-wrap;
+    word-break: keep-all;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
       ${theme.fonts.kr.bold18};
+      text-align: center;
     }
   `}
 `;
@@ -50,10 +62,11 @@ export const Paragraph = styled.p`
     color: ${theme.colors.gray60};
     letter-spacing: -0.08rem;
     white-space: pre-wrap;
+    word-break: keep-all;
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      ${theme.fonts.kr.medium14};
-      margin-top: 0.8rem;
+      ${theme.fonts.kr.medium16};
+      text-align: center;
     }
   `}
 `;
@@ -64,13 +77,13 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   ${({ theme }) => css`
-    ${theme.fonts.kr.bold16};
     ${theme.input.size.md};
     width: 100%;
     margin-top: 2.4rem;
     color: ${theme.colors.gray80};
     border: 0.2rem solid ${theme.colors.purple40};
     border-radius: 0.8rem;
+    outline: 0;
 
     &:focus {
       border-color: ${theme.colors.purple70};
@@ -84,6 +97,11 @@ export const Input = styled.input`
       &:hover {
         border-color: ${theme.colors.purple70};
       }
+    }
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      ${theme.fonts.kr.regular14};
+      margin-top: 1.2rem;
     }
   `}
 `;
