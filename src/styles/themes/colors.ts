@@ -23,6 +23,8 @@ export const colors = {
   red40: '#FFC4CF',
   red50: '#F35D78',
   red70: '#FC4162',
+  green20: '#E4F8F4',
+  green70: '#0FB093',
 } as const;
 
 export type ColorType = typeof colors;

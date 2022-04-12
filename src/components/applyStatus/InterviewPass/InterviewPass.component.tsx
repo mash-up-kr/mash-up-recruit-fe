@@ -12,7 +12,9 @@ import {
   useRef,
   useState,
 } from 'react';
-import { ConfirmModalDialog } from '@/components';
+import { ConfirmRejectFormValues } from '@/components/applyStatus/ConfirmRejectModalDialog/ConfirmRejectModalDialog.component';
+import { ConfirmRejectModalDialog, ConfirmAcceptModalDialog } from '@/components';
+import { SubmitHandler } from 'react-hook-form';
 import * as Styled from './InterviewPass.styled';
 
 interface InterviewPassProps {
@@ -24,6 +26,7 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
   const { LoadingModal, setIsLoading } = useLoadingModal();
   const { ErrorModalDialog, setIsOpenErrorModal } = useErrorModalDialog();
   const [isOpenRejectFinalConfirmModal, setIsOpenRejectFinalConfirmModal] = useState(false);
+  const [isOpenAcceptFinalConfirmModal, setIsOpenAcceptFinalConfirmModal] = useState(false);
 
   const acceptInterviewButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const rejectInterviewButtonRef = useRef() as MutableRefObject<HTMLButtonElement>;
@@ -52,14 +55,19 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
     }
   };
 
-  const handleRejectInterview: MouseEventHandler<HTMLButtonElement> = async () => {
+  const handleRejectInterview: SubmitHandler<ConfirmRejectFormValues> = async ({
+    confirmInput,
+  }) => {
     setIsLoading(true);
 
     try {
       const confirmApplicantRes = await applicationApiService.confirmApplicant({
         accessToken: session.data?.accessToken,
         applicationId,
-        updateConfirmationRequest: { status: 'FINAL_CONFIRM_REJECTED' },
+        updateConfirmationRequest: {
+          status: 'FINAL_CONFIRM_REJECTED',
+          rejectionReason: confirmInput,
+        },
       });
 
       setSubmittedApplication(confirmApplicantRes.data);
@@ -96,7 +104,7 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
           <Styled.OtDate>4월 16일(토) 오후 2시 ~ 5시 - ZOOM</Styled.OtDate>
           <Styled.OtExplanationList>
             <li>
-              4월 13일(수) 오전 10시까지 12기 최종 합류 여부 응답 안 할 시 합류하지 않는 것으로
+              4월 13일(수) 오후 7시까지 12기 최종 합류 여부 응답 안 할 시 합류하지 않는 것으로
               간주되니, 빠른 응답 부탁드립니다.
             </li>
             <li>전체 모임은 격주 토요일 오후 2시에 온라인으로 진행됩니다.</li>
@@ -112,7 +120,7 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
             </Styled.CancelButton>
             <Styled.ApprovalButton
               type="button"
-              onClick={handleAcceptInterview}
+              onClick={() => setIsOpenAcceptFinalConfirmModal(true)}
               ref={acceptInterviewButtonRef}
             >
               12기 합류하기
@@ -121,15 +129,29 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
         </Styled.ConfirmSection>
       </Styled.InterviewPass>
       {isOpenRejectFinalConfirmModal && (
-        <ConfirmModalDialog
-          heading={'Mash-Up 12기 합류 포기.. \n다시 생각해보시는 건 어떨까요..?'}
-          paragraph="저희 Mash-Up 스태프는 지원자님과 12기를 꼭 함께 하고 싶어합니다. 이번에 합류 포기를 하시면 해당 선택에 대한 번복은 불가한 점 참고 부탁드립니다. "
-          approvalButtonMessage="고민해볼게요"
-          cancelButtonMessage="포기합니다"
-          handleApprovalButton={() => setIsOpenRejectFinalConfirmModal(false)}
-          handleCancelButton={handleRejectInterview}
+        <ConfirmRejectModalDialog
+          heading="Mash-Up 12기 포기하시겠습니까?"
+          paragraph="합류 포기시에 해당 선택에 대한 번복 불가한 점 참고 부탁드립니다."
+          approvalButtonMessage="포기하기"
+          cancelButtonMessage="취소"
+          handleApprovalButton={handleRejectInterview}
+          handleCancelButton={() => setIsOpenRejectFinalConfirmModal(false)}
           setIsOpenModal={setIsOpenRejectFinalConfirmModal}
           beforeRef={rejectInterviewButtonRef}
+          inputPlaceholder="합류를 포기하는 이유를 작성해주세요"
+        />
+      )}
+      {isOpenAcceptFinalConfirmModal && (
+        <ConfirmAcceptModalDialog
+          heading="Mash-Up 12기 합류하시겠습니까?"
+          paragraph="합류 확인시에 해당 선택에 대한 번복 불가한 점 참고 부탁드립니다."
+          inputPlaceHolder="합류합니다"
+          approvalButtonMessage="합류하기"
+          cancelButtonMessage="취소"
+          handleApprovalButton={handleAcceptInterview}
+          handleCancelButton={() => setIsOpenAcceptFinalConfirmModal(false)}
+          setIsOpenModal={setIsOpenAcceptFinalConfirmModal}
+          beforeRef={acceptInterviewButtonRef}
         />
       )}
       <LoadingModal setIsOpenModal={setIsLoading} />
