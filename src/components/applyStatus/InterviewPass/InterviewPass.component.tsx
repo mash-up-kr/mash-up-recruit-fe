@@ -55,14 +55,19 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
     }
   };
 
-  const handleRejectInterview: SubmitHandler<ConfirmRejectFormValues> = async () => {
+  const handleRejectInterview: SubmitHandler<ConfirmRejectFormValues> = async ({
+    confirmInput,
+  }) => {
     setIsLoading(true);
 
     try {
       const confirmApplicantRes = await applicationApiService.confirmApplicant({
         accessToken: session.data?.accessToken,
         applicationId,
-        updateConfirmationRequest: { status: 'FINAL_CONFIRM_REJECTED' },
+        updateConfirmationRequest: {
+          status: 'FINAL_CONFIRM_REJECTED',
+          rejectionReason: confirmInput,
+        },
       });
 
       setSubmittedApplication(confirmApplicantRes.data);

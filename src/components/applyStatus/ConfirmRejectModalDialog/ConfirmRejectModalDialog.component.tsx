@@ -42,29 +42,29 @@ const ConfirmRejectModalDialog = ({
       escClose={escClose}
     >
       <Styled.Dialog>
-        <Styled.DialogInner>
-          <Styled.SadMinsoo />
-          <Styled.Heading>{heading}</Styled.Heading>
-          <Styled.Paragraph>{paragraph}</Styled.Paragraph>
-          <Styled.Form onSubmit={handleSubmit(handleApprovalButton)}>
+        <Styled.Form onSubmit={handleSubmit(handleApprovalButton)}>
+          <Styled.DialogInner>
+            <Styled.SadMinsoo />
+            <Styled.Heading>{heading}</Styled.Heading>
+            <Styled.Paragraph>{paragraph}</Styled.Paragraph>
             <Styled.Input
               type="text"
               {...register('confirmInput')}
               placeholder={inputPlaceholder}
               autoComplete="off"
             />
-          </Styled.Form>
-        </Styled.DialogInner>
-        <Styled.DialogFooter>
-          <Styled.CancelButton type="button" onClick={handleCancelButton}>
-            <div />
-            {cancelButtonMessage}
-          </Styled.CancelButton>
-          <Styled.ApprovalButton type="submit">
-            <div />
-            {approvalButtonMessage}
-          </Styled.ApprovalButton>
-        </Styled.DialogFooter>
+          </Styled.DialogInner>
+          <Styled.DialogFooter>
+            <Styled.CancelButton type="button" onClick={handleCancelButton}>
+              <div />
+              {cancelButtonMessage}
+            </Styled.CancelButton>
+            <Styled.ApprovalButton type="submit">
+              <div />
+              {approvalButtonMessage}
+            </Styled.ApprovalButton>
+          </Styled.DialogFooter>
+        </Styled.Form>
       </Styled.Dialog>
     </Modal>
   );
