@@ -124,6 +124,7 @@ export const OtDetailContent = styled.time`
 export const SatisfactionSurveyLink = styled.a`
   ${({ theme }) => css`
     color: ${theme.colors.white};
+    word-break: break-all;
   `}
 `;
 
