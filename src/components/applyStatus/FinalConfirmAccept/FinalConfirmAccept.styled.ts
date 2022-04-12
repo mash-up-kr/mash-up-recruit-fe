@@ -97,6 +97,11 @@ export const OtDetailHeading = styled.span`
     ${theme.fonts.kr.medium16};
     color: ${theme.colors.gray50};
     letter-spacing: -0.08rem;
+    word-break: keep-all;
+
+    @media (max-width: ${theme.breakPoint.media.tabletM}) {
+      ${theme.fonts.kr.medium14};
+    }
   `}
 `;
 
