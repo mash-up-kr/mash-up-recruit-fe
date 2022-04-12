@@ -16,8 +16,8 @@ const FinalConfirmAccept = ({ application }: FinalConfirmAcceptProps) => {
         </Styled.NoticeMessage>
         <Styled.NoticeDetail>
           안녕하세요 {applicant.name}님! Mash-Up 12기 {TEAM_NICK_NAME[team.name]}과 함께하게 되어
-          너무 기뻐요! 12기 Rookie를 맞이할 준비하고 있을게요! 함께하게 되어 너무 기뻐요!! OT때
-          만나요!!
+          너무 기뻐요! 15일 금요일 오후 중으로 Mash-Up 12기 단톡방에 초대해드리겠습니다. 앞으로 잘
+          부탁드립니다!
         </Styled.NoticeDetail>
       </Styled.NoticeSection>
       <Styled.OtDetailSection>
