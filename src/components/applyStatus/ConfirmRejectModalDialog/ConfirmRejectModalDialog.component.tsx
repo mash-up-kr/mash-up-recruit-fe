@@ -16,7 +16,6 @@ interface ConfirmRejectModalDialogProps {
   approvalButtonMessage: string;
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
   beforeRef?: MutableRefObject<HTMLButtonElement>;
-  deemClose?: boolean;
   escClose?: boolean;
   inputPlaceholder: string;
 }
@@ -30,7 +29,6 @@ const ConfirmRejectModalDialog = ({
   approvalButtonMessage,
   beforeRef,
   setIsOpenModal,
-  deemClose,
   escClose,
   inputPlaceholder,
 }: ConfirmRejectModalDialogProps) => {
@@ -40,7 +38,7 @@ const ConfirmRejectModalDialog = ({
     <Modal
       beforeRef={beforeRef}
       setIsOpenModal={setIsOpenModal}
-      deemClose={deemClose}
+      deemClose={false}
       escClose={escClose}
     >
       <Styled.Dialog>
