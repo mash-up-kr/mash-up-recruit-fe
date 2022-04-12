@@ -9,6 +9,10 @@ export const StatusDetail = styled.div`
     padding: 4rem;
     background: ${theme.colors.gray90};
     border-radius: 3rem;
+
+    @media (max-width: ${theme.breakPoint.media.mobile}) {
+      padding: 4rem 2.4rem;
+    }
   `}
 `;
 
