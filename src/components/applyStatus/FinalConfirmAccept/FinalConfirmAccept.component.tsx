@@ -42,7 +42,7 @@ const FinalConfirmAccept = ({ application }: FinalConfirmAcceptProps) => {
           </li>
           <li>
             모집 프로세스 만족도 설문 작성은 선택사항이며, 지원자님의 소중한 답변을 통해 더 나은
-            프로세를 만들어 성장하는 Mash-Up이 되겠습니다.
+            프로세스를 만들어 성장하는 Mash-Up이 되겠습니다.
           </li>
         </Styled.OtExplanationList>
       </Styled.OtDetailSection>
