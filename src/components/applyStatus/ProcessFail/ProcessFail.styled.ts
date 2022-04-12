@@ -36,6 +36,7 @@ export const SurveyRequestMessage = styled.span`
 export const SatisfactionSurveyLink = styled.a`
   ${({ theme }) => css`
     display: block;
-    color: ${theme.colors.gray60};
+    color: ${theme.colors.white};
+    text-decoration: underline;
   `}
 `;
