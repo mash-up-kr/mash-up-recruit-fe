@@ -99,7 +99,7 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
           <Styled.OtDate>4월 16일(토) 오후 2시 ~ 5시 - ZOOM</Styled.OtDate>
           <Styled.OtExplanationList>
             <li>
-              4월 13일(수) 오전 10시까지 12기 최종 합류 여부 응답 안 할 시 합류하지 않는 것으로
+              4월 13일(수) 오후 7시까지 12기 최종 합류 여부 응답 안 할 시 합류하지 않는 것으로
               간주되니, 빠른 응답 부탁드립니다.
             </li>
             <li>전체 모임은 격주 토요일 오후 2시에 온라인으로 진행됩니다.</li>
