@@ -23,6 +23,7 @@ const InterviewFail = ({ application }: InterviewFailProps) => {
   아쉽지만 ${applicant.name}님의 뛰어난 역량에도 불구하고, 제한된 모집 인원으로 인해 ${
         applicant.name
       }님을 Mash-Up 12기에 모실 수 없게 되었습니다. Mash-Up 12기 Rookie Recruiting에 지원해주셔서 다시 한 번 감사드리며, 다음 기회에 인연이 될 수 있으면 좋겠습니다. 감사합니다.`}
+      survey
     />
   );
 };

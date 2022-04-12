@@ -23,3 +23,20 @@ export const FailParagraph = styled.p`
     letter-spacing: -0.08rem;
   `}
 `;
+
+export const SurveyRequestMessage = styled.span`
+  ${({ theme }) => css`
+    ${theme.fonts.kr.medium13};
+    display: block;
+    margin-top: 1.6rem;
+    color: ${theme.colors.gray60};
+  `}
+`;
+
+export const SatisfactionSurveyLink = styled.a`
+  ${({ theme }) => css`
+    display: block;
+    color: ${theme.colors.white};
+    text-decoration: underline;
+  `}
+`;
