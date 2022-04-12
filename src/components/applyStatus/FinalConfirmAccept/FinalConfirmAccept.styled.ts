@@ -121,6 +121,12 @@ export const OtDetailContent = styled.time`
   `}
 `;
 
+export const SatisfactionSurveyLink = styled.a`
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+  `}
+`;
+
 export const OtExplanationList = styled.ul`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium13};
