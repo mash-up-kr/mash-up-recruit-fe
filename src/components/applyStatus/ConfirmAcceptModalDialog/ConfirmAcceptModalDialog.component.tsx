@@ -64,7 +64,7 @@ const ConfirmAcceptModalDialog = ({
                   inputValue === inputPlaceHolder || '초록색 문구와 똑같이 입력해주세요',
                 required: {
                   value: true,
-                  message: '초록색 문구와 똑같이 입력해주세요',
+                  message: `'${inputPlaceHolder}'를 똑같이 입력해주세요`,
                 },
               })}
               placeholder={inputPlaceHolder}
