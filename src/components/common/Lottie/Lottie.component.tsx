@@ -1,5 +1,14 @@
 import { useEffect, useRef } from 'react';
-import lottie from 'lottie-web';
+
+const lottie = import('lottie-web/build/player/lottie_light').then((module) => module.default);
+
+async function loadLottieAnimation<T extends HTMLElement>(animationData: any, container: T) {
+  const lottiePlayer = await lottie;
+  lottiePlayer.loadAnimation({
+    animationData,
+    container,
+  });
+}
 
 interface LottieProps {
   animationData: any;
@@ -12,10 +21,7 @@ const Lottie = ({ animationData, width, height }: LottieProps) => {
 
   useEffect(() => {
     if (element.current) {
-      lottie.loadAnimation({
-        animationData,
-        container: element.current,
-      });
+      loadLottieAnimation(animationData, element.current);
     }
   }, [animationData]);
 
