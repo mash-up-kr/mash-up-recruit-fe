@@ -1,6 +1,7 @@
 {
   "name": "mash-up-recruit-fe",
   "private": true,
+  "sideEffects": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -77,7 +78,7 @@
     "yarn": "^1.22.x"
   },
   "lint-staged": {
-    "*.json": [
+    "*rc.json": [
       "yarn prettier:code-fix"
     ],
     ".*rc": [
