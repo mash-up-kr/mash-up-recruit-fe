@@ -1,6 +1,7 @@
 {
   "name": "mash-up-recruit-fe",
   "private": true,
+  "sideEffects": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
