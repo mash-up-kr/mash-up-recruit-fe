@@ -77,7 +77,7 @@
     "yarn": "^1.22.x"
   },
   "lint-staged": {
-    "*.json": [
+    "*rc.json": [
       "yarn prettier:code-fix"
     ],
     ".*rc": [
