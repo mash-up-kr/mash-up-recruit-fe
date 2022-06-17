@@ -72,7 +72,7 @@ const MyPageTab = ({ isOpenMyPageTab, setIsOpenMyPageTab }: MyPageTabProps) => {
           tabIndex={isOpenMyPageTab ? 0 : -1}
           currentPage={currentPage}
         >
-          지원 내역
+          지원 현황
           <ChevronRight7 />
         </Styled.TabLink>
         <Styled.SignOutButton

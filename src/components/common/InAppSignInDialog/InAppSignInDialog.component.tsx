@@ -4,26 +4,35 @@ import * as Styled from './InAppSignInDialog.styled';
 
 const TARGET_URL = 'https://recruit.mash-up.kr';
 
-const browserNameMap = {
+const browserNameMap: Record<InAppBrowser, string> = {
   KAKAO: '카카오톡',
   FACEBOOK: '페이스북',
   INSTAGRAM: '인스타그램',
   NAVER: '네이버',
+  CAMPUS_PICK: '캠퍼스픽',
+  EVERY_TIME: '에브리타임',
+  LINKEDIN: '링크드인',
 } as const;
 
 export interface InAppSignInDialogProps {
-  handleSuccessCopy: () => void;
-  handleCloseButton: () => void;
+  handleCloseDialog: () => void;
 }
 
-const InAppSignInDialog = ({ handleSuccessCopy, handleCloseButton }: InAppSignInDialogProps) => {
+const InAppSignInDialog = ({ handleCloseDialog }: InAppSignInDialogProps) => {
   const browserName = browserNameMap[getInAppBrowser(window.navigator) as InAppBrowser];
   const toast = useToast();
   const { copy } = useCopyToClipboard(TARGET_URL, {
     onSuccess: () => {
-      toast({ text: '링크 복사 완료!' });
-      handleSuccessCopy();
+      toast({ content: '링크 복사 완료!', status: 'success' });
     },
+    onError: () => {
+      toast({
+        content: <span style={{ textDecoration: 'underline' }}>{TARGET_URL}</span>,
+        status: 'error',
+        persist: true,
+      });
+    },
+    onComplete: handleCloseDialog,
   });
 
   return (
@@ -39,7 +48,7 @@ const InAppSignInDialog = ({ handleSuccessCopy, handleCloseButton }: InAppSignIn
           <div />
           링크 복사
         </Styled.LinkCopyButton>
-        <Styled.CloseButton type="button" onClick={handleCloseButton}>
+        <Styled.CloseButton type="button" onClick={handleCloseDialog}>
           <div />
           확인
         </Styled.CloseButton>

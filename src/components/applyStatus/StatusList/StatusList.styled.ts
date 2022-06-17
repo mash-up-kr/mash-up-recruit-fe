@@ -243,7 +243,13 @@ export const ApplicationDetailLink = styled(LinkTo)`
     background: ${theme.colors.gray20};
     border-radius: 1.6rem;
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        background: ${theme.colors.gray40};
+      }
+    }
+
+    &:active {
       background: ${theme.colors.gray40};
     }
 

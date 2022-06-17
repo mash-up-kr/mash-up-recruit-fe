@@ -1,3 +1,5 @@
+const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+
 const [
   RECRUITMENT_START_KST_DATE, // 서류 접수 시작
   RECRUITMENT_END_KST_DATE, // 서류 접수 종료
@@ -7,8 +9,8 @@ const [
 ] = [
   new Date('2022-03-16T00:00:00+09:00'),
   new Date('2022-03-29T23:59:59+09:00'),
-  new Date('2022-04-02T10:00:00+09:00'),
-  new Date('2022-04-12T10:00:00+09:00'),
+  new Date('2022-04-03T10:00:00+09:00'),
+  new Date('2022-04-12T19:00:00+09:00'),
   new Date('2022-04-16T17:00:00+09:00'),
 ];
 
@@ -57,4 +59,17 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = (
     return 'AFTER-FIRST-SEMINAR';
   }
   return 'INVALID';
+};
+
+export const getValueOfDateIntoObj = (dateInstance: Date) => {
+  const month = dateInstance.getMonth() + 1;
+  const date = dateInstance.getDate();
+  const hour24Format = dateInstance.getHours();
+  const isAfternoon = dateInstance.getHours() >= 12;
+  const hour12Format = hour24Format > 12 ? hour24Format - 12 : hour24Format;
+  const minute = dateInstance.getMinutes().toString().padStart(2, '0');
+  const day = dateInstance.getDay();
+  const dayKr = DAYS[dateInstance.getDay()];
+
+  return { month, date, hour24Format, hour12Format, isAfternoon, minute, day, dayKr };
 };

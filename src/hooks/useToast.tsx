@@ -3,17 +3,21 @@ import { ThemeProvider } from '@emotion/react';
 import { Toast } from '@/components';
 import {
   RenderProps,
+  Status,
   ToastId,
   ToastOptions,
   ToastPosition,
 } from '@/components/common/Toast/Toast.component';
 import { toast } from '@/components/common/Toast/Toaster';
+import { ReactNode } from 'react';
 
 export interface UseToastOptions {
   position?: ToastPosition;
   duration?: ToastOptions['duration'];
-  text?: string;
+  content?: ReactNode;
   id?: ToastId;
+  status?: Status;
+  persist?: boolean;
 }
 
 const defaults = {

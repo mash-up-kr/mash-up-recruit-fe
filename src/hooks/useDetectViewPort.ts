@@ -6,7 +6,7 @@ import { ViewPort, VIEWPORT_SIZE } from '@/constants';
 const useDetectViewport = (initialViewPort = breakPoint.value) => {
   const [size, setSize] = useState<ViewPort>(VIEWPORT_SIZE.DESKTOP);
 
-  const { mobile, tabletS, tabletL } = initialViewPort;
+  const { mobile, tabletS, tabletM, tabletL } = initialViewPort;
 
   useEffect(() => {
     const detectionViewport = () => {
@@ -16,7 +16,9 @@ const useDetectViewport = (initialViewPort = breakPoint.value) => {
         setSize(VIEWPORT_SIZE.MOBILE);
       } else if (vw > mobile && vw <= tabletS) {
         setSize(VIEWPORT_SIZE.TABLET_S);
-      } else if (vw > tabletS && vw <= tabletL) {
+      } else if (vw > tabletS && vw <= tabletM) {
+        setSize(VIEWPORT_SIZE.TABLET_M);
+      } else if (vw > tabletM && vw <= tabletL) {
         setSize(VIEWPORT_SIZE.TABLET_L);
       } else if (vw > tabletL) {
         setSize(VIEWPORT_SIZE.DESKTOP);
@@ -31,7 +33,7 @@ const useDetectViewport = (initialViewPort = breakPoint.value) => {
     return () => {
       window.removeEventListener('resize', handleDetectViewport);
     };
-  }, [mobile, tabletL, tabletS]);
+  }, [mobile, tabletL, tabletM, tabletS]);
 
   return { size };
 };

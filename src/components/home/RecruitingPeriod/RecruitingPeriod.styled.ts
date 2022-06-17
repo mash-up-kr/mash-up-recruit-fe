@@ -9,8 +9,8 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      height: calc(100vh - 8rem);
-      min-height: 102.4rem;
+      height: 100vh;
+      min-height: 72rem;
       color: ${theme.colors.white};
 
       span {
@@ -35,7 +35,6 @@ export const Container = styled.div`
     }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      height: calc(100vh - 6.4rem);
       min-height: 66.7rem;
       span {
         ${theme.fonts.en.extrabold15};

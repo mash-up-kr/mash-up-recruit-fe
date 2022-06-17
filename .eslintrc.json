@@ -20,24 +20,25 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/jsx-props-no-spreading": 0,
+    "react/jsx-props-no-spreading": "off",
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "import/prefer-default-export": "off",
-    "import/extensions": 0,
-    "import/no-unresolved": 0,
-    "import/no-cycle": 0,
-    "react/require-default-props": 0,
-    "no-throw-literal": 0,
-    "no-nested-ternary": 0
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "import/no-cycle": "off",
+    "react/require-default-props": "off",
+    "no-throw-literal": "off",
+    "no-nested-ternary": "off",
+    "react/no-array-index-key": "off"
   },
   "overrides": [
     {
       "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
       "rules": {
-        "import/no-extraneous-dependencies": 0
+        "import/no-extraneous-dependencies": "off"
       }
     }
   ]

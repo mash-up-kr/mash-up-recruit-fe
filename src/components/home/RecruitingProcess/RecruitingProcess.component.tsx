@@ -19,7 +19,7 @@ const RecruitingProcess = () => {
           <Styled.ListItem>
             <Styled.SubHeading>서류 결과 발표</Styled.SubHeading>
             <Styled.Date>
-              <time dateTime="2022-04-02">04.02(토)</time>
+              <time dateTime="2022-04-03">04.03(일)</time>
             </Styled.Date>
             <Styled.Note>오전 10시</Styled.Note>
           </Styled.ListItem>
@@ -36,7 +36,7 @@ const RecruitingProcess = () => {
             <Styled.Date>
               <time dateTime="2022-04-12">04.12(화)</time>
             </Styled.Date>
-            <Styled.Note>오전 10시</Styled.Note>
+            <Styled.Note>오후 7시</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>12기 OT</Styled.SubHeading>

@@ -23,7 +23,13 @@ export const TextArea = styled.textarea<StyledTextAreaProps>`
       background: ${theme.colors.purple40};
     }
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple40};
+      }
+    }
+
+    &:active {
       border: 0.1rem solid ${isError ? theme.colors.red50 : theme.colors.purple40};
     }
 

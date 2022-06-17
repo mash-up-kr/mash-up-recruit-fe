@@ -24,6 +24,7 @@ import {
   useState,
 } from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
+import unescape from 'lodash-es/unescape';
 import * as Styled from './ApplyForm.styled';
 
 interface ApplyFormProps {
@@ -270,7 +271,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                 required: '이름은 필수로 입력해야 해요!',
                 maxLength: 24,
               }}
-              defaultValue={applicant.name}
+              defaultValue={unescape(applicant.name)}
               render={({ field }) => (
                 <LabeledInput
                   {...field}
@@ -324,7 +325,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           <Styled.PersonalInformationWrapper>
             <LabeledInput
               id={APPLY_FORM_KEYS.email}
-              value={applicant.email}
+              value={unescape(applicant.email)}
               disabled
               label="이메일"
               $size="md"
@@ -365,7 +366,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                 required: '거주지역은 필수로 입력해야 해요!',
                 maxLength: 30,
               }}
-              defaultValue={applicant.residence}
+              defaultValue={unescape(applicant.residence)}
               render={({ field }) => (
                 <LabeledInput
                   {...field}
@@ -397,7 +398,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                 required: '소속은 필수로 입력해야 해요!',
                 maxLength: 50,
               }}
-              defaultValue={applicant.department}
+              defaultValue={unescape(applicant.department)}
               render={({ field }) => (
                 <LabeledInput
                   {...field}
@@ -441,7 +442,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                         message: '최대 글자수를 초과하였습니다.',
                       },
                     }}
-                    defaultValue={answer?.content}
+                    defaultValue={unescape(answer?.content)}
                     render={({ field }) => (
                       <LabeledTextArea
                         {...field}
@@ -483,7 +484,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
                         message: '최대 글자수를 초과하였습니다.',
                       },
                     }}
-                    defaultValue={answer?.content}
+                    defaultValue={unescape(answer?.content)}
                     render={({ field }) => (
                       <LabeledInput
                         {...field}
@@ -564,9 +565,17 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               </Styled.SubmitButton>
             </>
           )}
-          <Styled.BackToListLink href={`/recruit/${application.team.name.toLowerCase()}`}>
+          <Styled.BackToListLink
+            href={
+              router.pathname === PATH_NAME.APPLY_PAGE
+                ? `/recruit/${application.team.name.toLowerCase()}`
+                : router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL
+                ? MY_PAGE_APPLY_STATUS
+                : HOME_PAGE
+            }
+          >
             <Styled.ChevronLeft />
-            목록으로 돌아가기
+            <span>목록으로 돌아가기</span>
           </Styled.BackToListLink>
         </Styled.ControlSection>
       </form>
@@ -614,7 +623,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
       {isOpenSuccessSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서 제출 완료!"
-          paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 4월 2일(토) 오전 10시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!"
+          paragraph="귀한 시간내어 매쉬업 12기에 지원해주셔서 진심으로 감사드립니다! 4월 3일(일) 오전 10시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!"
           approvalButtonMessage="내 지원서 확인하기"
           cancelButtonMessage="홈으로"
           setIsOpenModal={setIsOpenSuccessSubmittedModal}
