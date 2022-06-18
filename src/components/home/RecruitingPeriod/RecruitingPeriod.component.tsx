@@ -1,4 +1,4 @@
-import { Lottie } from '@/components';
+import { Lottie, ScreenReaderOnly } from '@/components';
 import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION } from '@/constants';
 import computerLottie from '@/assets/lottie/computer.json';
 import PeriodArrow from '@/assets/svg/period-arrow.svg';
@@ -12,7 +12,10 @@ const RecruitingPeriod = () => {
         <Styled.StartDateContainer>
           <Styled.StartDate data-aos="fade-up" data-aos-duration={AOS_DEFAULT_DURATION}>
             <span>Start Date</span>
-            <time dateTime="2022-03-16">03.16</time>
+            <ScreenReaderOnly>2022년 3월 16일</ScreenReaderOnly>
+            <time aria-hidden dateTime="2022-03-16">
+              03.16
+            </time>
           </Styled.StartDate>
         </Styled.StartDateContainer>
         <Styled.EndDateContainer>
@@ -21,7 +24,10 @@ const RecruitingPeriod = () => {
             data-aos-duration={AOS_DEFAULT_DURATION + AOS_BASE_DURATION_DISTANCE}
           >
             <span>End Date</span>
-            <time dateTime="2022-03-29">03.29</time>
+            <ScreenReaderOnly>2022년 3월 29일</ScreenReaderOnly>
+            <time aria-hidden dateTime="2022-03-29">
+              03.29
+            </time>
           </Styled.EndDate>
         </Styled.EndDateContainer>
         <Styled.PeriodBackgroundContainer data-aos="fade-up">
