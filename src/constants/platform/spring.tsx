@@ -3,6 +3,7 @@ import SpringLeftEmoji from '@/assets/svg/spring-left-emoji.svg';
 import SpringRightEmoji from '@/assets/svg/spring-right-emoji.svg';
 
 const spring = {
+  id: 'spring',
   name: 'Spring',
   role: 'Backend Developer',
   path: {
