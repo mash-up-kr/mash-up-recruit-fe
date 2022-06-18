@@ -124,7 +124,7 @@ export const Card = styled.div`
       width: 12.1rem;
     }
 
-    button {
+    span {
       ${theme.fonts.en.extrabold15};
       margin: 0;
       padding: 1.9rem 2rem;
@@ -148,7 +148,7 @@ export const Card = styled.div`
         transform: translate(0.6rem, -0.6rem);
       }
 
-      button {
+      span {
         ${theme.fonts.en.extrabold15};
         padding: 1rem 2rem;
         color: ${theme.colors.purple70};

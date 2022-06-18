@@ -32,6 +32,7 @@ export type Question = {
 };
 
 export type Platform = {
+  id: string;
   name: string;
   role: string;
   path: Path;

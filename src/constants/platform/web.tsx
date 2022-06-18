@@ -3,6 +3,7 @@ import WebLeftEmoji from '@/assets/svg/web-left-emoji.svg';
 import WebRightEmoji from '@/assets/svg/web-right-emoji.svg';
 
 const web = {
+  id: 'web',
   name: 'Web',
   role: 'Frontend Developer',
   path: {

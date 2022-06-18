@@ -3,6 +3,7 @@ import NodeLeftEmoji from '@/assets/svg/node-left-emoji.svg';
 import NodeRightEmoji from '@/assets/svg/node-right-emoji.svg';
 
 const node = {
+  id: 'node',
   name: 'Node',
   role: 'Backend Developer',
   path: {

@@ -1,4 +1,4 @@
-import { LinkTo } from '@/components';
+import { LinkTo, ScreenReaderOnly } from '@/components';
 import {
   platforms,
   RECRUIT_DETAILS_ID,
@@ -36,11 +36,12 @@ const RecruitingDetailNavigation = () => {
           data-aos-duration={`${AOS_DEFAULT_DURATION + AOS_BASE_DURATION_DISTANCE}`}
         >
           저희는 개인의 성장에 재미와 열정을 갖고 있는 학생과 직장인들이 모여있는 Mash-Up입니다.
-          <br />
-          *중복지원은 불가하며 1개의 팀에만 지원 가능한 점 참고 부탁드립니다.
+          <br aria-hidden />
+          <span aria-hidden>*</span>
+          중복지원은 불가하며 1개의 팀에만 지원 가능한 점 참고 부탁드립니다.
         </Styled.SubTitle>
         <Styled.List>
-          {platforms.map(({ key, name, role, path }, index) => (
+          {platforms.map(({ id, key, name, role, path }, index) => (
             <Styled.ListItem
               key={key}
               data-aos="fade-up"
@@ -48,11 +49,12 @@ const RecruitingDetailNavigation = () => {
             >
               <Styled.Card>
                 <Styled.CardHeader>
-                  <h3>{name} Team</h3>
+                  <h3 id={`${id}-team-${index}`}>{name} Team</h3>
                   <p>{role}</p>
                 </Styled.CardHeader>
                 <LinkTo href={path.recruit}>
-                  <button type="button">More Detail</button>
+                  <span aria-labelledby={`${id}-team-${index}`}>More Detail</span>
+                  <ScreenReaderOnly>모집 정보 자세히 보기</ScreenReaderOnly>
                 </LinkTo>
               </Styled.Card>
             </Styled.ListItem>

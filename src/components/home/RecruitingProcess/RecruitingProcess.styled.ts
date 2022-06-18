@@ -228,7 +228,7 @@ export const ListItem = styled.li`
   `}
 `;
 
-export const SubHeading = styled.h3`
+export const SubHeading = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.kr.bold22};
     @media (max-width: ${theme.breakPoint.media.tabletS}) {

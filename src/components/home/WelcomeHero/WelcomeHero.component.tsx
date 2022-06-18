@@ -59,7 +59,7 @@ const WelcomeHero = () => {
           data-aos="fade-up"
           data-aos-duration={AOS_DEFAULT_DURATION + 3 * AOS_BASE_DURATION_DISTANCE}
         >
-          <Lottie animationData={hiLottie} />
+          <Lottie aria-hidden animationData={hiLottie} />
         </Styled.HiContainer>
       </Styled.Contents>
     </Styled.Container>
