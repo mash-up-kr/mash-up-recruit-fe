@@ -32,19 +32,19 @@ const RecruitingPeriod = () => {
         </Styled.EndDateContainer>
         <Styled.PeriodBackgroundContainer data-aos="fade-up">
           <Styled.ComputerContainer data-aos="fade-up" data-aos-duration={AOS_DEFAULT_DURATION}>
-            <Lottie animationData={computerLottie} />
+            <Lottie animationData={computerLottie} aria-hidden />
           </Styled.ComputerContainer>
           <Styled.PeriodArrowContainer
             data-aos="fade-up"
             data-aos-duration={AOS_DEFAULT_DURATION + 3 * AOS_BASE_DURATION_DISTANCE}
           >
-            <PeriodArrow />
+            <PeriodArrow aria-hidden />
           </Styled.PeriodArrowContainer>
           <Styled.FireContainer
             data-aos="fade-up"
             data-aos-duration={AOS_DEFAULT_DURATION + 3 * AOS_BASE_DURATION_DISTANCE}
           >
-            <Lottie animationData={fireLottie} />
+            <Lottie aria-hidden animationData={fireLottie} />
           </Styled.FireContainer>
         </Styled.PeriodBackgroundContainer>
       </Styled.Contents>
