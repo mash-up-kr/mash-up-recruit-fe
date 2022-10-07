@@ -126,6 +126,7 @@ export const Card = styled.div`
 
     span {
       ${theme.fonts.en.extrabold15};
+      display: inline-block;
       margin: 0;
       padding: 1.9rem 2rem;
       color: ${theme.colors.purple70};
