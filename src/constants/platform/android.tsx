@@ -3,6 +3,7 @@ import AndroidLeftEmoji from '@/assets/svg/android-left-emoji.svg';
 import AndroidRightEmoji from '@/assets/svg/android-right-emoji.svg';
 
 const android = {
+  id: 'android',
   name: 'Android',
   role: 'Android Developer',
   path: {

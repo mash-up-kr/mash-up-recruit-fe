@@ -17,30 +17,55 @@ const Footer = () => {
           © Mash-Up 2022. Made in Seoul.
         </Styled.Copyright>
         <Styled.ExternalLinkWrapper currentPage={currentPage}>
-          <a href="https://github.com/mash-up-kr/" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/mash-up-kr/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="mash up github"
+          >
             {currentPage === HOME_PAGE ? (
               <Styled.GithubIconWrapper>
                 <Styled.GithubIconBackground />
-                <Styled.GithubIconDark />
+                <Styled.GithubIconDark aria-hidden />
               </Styled.GithubIconWrapper>
             ) : (
-              <GithubWhite32 />
+              <GithubWhite32 aria-hidden />
             )}
           </a>
-          <a href="mailto:recruit.mashup@gmail.com">
-            <Mail32 />
+          <a href="mailto:recruit.mashup@gmail.com" aria-label="mash up email">
+            <Mail32 aria-hidden />
           </a>
-          <a href="https://mash-up.tistory.com/" target="_blank" rel="noreferrer">
-            <Tistory32 />
+          <a
+            href="https://mash-up.tistory.com/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="mash up tistory"
+          >
+            <Tistory32 aria-hidden />
           </a>
-          <a href="https://www.behance.net/Mash-Up/" target="_blank" rel="noreferrer">
-            <Behance32 />
+          <a
+            href="https://www.behance.net/Mash-Up/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="mash up behance"
+          >
+            <Behance32 aria-hidden />
           </a>
-          <a href="https://www.facebook.com/mashupgroup/" target="_blank" rel="noreferrer">
-            <Facebook32 />
+          <a
+            href="https://www.facebook.com/mashupgroup/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="mash up facebook"
+          >
+            <Facebook32 aria-hidden />
           </a>
-          <a href="https://www.instagram.com/official_mashup_/" target="_blank" rel="noreferrer">
-            <Instagram32 />
+          <a
+            href="https://www.instagram.com/official_mashup_/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="mash up instagram"
+          >
+            <Instagram32 aria-hidden />
           </a>
         </Styled.ExternalLinkWrapper>
       </Styled.FooterInner>

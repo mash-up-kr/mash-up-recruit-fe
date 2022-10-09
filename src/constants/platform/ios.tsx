@@ -3,6 +3,7 @@ import IOSLeftEmoji from '@/assets/svg/ios-left-emoji.svg';
 import IOSRightEmoji from '@/assets/svg/ios-right-emoji.svg';
 
 const ios = {
+  id: 'ios',
   name: 'iOS',
   role: 'iOS Developer',
   path: {
