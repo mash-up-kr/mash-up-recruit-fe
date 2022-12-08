@@ -18,7 +18,7 @@ const RecruitingOpenHero = () => {
             data-aos="fade-up"
             data-aos-duration={AOS_DEFAULT_DURATION + AOS_BASE_DURATION_DISTANCE}
           >
-            12th
+            13th
           </span>
           <Styled.RightImageContainer>
             <Image
