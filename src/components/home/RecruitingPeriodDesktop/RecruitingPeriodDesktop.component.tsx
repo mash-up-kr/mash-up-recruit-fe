@@ -10,9 +10,9 @@ const RecruitingPeriodDesktop = () => {
     <Styled.Container>
       <Styled.StartDate data-aos="fade-up" data-aos-duration={AOS_DEFAULT_DURATION}>
         <span>Start Date</span>
-        <ScreenReaderOnly>2022년 3월 16일</ScreenReaderOnly>
-        <time aria-hidden dateTime="2022-03-16">
-          03.16
+        <ScreenReaderOnly>2023년 1월 11일</ScreenReaderOnly>
+        <time aria-hidden dateTime="2023-01-11">
+          01.11
         </time>
       </Styled.StartDate>
       <Styled.EndDate
@@ -20,9 +20,9 @@ const RecruitingPeriodDesktop = () => {
         data-aos-duration={AOS_DEFAULT_DURATION + 3 * AOS_BASE_DURATION_DISTANCE}
       >
         <span>End Date</span>
-        <ScreenReaderOnly>2022년 3월 29일</ScreenReaderOnly>
-        <time aria-hidden dateTime="2022-03-29">
-          03.29
+        <ScreenReaderOnly>2023년 1월 25일</ScreenReaderOnly>
+        <time aria-hidden dateTime="2023-01-25">
+          01.25
         </time>
       </Styled.EndDate>
       <Styled.PeriodBackgroundDesktopContainer>
