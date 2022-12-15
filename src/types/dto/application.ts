@@ -44,6 +44,11 @@ type ConfirmationStatus =
 
 export type ApplicationStatus = 'CREATED' | 'SUBMITTED' | 'WRITING';
 
+interface Generation {
+  generationId: number;
+  generationNumber: number;
+}
+
 export interface Application {
   answers: Answer[];
   applicant: Applicant;
@@ -55,6 +60,7 @@ export interface Application {
   status: ApplicationStatus;
   submittedAt: string;
   team: Team;
+  generationResponse: Generation;
 }
 
 interface UpdateApplication {
