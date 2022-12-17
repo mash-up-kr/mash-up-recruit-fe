@@ -39,11 +39,11 @@ const node = {
     },
     {
       id: 'node-talent-2',
-      content: <>🔥 부족한 부분을 채우고자 끊임없이 새로운 기술을 탐구하는 사람</>,
+      content: <>🔥 도전에 대해 거부감이 없고 적극적인 사람</>,
     },
     {
       id: 'node-talent-3',
-      content: <>😎 성장과 공유의 즐거움을 아는/알고 싶은 사람</>,
+      content: <>😎 Deep-Dive를 좋아하는 사람</>,
     },
     {
       id: 'node-talent-4',
@@ -61,11 +61,7 @@ const node = {
     },
     {
       id: 'node-study-3',
-      content: <>🐳 Docker</>,
-    },
-    {
-      id: 'node-study-4',
-      content: <>☸️ Kubernetes</>,
+      content: <>📖 공유하고 싶은 기술에 대한 자율 스터디</>,
     },
   ],
   interview: [
@@ -102,22 +98,6 @@ const node = {
             </>
           ),
         },
-        {
-          id: 'node-question-1-4',
-          content: (
-            <>
-              이전 기수 노드팀 활동을 자세히 보려면 블로그를 참고하세요! 12기 포스팅의 주인공은
-              여러분!
-              <br />
-              <a
-                href="https://mash-up.tistory.com/search/노드팀"
-                style={{ textDecoration: 'underline' }}
-              >
-                https://mash-up.tistory.com/search/노드팀
-              </a>
-            </>
-          ),
-        },
       ],
     },
     {
@@ -126,28 +106,40 @@ const node = {
       content: [
         {
           id: 'node-question-2-1',
-          content: <>공식 문서로 빠르게 기술 스터디를 진행합니다. (무거운 책 No No)</>,
+          content: <>플랫폼 스터디와 자율 스터디를 진행합니다</>,
         },
         {
           id: 'node-question-2-2',
-          content: (
-            <>
-              로컬 서버만으로 끝나지 않고 도커, 쿠버네티스 기반의 실제 배포 파이프라인을 함께
-              만들어봅니다.
-            </>
-          ),
+          content: <>플랫폼 스터디</>,
+          subItems: [
+            {
+              id: 'node-question-2-2-1',
+              content: <>정기적으로 진행되는 단체 스터디입니다.</>,
+            },
+            {
+              id: 'node-question-2-2-2',
+              content: <>한 달에 2번 정도씩 정해진 주제에 대해 다같이 스터디합니다.</>,
+            },
+          ],
         },
         {
           id: 'node-question-2-3',
-          content: <>지식이 머리 속 이론에서 그치지 않게 기업 온보딩 과제를 실습을 합니다.</>,
-        },
-        {
-          id: 'node-question-2-4',
-          content: <>10분 세미나로 새로운 기술을 찍먹하고 팀원들에게 소개합니다.</>,
-        },
-        {
-          id: 'node-question-2-5',
-          content: <>매 주 토요일 낮 시간대에 진행합니다. ← 시간 정해지면 추후 변경</>,
+          content: <>자율 스터디</>,
+          subItems: [
+            {
+              id: 'node-question-2-3-1',
+              content: (
+                <>
+                  수요조사를 통해 마음이 맞는 사람들끼리 자율적으로 스터디를 진행하게 됩니다
+                  (Architecture, Design Pattern 등등..)
+                </>
+              ),
+            },
+            {
+              id: 'node-question-2-3-2',
+              content: <>주제, 방법, 시간, 장소는 모두 스터디원들끼리 정하게 됩니다.</>,
+            },
+          ],
         },
       ],
     },
@@ -159,8 +151,8 @@ const node = {
           id: 'node-question-3-1',
           content: (
             <>
-              노드를 따로 스터디하는 시간이 없기 때문에, 기본적으로 자바스크립트 및 노드를 사용해본
-              경험이 있어야합니다!
+              NodeJS 를 따로 스터디하는 시간은 없기 때문에, 기본적으로 NodeJS를 사용해본 경험이
+              있어야합니다!
             </>
           ),
         },
