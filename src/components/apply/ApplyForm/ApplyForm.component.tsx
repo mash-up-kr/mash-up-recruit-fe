@@ -1,6 +1,5 @@
 import { applicationApiService } from '@/api/services';
 import {
-  LabeledCheckbox,
   LoadingModal,
   PersonalInformation,
   QuestionAndAnswerList,
@@ -9,6 +8,7 @@ import {
   SubmitModalDialog,
   BackToListLink,
   SubmittedButton,
+  PersonalInfoAgree,
 } from '@/components';
 import { PATH_NAME } from '@/constants';
 import { Application } from '@/types/dto';
@@ -57,7 +57,6 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
 
   const applyForm = useForm<ApplyFormValues>();
   const {
-    register,
     handleSubmit,
     watch,
     trigger,
@@ -140,21 +139,10 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           questionsAndAnswers={questionsAndAnswers}
           isDetailPageAndSubmitted={isDetailPageAndSubmitted}
         />
-        <LabeledCheckbox
-          {...register(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-          checked={isDetailPageAndSubmitted ? true : watch(APPLY_FORM_KEYS.isAgreePersonalInfo)}
-          id={APPLY_FORM_KEYS.isAgreePersonalInfo}
-          disabled={isDetailPageAndSubmitted}
-        >
-          <a
-            href="https://snow-chestnut-45b.notion.site/Mash-Up-Recruit-d4d1eccd3e504bcba575d6e5a95cf1b1"
-            target="_blank"
-            rel="noreferrer"
-          >
-            개인정보 수집 및 이용
-          </a>
-          에 동의합니다.
-        </LabeledCheckbox>
+        <PersonalInfoAgree
+          applyForm={applyForm}
+          isDetailPageAndSubmitted={isDetailPageAndSubmitted}
+        />
         <Styled.ControlSection>
           {isSubmitted ? (
             <SubmittedButton
