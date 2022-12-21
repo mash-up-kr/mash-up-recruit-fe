@@ -6,3 +6,4 @@ export { default as BlockingConfirmModalDialog } from './BlockingConfirmModalDia
 export { default as SubmitModalDialog } from './SubmitModalDialog/SubmitModalDialog.component';
 export { default as TempSaveModalDialog } from './TempSaveModalDialog/TempSaveModalDialog.component';
 export { default as BackToListLink } from './BackToListLink/BackToListLink.component';
+export { default as SubmittedButton } from './SubmittedButton/SubmittedButton.component';

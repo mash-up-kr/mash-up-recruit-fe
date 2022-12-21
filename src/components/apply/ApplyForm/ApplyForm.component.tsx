@@ -7,8 +7,10 @@ import {
   BlockingConfirmModalDialog,
   TempSaveModalDialog,
   SubmitModalDialog,
+  BackToListLink,
+  SubmittedButton,
 } from '@/components';
-import { HOME_PAGE, MY_PAGE_APPLY_STATUS, PATH_NAME } from '@/constants';
+import { PATH_NAME } from '@/constants';
 import { Application } from '@/types/dto';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -122,8 +124,8 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
     setIsOpenConfirmSubmittedModal(true);
   };
 
-  const isDetailPageAndSubmitted =
-    isSubmitted && router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL;
+  const isCurrentlyOnDetailPage = router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL;
+  const isDetailPageAndSubmitted = isSubmitted && isCurrentlyOnDetailPage;
 
   return (
     <>
@@ -155,18 +157,10 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
         </LabeledCheckbox>
         <Styled.ControlSection>
           {isSubmitted ? (
-            router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL &&
-            application.status === 'SUBMITTED' ? (
-              <Styled.SubmittedCompletedButton type="button" disabled>
-                제출 완료된 지원서 입니다
-              </Styled.SubmittedCompletedButton>
-            ) : (
-              isSubmitted && (
-                <Styled.AlreadySubmittedButton type="button" disabled>
-                  이미 제출한 지원서가 있습니다
-                </Styled.AlreadySubmittedButton>
-              )
-            )
+            <SubmittedButton
+              application={application}
+              isCurrentlyOnDetailPage={isCurrentlyOnDetailPage}
+            />
           ) : (
             <>
               <Styled.TempSaveButton
@@ -185,18 +179,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
               </Styled.SubmitButton>
             </>
           )}
-          <Styled.BackToListLink
-            href={
-              router.pathname === PATH_NAME.APPLY_PAGE
-                ? `/recruit/${application.team.name.toLowerCase()}`
-                : router.pathname === PATH_NAME.MY_PAGE_APPLICATION_DETAIL
-                ? MY_PAGE_APPLY_STATUS
-                : HOME_PAGE
-            }
-          >
-            <Styled.ChevronLeft />
-            <span>목록으로 돌아가기</span>
-          </Styled.BackToListLink>
+          <BackToListLink application={application} />
         </Styled.ControlSection>
       </form>
       <BlockingConfirmModalDialog
