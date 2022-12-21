@@ -8,3 +8,4 @@ export { default as TempSaveModalDialog } from './TempSaveModalDialog/TempSaveMo
 export { default as BackToListLink } from './BackToListLink/BackToListLink.component';
 export { default as SubmittedButton } from './SubmittedButton/SubmittedButton.component';
 export { default as PersonalInfoAgree } from './PersonalInfoAgree/PersonalInfoAgree.component';
+export { default as TempSaveAndSubmitButton } from './TempSaveAndSubmitButton/TempSaveAndSubmitButton.component';
