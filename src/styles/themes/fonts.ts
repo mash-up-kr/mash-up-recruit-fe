@@ -65,6 +65,13 @@ export const fonts = {
       line-height: 1.5;
       letter-spacing: -0.08rem;
     `,
+    bold14: css`
+      font-weight: 700;
+      font-size: 1.4rem;
+      font-family: SpoqaHanSansNeo;
+      line-height: 1.5;
+      letter-spacing: -0.08rem;
+    `,
     medium16: css`
       font-weight: 500;
       font-size: 1.6rem;
@@ -123,6 +130,24 @@ export const fonts = {
     `,
   },
   en: {
+    extrabold300: css`
+      font-weight: 800;
+      font-size: 30rem;
+      font-family: Gilroy;
+      line-height: 36.8rem;
+    `,
+    extrabold200: css`
+      font-weight: 800;
+      font-size: 20rem;
+      font-family: Gilroy;
+      line-height: 24.5rem;
+    `,
+    extrabold180: css`
+      font-weight: 800;
+      font-size: 18rem;
+      font-family: Gilroy;
+      line-height: 22.1rem;
+    `,
     extrabold146: css`
       font-weight: 800;
       font-size: 14.6rem;
@@ -140,6 +165,12 @@ export const fonts = {
       font-size: 8rem;
       font-family: Gilroy;
       line-height: 9.8rem;
+    `,
+    extrabold70: css`
+      font-weight: 800;
+      font-size: 7rem;
+      font-family: Gilroy;
+      line-height: 8.6rem;
     `,
     extrabold60: css`
       font-weight: 800;
