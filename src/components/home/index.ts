@@ -5,3 +5,4 @@ export { default as WelcomeHero } from './WelcomeHero/WelcomeHero.component';
 export { default as RecruitingOpenHero } from './RecruitingOpenHero/RecruitingOpenHero.component';
 export { default as RecruitingPeriod } from './RecruitingPeriod/RecruitingPeriod.component';
 export { default as RecruitingPeriodDesktop } from './RecruitingPeriodDesktop/RecruitingPeriodDesktop.component';
+export { default as RecruitingRemainder } from './RecruitingRemainder/RecruitingRemainder.component';
