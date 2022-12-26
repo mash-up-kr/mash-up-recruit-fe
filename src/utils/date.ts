@@ -1,17 +1,17 @@
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
-const [
+export const [
   RECRUITMENT_START_KST_DATE, // 서류 접수 시작
   RECRUITMENT_END_KST_DATE, // 서류 접수 종료
   SCREENING_RESULT_ANNOUNCED_KST_DATE, // 서류 결과 발표
   INTERVIEW_RESULT_ANNOUNCED_KST_DATE, // 최종 합격 발표
   AFTER_FIRST_SEMINAR_JOIN_KST_DATE, // 첫번째 세미나 끝나는 시각
 ] = [
-  new Date('2022-03-16T00:00:00+09:00'),
-  new Date('2022-03-29T23:59:59+09:00'),
-  new Date('2022-04-03T10:00:00+09:00'),
-  new Date('2022-04-12T19:00:00+09:00'),
-  new Date('2022-04-16T17:00:00+09:00'),
+  new Date('2023-01-11T00:00:00+09:00'),
+  new Date('2023-01-25T23:59:59+09:00'),
+  new Date('2023-01-30T10:00:00+09:00'),
+  new Date('2023-02-07T19:00:00+09:00'),
+  new Date('2023-02-11T18:00:00+09:00'),
 ];
 
 export type RecruitingProgressStatus =
