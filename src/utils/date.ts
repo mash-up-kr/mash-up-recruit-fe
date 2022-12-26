@@ -1,3 +1,6 @@
+import { KeyOf } from '@/types';
+import { objectKeys } from './object';
+
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 export const [
@@ -72,4 +75,25 @@ export const getValueOfDateIntoObj = (dateInstance: Date) => {
   const dayKr = DAYS[dateInstance.getDay()];
 
   return { month, date, hour24Format, hour12Format, isAfternoon, minute, day, dayKr };
+};
+
+const DATE_DIFFERENCE_DEFINITION = {
+  day: 86400000,
+  hour: 3600000,
+  minute: 60000,
+  second: 1000,
+  millisecond: 1,
+} as const;
+
+const DATE_DIFFERENCE_KEYS = objectKeys(DATE_DIFFERENCE_DEFINITION);
+
+export type DateDifference = Record<KeyOf<typeof DATE_DIFFERENCE_DEFINITION>, number>;
+
+export const getDifferenceOfDates = (startDate: Date, endDate: Date): DateDifference => {
+  let delta = endDate.getTime() - startDate.getTime();
+  return DATE_DIFFERENCE_KEYS.reduce<DateDifference>((dateDifference, key) => {
+    const calculatedValueByKey = Math.floor(delta / DATE_DIFFERENCE_DEFINITION[key]);
+    delta -= calculatedValueByKey * DATE_DIFFERENCE_DEFINITION[key];
+    return Object.assign(dateDifference, { [key]: calculatedValueByKey });
+  }, {} as DateDifference);
 };
