@@ -16,8 +16,9 @@ import { useEffect, useState } from 'react';
 const Home = () => {
   useAOS();
 
-  const [recruitingProgressStatus, setRecruitingProgressStatus] =
-    useState<RecruitingProgressStatus>('INVALID');
+  const [recruitingProgressStatus, setRecruitingProgressStatus] = useState<
+    RecruitingProgressStatus | 'NOT_INITIALIZED'
+  >('NOT_INITIALIZED');
 
   useEffect(() => {
     setRecruitingProgressStatus(getRecruitingProgressStatusFromRecruitingPeriod(new Date()));
@@ -27,7 +28,7 @@ const Home = () => {
     <>
       {recruitingProgressStatus === 'PREVIOUS' && <RecruitingRemainder />}
       {recruitingProgressStatus !== 'PREVIOUS' && (
-        <HomeLayout>
+        <HomeLayout visibility={recruitingProgressStatus !== 'NOT_INITIALIZED'}>
           <WelcomeHero />
           <RecruitingOpenHero />
           <RecruitingPeriod />
