@@ -10,7 +10,7 @@ export const [
   INTERVIEW_RESULT_ANNOUNCED_KST_DATE, // 최종 합격 발표
   AFTER_FIRST_SEMINAR_JOIN_KST_DATE, // 첫번째 세미나 끝나는 시각
 ] = [
-  new Date('2022-12-28T01:00:00+09:00'),
+  new Date('2022-12-28T20:00:00+09:00'),
   new Date('2023-01-25T23:59:59+09:00'),
   new Date('2023-01-30T10:00:00+09:00'),
   new Date('2023-02-07T19:00:00+09:00'),
