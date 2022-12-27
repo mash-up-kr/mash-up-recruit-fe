@@ -8,3 +8,4 @@ export { default as useToast } from './useToast';
 export { default as useGoogleAnalytics } from './useGoogleAnalytics';
 export { default as useLoadingModal } from './useLoadingModal';
 export { default as useErrorModalDialog } from './useErrorModalDialog';
+export { default as useInterval } from './useInterval';
