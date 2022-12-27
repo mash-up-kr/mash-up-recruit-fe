@@ -10,11 +10,18 @@ import {
 
 import { useAOS } from '@/hooks';
 import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
+import type { RecruitingProgressStatus } from '@/utils/date';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
-  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
-
   useAOS();
+
+  const [recruitingProgressStatus, setRecruitingProgressStatus] =
+    useState<RecruitingProgressStatus>('INVALID');
+
+  useEffect(() => {
+    setRecruitingProgressStatus(getRecruitingProgressStatusFromRecruitingPeriod(new Date()));
+  }, []);
 
   return (
     <>
