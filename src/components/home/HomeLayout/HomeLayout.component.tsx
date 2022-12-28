@@ -3,10 +3,11 @@ import * as Styled from './HomeLayout.styled';
 
 interface HomeLayoutProps {
   children: ReactNode;
+  visibility: boolean;
 }
 
-const HomeLayout = ({ children }: HomeLayoutProps) => {
-  return <Styled.Layout>{children}</Styled.Layout>;
+const HomeLayout = ({ children, visibility }: HomeLayoutProps) => {
+  return <Styled.Layout visibility={visibility.toString()}>{children}</Styled.Layout>;
 };
 
 export default HomeLayout;

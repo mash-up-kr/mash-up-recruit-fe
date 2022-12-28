@@ -10,17 +10,25 @@ import {
 
 import { useAOS } from '@/hooks';
 import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
+import type { RecruitingProgressStatus } from '@/utils/date';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
-  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
-
   useAOS();
+
+  const [recruitingProgressStatus, setRecruitingProgressStatus] = useState<
+    RecruitingProgressStatus | 'NOT_INITIALIZED'
+  >('NOT_INITIALIZED');
+
+  useEffect(() => {
+    setRecruitingProgressStatus(getRecruitingProgressStatusFromRecruitingPeriod(new Date()));
+  }, []);
 
   return (
     <>
       {recruitingProgressStatus === 'PREVIOUS' && <RecruitingRemainder />}
       {recruitingProgressStatus !== 'PREVIOUS' && (
-        <HomeLayout>
+        <HomeLayout visibility={recruitingProgressStatus !== 'NOT_INITIALIZED'}>
           <WelcomeHero />
           <RecruitingOpenHero />
           <RecruitingPeriod />
