@@ -7,7 +7,7 @@ interface HomeLayoutProps {
 }
 
 const HomeLayout = ({ children, visibility }: HomeLayoutProps) => {
-  return <Styled.Layout visibility={visibility}>{children}</Styled.Layout>;
+  return <Styled.Layout visibility={visibility.toString()}>{children}</Styled.Layout>;
 };
 
 export default HomeLayout;
