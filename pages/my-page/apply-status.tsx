@@ -2,6 +2,7 @@ import { applicationApiService } from '@/api/services';
 import { ApplyStatusLayout } from '@/components';
 import { ERROR_PAGE, HOME_PAGE } from '@/constants';
 import { Application } from '@/types/dto';
+import { sortByGenerationAndTeam } from '@/utils/application';
 import {
   getRecruitingProgressStatusFromRecruitingPeriod,
   RecruitingProgressStatus,
@@ -38,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       accessToken: session.accessToken,
     });
 
-    const applications = applicationsRes.data;
+    const applications = sortByGenerationAndTeam(applicationsRes.data);
 
     const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
 
