@@ -20,12 +20,22 @@ export const teamNames = {
 } as const;
 
 export const teamIds = {
-  [teamNames.design]: 5,
-  [teamNames.web]: 6,
-  [teamNames.android]: 7,
-  [teamNames.ios]: 8,
-  [teamNames.node]: 9,
-  [teamNames.spring]: 10,
+  12: {
+    [teamNames.design]: 5,
+    [teamNames.web]: 6,
+    [teamNames.android]: 7,
+    [teamNames.ios]: 8,
+    [teamNames.node]: 9,
+    [teamNames.spring]: 10,
+  },
+  13: {
+    [teamNames.spring]: 11,
+    [teamNames.design]: 12,
+    [teamNames.web]: 13,
+    [teamNames.android]: 14,
+    [teamNames.ios]: 15,
+    [teamNames.node]: 16,
+  },
 } as const;
 
 export const TEAM_NICK_NAME: Record<TeamName, string> = {
