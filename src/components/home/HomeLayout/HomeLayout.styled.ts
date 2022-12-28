@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const Layout = styled.div<{ visibility: boolean }>`
+export const Layout = styled.div<{ visibility: string }>`
   ${({ theme, visibility }) => css`
     min-height: 200vh;
     margin-top: -8rem;
