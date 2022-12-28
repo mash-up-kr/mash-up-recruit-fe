@@ -39,7 +39,7 @@ const RecruitingRemainder = () => {
           <Styled.Counter>
             <Styled.D />
             <Styled.Separator />
-            <Styled.Day>{difference.day}</Styled.Day>
+            <Styled.Day>{difference.day + 1}</Styled.Day>
           </Styled.Counter>
         )}
         {isPreviousDayOfRecruitingStart && !isRunOutTimeOfRecruitingStart && (
