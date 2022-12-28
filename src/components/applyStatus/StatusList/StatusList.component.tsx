@@ -57,25 +57,29 @@ const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps)
                 </Styled.NoSubmittedApplication>
               ) : (
                 <Styled.StatusList>
-                  {applications.map(({ applicant, team, applicationId, result }) => {
-                    return (
-                      <Styled.StatusListItem key={applicationId}>
-                        <Styled.StatusText>12기</Styled.StatusText>
-                        <Styled.StatusText>{unescape(applicant.name)}</Styled.StatusText>
-                        <Styled.StatusText>{TEAM_NICK_NAME[team.name]}</Styled.StatusText>
-                        <Styled.ApplicationStatus status={result.status}>
-                          {STATUS_WORDS[result.status]}
-                        </Styled.ApplicationStatus>
-                        <Styled.DetailLinkWrapper>
-                          <Styled.ApplicationDetailLink
-                            href={`${MY_PAGE_APPLICATION_DETAIL}/${applicationId}`}
-                          >
-                            상세보기
-                          </Styled.ApplicationDetailLink>
-                        </Styled.DetailLinkWrapper>
-                      </Styled.StatusListItem>
-                    );
-                  })}
+                  {applications.map(
+                    ({ applicant, team, applicationId, result, generationResponse }) => {
+                      return (
+                        <Styled.StatusListItem key={applicationId}>
+                          <Styled.StatusText>
+                            {generationResponse.generationNumber}기
+                          </Styled.StatusText>
+                          <Styled.StatusText>{unescape(applicant.name)}</Styled.StatusText>
+                          <Styled.StatusText>{TEAM_NICK_NAME[team.name]}</Styled.StatusText>
+                          <Styled.ApplicationStatus status={result.status}>
+                            {STATUS_WORDS[result.status]}
+                          </Styled.ApplicationStatus>
+                          <Styled.DetailLinkWrapper>
+                            <Styled.ApplicationDetailLink
+                              href={`${MY_PAGE_APPLICATION_DETAIL}/${applicationId}`}
+                            >
+                              상세보기
+                            </Styled.ApplicationDetailLink>
+                          </Styled.DetailLinkWrapper>
+                        </Styled.StatusListItem>
+                      );
+                    },
+                  )}
                 </Styled.StatusList>
               )}
             </>
@@ -88,37 +92,41 @@ const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps)
                 </Styled.NoSubmittedApplication>
               ) : (
                 <Styled.StatusList>
-                  {applications.map(({ applicant, team, applicationId, result }) => {
-                    return (
-                      <Styled.StatusListItem key={applicationId}>
-                        <Styled.ListItemWrapper>
-                          <Styled.StatusListHeading>기수</Styled.StatusListHeading>
-                          <Styled.StatusText>12기</Styled.StatusText>
-                        </Styled.ListItemWrapper>
-                        <Styled.ListItemWrapper>
-                          <Styled.StatusListHeading>이름</Styled.StatusListHeading>
-                          <Styled.StatusText>{unescape(applicant.name)}</Styled.StatusText>
-                        </Styled.ListItemWrapper>
-                        <Styled.ListItemWrapper>
-                          <Styled.StatusListHeading>플랫폼</Styled.StatusListHeading>
-                          <Styled.StatusText>{TEAM_NICK_NAME[team.name]}</Styled.StatusText>
-                        </Styled.ListItemWrapper>
-                        <Styled.ListItemWrapper>
-                          <Styled.StatusListHeading>지원상태</Styled.StatusListHeading>
-                          <Styled.ApplicationStatus status={result.status}>
-                            {STATUS_WORDS[result.status]}
-                          </Styled.ApplicationStatus>
-                        </Styled.ListItemWrapper>
-                        <Styled.DetailLinkWrapper>
-                          <Styled.ApplicationDetailLink
-                            href={`${MY_PAGE_APPLICATION_DETAIL}/${applicationId}`}
-                          >
-                            지원서 상세보기
-                          </Styled.ApplicationDetailLink>
-                        </Styled.DetailLinkWrapper>
-                      </Styled.StatusListItem>
-                    );
-                  })}
+                  {applications.map(
+                    ({ applicant, team, applicationId, result, generationResponse }) => {
+                      return (
+                        <Styled.StatusListItem key={applicationId}>
+                          <Styled.ListItemWrapper>
+                            <Styled.StatusListHeading>기수</Styled.StatusListHeading>
+                            <Styled.StatusText>
+                              {generationResponse.generationNumber}기
+                            </Styled.StatusText>
+                          </Styled.ListItemWrapper>
+                          <Styled.ListItemWrapper>
+                            <Styled.StatusListHeading>이름</Styled.StatusListHeading>
+                            <Styled.StatusText>{unescape(applicant.name)}</Styled.StatusText>
+                          </Styled.ListItemWrapper>
+                          <Styled.ListItemWrapper>
+                            <Styled.StatusListHeading>플랫폼</Styled.StatusListHeading>
+                            <Styled.StatusText>{TEAM_NICK_NAME[team.name]}</Styled.StatusText>
+                          </Styled.ListItemWrapper>
+                          <Styled.ListItemWrapper>
+                            <Styled.StatusListHeading>지원상태</Styled.StatusListHeading>
+                            <Styled.ApplicationStatus status={result.status}>
+                              {STATUS_WORDS[result.status]}
+                            </Styled.ApplicationStatus>
+                          </Styled.ListItemWrapper>
+                          <Styled.DetailLinkWrapper>
+                            <Styled.ApplicationDetailLink
+                              href={`${MY_PAGE_APPLICATION_DETAIL}/${applicationId}`}
+                            >
+                              지원서 상세보기
+                            </Styled.ApplicationDetailLink>
+                          </Styled.DetailLinkWrapper>
+                        </Styled.StatusListItem>
+                      );
+                    },
+                  )}
                 </Styled.StatusList>
               )}
             </>

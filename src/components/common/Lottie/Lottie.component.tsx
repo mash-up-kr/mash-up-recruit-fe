@@ -7,7 +7,7 @@ interface LottieProps {
   height?: number;
 }
 
-const Lottie = ({ animationData, width, height }: LottieProps) => {
+const Lottie = ({ animationData, width, height, ...restProps }: LottieProps) => {
   const element = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,7 +19,13 @@ const Lottie = ({ animationData, width, height }: LottieProps) => {
     }
   }, [animationData]);
 
-  return <div style={{ width: width ?? '100%', height: height ?? '100%' }} ref={element} />;
+  return (
+    <div
+      style={{ width: width ?? '100%', height: height ?? '100%' }}
+      ref={element}
+      {...restProps}
+    />
+  );
 };
 
 export default Lottie;

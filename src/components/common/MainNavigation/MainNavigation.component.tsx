@@ -6,11 +6,13 @@ import Router, { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import ChevronBottom12 from '@/assets/svg/chevron-bottom-12.svg';
 import { colors } from '@/styles';
+import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
 import * as Styled from './MainNavigation.styled';
 
 const MainNavigation = () => {
   const session = useSession();
   const { pathname: currentPage } = useRouter();
+  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
 
   const isSessionLoading = session.status === 'loading';
 
@@ -44,66 +46,71 @@ const MainNavigation = () => {
 
   return (
     <>
-      <Styled.Nav>
-        <Styled.NavList currentPage={currentPage} isSessionLoading={isSessionLoading}>
-          <li>
-            <Styled.ListItemSkeleton
-              color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
-              isLoading={isSessionLoading}
-            >
-              <LinkTo href={`${HOME_PAGE}#${RECRUIT_DETAILS_ID}`}>모집 공고</LinkTo>
-            </Styled.ListItemSkeleton>
-          </li>
-          <li>
-            <Styled.ListItemSkeleton
-              color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
-              isLoading={isSessionLoading}
-            >
-              <LinkTo href={FAQ_COMMON_PAGE}>자주 묻는 질문</LinkTo>
-            </Styled.ListItemSkeleton>
-          </li>
-          <li>
-            <Styled.ListItemSkeleton
-              color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
-              isLoading={isSessionLoading}
-            >
-              {session.status === 'authenticated' ? (
-                <div ref={MyPageTabWrapper}>
-                  <Styled.MyPageButton
-                    type="button"
-                    currentPage={currentPage}
-                    onClick={handleToggleMyPageTab}
-                    isOpenMyPageTab={isOpenMyPageTab}
-                  >
-                    <span>내 페이지</span>
-                    <ChevronBottom12 />
-                  </Styled.MyPageButton>
-                  <MyPageTab
-                    isOpenMyPageTab={isOpenMyPageTab}
-                    setIsOpenMyPageTab={setIsOpenMyPageTab}
-                  />
-                </div>
-              ) : (
-                <Styled.SignInButton
-                  type="button"
-                  currentPage={currentPage}
-                  onClick={handleOpenSignInModal}
-                  ref={loginButtonRef}
+      {recruitingProgressStatus === 'PREVIOUS' && null}
+      {recruitingProgressStatus !== 'PREVIOUS' && (
+        <>
+          <Styled.Nav>
+            <Styled.NavList currentPage={currentPage} isSessionLoading={isSessionLoading}>
+              <li>
+                <Styled.ListItemSkeleton
+                  color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
+                  isLoading={isSessionLoading}
                 >
-                  로그인
-                </Styled.SignInButton>
-              )}
-            </Styled.ListItemSkeleton>
-          </li>
-        </Styled.NavList>
-      </Styled.Nav>
+                  <LinkTo href={`${HOME_PAGE}#${RECRUIT_DETAILS_ID}`}>모집 공고</LinkTo>
+                </Styled.ListItemSkeleton>
+              </li>
+              <li>
+                <Styled.ListItemSkeleton
+                  color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
+                  isLoading={isSessionLoading}
+                >
+                  <LinkTo href={FAQ_COMMON_PAGE}>자주 묻는 질문</LinkTo>
+                </Styled.ListItemSkeleton>
+              </li>
+              <li>
+                <Styled.ListItemSkeleton
+                  color={currentPage === HOME_PAGE ? 'rgba(255, 255, 255, 0.08)' : colors.gray20}
+                  isLoading={isSessionLoading}
+                >
+                  {session.status === 'authenticated' ? (
+                    <div ref={MyPageTabWrapper}>
+                      <Styled.MyPageButton
+                        type="button"
+                        currentPage={currentPage}
+                        onClick={handleToggleMyPageTab}
+                        isOpenMyPageTab={isOpenMyPageTab}
+                      >
+                        <span>내 페이지</span>
+                        <ChevronBottom12 />
+                      </Styled.MyPageButton>
+                      <MyPageTab
+                        isOpenMyPageTab={isOpenMyPageTab}
+                        setIsOpenMyPageTab={setIsOpenMyPageTab}
+                      />
+                    </div>
+                  ) : (
+                    <Styled.SignInButton
+                      type="button"
+                      currentPage={currentPage}
+                      onClick={handleOpenSignInModal}
+                      ref={loginButtonRef}
+                    >
+                      로그인
+                    </Styled.SignInButton>
+                  )}
+                </Styled.ListItemSkeleton>
+              </li>
+            </Styled.NavList>
+          </Styled.Nav>
 
-      {isOpenSignInModal && (
-        <SignInModal
-          type="login"
-          setIsOpenModal={setIsOpenSignInModal}
-          beforeRef={loginButtonRef}
-        />
+          {isOpenSignInModal && (
+            <SignInModal
+              type="login"
+              setIsOpenModal={setIsOpenSignInModal}
+              beforeRef={loginButtonRef}
+            />
+          )}
+        </>
       )}
     </>
   );
