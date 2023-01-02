@@ -1,6 +1,6 @@
 import { applicationApiService } from '@/api/services';
 import { ApplicationDetailLayout } from '@/components';
-import { ERROR_PAGE, HOME_PAGE } from '@/constants';
+import { CURRENT_GENERATION, ERROR_PAGE, HOME_PAGE } from '@/constants';
 import { Application } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
@@ -33,7 +33,10 @@ export const getServerSideProps: GetServerSideProps<ApplicationDetailProps> = as
 
     const applications = applicationsRes.data;
 
-    const isSubmitted = applications.some(({ status }) => status === 'SUBMITTED');
+    const isSubmitted = applications.some(
+      ({ status, generationResponse: { generationNumber } }) =>
+        status === 'SUBMITTED' && generationNumber === CURRENT_GENERATION,
+    );
 
     const application = applications.find(
       ({ applicationId }) =>

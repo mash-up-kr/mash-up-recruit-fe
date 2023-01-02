@@ -1,5 +1,5 @@
 import { Application } from '@/types/dto';
-import { TEAM_NICK_NAME } from '@/constants';
+import { CURRENT_GENERATION, TEAM_NICK_NAME } from '@/constants';
 
 import { useDetectViewPort, useErrorModalDialog, useLoadingModal } from '@/hooks';
 import { applicationApiService } from '@/api/services';
@@ -88,24 +88,25 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
       <Styled.InterviewPass>
         <Styled.ResultSection>
           <Styled.ResultMessage>
-            {'축하드립니다.\n'}Mash-Up 12기 {size === 'mobile' && '\n'}Rookie Recruiting{'\n'}
+            {'축하드립니다.\n'}Mash-Up {CURRENT_GENERATION}기 {size === 'mobile' && '\n'}Rookie
+            Recruiting{'\n'}
             <em>{TEAM_NICK_NAME[application.team.name]} 최종 합격</em>하셨습니다!
           </Styled.ResultMessage>
           <Styled.ResultDetail>
-            안녕하세요 {applicant.name}님, Mash-Up입니다. Mash-Up 12기에 많은 관심을 가지고 귀한
-            시간 내어 면접에 참여해 주셔서 감사합니다. 귀하께서는{' '}
-            {TEAM_NICK_NAME[application.team.name]} 면접에 합격하여 Mash-Up 12기 Rookie Recruiting에
-            최종 Crew로 선발 되셨습니다. 축하드립니다!! 마지막으로 12기 합류 여부에 대해
-            응답해주시면 감사하겠습니다. 기다릴게요!
+            안녕하세요 {applicant.name}님, Mash-Up입니다. Mash-Up {CURRENT_GENERATION}기에 많은
+            관심을 가지고 귀한 시간 내어 면접에 참여해 주셔서 감사합니다. 귀하께서는{' '}
+            {TEAM_NICK_NAME[application.team.name]} 면접에 합격하여 Mash-Up {CURRENT_GENERATION}기
+            Rookie Recruiting에 최종 Crew로 선발 되셨습니다. 축하드립니다!! 마지막으로{' '}
+            {CURRENT_GENERATION}기 합류 여부에 대해 응답해주시면 감사하겠습니다. 기다릴게요!
           </Styled.ResultDetail>
         </Styled.ResultSection>
         <Styled.ConfirmSection>
           <Styled.OtDateHeading>Mash-Up OT 일시</Styled.OtDateHeading>
-          <Styled.OtDate>4월 16일(토) 오후 2시 ~ 5시 - ZOOM</Styled.OtDate>
+          <Styled.OtDate>2월 11일(토) 오후 2시 ~ 5시</Styled.OtDate>
           <Styled.OtExplanationList>
             <li>
-              4월 13일(수) 오후 7시까지 12기 최종 합류 여부 응답 안 할 시 합류하지 않는 것으로
-              간주되니, 빠른 응답 부탁드립니다.
+              2월 8일(수) 오후 10시까지 {CURRENT_GENERATION}기 최종 합류 여부 응답 안 할 시 합류하지
+              않는 것으로 간주되니, 빠른 응답 부탁드립니다.
             </li>
             <li>전체 모임은 격주 토요일 오후 2시에 온라인으로 진행됩니다.</li>
             <li>궁금한 내용은 자주 묻는 질문에서 확인해주시거나, 채널톡으로 문의해주세요.</li>
@@ -116,21 +117,21 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
               onClick={handleOpenRejectInterviewModal}
               ref={rejectInterviewButtonRef}
             >
-              12기 합류 포기하기
+              {CURRENT_GENERATION}기 합류 포기하기
             </Styled.CancelButton>
             <Styled.ApprovalButton
               type="button"
               onClick={() => setIsOpenAcceptFinalConfirmModal(true)}
               ref={acceptInterviewButtonRef}
             >
-              12기 합류하기
+              {CURRENT_GENERATION}기 합류하기
             </Styled.ApprovalButton>
           </Styled.ConfirmButtonWrapper>
         </Styled.ConfirmSection>
       </Styled.InterviewPass>
       {isOpenRejectFinalConfirmModal && (
         <ConfirmRejectModalDialog
-          heading="Mash-Up 12기 포기하시겠습니까?"
+          heading={`Mash-Up ${CURRENT_GENERATION}기 포기하시겠습니까?`}
           paragraph="합류 포기시에 해당 선택에 대한 번복 불가한 점 참고 부탁드립니다."
           approvalButtonMessage="포기하기"
           cancelButtonMessage="취소"
@@ -143,7 +144,7 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
       )}
       {isOpenAcceptFinalConfirmModal && (
         <ConfirmAcceptModalDialog
-          heading="Mash-Up 12기 합류하시겠습니까?"
+          heading={`Mash-Up ${CURRENT_GENERATION}기 합류하시겠습니까?`}
           paragraph="합류 확인시에 해당 선택에 대한 번복 불가한 점 참고 부탁드립니다."
           inputPlaceHolder="합류합니다"
           approvalButtonMessage="합류하기"
