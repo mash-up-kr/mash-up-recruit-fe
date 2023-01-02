@@ -1,5 +1,5 @@
 import { Application } from '@/types/dto';
-import { TEAM_NICK_NAME } from '@/constants';
+import { CURRENT_GENERATION, TEAM_NICK_NAME } from '@/constants';
 
 import { useDetectViewPort, useErrorModalDialog, useLoadingModal } from '@/hooks';
 import { applicationApiService } from '@/api/services';
@@ -87,15 +87,16 @@ const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassPr
       <Styled.ScreeningPass>
         <Styled.ResultSection>
           <Styled.ResultMessage>
-            {'축하드립니다.\n'}Mash-Up 12기 {size === 'mobile' && '\n'}Rookie Recruiting{'\n'}
+            {'축하드립니다.\n'}Mash-Up {CURRENT_GENERATION}기 {size === 'mobile' && '\n'}Rookie
+            Recruiting{'\n'}
             <em>{TEAM_NICK_NAME[application.team.name]} 서류 합격</em>하셨습니다!
           </Styled.ResultMessage>
           <Styled.ResultDetail>
-            안녕하세요 {applicant.name}님, Mash-Up입니다. Mash-Up 12기에 많은 관심을 가지고 귀한
-            시간 내어 지원해 주셔서 진심으로 감사드립니다. {applicant.name}님은 Mash-Up 12기 Rookie
-            Recruiting에서 지원하신 {TEAM_NICK_NAME[application.team.name]}의 1차 서류 전형에
-            합격하셨습니다. 다음 2차 면접 참여 여부에 대해 선택해주시면 감사하겠습니다. Mash-Up
-            면접은 온라인으로 진행됩니다.
+            안녕하세요 {applicant.name}님, Mash-Up입니다. Mash-Up {CURRENT_GENERATION}기에 많은
+            관심을 가지고 귀한 시간 내어 지원해 주셔서 진심으로 감사드립니다. {applicant.name}님은
+            Mash-Up {CURRENT_GENERATION}기 Rookie Recruiting에서 지원하신{' '}
+            {TEAM_NICK_NAME[application.team.name]}의 1차 서류 전형에 합격하셨습니다. 다음 2차 면접
+            참여 여부에 대해 선택해주시면 감사하겠습니다. Mash-Up 면접은 온라인으로 진행됩니다.
           </Styled.ResultDetail>
         </Styled.ResultSection>
         <Styled.ConfirmSection>

@@ -10,7 +10,7 @@ import {
   PersonalInfoAgree,
   TempSaveAndSubmitButton,
 } from '@/components';
-import { PATH_NAME } from '@/constants';
+import { CURRENT_GENERATION, PATH_NAME } from '@/constants';
 import { Application } from '@/types/dto';
 import { useRouter } from 'next/router';
 import { MutableRefObject, useRef, useState } from 'react';
@@ -37,7 +37,13 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
   const [isOpenConfirmSubmittedModal, setIsOpenConfirmSubmittedModal] = useState(false);
   const [isOpenSuccessSubmittedModal, setIsOpenSuccessSubmittedModal] = useState(false);
 
-  const { questions, applicationId, answers, applicant } = application;
+  const {
+    questions,
+    applicationId,
+    answers,
+    applicant,
+    generationResponse: { generationNumber },
+  } = application;
 
   const questionsAndAnswers = questions.map((question, index) => {
     const questionMatchAnswer =
@@ -81,7 +87,7 @@ const ApplyForm = ({ application, isSubmitted }: ApplyFormProps) => {
           isDetailPageAndSubmitted={isDetailPageAndSubmitted}
         />
         <Styled.ControlSection>
-          {isSubmitted ? (
+          {isSubmitted || generationNumber !== CURRENT_GENERATION ? (
             <SubmittedButton
               application={application}
               isCurrentlyOnDetailPage={isCurrentlyOnDetailPage}
