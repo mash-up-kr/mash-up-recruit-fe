@@ -5,7 +5,15 @@ import {
   PLATFORM_HEADINGS,
   PLATFORM_ROLE,
 } from '@/components/apply/ApplyLayout/ApplyLayout.component';
-import { ERROR_PAGE, HOME_PAGE, NOT_FOUND_PAGE, teamIds, teamNames, Teams } from '@/constants';
+import {
+  CURRENT_GENERATION,
+  ERROR_PAGE,
+  HOME_PAGE,
+  NOT_FOUND_PAGE,
+  teamIds,
+  teamNames,
+  Teams,
+} from '@/constants';
 import { Application } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
@@ -71,16 +79,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       })
     ).data;
 
-    const isSubmitted = applications.some(({ status }) => status === 'SUBMITTED');
+    const isSubmitted = applications.some(
+      ({ status, generationResponse: { generationNumber } }) =>
+        status === 'SUBMITTED' && generationNumber === CURRENT_GENERATION,
+    );
 
     const currentApplication = applications.find(
-      ({ team }) => team.teamId === teamIds[currentApplyPlatform],
+      ({ team, generationResponse: { generationNumber } }) =>
+        team.teamId === teamIds[CURRENT_GENERATION][currentApplyPlatform] &&
+        generationNumber === CURRENT_GENERATION,
     );
 
     if (!currentApplication) {
       const application = await applicationApiService.createMyApplication({
         accessToken: session.accessToken,
-        teamId: teamIds[currentApplyPlatform],
+        teamId: teamIds[CURRENT_GENERATION][currentApplyPlatform],
       });
       return {
         props: {

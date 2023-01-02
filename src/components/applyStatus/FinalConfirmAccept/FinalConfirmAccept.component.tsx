@@ -1,4 +1,4 @@
-import { TEAM_NICK_NAME } from '@/constants';
+import { CURRENT_GENERATION, TEAM_NICK_NAME } from '@/constants';
 import { Application } from '@/types/dto';
 import * as Styled from './FinalConfirmAccept.styled';
 
@@ -12,19 +12,20 @@ const FinalConfirmAccept = ({ application }: FinalConfirmAcceptProps) => {
     <Styled.FinalConfirmAccept>
       <Styled.NoticeSection>
         <Styled.NoticeMessage>
-          {applicant.name}님 환영해요! {'\n'}Mash-Up 12기에서 멋-진 활약 기대합니다!
+          {applicant.name}님 환영해요! {'\n'}Mash-Up {CURRENT_GENERATION}기에서 멋-진 활약
+          기대합니다!
         </Styled.NoticeMessage>
         <Styled.NoticeDetail>
-          안녕하세요 {applicant.name}님! Mash-Up 12기 {TEAM_NICK_NAME[team.name]}과 함께하게 되어
-          너무 기뻐요! 15일 금요일 오후 중으로 Mash-Up 12기 단톡방에 초대해드리겠습니다. 앞으로 잘
-          부탁드립니다!
+          안녕하세요 {applicant.name}님! Mash-Up {CURRENT_GENERATION}기 {TEAM_NICK_NAME[team.name]}
+          과 함께하게 되어 너무 기뻐요! 2월 10일 금요일 오후 중으로 Mash-Up {CURRENT_GENERATION}기
+          단톡방에 초대해드리겠습니다. 앞으로 잘 부탁드립니다!
         </Styled.NoticeDetail>
       </Styled.NoticeSection>
       <Styled.OtDetailSection>
         <Styled.OtDetailHeading>Mash-Up OT일시</Styled.OtDetailHeading>
-        <Styled.OtDetailContent>4월 16일(토) 오후 2시 ~ 5시 [ZOOM]</Styled.OtDetailContent>
+        <Styled.OtDetailContent>2월 11일(토) 오후 2시 ~ 5시</Styled.OtDetailContent>
         <Styled.OtDetailHeading>준비물</Styled.OtDetailHeading>
-        <Styled.OtDetailContent>노트북 또는 데스크탑, 그리고 열.정</Styled.OtDetailContent>
+        <Styled.OtDetailContent>노트북, 그리고 열.정</Styled.OtDetailContent>
         <Styled.OtDetailHeading>모집 프로세스 만족도 조사 설문 링크</Styled.OtDetailHeading>
         <Styled.OtDetailContent>
           <Styled.SatisfactionSurveyLink

@@ -1,4 +1,5 @@
 import { ScreenReaderOnly } from '@/components';
+import { CURRENT_GENERATION } from '@/constants';
 import * as Styled from './RecruitingProcess.styled';
 
 const RecruitingProcess = () => {
@@ -48,7 +49,7 @@ const RecruitingProcess = () => {
             <Styled.Note>오후 7시</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
-            <Styled.SubHeading>12기 OT</Styled.SubHeading>
+            <Styled.SubHeading>{CURRENT_GENERATION}기 OT</Styled.SubHeading>
             <Styled.Date>
               <ScreenReaderOnly>2023년 2월 11일 토요일</ScreenReaderOnly>
               <time aria-hidden dateTime="2023-02-11">
