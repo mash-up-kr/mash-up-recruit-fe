@@ -4,6 +4,7 @@ import { getDifferenceOfDates, RECRUITMENT_START_KST_DATE } from '@/utils/date';
 import type { DateDifference } from '@/utils/date';
 import { useState, useEffect } from 'react';
 
+import { CURRENT_GENERATION } from '@/constants';
 import * as Styled from './RecruitingRemainder.styled';
 
 const RecruitingRemainder = () => {
@@ -34,7 +35,7 @@ const RecruitingRemainder = () => {
   return (
     <Styled.Container>
       <Styled.RemainderContainer>
-        <Styled.Heading>Mash-Up 13기 모집</Styled.Heading>
+        <Styled.Heading>Mash-Up {CURRENT_GENERATION}기 모집 시작까지</Styled.Heading>
         {!isPreviousDayOfRecruitingStart && !isRunOutTimeOfRecruitingStart && (
           <Styled.Counter>
             <Styled.D />

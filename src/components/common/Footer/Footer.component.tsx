@@ -19,7 +19,7 @@ const Footer = () => {
         <Styled.Footer currentPage={currentPage}>
           <Styled.FooterInner>
             <Styled.Copyright currentPage={currentPage}>
-              © Mash-Up 2022. Made in Seoul.
+              © Mash-Up 2023. Made in Seoul.
             </Styled.Copyright>
             <Styled.ExternalLinkWrapper currentPage={currentPage}>
               <a
