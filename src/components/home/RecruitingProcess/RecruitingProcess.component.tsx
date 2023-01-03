@@ -23,7 +23,7 @@ const RecruitingProcess = () => {
             <Styled.SubHeading>서류 결과 발표</Styled.SubHeading>
             <Styled.Date>
               <ScreenReaderOnly>2023년 1월 30일 월요일</ScreenReaderOnly>
-              <time aria-hidden dateTime="2022-04-03">
+              <time aria-hidden dateTime="2023-01-30">
                 01.30(월)
               </time>
             </Styled.Date>
