@@ -9,6 +9,7 @@ import {
   FinalConfirmAccept,
   FinalConfirmReject,
 } from '@/components';
+import { CURRENT_GENERATION } from '@/constants';
 import { Application } from '@/types/dto';
 import { RecruitingProgressStatus } from '@/utils/date';
 import { useState } from 'react';
@@ -21,7 +22,11 @@ interface ApplyStatusDetailProps {
 
 const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStatusDetailProps) => {
   const [submittedApplication, setSubmittedApplication] = useState(
-    applications.find((application) => application.status === 'SUBMITTED'),
+    applications.find(
+      (application) =>
+        application.status === 'SUBMITTED' &&
+        application.generationResponse.generationNumber === CURRENT_GENERATION,
+    ),
   );
 
   if (!submittedApplication || recruitingProgressStatus === 'AFTER-FIRST-SEMINAR') return null;
