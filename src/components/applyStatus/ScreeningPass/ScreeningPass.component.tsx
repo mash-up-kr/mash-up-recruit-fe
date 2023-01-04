@@ -96,7 +96,7 @@ const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassPr
             관심을 가지고 귀한 시간 내어 지원해 주셔서 진심으로 감사드립니다. {applicant.name}님은
             Mash-Up {CURRENT_GENERATION}기 Rookie Recruiting에서 지원하신{' '}
             {TEAM_NICK_NAME[application.team.name]}의 1차 서류 전형에 합격하셨습니다. 다음 2차 면접
-            참여 여부에 대해 선택해주시면 감사하겠습니다. Mash-Up 면접은 온라인으로 진행됩니다.
+            참여 여부에 대해 선택해주시면 감사하겠습니다.
           </Styled.ResultDetail>
         </Styled.ResultSection>
         <Styled.ConfirmSection>
@@ -110,14 +110,13 @@ const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassPr
           </Styled.InterviewDate>
           <Styled.InterviewExplanationList>
             <li>
-              4월 4일(월) 오전 10시까지 면접 참여 여부 선택 안할 시 면접 불참으로 간주되니 빠른 응답
+              1월 31일(화) 오후 9시까지 면접 참여 여부 선택 안할 시 면접 불참으로 간주되니 빠른 응답
               부탁드립니다.
             </li>
             <li>
               면접 일정 조율이 불가피하게 필요하거나 궁금한 사항이 있으면 채널톡으로 문의해주시길
               바랍니다.
             </li>
-            <li>면접은 온라인으로 진행됩니다.</li>
           </Styled.InterviewExplanationList>
           <Styled.ConfirmButtonWrapper>
             <Styled.CancelButton
