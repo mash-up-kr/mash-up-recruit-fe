@@ -17,9 +17,9 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@emotion/is-prop-valid": "^1.1.2",
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
+    "@emotion/is-prop-valid": "^1.2.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@next/bundle-analyzer": "^12.1.0",
     "aos": "^3.0.0-beta.6",
     "axios": "^0.26.0",
@@ -57,7 +57,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.8",
     "husky": ">=6",
+    "i": "^0.3.7",
     "lint-staged": ">=10",
+    "npm": "^9.2.0",
     "postcss-syntax": "^0.36.2",
     "prettier": "^2.5.1",
     "stylelint": "^14.3.0",
