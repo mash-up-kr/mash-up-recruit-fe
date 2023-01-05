@@ -108,7 +108,7 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
               2월 8일(수) 오후 10시까지 {CURRENT_GENERATION}기 최종 합류 여부 응답 안 할 시 합류하지
               않는 것으로 간주되니, 빠른 응답 부탁드립니다.
             </li>
-            <li>전체 모임은 격주 토요일 오후 2시에 온라인으로 진행됩니다.</li>
+            <li>전체 모임은 격주 토요일 오후 2시에 온/오프라인을 병행하며 진행됩니다.</li>
             <li>궁금한 내용은 자주 묻는 질문에서 확인해주시거나, 채널톡으로 문의해주세요.</li>
           </Styled.OtExplanationList>
           <Styled.ConfirmButtonWrapper>

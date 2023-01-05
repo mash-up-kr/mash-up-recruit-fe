@@ -1,4 +1,5 @@
 import { StatusList, ApplyStatusDetail } from '@/components';
+import { CURRENT_GENERATION } from '@/constants';
 import { Application } from '@/types/dto';
 import { RecruitingProgressStatus } from '@/utils/date';
 import * as Styled from './ApplyStatusLayout.styled';
@@ -9,7 +10,10 @@ interface ApplyStatusLayoutProps {
 }
 
 const ApplyStatusLayout = ({ applications, recruitingProgressStatus }: ApplyStatusLayoutProps) => {
-  const isSubmitted = applications.some(({ status }) => status === 'SUBMITTED');
+  const isSubmitted = applications.some(
+    ({ status, generationResponse: { generationNumber } }) =>
+      status === 'SUBMITTED' && generationNumber === CURRENT_GENERATION,
+  );
   return (
     <Styled.Layout>
       {isSubmitted && (
