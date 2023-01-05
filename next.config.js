@@ -21,6 +21,12 @@ const nextConfig = {
       },
     ];
   },
+  compiler: {
+    emotion: {
+      autoLabel: 'dev-only',
+      labelFormat: '[filename]--[local]',
+    },
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
