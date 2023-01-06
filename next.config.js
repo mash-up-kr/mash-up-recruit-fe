@@ -23,7 +23,8 @@ const nextConfig = {
   },
   compiler: {
     emotion: {
-      autoLabel: 'never',
+      autoLabel: 'dev-only',
+      labelFormat: '[local]',
     },
   },
   webpack(config) {
