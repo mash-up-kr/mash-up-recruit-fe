@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import Great from '@/assets/svg/great.svg';
 
 export const ScreeningPass = styled.div`
   ${({ theme }) => css`
@@ -9,10 +8,6 @@ export const ScreeningPass = styled.div`
     max-width: 92rem;
     margin: 0 auto;
     white-space: pre-wrap;
-
-    @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      padding-bottom: 10.2rem;
-    }
 
     @media (max-width: ${theme.breakPoint.media.tabletM}) {
       flex-flow: column nowrap;
@@ -156,44 +151,6 @@ export const ApprovalButton = styled.button`
 
     @media (max-width: ${theme.breakPoint.media.tabletM}) {
       ${theme.fonts.kr.medium14};
-    }
-  `}
-`;
-
-export const GreatIcon = styled(Great)`
-  ${({ theme }) => css`
-    position: absolute;
-    bottom: 0;
-    left: 3.5rem;
-
-    @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      left: 10rem;
-    }
-
-    @media (max-width: ${theme.breakPoint.media.tabletM}) {
-      left: 0;
-      width: 18rem;
-      height: 8rem;
-    }
-  `}
-`;
-
-export const HolyshitImageWrapper = styled.div`
-  ${({ theme }) => css`
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 18rem;
-    height: 12.6rem;
-
-    @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      right: 10rem;
-    }
-
-    @media (max-width: ${theme.breakPoint.media.tabletM}) {
-      right: 0;
-      width: 15rem;
-      height: 10.5rem;
     }
   `}
 `;
