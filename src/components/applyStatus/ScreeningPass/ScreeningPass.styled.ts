@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import HolyShit from '@/assets/svg/holyshit.svg';
 import Great from '@/assets/svg/great.svg';
 
 export const ScreeningPass = styled.div`
@@ -179,11 +178,13 @@ export const GreatIcon = styled(Great)`
   `}
 `;
 
-export const HolyshitIcon = styled(HolyShit)`
+export const HolyshitImageWrapper = styled.div`
   ${({ theme }) => css`
     position: absolute;
     right: 0;
     bottom: 0;
+    width: 18rem;
+    height: 12.6rem;
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       right: 10rem;

@@ -24,7 +24,7 @@ const nextConfig = {
   compiler: {
     emotion: {
       autoLabel: 'dev-only',
-      labelFormat: '[filename]--[local]',
+      labelFormat: '[local]',
     },
   },
   webpack(config) {
