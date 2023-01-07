@@ -9,8 +9,9 @@ import { HOME_PAGE } from '@/constants';
 import { useGoogleAnalytics } from '@/hooks';
 import { isProduction } from '@/utils/assertion';
 import { defaultSEOConfig } from '@/constants/seo';
+import { Session } from 'next-auth';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps<{ session: Session }>) => {
   const [isRouteChange, setIsRouteChange] = useState(false);
   const router = useRouter();
   const GoogleAnalyticsScripts = useGoogleAnalytics();
