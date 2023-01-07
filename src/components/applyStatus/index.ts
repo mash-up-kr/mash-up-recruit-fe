@@ -13,3 +13,5 @@ export { default as FinalConfirmAccept } from './FinalConfirmAccept/FinalConfirm
 export { default as FinalConfirmReject } from './FinalConfirmReject/FinalConfirmReject.component';
 export { default as ConfirmRejectModalDialog } from './ConfirmRejectModalDialog/ConfirmRejectModalDialog.component';
 export { default as ConfirmAcceptModalDialog } from './ConfirmAcceptModalDialog/ConfirmAcceptModalDialog.component';
+export { default as StatusDetailBackground } from './StatusDetailBackground/StatusDetailBackground.component';
+export { default as ApplyException } from './ApplyException/ApplyException.component';
