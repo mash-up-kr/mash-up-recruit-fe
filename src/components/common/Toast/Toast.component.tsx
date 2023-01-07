@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import { ReactNode, useEffect } from 'react';
 import SuccessBadge from '@/assets/svg/success-badge.svg';
 import ErrorBadge from '@/assets/svg/error-badge.svg';

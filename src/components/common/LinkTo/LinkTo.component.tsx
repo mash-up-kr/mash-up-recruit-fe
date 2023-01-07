@@ -1,7 +1,7 @@
-import Link, { LinkProps } from 'next/link';
+import Link from 'next/link';
 import { ReactNode, AnchorHTMLAttributes } from 'react';
 
-interface LinkToProps extends LinkProps, AnchorHTMLAttributes<HTMLAnchorElement> {
+interface LinkToProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: ReactNode;
   className?: string;
