@@ -72,7 +72,7 @@ export const NoticeDetailListHeading = styled.span`
 export const NoticeDetailList = styled.ul`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium15};
-    width: 30.17rem;
+    width: 40rem;
     margin-left: 1.83rem;
     color: ${theme.colors.white};
     letter-spacing: -0.08rem;
