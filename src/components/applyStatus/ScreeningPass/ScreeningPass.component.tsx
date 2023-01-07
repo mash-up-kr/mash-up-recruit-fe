@@ -14,6 +14,8 @@ import {
 } from 'react';
 import { ConfirmModalDialog } from '@/components';
 import { getValueOfDateIntoObj } from '@/utils/date';
+import holyshitImage from '@/assets/images/holyshit-2x-min.png';
+import Image from 'next/image';
 import * as Styled from './ScreeningPass.styled';
 
 interface ScreeningPassProps {
@@ -135,7 +137,9 @@ const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassPr
             </Styled.ApprovalButton>
           </Styled.ConfirmButtonWrapper>
         </Styled.ConfirmSection>
-        <Styled.HolyshitIcon />
+        <Styled.HolyshitImageWrapper>
+          <Image src={holyshitImage.src} alt="" layout="fill" />
+        </Styled.HolyshitImageWrapper>
         <Styled.GreatIcon />
       </Styled.ScreeningPass>
       {isOpenRejectInterviewModal && (
