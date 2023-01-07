@@ -152,7 +152,7 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
       {isOpenAcceptFinalConfirmModal && (
         <ConfirmAcceptModalDialog
           heading={`Mash-Up ${CURRENT_GENERATION}기 합류하시겠습니까?`}
-          paragraph="합류 확인시에 해당 선택에 대한 번복 불가한 점 참고 부탁드립니다."
+          paragraph=""
           inputPlaceHolder="합류합니다"
           approvalButtonMessage="합류하기"
           cancelButtonMessage="취소"
