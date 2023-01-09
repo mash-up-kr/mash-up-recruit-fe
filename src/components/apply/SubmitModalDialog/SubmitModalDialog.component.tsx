@@ -4,7 +4,8 @@ import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { applicationApiService } from '@/api/services';
 import { useRouter } from 'next/router';
-import { CURRENT_GENERATION, HOME_PAGE, MY_PAGE_APPLY_STATUS } from '@/constants';
+import { CURRENT_GENERATION, ERROR_CODE, HOME_PAGE, MY_PAGE_APPLY_STATUS } from '@/constants';
+import axios from 'axios';
 import { ApplyFormValues } from '../PersonalInformation/PersonalInformation.component';
 import { QuestionAndAnswer } from '../QuestionAndAnswerList/QuestionAndAnswerList.component';
 
@@ -38,6 +39,7 @@ const SubmitModalDialog = ({
   const { watch } = applyForm;
 
   const [isOpenFailedSubmittedModal, setIsOpenFailedSubmittedModal] = useState(false);
+  const [isOpenCloseRecruitmentModal, setIsOpenCloseRecruitmentModal] = useState(false);
 
   const handleSubmitApplication = async () => {
     if (session.status === 'unauthenticated') return;
@@ -75,9 +77,15 @@ const SubmitModalDialog = ({
       setIsOpenConfirmSubmittedModal(false);
       setIsOpenSuccessSubmittedModal(true);
     } catch (error) {
-      setIsRequesting(false);
-      setIsOpenConfirmSubmittedModal(false);
-      setIsOpenFailedSubmittedModal(true);
+      if (axios.isAxiosError(error)) {
+        setIsRequesting(false);
+        setIsOpenConfirmSubmittedModal(false);
+        if (error.response?.data.code === ERROR_CODE.APPLICATION_MODIFICATION_NOT_ALLOWED) {
+          setIsOpenCloseRecruitmentModal(true);
+        } else {
+          setIsOpenFailedSubmittedModal(true);
+        }
+      }
     }
   };
 
@@ -119,6 +127,18 @@ const SubmitModalDialog = ({
           beforeRef={submitButtonRef}
           setIsOpenModal={setIsOpenFailedSubmittedModal}
           handleApprovalButton={() => setIsOpenFailedSubmittedModal(false)}
+          escClose={false}
+          deemClose={false}
+          isError
+        />
+      )}
+      {isOpenCloseRecruitmentModal && (
+        <AlertModalDialog
+          heading="지원서 제출 기한 마감"
+          paragraph="지원서 제출 기한이 마감 되었습니다. 제출 기한 마감 이후 별도 제출은 불가능한점 양해 부탁드립니다."
+          beforeRef={submitButtonRef}
+          setIsOpenModal={setIsOpenCloseRecruitmentModal}
+          handleApprovalButton={() => setIsOpenCloseRecruitmentModal(false)}
           escClose={false}
           deemClose={false}
           isError
