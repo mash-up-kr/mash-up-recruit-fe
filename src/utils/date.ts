@@ -11,9 +11,9 @@ export const [
   AFTER_FIRST_SEMINAR_JOIN_KST_DATE, // 첫번째 세미나 끝나는 시각
 ] = [
   new Date('2023-01-09T22:45:00+09:00'),
-  new Date('2023-01-09T22:55:00+00:00'),
-  new Date('2023-01-09T23:00:00+09:00'),
-  new Date('2023-01-09T23:10:00+09:00'),
+  new Date('2023-01-09T22:55:00+09:00'),
+  new Date('2023-01-09T23:20:00+09:00'),
+  new Date('2023-01-09T23:30:00+09:00'),
   new Date('2023-02-11T17:00:00+09:00'),
 ];
 
@@ -37,6 +37,7 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = (
 ): RecruitingProgressStatus => {
   const kstDate = getKSTDateFromDate(date);
   const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
+
   if (currentDate < RECRUITMENT_START_KST_DATE) {
     return 'PREVIOUS';
   }
