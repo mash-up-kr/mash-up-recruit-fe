@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import WaitUser from '@/assets/svg/wait-user.svg';
 import styled from '@emotion/styled';
 
 export const ScreeningWait = styled.div`
@@ -40,21 +39,6 @@ export const StatusDescription = styled.span`
     @media (max-width: ${theme.breakPoint.media.tabletS}) {
       ${theme.fonts.kr.regular14};
       word-break: keep-all;
-    }
-  `}
-`;
-
-export const WaitUserIcon = styled(WaitUser)`
-  ${({ theme }) => css`
-    position: absolute;
-    top: 0;
-    right: 4.25rem;
-
-    @media (max-width: ${theme.breakPoint.media.tabletS}) {
-      position: relative;
-      top: 0;
-      right: 0;
-      margin-bottom: 1rem;
     }
   `}
 `;
