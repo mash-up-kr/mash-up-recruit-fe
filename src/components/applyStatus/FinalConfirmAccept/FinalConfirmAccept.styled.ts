@@ -1,7 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import ShootingStar from '@/assets/svg/shooting-star.svg';
-import Cocoazzang from '@/assets/svg/cocoazzang.svg';
 
 export const FinalConfirmAccept = styled.div`
   ${({ theme }) => css`
@@ -13,12 +11,12 @@ export const FinalConfirmAccept = styled.div`
 
     @media (max-width: ${theme.breakPoint.media.tabletL}) {
       max-width: 100%;
-      padding: 0 6rem 7.6rem;
+      padding: 0 6rem;
     }
 
     @media (max-width: ${theme.breakPoint.media.tabletM}) {
       flex-flow: column nowrap;
-      padding: 0 0 7.6rem;
+      padding: 0 0;
     }
   `}
 `;
@@ -136,39 +134,5 @@ export const OtExplanationList = styled.ul`
     color: ${theme.colors.gray50};
     letter-spacing: -0.08rem;
     list-style: disc;
-  `}
-`;
-
-export const ShootingStarIcon = styled(ShootingStar)`
-  ${({ theme }) => css`
-    position: absolute;
-    top: 0;
-    left: 3.5rem;
-
-    @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      top: unset;
-      bottom: 0;
-      left: 10rem;
-    }
-
-    @media (max-width: ${theme.breakPoint.media.tabletM}) {
-      left: 4rem;
-    }
-  `}
-`;
-
-export const CocoazzangIcon = styled(Cocoazzang)`
-  ${({ theme }) => css`
-    position: absolute;
-    right: 3.5rem;
-    bottom: 0;
-
-    @media (max-width: ${theme.breakPoint.media.tabletL}) {
-      right: 10rem;
-    }
-
-    @media (max-width: ${theme.breakPoint.media.tabletM}) {
-      right: 4rem;
-    }
   `}
 `;
