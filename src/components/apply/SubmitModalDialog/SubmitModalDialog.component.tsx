@@ -98,7 +98,7 @@ const SubmitModalDialog = ({
       {isOpenSuccessSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서 제출 완료!"
-          paragraph={`귀한 시간내어 매쉬업 ${CURRENT_GENERATION}기에 지원해주셔서 진심으로 감사드립니다! 1월 30일(월) 오전 10시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!`}
+          paragraph={`귀한 시간내어 매쉬업 ${CURRENT_GENERATION}기에 지원해주셔서 진심으로 감사드립니다! 1월 30일(월) 오후 9시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!`}
           approvalButtonMessage="내 지원서 확인하기"
           cancelButtonMessage="홈으로"
           setIsOpenModal={setIsOpenSuccessSubmittedModal}

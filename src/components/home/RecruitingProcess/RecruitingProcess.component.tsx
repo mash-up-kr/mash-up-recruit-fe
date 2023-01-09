@@ -27,7 +27,7 @@ const RecruitingProcess = () => {
                 01.30(월)
               </time>
             </Styled.Date>
-            <Styled.Note>오전 10시</Styled.Note>
+            <Styled.Note>오후 9시</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>온/오프라인 면접</Styled.SubHeading>
@@ -46,7 +46,7 @@ const RecruitingProcess = () => {
                 02.07(화)
               </time>
             </Styled.Date>
-            <Styled.Note>오후 7시</Styled.Note>
+            <Styled.Note>오후 9시</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>{CURRENT_GENERATION}기 OT</Styled.SubHeading>
