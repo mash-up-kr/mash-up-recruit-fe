@@ -115,8 +115,8 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
               </li>
               <li>전체 모임은 격주 토요일 오후 2시에 온/오프라인을 병행하며 진행됩니다.</li>
               <li>
-                궁금한 내용은 자주 묻는 질문에서 확인해주시거나, 페이지 우측 하단 채널 상담을 통해
-                문의해주세요.
+                궁금한 내용은 자주 묻는 질문에서 확인해주시거나, 페이지 우측 하단에 있는 채팅 상담을
+                통해 문의해주세요.
               </li>
             </Styled.OtExplanationList>
             <Styled.ConfirmButtonWrapper>
