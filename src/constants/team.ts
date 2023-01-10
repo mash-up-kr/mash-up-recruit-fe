@@ -29,12 +29,12 @@ export const teamIds = {
     [teamNames.spring]: 10,
   },
   13: {
-    [teamNames.spring]: 11,
-    [teamNames.design]: 12,
-    [teamNames.web]: 13,
-    [teamNames.android]: 14,
-    [teamNames.ios]: 15,
-    [teamNames.node]: 16,
+    [teamNames.design]: 11,
+    [teamNames.web]: 12,
+    [teamNames.android]: 13,
+    [teamNames.ios]: 14,
+    [teamNames.node]: 15,
+    [teamNames.spring]: 16,
   },
 } as const;
 
