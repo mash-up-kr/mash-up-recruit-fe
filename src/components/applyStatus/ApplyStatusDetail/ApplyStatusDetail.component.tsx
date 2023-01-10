@@ -8,11 +8,12 @@ import {
   InterviewFail,
   FinalConfirmAccept,
   FinalConfirmReject,
+  ApplyException,
 } from '@/components';
+import { CURRENT_GENERATION } from '@/constants';
 import { Application } from '@/types/dto';
 import { RecruitingProgressStatus } from '@/utils/date';
 import { useState } from 'react';
-import * as Styled from './ApplyStatusDetail.styled';
 
 interface ApplyStatusDetailProps {
   applications: Application[];
@@ -21,7 +22,11 @@ interface ApplyStatusDetailProps {
 
 const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStatusDetailProps) => {
   const [submittedApplication, setSubmittedApplication] = useState(
-    applications.find((application) => application.status === 'SUBMITTED'),
+    applications.find(
+      (application) =>
+        application.status === 'SUBMITTED' &&
+        application.generationResponse.generationNumber === CURRENT_GENERATION,
+    ),
   );
 
   if (!submittedApplication || recruitingProgressStatus === 'AFTER-FIRST-SEMINAR') return null;
@@ -30,16 +35,12 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
     recruitingProgressStatus === 'IN-RECRUITING' ||
     recruitingProgressStatus === 'END-RECRUITING'
   ) {
-    return (
-      <Styled.StatusDetail>
-        <ScreeningWait />
-      </Styled.StatusDetail>
-    );
+    return <ScreeningWait />;
   }
 
   if (recruitingProgressStatus === 'AFTER-SCREENING-ANNOUNCED') {
     return (
-      <Styled.StatusDetail>
+      <>
         {(() => {
           if (submittedApplication.result.status === 'SCREENING_PASSED') {
             if (submittedApplication.confirmationStatus === 'INTERVIEW_CONFIRM_WAITING') {
@@ -64,19 +65,15 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
             return <ScreeningFail application={submittedApplication} />;
           }
 
-          return (
-            <Styled.ExceptionMessage>
-              모집결과가 반영되지 않았습니다. 채널톡으로 문의해주세요.
-            </Styled.ExceptionMessage>
-          );
+          return <ApplyException />;
         })()}
-      </Styled.StatusDetail>
+      </>
     );
   }
 
   if (recruitingProgressStatus === 'AFTER-INTERVIEWING-ANNOUNCED') {
     return (
-      <Styled.StatusDetail>
+      <>
         {(() => {
           if (submittedApplication.result.status === 'SCREENING_FAILED') {
             return <ScreeningFail application={submittedApplication} />;
@@ -112,13 +109,9 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
             return <InterviewFail application={submittedApplication} />;
           }
 
-          return (
-            <Styled.ExceptionMessage>
-              모집결과가 반영되지 않았습니다. 채널톡으로 문의해주세요.
-            </Styled.ExceptionMessage>
-          );
+          return <ApplyException />;
         })()}
-      </Styled.StatusDetail>
+      </>
     );
   }
 

@@ -12,9 +12,9 @@ export const [
 ] = [
   new Date('2023-01-11T00:00:00+09:00'),
   new Date('2023-01-25T23:59:59+09:00'),
-  new Date('2023-01-30T10:00:00+09:00'),
-  new Date('2023-02-07T19:00:00+09:00'),
-  new Date('2023-02-11T18:00:00+09:00'),
+  new Date('2023-01-30T21:00:00+09:00'),
+  new Date('2023-02-07T21:00:00+09:00'),
+  new Date('2023-02-11T17:00:00+09:00'),
 ];
 
 export type RecruitingProgressStatus =
@@ -37,6 +37,7 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = (
 ): RecruitingProgressStatus => {
   const kstDate = getKSTDateFromDate(date);
   const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
+
   if (currentDate < RECRUITMENT_START_KST_DATE) {
     return 'PREVIOUS';
   }

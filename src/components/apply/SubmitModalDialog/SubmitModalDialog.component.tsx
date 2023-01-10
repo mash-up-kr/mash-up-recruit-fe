@@ -4,7 +4,8 @@ import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { applicationApiService } from '@/api/services';
 import { useRouter } from 'next/router';
-import { CURRENT_GENERATION, HOME_PAGE, MY_PAGE_APPLY_STATUS } from '@/constants';
+import { CURRENT_GENERATION, ERROR_CODE, HOME_PAGE, MY_PAGE_APPLY_STATUS } from '@/constants';
+import axios from 'axios';
 import { ApplyFormValues } from '../PersonalInformation/PersonalInformation.component';
 import { QuestionAndAnswer } from '../QuestionAndAnswerList/QuestionAndAnswerList.component';
 
@@ -38,6 +39,7 @@ const SubmitModalDialog = ({
   const { watch } = applyForm;
 
   const [isOpenFailedSubmittedModal, setIsOpenFailedSubmittedModal] = useState(false);
+  const [isOpenCloseRecruitmentModal, setIsOpenCloseRecruitmentModal] = useState(false);
 
   const handleSubmitApplication = async () => {
     if (session.status === 'unauthenticated') return;
@@ -75,9 +77,15 @@ const SubmitModalDialog = ({
       setIsOpenConfirmSubmittedModal(false);
       setIsOpenSuccessSubmittedModal(true);
     } catch (error) {
-      setIsRequesting(false);
-      setIsOpenConfirmSubmittedModal(false);
-      setIsOpenFailedSubmittedModal(true);
+      if (axios.isAxiosError(error)) {
+        setIsRequesting(false);
+        setIsOpenConfirmSubmittedModal(false);
+        if (error.response?.data.code === ERROR_CODE.APPLICATION_MODIFICATION_NOT_ALLOWED) {
+          setIsOpenCloseRecruitmentModal(true);
+        } else {
+          setIsOpenFailedSubmittedModal(true);
+        }
+      }
     }
   };
 
@@ -98,7 +106,7 @@ const SubmitModalDialog = ({
       {isOpenSuccessSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서 제출 완료!"
-          paragraph={`귀한 시간내어 매쉬업 ${CURRENT_GENERATION}기에 지원해주셔서 진심으로 감사드립니다! 1월 30일(월) 오전 10시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!`}
+          paragraph={`귀한 시간내어 매쉬업 ${CURRENT_GENERATION}기에 지원해주셔서 진심으로 감사드립니다! 1월 30일(월) 오후 9시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!`}
           approvalButtonMessage="내 지원서 확인하기"
           cancelButtonMessage="홈으로"
           setIsOpenModal={setIsOpenSuccessSubmittedModal}
@@ -119,6 +127,18 @@ const SubmitModalDialog = ({
           beforeRef={submitButtonRef}
           setIsOpenModal={setIsOpenFailedSubmittedModal}
           handleApprovalButton={() => setIsOpenFailedSubmittedModal(false)}
+          escClose={false}
+          deemClose={false}
+          isError
+        />
+      )}
+      {isOpenCloseRecruitmentModal && (
+        <AlertModalDialog
+          heading="지원서 제출 기한 마감"
+          paragraph="지원서 제출 기한이 마감 되었습니다. 제출 기한 마감 이후 별도 제출은 불가능한점 양해 부탁드립니다."
+          beforeRef={submitButtonRef}
+          setIsOpenModal={setIsOpenCloseRecruitmentModal}
+          handleApprovalButton={() => setIsOpenCloseRecruitmentModal(false)}
           escClose={false}
           deemClose={false}
           isError
