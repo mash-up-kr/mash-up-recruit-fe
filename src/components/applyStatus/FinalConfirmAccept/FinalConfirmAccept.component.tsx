@@ -40,10 +40,6 @@ const FinalConfirmAccept = ({ application }: FinalConfirmAcceptProps) => {
           </Styled.OtDetailContent>
           <Styled.OtExplanationList>
             <li>
-              OT 때 짧게 자기소개를 하는 시간이 있어요! 정말 간단한 자기소개라고 생각하시고 편하게
-              참여해주시면 됩니다!
-            </li>
-            <li>
               모집 프로세스 만족도 설문 작성은 선택사항이며, 지원자님의 소중한 답변을 통해 더 나은
               프로세스를 만들어 성장하는 Mash-Up이 되겠습니다.
             </li>
