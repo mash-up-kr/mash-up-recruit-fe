@@ -15,7 +15,7 @@ const RecruitingProcess = () => {
             <ScreenReaderOnly>2023년 1월 11일 수요일부터 2023년 1월 25일 수요일</ScreenReaderOnly>
             <Styled.Date aria-hidden>
               <time dateTime="2023-01-11">01.11(수)</time>&nbsp;~&nbsp;
-              <time dateTime="2023-01-25">01.25(화)</time>
+              <time dateTime="2023-01-25">01.25(수)</time>
             </Styled.Date>
             <Styled.Note>23:59:59 마감</Styled.Note>
           </Styled.ListItem>
