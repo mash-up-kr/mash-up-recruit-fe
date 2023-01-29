@@ -7,6 +7,8 @@ interface InterviewAcceptProps {
   application: Application;
 }
 
+// TODO: 현재 특정 플랫폼을 기준으로 분기 처리하여 온/오프라인 구분중
+// TODO: 서버와 함께 추가로 기능 개발하여 온/오프라인 분기 처리 해야함
 const InterviewAccept = ({ application }: InterviewAcceptProps) => {
   const interviewStartDateInstance = new Date(application.result.interviewStartedAt || '');
 
@@ -54,17 +56,24 @@ const InterviewAccept = ({ application }: InterviewAcceptProps) => {
           </Styled.InterviewDetailContent>
           <Styled.InterviewDetailHeading>면접 장소 상세 주소</Styled.InterviewDetailHeading>
           <Styled.InterviewDetailContent>
-            <Styled.InterviewLink
-              href={
-                application.result.interviewGuideLink ??
-                'https://us02web.zoom.us/j/7167277658?pwd=eHBEdXF4a1REdHpIK3RVVXRpWTJiQT09'
-              }
-              target="_blank"
-              rel="noreferrer"
-            >
-              {application.result.interviewGuideLink ??
-                'https://us02web.zoom.us/j/7167277658?pwd=eHBEdXF4a1REdHpIK3RVVXRpWTJiQT09'}
-            </Styled.InterviewLink>
+            {application.team.name === 'iOS' ? (
+              <Styled.InterviewLink
+                href="https://naver.me/5D31cBCT"
+                target="_blank"
+                rel="noreferrer"
+              >
+                서울특별시 강남구 테헤란로 133, 3층
+              </Styled.InterviewLink>
+            ) : (
+              <Styled.InterviewLink
+                href={application.result.interviewGuideLink ?? ''}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {application.result.interviewGuideLink ??
+                  '페이지 우측 하단 채팅 상담을 통해 문의해주세요'}
+              </Styled.InterviewLink>
+            )}
           </Styled.InterviewDetailContent>
         </Styled.InterviewDetailSection>
       </Styled.ScreeningAccept>
