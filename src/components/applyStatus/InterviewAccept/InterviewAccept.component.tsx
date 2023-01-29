@@ -26,7 +26,6 @@ const InterviewAccept = ({ application }: InterviewAcceptProps) => {
             {application.team.name === 'iOS' ? (
               <>
                 <li>면접 일시 최소 10분 전에는 면접 장소에 도착해주세요!</li>
-                <li>다른 지원자가 얘기할 때에는 함께 경청해주세요!</li>
                 <li>복장은 편하게 입고 오시면 돼요!</li>
                 <li>긴장은 Nope! 본인의 역량을 마음껏 보여주세요 \( ^0^ )/</li>
               </>
