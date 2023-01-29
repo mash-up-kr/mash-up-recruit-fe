@@ -11,10 +11,8 @@ const FinalConfirmReject = ({ application }: FinalConfirmRejectProps) => {
   return (
     <StatusDetailBackground imageType="basic" contentSize="s">
       <ProcessFail
-        heading="저희는 언제나.. 기다리고 있을게요..!
-  행복..하세요..!!(눈물)"
-        paragraph={`안녕하세요 ${applicant.name}님, Mash-Up입니다. 어째서.. ${CURRENT_GENERATION}기에 합류하지 않는 것인가요..!
-  멋진 동료를 놓친 저희는 너무나 마음이 아픕니다.. 다음에 다시 기회가 된다면 Mash-Up으로 돌아와주세요! ${CURRENT_GENERATION}기 Rookie Recruiting 모든 프로세스에 임해주셔서 진심으로 감사드리며, 건강하고 행복하게 잘 지내세요! 다시 만나요!!`}
+        heading={`Mash-Up ${CURRENT_GENERATION}기에 합류하지 않으셨습니다.`}
+        paragraph={`안녕하세요 ${applicant.name}님, Mash-Up에 관심을 갖고 지원해주셔서 진심으로 감사드립니다. 지금 당장은 인연이 닿지 않았지만 추후 더 좋은 기회에 꼭 다시 만나뵐 수 있도록 저희도 노력하겠습니다. 다시 한번 Mash-Up ${CURRENT_GENERATION}기에 보여주신 관심과 열정에 깊은 감사를 드립니다. `}
         survey
       />
     </StatusDetailBackground>
