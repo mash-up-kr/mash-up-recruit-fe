@@ -49,7 +49,17 @@ const SignInDialog = ({ type, handleCloseButton, callbackUrl }: SignInDialogProp
       </Styled.DialogContent>
       <Styled.Notice>
         <span>•</span>
-        로그인시 서비스 이용약관과 개인정보 처리방침에 동의하게 됩니다.
+        <div>
+          로그인시 서비스 이용약관과{' '}
+          <a
+            href="https://snow-chestnut-45b.notion.site/Mash-Up-Recruit-d4d1eccd3e504bcba575d6e5a95cf1b1"
+            target="_blank"
+            rel="noreferrer"
+          >
+            개인정보 처리방침
+          </a>
+          에 동의하게 됩니다.
+        </div>
       </Styled.Notice>
       <Styled.CloseButton type="button" onClick={handleCloseButton}>
         <Styled.CloseButtonDeem />
