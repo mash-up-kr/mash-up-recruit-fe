@@ -173,21 +173,26 @@ export const SignInButton = styled.button`
 export const Notice = styled.em`
   ${({ theme }) => css`
     ${theme.fonts.kr.regular13};
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     padding: 1.6rem 0 2.4rem;
     color: ${theme.colors.gray60};
     font-style: normal;
     letter-spacing: -0.08rem;
+    text-align: left;
+
+    & a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    & > span {
+      margin-right: 0.5rem;
+      margin-left: 0.8rem;
+    }
 
     @media (max-width: ${theme.breakPoint.media.mobile}) {
-      display: flex;
       padding: 1.2rem 2.4rem 2rem;
-      text-align: left;
-
-      & > span {
-        margin-right: 0.5rem;
-        margin-left: 0.8rem;
-      }
     }
   `}
 `;
