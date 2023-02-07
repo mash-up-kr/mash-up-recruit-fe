@@ -31,11 +31,11 @@ const FinalConfirmAccept = ({ application }: FinalConfirmAcceptProps) => {
           <Styled.OtDetailHeading>모집 프로세스 만족도 조사 설문 링크</Styled.OtDetailHeading>
           <Styled.OtDetailContent>
             <Styled.SatisfactionSurveyLink
-              href="https://forms.gle/36cdamKfsDFwqLUg7"
+              href="https://forms.gle/UEVfw3DFvERMa9cy9"
               target="_blank"
               rel="noreferrer"
             >
-              https://forms.gle/36cdamKfsDFwqLUg7
+              https://forms.gle/UEVfw3DFvERMa9cy9
             </Styled.SatisfactionSurveyLink>
           </Styled.OtDetailContent>
           <Styled.OtExplanationList>
