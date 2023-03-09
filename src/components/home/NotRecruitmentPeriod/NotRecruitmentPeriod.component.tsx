@@ -25,7 +25,7 @@ const NotRecruitmentPeriod = ({ setIsOpenModal }: NotRecruitmentPeriodProps) => 
         </Styled.GoToOfficialPage>
         <Styled.CloseButton onClick={handleCloseModal}>지난 모집 훑어보기</Styled.CloseButton>
         <Styled.MashongWrapper>
-          <Image src={mashong.src} alt="" layout="fill" />
+          <Image src={mashong.src} alt="" layout="fill" priority />
           <Styled.SpeechBubble>
             <Styled.Speech>현재 13기가 활발히 활동 중이에요</Styled.Speech>
           </Styled.SpeechBubble>
