@@ -6,3 +6,4 @@ export { default as RecruitingOpenHero } from './RecruitingOpenHero/RecruitingOp
 export { default as RecruitingPeriod } from './RecruitingPeriod/RecruitingPeriod.component';
 export { default as RecruitingPeriodDesktop } from './RecruitingPeriodDesktop/RecruitingPeriodDesktop.component';
 export { default as RecruitingRemainder } from './RecruitingRemainder/RecruitingRemainder.component';
+export { default as NotRecruitmentPeriod } from './NotRecruitmentPeriod/NotRecruitmentPeriod.component';
