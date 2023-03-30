@@ -28,6 +28,8 @@ const NotRecruitmentPeriod = ({ setIsOpenModal }: NotRecruitmentPeriodProps) => 
           <Image src={mashong.src} alt="" layout="fill" priority />
           <Styled.SpeechBubble>
             <Styled.Speech>현재 13기가 활발히 활동 중이에요</Styled.Speech>
+            <Styled.SpeechDotBig />
+            <Styled.SpeechDotSmall />
           </Styled.SpeechBubble>
         </Styled.MashongWrapper>
       </Styled.Dialog>
