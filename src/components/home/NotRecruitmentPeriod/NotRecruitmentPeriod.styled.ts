@@ -102,7 +102,7 @@ export const SpeechDotBig = styled.div`
   `}
 `;
 
-export const SpeechDotSmall = styled.div<{ size: number }>`
+export const SpeechDotSmall = styled.div`
   ${({ theme }) => css`
     position: absolute;
     bottom: -2.3rem;
