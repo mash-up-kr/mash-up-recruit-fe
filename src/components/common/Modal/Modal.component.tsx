@@ -56,7 +56,7 @@ const Modal = ({
 
     const handleFocusTrap = (e: KeyboardEvent) => {
       const focusableNodeList = dialogRef.current?.querySelectorAll<HTMLElement>(
-        'input, button, textarea, select, [href] [tabindex]',
+        'input, button, textarea, select, [href], [tabindex]',
       );
 
       if (focusableNodeList) {
