@@ -2,6 +2,7 @@ import { Modal } from '@/components';
 import mashong from '@/assets/images/mashong-coffee-3x-min.png';
 import { Dispatch, SetStateAction } from 'react';
 import Image from 'next/image';
+import { mashongCoffeeBase64 } from '@/assets/base64';
 import * as Styled from './NotRecruitmentPeriod.styled';
 
 interface NotRecruitmentPeriodProps {
@@ -25,7 +26,14 @@ const NotRecruitmentPeriod = ({ setIsOpenModal }: NotRecruitmentPeriodProps) => 
         </Styled.GoToOfficialPage>
         <Styled.CloseButton onClick={handleCloseModal}>지난 모집 훑어보기</Styled.CloseButton>
         <Styled.MashongWrapper>
-          <Image src={mashong.src} alt="" layout="fill" priority />
+          <Image
+            src={mashong.src}
+            alt=""
+            layout="fill"
+            placeholder="blur"
+            blurDataURL={mashongCoffeeBase64}
+            priority
+          />
           <Styled.SpeechBubble>
             <Styled.Speech>현재 13기가 활발히 활동 중이에요</Styled.Speech>
             <Styled.SpeechDotBig />
