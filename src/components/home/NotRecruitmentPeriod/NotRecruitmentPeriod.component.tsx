@@ -1,5 +1,5 @@
 import { Modal } from '@/components';
-import mashong from '@/assets/images/mashong-coffee-2x-min.png';
+import mashong from '@/assets/images/mashong-coffee-3x-min.png';
 import { Dispatch, SetStateAction } from 'react';
 import Image from 'next/image';
 import * as Styled from './NotRecruitmentPeriod.styled';
