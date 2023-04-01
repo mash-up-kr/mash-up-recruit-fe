@@ -59,27 +59,35 @@ const Modal = ({
         'input, button, textarea, select, [href], [tabindex]',
       );
 
-      if (focusableNodeList) {
-        const firstFocusableNode = focusableNodeList[0];
-        const lastFocusableNode = focusableNodeList[focusableNodeList.length - 1];
+      if (!focusableNodeList) return;
 
-        if (e.target === firstFocusableNode && e.shiftKey && e.key === 'Tab') {
-          e.preventDefault();
-          lastFocusableNode.focus();
-        }
-        if (e.target === lastFocusableNode && !e.shiftKey && e.key === 'Tab') {
-          e.preventDefault();
-          firstFocusableNode.focus();
-        }
+      const firstFocusableNode = focusableNodeList[0];
+      const lastFocusableNode = focusableNodeList[focusableNodeList.length - 1];
+
+      if (e.target === firstFocusableNode && e.shiftKey && e.key === 'Tab') {
+        e.preventDefault();
+        lastFocusableNode.focus();
+      }
+      if (e.target === lastFocusableNode && !e.shiftKey && e.key === 'Tab') {
+        e.preventDefault();
+        firstFocusableNode.focus();
       }
     };
 
     if (escClose) window.addEventListener('keyup', handleCloseModalWithEscHandler);
 
     if (mounted) {
-      dialogRef.current?.focus();
+      const focusableNodeList = dialogRef.current?.querySelectorAll<HTMLElement>(
+        'input, button, textarea, select, [href], [tabindex]',
+      );
 
-      window.addEventListener('keydown', handleFocusTrap);
+      if (focusableNodeList) {
+        const firstFocusableNode = focusableNodeList[0];
+
+        firstFocusableNode?.focus();
+
+        window.addEventListener('keydown', handleFocusTrap);
+      }
     }
 
     if (!mounted) setMounted(true);
