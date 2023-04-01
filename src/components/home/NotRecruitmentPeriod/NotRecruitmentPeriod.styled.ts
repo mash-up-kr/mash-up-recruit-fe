@@ -67,6 +67,8 @@ export const MashongWrapper = styled.div`
   left: 50%;
   width: 11.1rem;
   height: 11rem;
+  overflow: hidden;
+  border-radius: 1rem;
   transform: translate3d(-50%, 0, 0);
 `;
 
