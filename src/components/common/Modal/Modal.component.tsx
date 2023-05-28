@@ -28,7 +28,7 @@ const Modal = ({
 }: ModalProps) => {
   const [mounted, setMounted] = useState(false);
 
-  const dialogRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleCloseModalWithMouseHandler: MouseEventHandler<HTMLDivElement> = ({
     target,
@@ -55,7 +55,7 @@ const Modal = ({
     };
 
     const handleFocusTrap = (e: KeyboardEvent) => {
-      const focusableNodeList = dialogRef.current?.querySelectorAll<HTMLElement>(
+      const focusableNodeList = modalRef.current?.querySelectorAll<HTMLElement>(
         'input, button, textarea, select, [href], [tabindex]',
       );
 
@@ -77,17 +77,9 @@ const Modal = ({
     if (escClose) window.addEventListener('keyup', handleCloseModalWithEscHandler);
 
     if (mounted) {
-      const focusableNodeList = dialogRef.current?.querySelectorAll<HTMLElement>(
-        'input, button, textarea, select, [href], [tabindex]',
-      );
+      modalRef.current?.focus();
 
-      if (focusableNodeList) {
-        const firstFocusableNode = focusableNodeList[0];
-
-        firstFocusableNode?.focus();
-
-        window.addEventListener('keydown', handleFocusTrap);
-      }
+      window.addEventListener('keydown', handleFocusTrap);
     }
 
     if (!mounted) setMounted(true);
@@ -112,7 +104,7 @@ const Modal = ({
     <Portal elementId="modal-root" mounted={mounted}>
       <Styled.OverSizeModal>
         <Styled.Modal
-          ref={dialogRef}
+          ref={modalRef}
           tabIndex={-1}
           onClick={deemClose ? handleCloseModalWithMouseHandler : undefined}
         >
