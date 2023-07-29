@@ -3,7 +3,7 @@ name: dev-recruit CI/CD
 on:
   push:
     branches:
-      - qa/*
+      - develop
 
 env:
   S3_BUCKET_NAME: dev-recruit.mash-up
@@ -34,6 +34,9 @@ jobs:
           echo "SOURCE_PATH=$SOURCE_PATH" >> .env.local
           echo "NEXT_PUBLIC_CHANNEL_PLUGIN=$NEXT_PUBLIC_CHANNEL_PLUGIN" >> .env.local
           echo "NEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS" >> .env.local
+          echo "ADMIN_SOURCE_PATH=$ADMIN_SOURCE_PATH" >> .env.local
+          echo "ADMIN_DESTINATION_URL=$ADMIN_DESTINATION_URL" >> .env.local
+          echo "ADMIN_TOKEN=$ADMIN_TOKEN" >> .env.local
         env:
           ANALYZE: ${{ secrets.ANALYZE }}
           BASE_URL: ${{ secrets.BASE_URL }}
@@ -45,6 +48,9 @@ jobs:
           SOURCE_PATH: ${{ secrets.SOURCE_PATH }}
           NEXT_PUBLIC_CHANNEL_PLUGIN: ${{ secrets.NEXT_PUBLIC_CHANNEL_PLUGIN }}
           NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS }}
+          ADMIN_SOURCE_PATH: ${{ secrets.ADMIN_SOURCE_PATH }}
+          ADMIN_DESTINATION_URL: ${{ secrets.ADMIN_DESTINATION_URL }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
 
       - name: Install dependencies
         run: yarn install
