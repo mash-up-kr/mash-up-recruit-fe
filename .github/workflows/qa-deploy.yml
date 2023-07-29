@@ -3,11 +3,11 @@ name: dev-recruit CI/CD
 on:
   push:
     branches:
-      - qa/*
+      - develop
 
 env:
-  S3_BUCKET_NAME: dev-recruit.mash-up
-  CODE_DEPLOY_APPLICATION_NAME: dev-recruit-cd
+  S3_BUCKET_NAME: dev-recruit.mash-up.kr
+  CODE_DEPLOY_APPLICATION_NAME: dev-recruit-code-deploy
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dev-recruit
 
 jobs:
@@ -34,6 +34,8 @@ jobs:
           echo "SOURCE_PATH=$SOURCE_PATH" >> .env.local
           echo "NEXT_PUBLIC_CHANNEL_PLUGIN=$NEXT_PUBLIC_CHANNEL_PLUGIN" >> .env.local
           echo "NEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS" >> .env.local
+          echo "ADMIN_DESTINATION_PATH=$ADMIN_DESTINATION_PATH" >> .env.local
+          echo "ADMIN_TOKEN=$ADMIN_TOKEN" >> .env.local
         env:
           ANALYZE: ${{ secrets.ANALYZE }}
           BASE_URL: ${{ secrets.BASE_URL }}
@@ -45,6 +47,8 @@ jobs:
           SOURCE_PATH: ${{ secrets.SOURCE_PATH }}
           NEXT_PUBLIC_CHANNEL_PLUGIN: ${{ secrets.NEXT_PUBLIC_CHANNEL_PLUGIN }}
           NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS }}
+          ADMIN_DESTINATION_PATH: ${{ secrets.ADMIN_DESTINATION_PATH }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
 
       - name: Install dependencies
         run: yarn install
@@ -59,8 +63,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
       - name: Upload to S3

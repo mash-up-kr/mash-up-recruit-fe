@@ -10,5 +10,7 @@ declare namespace NodeJS {
     NEXT_PUBLIC_CHANNEL_PLUGIN: string;
     DESTINATION_URL: string;
     SOURCE_PATH: string;
+    ADMIN_DESTINATION_PATH: string;
+    ADMIN_TOKEN: string;
   }
 }

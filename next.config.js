@@ -8,7 +8,6 @@ const nextConfig = {
   env: {
     BASE_URL: process.env.BASE_URL,
   },
-  // eslint-disable-next-line consistent-return
   async rewrites() {
     return [
       {
