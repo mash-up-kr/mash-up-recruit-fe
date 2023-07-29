@@ -6,8 +6,8 @@ on:
       - develop
 
 env:
-  S3_BUCKET_NAME: dev-recruit.mash-up
-  CODE_DEPLOY_APPLICATION_NAME: dev-recruit-cd
+  S3_BUCKET_NAME: dev-recruit.mash-up.kr
+  CODE_DEPLOY_APPLICATION_NAME: dev-recruit-code-deploy
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dev-recruit
 
 jobs:
