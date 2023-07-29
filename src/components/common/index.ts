@@ -12,7 +12,6 @@ export { default as LabeledTextArea } from './LabeledTextArea/LabeledTextArea.co
 export { default as LabeledCheckbox } from './LabeledCheckbox/LabeledCheckbox.component';
 export { default as Accordion } from './Accordion/Accordion.component';
 export { default as MyPageTab } from './MyPageTab/MyPageTab.component';
-export { default as BulletedList } from './BulletedList/BulletedList.component';
 export { default as LoadingModal } from './LoadingModal/LoadingModal.component';
 export { default as SignInDialog } from './SignInDialog/SignInDialog.component';
 export { default as InAppSignInDialog } from './InAppSignInDialog/InAppSignInDialog.component';
