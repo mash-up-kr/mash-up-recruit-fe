@@ -8,12 +8,15 @@ const nextConfig = {
   env: {
     BASE_URL: process.env.BASE_URL,
   },
-  // eslint-disable-next-line consistent-return
   async rewrites() {
     return [
       {
         source: '/api/auth/:path*',
         destination: '/api/auth/:path*',
+      },
+      {
+        source: process.env.ADMIN_SOURCE_PATH,
+        destination: process.env.ADMIN_DESTINATION_URL,
       },
       {
         source: process.env.SOURCE_PATH,
