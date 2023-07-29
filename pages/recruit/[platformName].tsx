@@ -1,8 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { PlatformKey, platformMap, platforms } from '@/constants';
+import { PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
 import editorjsHTML from 'editorjs-html';
-import { unescape, flow, toLower } from 'lodash-es';
+import { unescape, flow } from 'lodash-es';
 import {
   RecruitHeader,
   PlatformHero,
@@ -17,6 +17,7 @@ import {
   SEO,
 } from '@/components';
 import { adminApiService } from '@/api/services';
+import { objectKeys } from '@/utils/object';
 
 interface Params extends ParsedUrlQuery {
   platformName: PlatformKey;
@@ -59,29 +60,9 @@ const Platform: NextPage<PlatformProps> = ({ platformName, html }) => {
 };
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const [prefix, separator] = ['recruit', '-'];
-
-  const { data } = await adminApiService.getKeysFromStorage({
-    accessToken: process.env.ADMIN_TOKEN,
+  const paths = objectKeys(platformKeys).map((platformKey) => {
+    return { params: { platformName: platformKey } };
   });
-
-  const paths = data.keyStrings
-    .map(toLower)
-    .filter((key: string) => key.includes(`${prefix}${separator}`))
-    .filter((key: string) =>
-      [
-        `${prefix}${separator}ios`,
-        `${prefix}${separator}web`,
-        `${prefix}${separator}android`,
-        `${prefix}${separator}spring`,
-        `${prefix}${separator}design`,
-        `${prefix}${separator}node`,
-      ].includes(key),
-    )
-    .map((key: string) => {
-      const [, platformName] = key.split(separator);
-      return { params: { platformName: platformName as PlatformKey } };
-    });
 
   return {
     paths,
