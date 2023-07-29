@@ -1,4 +1,5 @@
 import editorjsHTML from 'editorjs-html';
+import { unescape } from 'lodash-es';
 
 type ListItem = {
   content: string;
@@ -35,7 +36,7 @@ const transformer = ({ blocks }: { blocks: Block[] }): FaqQuestion[] => {
     .map(([headerBlock, listBlock]) => {
       return [
         ['title', headerBlock.data.text],
-        ['content', parser.parseBlock(listBlock)],
+        ['content', unescape(parser.parseBlock(listBlock))],
       ];
     })
     .map(Object.fromEntries) as FaqQuestion[];
