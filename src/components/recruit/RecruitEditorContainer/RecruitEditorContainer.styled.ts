@@ -12,6 +12,7 @@ export const Container = styled.div`
     p {
       ${theme.fonts.kr.medium16};
       width: 100%;
+      min-height: 2.4rem;
 
       @media (max-width: ${theme.breakPoint.media.tabletL}) {
         width: 60rem;
