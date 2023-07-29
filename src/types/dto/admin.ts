@@ -5,6 +5,6 @@ export interface StorageDataRequest extends BaseRequest {
 }
 
 export interface StorageDataResponseData {
-  valueMap: Record<string, unknown>;
+  valueMap: Record<string, any>;
 }
 export interface StorageDataResponse extends BaseResponse<StorageDataResponseData> {}
