@@ -3,7 +3,7 @@ import BaseApiService from './base';
 
 class AdminApiService extends BaseApiService {
   public constructor() {
-    super('admin');
+    super(undefined, process.env.ADMIN_DESTINATION_PATH);
   }
 
   public getRecruitDataFromStorage({

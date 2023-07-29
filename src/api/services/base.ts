@@ -3,9 +3,9 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios';
 abstract class BaseApiService {
   protected readonly http: AxiosInstance;
 
-  protected constructor(protected readonly path?: string) {
+  protected constructor(protected readonly path?: string, protected readonly baseURL?: string) {
     this.http = axios.create({
-      baseURL: `${process.env.BASE_URL ?? ''}/api/${path ?? ''}`,
+      baseURL: baseURL ?? `${process.env.BASE_URL ?? ''}/api/${path ?? ''}`,
       headers: {
         'Content-Type': 'application/json',
       },

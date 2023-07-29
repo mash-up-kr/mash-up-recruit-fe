@@ -15,10 +15,6 @@ const nextConfig = {
         destination: '/api/auth/:path*',
       },
       {
-        source: process.env.ADMIN_SOURCE_PATH,
-        destination: process.env.ADMIN_DESTINATION_URL,
-      },
-      {
         source: process.env.SOURCE_PATH,
         destination: process.env.DESTINATION_URL,
       },
