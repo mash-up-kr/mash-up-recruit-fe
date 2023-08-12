@@ -22,11 +22,6 @@ export const Default = Template.bind({});
 Default.args = {
   id: '1',
   title: '노드에 대해 얼마나 알아야 지원할 수 있나요?',
-  content: [
-    {
-      id: '1-1',
-      content: '많이 알아야 합니다!',
-    },
-  ],
+  content: '많이 알아야 합니다!',
   headingTagName: 'h3',
 };
