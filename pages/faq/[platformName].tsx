@@ -18,7 +18,8 @@ import {
   platformMap,
   VIEWPORT_SIZE,
 } from '@/constants';
-import transformer, { FaqQuestion } from '@/utils/faq/transformer';
+import transformer from '@/utils/faq/transformer';
+import type { FaqQuestion } from '@/utils/faq/transformer';
 
 const faqPlatformMap = {
   ...platformMap,

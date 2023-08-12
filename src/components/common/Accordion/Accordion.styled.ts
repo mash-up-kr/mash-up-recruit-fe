@@ -65,11 +65,23 @@ export const ContentsContainer = styled.div`
       }
     }
 
+    ol {
+      ${theme.fonts.kr.medium16};
+      margin-left: 2.4rem;
+      color: ${theme.colors.gray70};
+      list-style-type: decimal;
+
+      & > * {
+        margin: 0.6rem 0;
+      }
+    }
+
     li:first-of-type {
       margin: 0;
     }
 
-    li > ul {
+    li > ul,
+    li > ol {
       margin: 0.6rem 0 0 2.4rem;
     }
   `}

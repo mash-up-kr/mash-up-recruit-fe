@@ -1,4 +1,4 @@
-import editorjsHTML from 'editorjs-html';
+import parser from '@/utils/editorjs-html';
 import { unescape } from 'lodash-es';
 
 type ListItem = {
@@ -7,7 +7,7 @@ type ListItem = {
 };
 
 export type Block = {
-  type: 'header' | 'list' | 'delimiter';
+  type: 'header' | 'list';
   data: {
     text?: string;
     level?: number;
@@ -19,8 +19,6 @@ export type FaqQuestion = {
   title: string;
   content: string;
 };
-
-const parser = editorjsHTML();
 
 const transformer = ({ blocks }: { blocks: Block[] }): FaqQuestion[] => {
   return blocks
