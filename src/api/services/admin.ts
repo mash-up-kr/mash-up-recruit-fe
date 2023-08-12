@@ -19,6 +19,20 @@ class AdminApiService extends BaseApiService {
       .then(BaseApiService.handleResponse)
       .catch(BaseApiService.handleError);
   }
+
+  public getFaqDataFromStorage({
+    accessToken,
+    key,
+  }: StorageDataRequest): Promise<StorageDataResponse> {
+    return this.http
+      .get(`/storage/key/faq-${key}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(BaseApiService.handleResponse)
+      .catch(BaseApiService.handleError);
+  }
 }
 
 export default new AdminApiService();

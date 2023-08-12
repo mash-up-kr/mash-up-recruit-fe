@@ -51,3 +51,38 @@ export const Panel = styled.div`
     }
   `}
 `;
+
+export const ContentsContainer = styled.div`
+  ${({ theme }) => css`
+    ul {
+      ${theme.fonts.kr.medium16};
+      margin-left: 2.4rem;
+      color: ${theme.colors.gray70};
+      list-style-type: disc;
+
+      & > * {
+        margin: 0.6rem 0;
+      }
+    }
+
+    ol {
+      ${theme.fonts.kr.medium16};
+      margin-left: 2.4rem;
+      color: ${theme.colors.gray70};
+      list-style-type: decimal;
+
+      & > * {
+        margin: 0.6rem 0;
+      }
+    }
+
+    li:first-of-type {
+      margin: 0;
+    }
+
+    li > ul,
+    li > ol {
+      margin: 0.6rem 0 0 2.4rem;
+    }
+  `}
+`;
