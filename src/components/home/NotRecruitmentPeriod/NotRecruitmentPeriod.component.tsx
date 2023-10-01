@@ -19,7 +19,7 @@ const NotRecruitmentPeriod = ({ setIsOpenModal }: NotRecruitmentPeriodProps) => 
       <Styled.Dialog>
         <Styled.Notify>지금은 모집 기간이 아니에요!</Styled.Notify>
         <Styled.Paragraph>
-          다음 기수 모집 시작은{'\n'}23년 11월 이후로 예정되어 있습니다.
+          다음 기수 모집 시작은{'\n'}24년 1분기로 예정되어 있습니다.
         </Styled.Paragraph>
         <Styled.GoToOfficialPage href="https://mash-up.kr/">
           공식 홈페이지 바로가기

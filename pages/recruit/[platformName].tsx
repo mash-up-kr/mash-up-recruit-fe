@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
-import editorjsHTML from 'editorjs-html';
+import parser from '@/utils/editorjs-html';
 import { unescape, flow } from 'lodash-es';
 import {
   RecruitHeader,
@@ -80,7 +80,7 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
     key: platformName,
   });
 
-  const html = editorjsHTML()
+  const html = parser
     .parse(data.valueMap.editorData)
     .map(flow(removeWrongAmpString, unescape))
     .join('');

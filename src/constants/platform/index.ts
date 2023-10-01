@@ -1,6 +1,4 @@
-import { Item } from '@/components/common/BulletedList/BulletedList.component';
 import { ValueOf } from '@/types';
-import { ReactNode } from 'react';
 import web from './web';
 import spring from './spring';
 import design from './design';
@@ -25,22 +23,11 @@ export type Path = {
   apply: string;
 };
 
-export type Question = {
-  id: string;
-  title: { emoji?: string; text: string };
-  content: Item[];
-};
-
 export type Platform = {
   id: string;
   name: string;
   role: string;
   path: Path;
-  introduction: ReactNode;
-  questions: Question[];
-  study: Item[];
-  interview: Item[];
-  talent: Item[];
   hero: {
     color: string;
     emojis: any[];
