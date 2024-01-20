@@ -6,7 +6,6 @@ import {
   RecruitingOpenHero,
   RecruitingPeriod,
   RecruitingRemainder,
-  NotRecruitmentPeriod,
 } from '@/components';
 
 import { useAOS } from '@/hooks';
@@ -17,7 +16,6 @@ import { useEffect, useState } from 'react';
 const Home = () => {
   useAOS();
 
-  const [isOpenNotRecruitMentModal, setIsOpenNotRecruitmentModal] = useState(true);
   const [recruitingProgressStatus, setRecruitingProgressStatus] = useState<
     RecruitingProgressStatus | 'NOT_INITIALIZED'
   >('NOT_INITIALIZED');
@@ -36,9 +34,6 @@ const Home = () => {
           <RecruitingPeriod />
           <RecruitingProcess />
           <RecruitingDetailNavigation />
-          {isOpenNotRecruitMentModal && (
-            <NotRecruitmentPeriod setIsOpenModal={setIsOpenNotRecruitmentModal} />
-          )}
         </HomeLayout>
       )}
     </>
