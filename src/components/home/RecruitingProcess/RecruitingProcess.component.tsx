@@ -90,7 +90,7 @@ const RecruitingProcess = () => {
                 DAYS[DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.day()]
               })`}</time>
             </Styled.Date>
-            <Styled.Note>상세일정 이메일 확인</Styled.Note>
+            <Styled.Note>상세일정 이메일로 전달</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>최종 합격 발표</Styled.SubHeading>
