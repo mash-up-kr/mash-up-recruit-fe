@@ -1,21 +1,8 @@
 import { KeyOf } from '@/types';
+import { RECRUIT_DATE } from '@/constants';
 import { objectKeys } from './object';
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
-
-export const [
-  RECRUITMENT_START_KST_DATE, // 서류 접수 시작
-  RECRUITMENT_END_KST_DATE, // 서류 접수 종료
-  SCREENING_RESULT_ANNOUNCED_KST_DATE, // 서류 결과 발표
-  INTERVIEW_RESULT_ANNOUNCED_KST_DATE, // 최종 합격 발표
-  AFTER_FIRST_SEMINAR_JOIN_KST_DATE, // 첫번째 세미나 끝나는 시각
-] = [
-  new Date('2023-01-11T01:00:00+09:00'),
-  new Date('2023-01-25T23:59:59+09:00'),
-  new Date('2023-01-30T21:00:00+09:00'),
-  new Date('2023-02-07T21:00:00+09:00'),
-  new Date('2023-02-11T17:00:00+09:00'),
-];
 
 export type RecruitingProgressStatus =
   | 'PREVIOUS'
@@ -38,28 +25,34 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = (
   const kstDate = getKSTDateFromDate(date);
   const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
 
-  if (currentDate < RECRUITMENT_START_KST_DATE) {
+  if (currentDate < RECRUIT_DATE.RECRUITMENT_START_KST_DATE) {
     return 'PREVIOUS';
   }
-  if (RECRUITMENT_START_KST_DATE <= currentDate && currentDate <= RECRUITMENT_END_KST_DATE) {
+  if (
+    RECRUIT_DATE.RECRUITMENT_START_KST_DATE <= currentDate &&
+    currentDate <= RECRUIT_DATE.RECRUITMENT_END_KST_DATE
+  ) {
     return 'IN-RECRUITING';
   }
-  if (RECRUITMENT_END_KST_DATE < currentDate && currentDate < SCREENING_RESULT_ANNOUNCED_KST_DATE) {
+  if (
+    RECRUIT_DATE.RECRUITMENT_END_KST_DATE < currentDate &&
+    currentDate < RECRUIT_DATE.SCREENING_RESULT_ANNOUNCED_KST_DATE
+  ) {
     return 'END-RECRUITING';
   }
   if (
-    SCREENING_RESULT_ANNOUNCED_KST_DATE <= currentDate &&
-    currentDate < INTERVIEW_RESULT_ANNOUNCED_KST_DATE
+    RECRUIT_DATE.SCREENING_RESULT_ANNOUNCED_KST_DATE <= currentDate &&
+    currentDate < RECRUIT_DATE.INTERVIEW_RESULT_ANNOUNCED_KST_DATE
   ) {
     return 'AFTER-SCREENING-ANNOUNCED';
   }
   if (
-    INTERVIEW_RESULT_ANNOUNCED_KST_DATE <= currentDate &&
-    currentDate < AFTER_FIRST_SEMINAR_JOIN_KST_DATE
+    RECRUIT_DATE.INTERVIEW_RESULT_ANNOUNCED_KST_DATE <= currentDate &&
+    currentDate < RECRUIT_DATE.AFTER_FIRST_SEMINAR_JOIN_KST_DATE
   ) {
     return 'AFTER-INTERVIEWING-ANNOUNCED';
   }
-  if (AFTER_FIRST_SEMINAR_JOIN_KST_DATE <= currentDate) {
+  if (RECRUIT_DATE.AFTER_FIRST_SEMINAR_JOIN_KST_DATE <= currentDate) {
     return 'AFTER-FIRST-SEMINAR';
   }
   return 'INVALID';

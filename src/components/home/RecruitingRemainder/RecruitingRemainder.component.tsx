@@ -1,17 +1,17 @@
 import { useRouter } from 'next/router';
 import { useInterval } from '@/hooks';
-import { getDifferenceOfDates, RECRUITMENT_START_KST_DATE } from '@/utils/date';
+import { getDifferenceOfDates } from '@/utils/date';
 import type { DateDifference } from '@/utils/date';
 import { useState, useEffect } from 'react';
 
-import { CURRENT_GENERATION } from '@/constants';
+import { CURRENT_GENERATION, RECRUIT_DATE } from '@/constants';
 import * as Styled from './RecruitingRemainder.styled';
 
 const RecruitingRemainder = () => {
   const router = useRouter();
 
   const [difference, setDifference] = useState<DateDifference>(() =>
-    getDifferenceOfDates(new Date(), RECRUITMENT_START_KST_DATE),
+    getDifferenceOfDates(new Date(), RECRUIT_DATE.RECRUITMENT_START_KST_DATE),
   );
 
   const [isPreviousDayOfRecruitingStart, isRunOutTimeOfRecruitingStart] = [
@@ -21,7 +21,10 @@ const RecruitingRemainder = () => {
 
   useInterval(
     () => {
-      const currentDifference = getDifferenceOfDates(new Date(), RECRUITMENT_START_KST_DATE);
+      const currentDifference = getDifferenceOfDates(
+        new Date(),
+        RECRUIT_DATE.RECRUITMENT_START_KST_DATE,
+      );
       setDifference(currentDifference);
     },
     isPreviousDayOfRecruitingStart ? 1000 : null,
