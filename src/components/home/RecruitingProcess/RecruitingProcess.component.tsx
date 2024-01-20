@@ -1,8 +1,27 @@
 import { ScreenReaderOnly } from '@/components';
-import { CURRENT_GENERATION } from '@/constants';
+import { CURRENT_GENERATION, DAYS, RECRUIT_DATE } from '@/constants';
+import dayjs from 'dayjs';
 import * as Styled from './RecruitingProcess.styled';
 
 const RecruitingProcess = () => {
+  const {
+    RECRUITMENT_START_KST_DATE,
+    RECRUITMENT_END_KST_DATE,
+    SCREENING_RESULT_ANNOUNCED_KST_DATE,
+    INTERVIEW_START_KST_DATE,
+    INTERVIEW_END_KST_DATE,
+    INTERVIEW_RESULT_ANNOUNCED_KST_DATE,
+    AFTER_FIRST_SEMINAR_JOIN_KST_DATE,
+  } = RECRUIT_DATE;
+
+  const DAYJS_RECRUITMENT_START_KST_DATE = dayjs(RECRUITMENT_START_KST_DATE);
+  const DAYJS_RECRUITMENT_END_KST_DATE = dayjs(RECRUITMENT_END_KST_DATE);
+  const DAYJS_SCREENING_RESULT_ANNOUNCED_KST_DATE = dayjs(SCREENING_RESULT_ANNOUNCED_KST_DATE);
+  const DAYJS_INTERVIEW_START_KST_DATE = dayjs(INTERVIEW_START_KST_DATE);
+  const DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE = dayjs(INTERVIEW_END_KST_DATE);
+  const DAYJS_INTERVIEW_RESULT_ANNOUNCED_KST_DATE = dayjs(INTERVIEW_RESULT_ANNOUNCED_KST_DATE);
+  const DAYJS_AFTER_FIRST_SEMINAR_JOIN_KST_DATE = dayjs(AFTER_FIRST_SEMINAR_JOIN_KST_DATE);
+
   return (
     <Styled.Container>
       <Styled.Contents>
@@ -12,48 +31,99 @@ const RecruitingProcess = () => {
         <Styled.List data-aos="fade-up" data-aos-duration="800">
           <Styled.ListItem>
             <Styled.SubHeading>서류 접수</Styled.SubHeading>
-            <ScreenReaderOnly>2023년 1월 11일 수요일부터 2023년 1월 25일 수요일</ScreenReaderOnly>
+            <ScreenReaderOnly>{`${DAYJS_RECRUITMENT_START_KST_DATE.format('YYYY년 M월 D일')} ${
+              DAYS[DAYJS_RECRUITMENT_START_KST_DATE.day()]
+            }요일부터 ${DAYJS_RECRUITMENT_END_KST_DATE.format('YYYY년 M월 D일')} ${
+              DAYS[DAYJS_RECRUITMENT_END_KST_DATE.day()]
+            }요일`}</ScreenReaderOnly>
             <Styled.Date aria-hidden>
-              <time dateTime="2023-01-11">01.11(수)</time>&nbsp;~&nbsp;
-              <time dateTime="2023-01-25">01.25(수)</time>
+              <time dateTime={DAYJS_RECRUITMENT_START_KST_DATE.format('YYYY-MM-DD')}>
+                {`${DAYJS_RECRUITMENT_START_KST_DATE.format('MM.DD')}(${
+                  DAYS[DAYJS_RECRUITMENT_START_KST_DATE.day()]
+                })`}
+              </time>
+              &nbsp;~&nbsp;
+              <time
+                dateTime={DAYJS_RECRUITMENT_END_KST_DATE.format('YYYY-MM-DD')}
+              >{`${DAYJS_RECRUITMENT_END_KST_DATE.format('MM.DD')}(${
+                DAYS[DAYJS_RECRUITMENT_END_KST_DATE.day()]
+              })`}</time>
             </Styled.Date>
-            <Styled.Note>23:59:59 마감</Styled.Note>
+            <Styled.Note>{`${DAYJS_RECRUITMENT_END_KST_DATE.format('HH:mm:ss')} 마감`}</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>서류 결과 발표</Styled.SubHeading>
             <Styled.Date>
-              <ScreenReaderOnly>2023년 1월 30일 월요일</ScreenReaderOnly>
-              <time aria-hidden dateTime="2023-01-30">
-                01.30(월)
+              <ScreenReaderOnly>{`${DAYJS_SCREENING_RESULT_ANNOUNCED_KST_DATE.format(
+                'YYYY년 M월 D일',
+              )} ${DAYS[DAYJS_SCREENING_RESULT_ANNOUNCED_KST_DATE.day()]}요일`}</ScreenReaderOnly>
+              <time
+                aria-hidden
+                dateTime={DAYJS_SCREENING_RESULT_ANNOUNCED_KST_DATE.format('YYYY-MM-DD')}
+              >
+                {`${DAYJS_SCREENING_RESULT_ANNOUNCED_KST_DATE.format('MM.DD')}(${
+                  DAYS[DAYJS_SCREENING_RESULT_ANNOUNCED_KST_DATE.day()]
+                })`}
               </time>
             </Styled.Date>
-            <Styled.Note>오후 9시</Styled.Note>
+            <Styled.Note>{`${DAYJS_SCREENING_RESULT_ANNOUNCED_KST_DATE.format(
+              'HH',
+            )}시`}</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>온/오프라인 면접</Styled.SubHeading>
-            <ScreenReaderOnly>2023년 2월 4일 토요일에서 2023년 2월 5일 일요일</ScreenReaderOnly>
+            <ScreenReaderOnly>{`${DAYJS_INTERVIEW_START_KST_DATE.format('YYYY년 M월 D일')} ${
+              DAYS[DAYJS_INTERVIEW_START_KST_DATE.day()]
+            }요일에서 ${DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.format('YYYY년 M월 D일')} ${
+              DAYS[DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.day()]
+            }요일`}</ScreenReaderOnly>
             <Styled.Date aria-hidden>
-              <time dateTime="2023-02-04">02.04(토)</time>&nbsp;~&nbsp;
-              <time dateTime="2023-02-05">02.05(일)</time>
+              <time
+                dateTime={DAYJS_INTERVIEW_START_KST_DATE.format('YYYY-MM-DD')}
+              >{`${DAYJS_INTERVIEW_START_KST_DATE.format('MM.DD')}(${
+                DAYS[DAYJS_INTERVIEW_START_KST_DATE.day()]
+              })`}</time>
+              &nbsp;~&nbsp;
+              <time
+                dateTime={DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.format('YYYY-MM-DD')}
+              >{`${DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.format('MM.DD')}(${
+                DAYS[DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.day()]
+              })`}</time>
             </Styled.Date>
-            <Styled.Note>추후 연락</Styled.Note>
+            <Styled.Note>상세일정 이메일 확인</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>최종 합격 발표</Styled.SubHeading>
             <Styled.Date>
-              <ScreenReaderOnly>2023년 2월 7일 화요일</ScreenReaderOnly>
-              <time aria-hidden dateTime="2023-02-07">
-                02.07(화)
+              <ScreenReaderOnly>{`${DAYJS_INTERVIEW_RESULT_ANNOUNCED_KST_DATE.format(
+                'YYYY년 M월 D일',
+              )} ${DAYS[DAYJS_INTERVIEW_RESULT_ANNOUNCED_KST_DATE.day()]}요일`}</ScreenReaderOnly>
+              <time
+                aria-hidden
+                dateTime={DAYJS_INTERVIEW_RESULT_ANNOUNCED_KST_DATE.format('YYYY-MM-DD')}
+              >
+                {`${DAYJS_INTERVIEW_RESULT_ANNOUNCED_KST_DATE.format('MM.DD')}(${
+                  DAYS[DAYJS_INTERVIEW_RESULT_ANNOUNCED_KST_DATE.day()]
+                })`}
               </time>
             </Styled.Date>
-            <Styled.Note>오후 9시</Styled.Note>
+            <Styled.Note>{`${DAYJS_INTERVIEW_RESULT_ANNOUNCED_KST_DATE.format(
+              'HH',
+            )}시`}</Styled.Note>
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>{CURRENT_GENERATION}기 OT</Styled.SubHeading>
             <Styled.Date>
-              <ScreenReaderOnly>2023년 2월 11일 토요일</ScreenReaderOnly>
-              <time aria-hidden dateTime="2023-02-11">
-                02.11(토)
+              <ScreenReaderOnly>{`${DAYJS_AFTER_FIRST_SEMINAR_JOIN_KST_DATE.format(
+                'YYYY년 M월 D일',
+              )} ${DAYS[DAYJS_AFTER_FIRST_SEMINAR_JOIN_KST_DATE.day()]}요일`}</ScreenReaderOnly>
+              <time
+                aria-hidden
+                dateTime={DAYJS_AFTER_FIRST_SEMINAR_JOIN_KST_DATE.format('YYYY-MM-DD')}
+              >
+                {`${DAYJS_AFTER_FIRST_SEMINAR_JOIN_KST_DATE.format('MM.DD')}(${
+                  DAYS[DAYJS_AFTER_FIRST_SEMINAR_JOIN_KST_DATE.day()]
+                })`}
               </time>
             </Styled.Date>
           </Styled.ListItem>

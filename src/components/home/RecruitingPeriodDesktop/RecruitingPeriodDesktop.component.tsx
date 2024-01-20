@@ -1,18 +1,26 @@
-import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION } from '@/constants';
+import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION, RECRUIT_DATE } from '@/constants';
 import { Lottie, ScreenReaderOnly } from '@/components';
 import computerLottie from '@/assets/lottie/computer.json';
 import PeriodArrow from '@/assets/svg/period-arrow.svg';
 import fireLottie from '@/assets/lottie/fire.json';
+import dayjs from 'dayjs';
 import * as Styled from './RecruitingPeriodDesktop.styled';
 
 const RecruitingPeriodDesktop = () => {
+  const { RECRUITMENT_START_KST_DATE, RECRUITMENT_END_KST_DATE } = RECRUIT_DATE;
+
+  const DAYJS_RECRUITMENT_START_KST_DATE = dayjs(RECRUITMENT_START_KST_DATE);
+  const DAYJS_RECRUITMENT_END_KST_DATE = dayjs(RECRUITMENT_END_KST_DATE);
+
   return (
     <Styled.Container>
       <Styled.StartDate data-aos="fade-up" data-aos-duration={AOS_DEFAULT_DURATION}>
         <span>Start Date</span>
-        <ScreenReaderOnly>2023년 1월 11일</ScreenReaderOnly>
-        <time aria-hidden dateTime="2023-01-11">
-          01.11
+        <ScreenReaderOnly>
+          {DAYJS_RECRUITMENT_START_KST_DATE.format('YYYY년 M월 D일')}
+        </ScreenReaderOnly>
+        <time aria-hidden dateTime={DAYJS_RECRUITMENT_START_KST_DATE.format('YYYY-MM-DD')}>
+          {DAYJS_RECRUITMENT_START_KST_DATE.format('MM.DD')}
         </time>
       </Styled.StartDate>
       <Styled.EndDate
@@ -20,9 +28,11 @@ const RecruitingPeriodDesktop = () => {
         data-aos-duration={AOS_DEFAULT_DURATION + 3 * AOS_BASE_DURATION_DISTANCE}
       >
         <span>End Date</span>
-        <ScreenReaderOnly>2023년 1월 25일</ScreenReaderOnly>
-        <time aria-hidden dateTime="2023-01-25">
-          01.25
+        <ScreenReaderOnly>
+          {DAYJS_RECRUITMENT_END_KST_DATE.format('YYYY년 M월 D일')}
+        </ScreenReaderOnly>
+        <time aria-hidden dateTime={DAYJS_RECRUITMENT_END_KST_DATE.format('YYYY-MM-DD')}>
+          {DAYJS_RECRUITMENT_END_KST_DATE.format('MM.DD')}
         </time>
       </Styled.EndDate>
       <Styled.PeriodBackgroundDesktopContainer>

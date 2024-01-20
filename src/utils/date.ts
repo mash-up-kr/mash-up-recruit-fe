@@ -1,8 +1,6 @@
 import { KeyOf } from '@/types';
-import { RECRUIT_DATE } from '@/constants';
+import { DAYS, RECRUIT_DATE } from '@/constants';
 import { objectKeys } from './object';
-
-const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 export type RecruitingProgressStatus =
   | 'PREVIOUS'
