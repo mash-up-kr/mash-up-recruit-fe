@@ -3,7 +3,7 @@ import DoubleUnderline from '@/assets/svg/double-underline.svg';
 import GenerationRight from '@/assets/images/generation-right-2x.png';
 import Image from 'next/image';
 import { RecruitingPeriodDesktop, Lottie } from '@/components';
-import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION } from '@/constants';
+import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION, CURRENT_GENERATION } from '@/constants';
 import * as Styled from './RecruitingOpenHero.styled';
 
 const RecruitingOpenHero = () => {
@@ -18,7 +18,7 @@ const RecruitingOpenHero = () => {
             data-aos="fade-up"
             data-aos-duration={AOS_DEFAULT_DURATION + AOS_BASE_DURATION_DISTANCE}
           >
-            13th
+            {CURRENT_GENERATION}th
           </span>
           <Styled.RightImageContainer>
             <Image

@@ -36,6 +36,15 @@ export const teamIds = {
     [teamNames.node]: 15,
     [teamNames.spring]: 16,
   },
+  // TODO: 14기 팀 id 확정되면 수정
+  14: {
+    [teamNames.design]: 17,
+    [teamNames.web]: 18,
+    [teamNames.android]: 19,
+    [teamNames.ios]: 20,
+    [teamNames.node]: 21,
+    [teamNames.spring]: 22,
+  },
 } as const;
 
 export const TEAM_NICK_NAME: Record<TeamName, string> = {
