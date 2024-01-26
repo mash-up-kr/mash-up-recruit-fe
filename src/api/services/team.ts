@@ -1,4 +1,4 @@
-import { TeamsResponse } from '@/types/dto';
+import { TeamsRequest, TeamsResponse } from '@/types/dto';
 import BaseApiService from './base';
 
 class TeamApiService extends BaseApiService {
@@ -6,8 +6,13 @@ class TeamApiService extends BaseApiService {
     super('teams');
   }
 
-  public getTeams(): Promise<TeamsResponse> {
-    return this.http.get('').then(BaseApiService.handleResponse).catch(BaseApiService.handleError);
+  public getTeams({ accessToken, generationNumber }: TeamsRequest): Promise<TeamsResponse> {
+    return this.http
+      .get(`?generationNumber=${generationNumber}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then(BaseApiService.handleResponse)
+      .catch(BaseApiService.handleError);
   }
 }
 
