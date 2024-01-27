@@ -1,28 +1,25 @@
 import { applicationApiService } from '@/api/services';
 import { ApplyStatusLayout } from '@/components';
 import { CURRENT_GENERATION, ERROR_PAGE, HOME_PAGE } from '@/constants';
-import { Application } from '@/types/dto';
+import { Application, RecruitScheduleArray } from '@/types/dto';
 import { sortByGenerationAndTeam } from '@/utils/application';
-import {
-  generateRecruitSchedule,
-  getRecruitingProgressStatusFromRecruitingPeriod,
-  RecruitingProgressStatus,
-} from '@/utils/date';
+import { generateRecruitSchedule } from '@/utils/date';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 
 interface ApplyStatusProps {
   applications: Application[];
-  recruitingProgressStatus: RecruitingProgressStatus;
+  recruitScheduleArray: RecruitScheduleArray;
 }
 
-const ApplyStatus = ({ applications, recruitingProgressStatus }: ApplyStatusProps) => {
-  return (
-    <ApplyStatusLayout
-      applications={applications}
-      recruitingProgressStatus={recruitingProgressStatus}
-    />
-  );
+const ApplyStatus = ({
+  applications,
+
+  recruitScheduleArray,
+}: ApplyStatusProps) => {
+  const recruitSchedule = generateRecruitSchedule(recruitScheduleArray);
+
+  return <ApplyStatusLayout applications={applications} recruitSchedule={recruitSchedule} />;
 };
 
 export default ApplyStatus;
@@ -46,14 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       generationNumber: CURRENT_GENERATION,
     });
 
-    const recruitSchedule = generateRecruitSchedule(recruitScheduleResponse);
-
-    const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
-      date: new Date(),
-      recruitSchedule,
-    });
-
-    return { props: { applications, recruitingProgressStatus } };
+    return { props: { applications, recruitScheduleArray: recruitScheduleResponse } };
   } catch (error) {
     return {
       redirect: { destination: ERROR_PAGE, permanent: false },

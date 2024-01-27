@@ -2,13 +2,11 @@ import { MY_PAGE_APPLICATION_DETAIL, TEAM_NICK_NAME } from '@/constants';
 import { useDetectViewPort } from '@/hooks';
 import { Application, ApplicationAuditStatus } from '@/types/dto';
 import Loudspeaker from '@/assets/svg/loudspeaker-16.svg';
-import { RecruitingProgressStatus } from '@/utils/date';
 import unescape from 'lodash-es/unescape';
 import * as Styled from './StatusList.styled';
 
 interface StatusListProps {
   applications: Application[];
-  recruitingProgressStatus: RecruitingProgressStatus;
 }
 
 const STATUS_WORDS: Record<ApplicationAuditStatus, string> = {
@@ -21,16 +19,13 @@ const STATUS_WORDS: Record<ApplicationAuditStatus, string> = {
   INTERVIEW_PASSED: '최종 합격', // purple70
 };
 
-const StatusList = ({ applications, recruitingProgressStatus }: StatusListProps) => {
+const StatusList = ({ applications }: StatusListProps) => {
   const { size } = useDetectViewPort();
 
   const isSubmitted = applications.find(({ status }) => status === 'SUBMITTED');
 
   return (
-    <Styled.StatusListSection
-      isSubmitted={!!isSubmitted}
-      recruitingProgressStatus={recruitingProgressStatus}
-    >
+    <Styled.StatusListSection isSubmitted={!!isSubmitted}>
       <Styled.HeadingWrapper>
         <Styled.Heading>지원 현황</Styled.Heading>
         {applications.length > 1 && !isSubmitted && (

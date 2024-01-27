@@ -1,12 +1,10 @@
 import LinkTo from '@/components/common/LinkTo/LinkTo.component';
 import { ApplicationAuditStatus } from '@/types/dto';
-import { RecruitingProgressStatus } from '@/utils/date';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 interface StatusListSectionProps {
   isSubmitted: boolean;
-  recruitingProgressStatus: RecruitingProgressStatus;
 }
 
 export const StatusListSection = styled.div<StatusListSectionProps>`

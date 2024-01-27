@@ -1,15 +1,14 @@
 import { StatusList, ApplyStatusDetail } from '@/components';
 import { CURRENT_GENERATION } from '@/constants';
-import { Application } from '@/types/dto';
-import { RecruitingProgressStatus } from '@/utils/date';
+import { Application, RecruitSchedule } from '@/types/dto';
 import * as Styled from './ApplyStatusLayout.styled';
 
 interface ApplyStatusLayoutProps {
   applications: Application[];
-  recruitingProgressStatus: RecruitingProgressStatus;
+  recruitSchedule: RecruitSchedule;
 }
 
-const ApplyStatusLayout = ({ applications, recruitingProgressStatus }: ApplyStatusLayoutProps) => {
+const ApplyStatusLayout = ({ applications, recruitSchedule }: ApplyStatusLayoutProps) => {
   const isSubmitted = applications.some(
     ({ status, generationResponse: { generationNumber } }) =>
       status === 'SUBMITTED' && generationNumber === CURRENT_GENERATION,
@@ -17,12 +16,9 @@ const ApplyStatusLayout = ({ applications, recruitingProgressStatus }: ApplyStat
   return (
     <Styled.Layout>
       {isSubmitted && (
-        <ApplyStatusDetail
-          applications={applications}
-          recruitingProgressStatus={recruitingProgressStatus}
-        />
+        <ApplyStatusDetail applications={applications} recruitSchedule={recruitSchedule} />
       )}
-      <StatusList applications={applications} recruitingProgressStatus={recruitingProgressStatus} />
+      <StatusList applications={applications} />
     </Styled.Layout>
   );
 };
