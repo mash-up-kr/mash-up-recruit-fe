@@ -1,9 +1,10 @@
 import { applicationApiService } from '@/api/services';
 import { ApplyStatusLayout } from '@/components';
-import { ERROR_PAGE, HOME_PAGE } from '@/constants';
+import { CURRENT_GENERATION, ERROR_PAGE, HOME_PAGE } from '@/constants';
 import { Application } from '@/types/dto';
 import { sortByGenerationAndTeam } from '@/utils/application';
 import {
+  generateRecruitSchedule,
   getRecruitingProgressStatusFromRecruitingPeriod,
   RecruitingProgressStatus,
 } from '@/utils/date';
@@ -41,7 +42,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const applications = sortByGenerationAndTeam(applicationsRes.data);
 
-    const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
+    const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
+      generationNumber: CURRENT_GENERATION,
+    });
+
+    const recruitSchedule = generateRecruitSchedule(recruitScheduleResponse);
+
+    const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
+      date: new Date(),
+      recruitSchedule,
+    });
 
     return { props: { applications, recruitingProgressStatus } };
   } catch (error) {

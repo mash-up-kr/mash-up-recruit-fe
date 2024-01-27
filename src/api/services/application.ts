@@ -7,6 +7,8 @@ import {
   ConfirmApplicantResponse,
   CreateMyApplicationRequest,
   CreateMyApplicationResponse,
+  RecruitScheduleRequest,
+  RecruitScheduleResponse,
   SubmitApplicationRequest,
   SubmitApplicationResponse,
   TempSaveApplicationRequest,
@@ -83,6 +85,15 @@ class ApplicationApiService extends BaseApiService {
       .post(`/${applicationId}/submit`, applicationSubmitRequest, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
+      .then(BaseApiService.handleResponse)
+      .catch(BaseApiService.handleError);
+  }
+
+  public getRecruitSchedule({
+    generationNumber,
+  }: RecruitScheduleRequest): Promise<RecruitScheduleResponse> {
+    return this.http
+      .get(`/schedule/${generationNumber}`)
       .then(BaseApiService.handleResponse)
       .catch(BaseApiService.handleError);
   }

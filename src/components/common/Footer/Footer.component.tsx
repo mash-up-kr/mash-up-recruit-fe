@@ -5,16 +5,41 @@ import Behance32 from '@/assets/svg/behance-32.svg';
 import Facebook32 from '@/assets/svg/facebook-32.svg';
 import Instagram32 from '@/assets/svg/instagram-32.svg';
 import { useRouter } from 'next/router';
-import { HOME_PAGE } from '@/constants';
-import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
+import { CURRENT_GENERATION, HOME_PAGE } from '@/constants';
+import {
+  generateRecruitSchedule,
+  getRecruitingProgressStatusFromRecruitingPeriod,
+} from '@/utils/date';
+import { RecruitSchedule } from '@/types/dto';
+import { useEffect, useState } from 'react';
+import { applicationApiService } from '@/api/services';
 import * as Styled from './Footer.styled';
 
 const Footer = () => {
   const { pathname: currentPage } = useRouter();
-  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
+
+  const [recruitSchedule, setRecruitSchedule] = useState<RecruitSchedule | null>(null);
+
+  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
+    date: new Date(),
+    recruitSchedule,
+  });
+
+  useEffect(() => {
+    const fetchRecruitSchedule = async () => {
+      const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
+        generationNumber: CURRENT_GENERATION,
+      });
+
+      setRecruitSchedule(generateRecruitSchedule(recruitScheduleResponse));
+    };
+
+    fetchRecruitSchedule();
+  }, []);
+
   return (
     <>
-      {recruitingProgressStatus === 'PREVIOUS' && null}
+      {(recruitingProgressStatus === 'PREVIOUS' || recruitingProgressStatus === 'INVALID') && null}
       {recruitingProgressStatus !== 'PREVIOUS' && (
         <Styled.Footer currentPage={currentPage}>
           <Styled.FooterInner>

@@ -74,6 +74,25 @@ interface UpdateApplication {
   privacyPolicyAgreed: boolean;
 }
 
+export type RecruitScheduleEvent =
+  | 'RECRUITMENT_STARTED'
+  | 'RECRUITMENT_ENDED'
+  | 'SCREENING_RESULT_ANNOUNCED'
+  | 'INTERVIEW_RESULT_ANNOUNCED'
+  | 'INTERVIEW_START'
+  | 'INTERVIEW_END'
+  | 'AFTER_FIRST_SEMINAR_JOIN';
+
+export type RecruitSchedule = Record<RecruitScheduleEvent, Date>;
+
+interface RecruitScheduleSchema {
+  recruitScheduleId: number;
+  eventName: RecruitScheduleEvent;
+  eventOccurredAt: string;
+}
+
+export type RecruitSchedules = Array<RecruitScheduleSchema>;
+
 // ------------------- From the bottom, API Request and Response interface -------------------
 
 export interface ApplicationsRequest extends BaseRequest {}
@@ -106,3 +125,8 @@ export interface SubmitApplicationRequest extends BaseRequest {
   applicationSubmitRequest: UpdateApplication;
 }
 export interface SubmitApplicationResponse extends BaseResponse<Application> {}
+
+export interface RecruitScheduleRequest {
+  generationNumber: number;
+}
+export interface RecruitScheduleResponse extends BaseResponse<RecruitSchedules> {}

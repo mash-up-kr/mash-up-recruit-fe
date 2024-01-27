@@ -1,12 +1,28 @@
-import { HOME_PAGE, PREFIX } from '@/constants';
-import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
+import { CURRENT_GENERATION, HOME_PAGE, PREFIX } from '@/constants';
+import { RecruitSchedules } from '@/types/dto';
+import {
+  generateRecruitSchedule,
+  getRecruitingProgressStatusFromRecruitingPeriod,
+} from '@/utils/date';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 const blockedPaths = Object.values(PREFIX);
 
-export function middleware(request: NextRequest) {
-  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
+export async function middleware(request: NextRequest) {
+  const recruitScheduleResponse = await fetch(
+    `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
+  );
+
+  const { data: recruitSchedules }: { data: RecruitSchedules } =
+    await recruitScheduleResponse.json();
+
+  const recruitSchedule = generateRecruitSchedule(recruitSchedules);
+
+  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
+    date: new Date(),
+    recruitSchedule,
+  });
   const { pathname } = request.nextUrl;
 
   const isBlockedPath = blockedPaths.find((path) => pathname.includes(path));
