@@ -91,7 +91,7 @@ interface RecruitScheduleSchema {
   eventOccurredAt: string;
 }
 
-export type RecruitSchedules = Array<RecruitScheduleSchema>;
+export type RecruitScheduleArray = Array<RecruitScheduleSchema>;
 
 // ------------------- From the bottom, API Request and Response interface -------------------
 
@@ -129,4 +129,4 @@ export interface SubmitApplicationResponse extends BaseResponse<Application> {}
 export interface RecruitScheduleRequest {
   generationNumber: number;
 }
-export interface RecruitScheduleResponse extends BaseResponse<RecruitSchedules> {}
+export interface RecruitScheduleResponse extends BaseResponse<RecruitScheduleArray> {}

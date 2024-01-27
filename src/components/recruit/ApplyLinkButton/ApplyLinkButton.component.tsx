@@ -1,44 +1,27 @@
 import { SignInModal } from '@/components';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
-import {
-  generateRecruitSchedule,
-  getRecruitingProgressStatusFromRecruitingPeriod,
-} from '@/utils/date';
+import { MutableRefObject, useRef, useState } from 'react';
+import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
 import { RecruitSchedule } from '@/types/dto';
-import { applicationApiService } from '@/api/services';
-import { CURRENT_GENERATION } from '@/constants';
+
 import * as Styled from './ApplyLinkButton.styled';
 
 interface ApplyLinkProps {
   applyPath: string;
+  recruitSchedule: RecruitSchedule;
 }
 
-const ApplyLinkButton = ({ applyPath }: ApplyLinkProps) => {
+const ApplyLinkButton = ({ applyPath, recruitSchedule }: ApplyLinkProps) => {
   const session = useSession();
   const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null) as MutableRefObject<HTMLButtonElement>;
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
 
-  const [recruitSchedule, setRecruitSchedule] = useState<RecruitSchedule | null>(null);
-
   const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
     date: new Date(),
     recruitSchedule,
   });
-
-  useEffect(() => {
-    const fetchRecruitSchedule = async () => {
-      const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
-        generationNumber: CURRENT_GENERATION,
-      });
-
-      setRecruitSchedule(generateRecruitSchedule(recruitScheduleResponse));
-    };
-
-    fetchRecruitSchedule();
-  }, []);
 
   const isRecruitingInProgress = recruitingProgressStatus === 'IN-RECRUITING';
 

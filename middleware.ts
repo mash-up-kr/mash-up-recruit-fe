@@ -1,5 +1,5 @@
 import { CURRENT_GENERATION, HOME_PAGE, PREFIX } from '@/constants';
-import { RecruitSchedules } from '@/types/dto';
+import { RecruitScheduleArray } from '@/types/dto';
 import {
   generateRecruitSchedule,
   getRecruitingProgressStatusFromRecruitingPeriod,
@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
     `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
   );
 
-  const { data: recruitSchedules }: { data: RecruitSchedules } =
+  const { data: recruitSchedules }: { data: RecruitScheduleArray } =
     await recruitScheduleResponse.json();
 
   const recruitSchedule = generateRecruitSchedule(recruitSchedules);

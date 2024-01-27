@@ -11,30 +11,23 @@ import {
 import { CURRENT_GENERATION } from '@/constants';
 
 import { useAOS } from '@/hooks';
-import { RecruitSchedule } from '@/types/dto';
+import { RecruitScheduleArray } from '@/types/dto';
 import {
   generateRecruitSchedule,
   getRecruitingProgressStatusFromRecruitingPeriod,
 } from '@/utils/date';
 import type { RecruitingProgressStatus } from '@/utils/date';
+import { GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
 
-const Home = () => {
+interface HomeProps {
+  recruitScheduleArray: RecruitScheduleArray;
+}
+
+const Home = ({ recruitScheduleArray }: HomeProps) => {
   useAOS();
 
-  const [recruitSchedule, setRecruitSchedule] = useState<RecruitSchedule | null>(null);
-
-  useEffect(() => {
-    const fetchRecruitSchedule = async () => {
-      const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
-        generationNumber: CURRENT_GENERATION,
-      });
-
-      setRecruitSchedule(generateRecruitSchedule(recruitScheduleResponse));
-    };
-
-    fetchRecruitSchedule();
-  }, []);
+  const recruitSchedule = generateRecruitSchedule(recruitScheduleArray);
 
   const [recruitingProgressStatus, setRecruitingProgressStatus] = useState<
     RecruitingProgressStatus | 'NOT_INITIALIZED'
@@ -51,13 +44,15 @@ const Home = () => {
 
   return (
     <>
-      {recruitingProgressStatus === 'PREVIOUS' && <RecruitingRemainder />}
+      {recruitingProgressStatus === 'PREVIOUS' && (
+        <RecruitingRemainder recruitSchedule={recruitSchedule} />
+      )}
       {recruitingProgressStatus !== 'PREVIOUS' && (
         <HomeLayout visibility={recruitingProgressStatus !== 'NOT_INITIALIZED'}>
           <WelcomeHero />
-          <RecruitingOpenHero />
-          <RecruitingPeriod />
-          <RecruitingProcess />
+          <RecruitingOpenHero recruitSchedule={recruitSchedule} />
+          <RecruitingPeriod recruitSchedule={recruitSchedule} />
+          <RecruitingProcess recruitSchedule={recruitSchedule} />
           <RecruitingDetailNavigation />
         </HomeLayout>
       )}
@@ -66,3 +61,13 @@ const Home = () => {
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
+    generationNumber: CURRENT_GENERATION,
+  });
+
+  return {
+    props: { recruitScheduleArray: recruitScheduleResponse },
+  };
+};

@@ -1,6 +1,6 @@
 import { KeyOf } from '@/types';
 import { DAYS } from '@/constants';
-import { RecruitSchedule, RecruitSchedules } from '@/types/dto';
+import { RecruitSchedule, RecruitScheduleArray } from '@/types/dto';
 import { objectKeys } from './object';
 
 export type RecruitingProgressStatus =
@@ -99,8 +99,8 @@ export const getDifferenceOfDates = (startDate: Date, endDate: Date): DateDiffer
   }, {} as DateDifference);
 };
 
-export const generateRecruitSchedule = (recruitSchedules: RecruitSchedules) => {
-  return recruitSchedules.reduce<RecruitSchedule>((acc, { eventName, eventOccurredAt }) => {
+export const generateRecruitSchedule = (recruitScheduleArray: RecruitScheduleArray) => {
+  return recruitScheduleArray.reduce<RecruitSchedule>((acc, { eventName, eventOccurredAt }) => {
     return { ...acc, [eventName]: new Date(eventOccurredAt) };
   }, {} as RecruitSchedule);
 };
