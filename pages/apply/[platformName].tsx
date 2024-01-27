@@ -1,4 +1,4 @@
-import { applicationApiService } from '@/api/services';
+import { applicationApiService, teamApiService } from '@/api/services';
 import { ApplyLayout } from '@/components';
 import {
   PlatformHeadings,
@@ -10,11 +10,10 @@ import {
   ERROR_PAGE,
   HOME_PAGE,
   NOT_FOUND_PAGE,
-  teamIds,
   teamNames,
   Teams,
 } from '@/constants';
-import { Application } from '@/types/dto';
+import { Application, TeamName } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -85,6 +84,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       };
     }
 
+    const teams = (
+      await teamApiService.getTeams({
+        accessToken: session?.accessToken,
+        generationNumber: CURRENT_GENERATION,
+      })
+    ).data;
+
+    const teamIds = teams.reduce<Record<TeamName, number>>((acc, { name, teamId }) => {
+      return { ...acc, [name]: teamId };
+    }, {} as Record<TeamName, number>);
+
     const applications = (
       await applicationApiService.getApplications({
         accessToken: session?.accessToken,
@@ -98,15 +108,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const currentApplication = applications.find(
       ({ team, generationResponse: { generationNumber } }) =>
-        team.teamId === teamIds[CURRENT_GENERATION][currentApplyPlatform] &&
-        generationNumber === CURRENT_GENERATION,
+        team.teamId === teamIds[currentApplyPlatform] && generationNumber === CURRENT_GENERATION,
     );
 
     if (!currentApplication) {
       const application = await applicationApiService.createMyApplication({
         accessToken: session.accessToken,
-        teamId: teamIds[CURRENT_GENERATION][currentApplyPlatform],
+        teamId: teamIds[currentApplyPlatform],
       });
+
       return {
         props: {
           application: application?.data,

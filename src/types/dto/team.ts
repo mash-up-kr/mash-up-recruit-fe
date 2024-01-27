@@ -1,4 +1,4 @@
-import { BaseResponse } from '@/types/dto/base';
+import { BaseRequest, BaseResponse } from '@/types/dto/base';
 
 export type TeamName = 'Design' | 'Web' | 'Android' | 'iOS' | 'Node' | 'Spring';
 export interface Team {
@@ -8,4 +8,7 @@ export interface Team {
 
 export interface TeamsResponseData extends Array<Team> {}
 
+export interface TeamsRequest extends BaseRequest {
+  generationNumber: number;
+}
 export interface TeamsResponse extends BaseResponse<TeamsResponseData> {}
