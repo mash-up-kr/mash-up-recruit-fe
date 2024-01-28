@@ -1,6 +1,6 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { CURRENT_GENERATION, PlatformKey, platformMap, platforms } from '@/constants';
+import { CURRENT_GENERATION, PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
 import parser from '@/utils/editorjs-html';
 import { unescape, flow } from 'lodash-es';
 import {
@@ -17,6 +17,7 @@ import {
   SEO,
 } from '@/components';
 import { adminApiService } from '@/api/services';
+import { objectKeys } from '@/utils/object';
 import { RecruitScheduleArray } from '@/types/dto';
 import { generateRecruitSchedule } from '@/utils/date';
 
@@ -66,7 +67,18 @@ const Platform: NextPage<PlatformProps> = ({ platformName, recruitScheduleArray,
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PlatformProps, Params> = async (context) => {
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
+  const paths = objectKeys(platformKeys).map((platformKey) => {
+    return { params: { platformName: platformKey } };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (context) => {
   const { platformName } = context.params!;
 
   const removeWrongAmpString = (value: string) => value.replace(/&amp;/g, '&');
