@@ -103,7 +103,6 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
       recruitScheduleArray: recruitScheduleResponse,
       html,
     },
-    revalidate: 60 * 60 * 24,
   };
 };
 
