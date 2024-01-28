@@ -14,6 +14,12 @@ export async function middleware(request: NextRequest) {
     `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
   );
 
+  if (!recruitScheduleResponse.ok) {
+    const url = request.nextUrl.clone();
+    url.pathname = HOME_PAGE;
+    return NextResponse.redirect(url);
+  }
+
   const { data: recruitSchedules }: { data: RecruitScheduleArray } =
     await recruitScheduleResponse.json();
 
