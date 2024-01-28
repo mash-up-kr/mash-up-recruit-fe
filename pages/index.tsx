@@ -1,4 +1,3 @@
-import { applicationApiService } from '@/api/services';
 import {
   HomeLayout,
   RecruitingDetailNavigation,
@@ -63,11 +62,18 @@ const Home = ({ recruitScheduleArray }: HomeProps) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
-    generationNumber: CURRENT_GENERATION,
-  });
+  const recruitScheduleResponse = await fetch(
+    `https://api.dev-recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
+  );
+
+  if (!recruitScheduleResponse.ok) {
+    return { props: { recruitScheduleArray: [] } };
+  }
+
+  const { data: recruitScheduleArray }: { data: RecruitScheduleArray } =
+    await recruitScheduleResponse.json();
 
   return {
-    props: { recruitScheduleArray: recruitScheduleResponse },
+    props: { recruitScheduleArray },
   };
 };

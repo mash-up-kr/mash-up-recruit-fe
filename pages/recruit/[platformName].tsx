@@ -16,7 +16,7 @@ import {
   RecruitEditorContainer,
   SEO,
 } from '@/components';
-import { adminApiService, applicationApiService } from '@/api/services';
+import { adminApiService } from '@/api/services';
 import { objectKeys } from '@/utils/object';
 import { RecruitScheduleArray } from '@/types/dto';
 import { generateRecruitSchedule } from '@/utils/date';
@@ -83,9 +83,16 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
 
   const removeWrongAmpString = (value: string) => value.replace(/&amp;/g, '&');
 
-  const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
-    generationNumber: CURRENT_GENERATION,
-  });
+  const recruitScheduleResponse = await fetch(
+    `https://api.dev-recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
+  );
+
+  if (!recruitScheduleResponse.ok) {
+    return { props: { platformName, recruitScheduleArray: [], html: '' } };
+  }
+
+  const { data: recruitScheduleArray }: { data: RecruitScheduleArray } =
+    await recruitScheduleResponse.json();
 
   const { data } = await adminApiService.getRecruitDataFromStorage({
     accessToken: process.env.ADMIN_TOKEN,
@@ -100,7 +107,7 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
   return {
     props: {
       platformName,
-      recruitScheduleArray: recruitScheduleResponse,
+      recruitScheduleArray,
       html,
     },
   };
