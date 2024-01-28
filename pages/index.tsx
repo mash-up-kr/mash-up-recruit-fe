@@ -16,7 +16,7 @@ import {
   getRecruitingProgressStatusFromRecruitingPeriod,
 } from '@/utils/date';
 import type { RecruitingProgressStatus } from '@/utils/date';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
 
 interface HomeProps {
@@ -61,7 +61,7 @@ const Home = ({ recruitScheduleArray }: HomeProps) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const recruitScheduleResponse = await fetch(
     `https://api.dev-recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
   );
