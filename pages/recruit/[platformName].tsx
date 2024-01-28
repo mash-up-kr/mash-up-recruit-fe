@@ -1,6 +1,6 @@
-import { GetServerSideProps, GetStaticPaths, NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { CURRENT_GENERATION, PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
+import { CURRENT_GENERATION, PlatformKey, platformMap, platforms } from '@/constants';
 import parser from '@/utils/editorjs-html';
 import { unescape, flow } from 'lodash-es';
 import {
@@ -17,7 +17,6 @@ import {
   SEO,
 } from '@/components';
 import { adminApiService } from '@/api/services';
-import { objectKeys } from '@/utils/object';
 import { RecruitScheduleArray } from '@/types/dto';
 import { generateRecruitSchedule } from '@/utils/date';
 
@@ -65,17 +64,6 @@ const Platform: NextPage<PlatformProps> = ({ platformName, recruitScheduleArray,
       <BottomNavigation platforms={otherPlatforms} recruitSchedule={recruitSchedule} />
     </RecruitLayout>
   );
-};
-
-export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const paths = objectKeys(platformKeys).map((platformKey) => {
-    return { params: { platformName: platformKey } };
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
 };
 
 export const getServerSideProps: GetServerSideProps<PlatformProps, Params> = async (context) => {
