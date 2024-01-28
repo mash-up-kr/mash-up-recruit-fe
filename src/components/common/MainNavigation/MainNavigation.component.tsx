@@ -67,9 +67,13 @@ const MainNavigation = () => {
     };
   }, []);
 
+  if (recruitSchedule === null) {
+    return null;
+  }
+
   return (
     <>
-      {(recruitingProgressStatus === 'PREVIOUS' || recruitingProgressStatus === 'INVALID') && null}
+      {recruitingProgressStatus === 'PREVIOUS' && null}
       {recruitingProgressStatus !== 'PREVIOUS' && (
         <>
           <Styled.Nav>
