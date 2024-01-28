@@ -17,7 +17,10 @@ import { Application, TeamName } from '@/types/dto';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
+import {
+  generateRecruitSchedule,
+  getRecruitingProgressStatusFromRecruitingPeriod,
+} from '@/utils/date';
 
 interface ApplyProps {
   application: Application;
@@ -38,39 +41,26 @@ const Apply = ({ application, isSubmitted }: ApplyProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
-
-  if (recruitingProgressStatus !== 'IN-RECRUITING') {
-    return {
-      redirect: {
-        permanent: false,
-        destination: HOME_PAGE,
-      },
-    };
-  }
-
-  const session = await getSession(context);
-
-  if (!session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: HOME_PAGE,
-      },
-    };
-  }
-
   try {
-    const teams = (
-      await teamApiService.getTeams({
-        accessToken: session?.accessToken,
-        generationNumber: CURRENT_GENERATION,
-      })
-    ).data;
+    const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
+      generationNumber: CURRENT_GENERATION,
+    });
 
-    const teamIds = teams.reduce<Record<TeamName, number>>((acc, { name, teamId }) => {
-      return { ...acc, [name]: teamId };
-    }, {} as Record<TeamName, number>);
+    const recruitSchedule = generateRecruitSchedule(recruitScheduleResponse);
+
+    const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
+      date: new Date(),
+      recruitSchedule,
+    });
+
+    if (recruitingProgressStatus !== 'IN-RECRUITING') {
+      return {
+        redirect: {
+          permanent: false,
+          destination: HOME_PAGE,
+        },
+      };
+    }
 
     const currentApplyPlatform = teamNames[context.params?.platformName as Teams];
 
@@ -82,6 +72,28 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         },
       };
     }
+
+    const session = await getSession(context);
+
+    if (!session) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: HOME_PAGE,
+        },
+      };
+    }
+
+    const teams = (
+      await teamApiService.getTeams({
+        accessToken: session?.accessToken,
+        generationNumber: CURRENT_GENERATION,
+      })
+    ).data;
+
+    const teamIds = teams.reduce<Record<TeamName, number>>((acc, { name, teamId }) => {
+      return { ...acc, [name]: teamId };
+    }, {} as Record<TeamName, number>);
 
     const applications = (
       await applicationApiService.getApplications({

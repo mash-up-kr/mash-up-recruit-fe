@@ -1,12 +1,14 @@
 import { LinkTo, RecruitDate } from '@/components';
 import { Platforms } from '@/constants';
+import { RecruitSchedule } from '@/types/dto';
 import * as Styled from './BottomNavigation.styled';
 
 interface BottomNavigationProps {
   platforms: Platforms;
+  recruitSchedule: RecruitSchedule;
 }
 
-const BottomNavigation = ({ platforms }: BottomNavigationProps) => {
+const BottomNavigation = ({ platforms, recruitSchedule }: BottomNavigationProps) => {
   return (
     <nav>
       <Styled.List>
@@ -18,7 +20,7 @@ const BottomNavigation = ({ platforms }: BottomNavigationProps) => {
                   <span>{name} Team</span>
                   <span>{role}</span>
                 </Styled.PlatformContainer>
-                <RecruitDate />
+                <RecruitDate recruitSchedule={recruitSchedule} />
               </LinkTo>
             </Styled.ListItem>
           );

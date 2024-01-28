@@ -89,7 +89,6 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
       platformName,
       questions: transformer({ blocks: data.valueMap.editorData.blocks }),
     },
-    revalidate: 60 * 60 * 24,
   };
 };
 

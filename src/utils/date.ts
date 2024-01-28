@@ -1,5 +1,6 @@
 import { KeyOf } from '@/types';
-import { DAYS, RECRUIT_DATE } from '@/constants';
+import { DAYS } from '@/constants';
+import { RecruitSchedule, RecruitScheduleArray } from '@/types/dto';
 import { objectKeys } from './object';
 
 export type RecruitingProgressStatus =
@@ -17,40 +18,48 @@ const getKSTDateFromDate = (date: Date) => {
   return new Date(utcUnixTime + diffKSTFromUTC);
 };
 
-export const getRecruitingProgressStatusFromRecruitingPeriod = (
-  date: Date,
-): RecruitingProgressStatus => {
+export const getRecruitingProgressStatusFromRecruitingPeriod = ({
+  date,
+  recruitSchedule,
+}: {
+  date: Date;
+  recruitSchedule: RecruitSchedule | null;
+}): RecruitingProgressStatus => {
   const kstDate = getKSTDateFromDate(date);
   const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
 
-  if (currentDate < RECRUIT_DATE.RECRUITMENT_START_KST_DATE) {
+  if (recruitSchedule === null) {
+    return 'INVALID';
+  }
+
+  if (currentDate < recruitSchedule.RECRUITMENT_STARTED) {
     return 'PREVIOUS';
   }
   if (
-    RECRUIT_DATE.RECRUITMENT_START_KST_DATE <= currentDate &&
-    currentDate <= RECRUIT_DATE.RECRUITMENT_END_KST_DATE
+    recruitSchedule.RECRUITMENT_STARTED <= currentDate &&
+    currentDate <= recruitSchedule.RECRUITMENT_ENDED
   ) {
     return 'IN-RECRUITING';
   }
   if (
-    RECRUIT_DATE.RECRUITMENT_END_KST_DATE < currentDate &&
-    currentDate < RECRUIT_DATE.SCREENING_RESULT_ANNOUNCED_KST_DATE
+    recruitSchedule.RECRUITMENT_ENDED < currentDate &&
+    currentDate < recruitSchedule.SCREENING_RESULT_ANNOUNCED
   ) {
     return 'END-RECRUITING';
   }
   if (
-    RECRUIT_DATE.SCREENING_RESULT_ANNOUNCED_KST_DATE <= currentDate &&
-    currentDate < RECRUIT_DATE.INTERVIEW_RESULT_ANNOUNCED_KST_DATE
+    recruitSchedule.SCREENING_RESULT_ANNOUNCED <= currentDate &&
+    currentDate < recruitSchedule.INTERVIEW_RESULT_ANNOUNCED
   ) {
     return 'AFTER-SCREENING-ANNOUNCED';
   }
   if (
-    RECRUIT_DATE.INTERVIEW_RESULT_ANNOUNCED_KST_DATE <= currentDate &&
-    currentDate < RECRUIT_DATE.AFTER_FIRST_SEMINAR_JOIN_KST_DATE
+    recruitSchedule.INTERVIEW_RESULT_ANNOUNCED <= currentDate &&
+    currentDate < recruitSchedule.AFTER_FIRST_SEMINAR_JOIN
   ) {
     return 'AFTER-INTERVIEWING-ANNOUNCED';
   }
-  if (RECRUIT_DATE.AFTER_FIRST_SEMINAR_JOIN_KST_DATE <= currentDate) {
+  if (recruitSchedule.AFTER_FIRST_SEMINAR_JOIN <= currentDate) {
     return 'AFTER-FIRST-SEMINAR';
   }
   return 'INVALID';
@@ -88,4 +97,10 @@ export const getDifferenceOfDates = (startDate: Date, endDate: Date): DateDiffer
     delta -= calculatedValueByKey * DATE_DIFFERENCE_DEFINITION[key];
     return Object.assign(dateDifference, { [key]: calculatedValueByKey });
   }, {} as DateDifference);
+};
+
+export const generateRecruitSchedule = (recruitScheduleArray: RecruitScheduleArray) => {
+  return recruitScheduleArray.reduce<RecruitSchedule>((acc, { eventName, eventOccurredAt }) => {
+    return { ...acc, [eventName]: new Date(eventOccurredAt) };
+  }, {} as RecruitSchedule);
 };

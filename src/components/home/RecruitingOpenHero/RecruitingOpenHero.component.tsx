@@ -4,9 +4,14 @@ import GenerationRight from '@/assets/images/generation-right-2x.png';
 import Image from 'next/image';
 import { RecruitingPeriodDesktop, Lottie } from '@/components';
 import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION, CURRENT_GENERATION } from '@/constants';
+import { RecruitSchedule } from '@/types/dto';
 import * as Styled from './RecruitingOpenHero.styled';
 
-const RecruitingOpenHero = () => {
+interface RecruitingOpenHeroProps {
+  recruitSchedule: RecruitSchedule;
+}
+
+const RecruitingOpenHero = ({ recruitSchedule }: RecruitingOpenHeroProps) => {
   return (
     <Styled.Container>
       <Styled.Contents>
@@ -54,7 +59,7 @@ const RecruitingOpenHero = () => {
         >
           <Lottie animationData={yeahLottie} />
         </Styled.YeahContainer>
-        <RecruitingPeriodDesktop />
+        <RecruitingPeriodDesktop recruitSchedule={recruitSchedule} />
       </Styled.Contents>
     </Styled.Container>
   );
