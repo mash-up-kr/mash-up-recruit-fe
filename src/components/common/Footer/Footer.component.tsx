@@ -37,9 +37,13 @@ const Footer = () => {
     fetchRecruitSchedule();
   }, []);
 
+  if (recruitSchedule === null) {
+    return null;
+  }
+
   return (
     <>
-      {(recruitingProgressStatus === 'PREVIOUS' || recruitingProgressStatus === 'INVALID') && null}
+      {recruitingProgressStatus === 'PREVIOUS' && null}
       {recruitingProgressStatus !== 'PREVIOUS' && (
         <Styled.Footer currentPage={currentPage}>
           <Styled.FooterInner>
