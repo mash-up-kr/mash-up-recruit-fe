@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
   const removeWrongAmpString = (value: string) => value.replace(/&amp;/g, '&');
 
   const recruitScheduleResponse = await fetch(
-    `https://api.dev-recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
+    `https://api.recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
   );
 
   if (!recruitScheduleResponse.ok) {
