@@ -11,7 +11,7 @@ const blockedPaths = Object.values(PREFIX);
 
 export async function middleware(request: NextRequest) {
   const recruitScheduleResponse = await fetch(
-    `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
+    `https://api.dev-recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
   );
 
   if (!recruitScheduleResponse.ok) {
