@@ -4,14 +4,19 @@ import { getDifferenceOfDates } from '@/utils/date';
 import type { DateDifference } from '@/utils/date';
 import { useState, useEffect } from 'react';
 
-import { CURRENT_GENERATION, RECRUIT_DATE } from '@/constants';
+import { CURRENT_GENERATION } from '@/constants';
+import { RecruitSchedule } from '@/types/dto';
 import * as Styled from './RecruitingRemainder.styled';
 
-const RecruitingRemainder = () => {
+interface RecruitingRemainderProps {
+  recruitSchedule: RecruitSchedule;
+}
+
+const RecruitingRemainder = ({ recruitSchedule }: RecruitingRemainderProps) => {
   const router = useRouter();
 
   const [difference, setDifference] = useState<DateDifference>(() =>
-    getDifferenceOfDates(new Date(), RECRUIT_DATE.RECRUITMENT_START_KST_DATE),
+    getDifferenceOfDates(new Date(), recruitSchedule.RECRUITMENT_STARTED),
   );
 
   const [isPreviousDayOfRecruitingStart, isRunOutTimeOfRecruitingStart] = [
@@ -23,7 +28,7 @@ const RecruitingRemainder = () => {
     () => {
       const currentDifference = getDifferenceOfDates(
         new Date(),
-        RECRUIT_DATE.RECRUITMENT_START_KST_DATE,
+        recruitSchedule.RECRUITMENT_STARTED,
       );
       setDifference(currentDifference);
     },

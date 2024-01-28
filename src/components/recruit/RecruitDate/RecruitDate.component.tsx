@@ -1,12 +1,16 @@
-import { RECRUIT_DATE } from '@/constants';
 import dayjs from 'dayjs';
+import { RecruitSchedule } from '@/types/dto';
 import * as Styled from './RecruitDate.styled';
 
-const RecruitDate = () => {
-  const { RECRUITMENT_START_KST_DATE, RECRUITMENT_END_KST_DATE } = RECRUIT_DATE;
+interface RecruitDateProps {
+  recruitSchedule: RecruitSchedule;
+}
 
-  const DAYJS_RECRUITMENT_START_KST_DATE = dayjs(RECRUITMENT_START_KST_DATE);
-  const DAYJS_RECRUITMENT_END_KST_DATE = dayjs(RECRUITMENT_END_KST_DATE);
+const RecruitDate = ({ recruitSchedule }: RecruitDateProps) => {
+  const { RECRUITMENT_STARTED, RECRUITMENT_ENDED } = recruitSchedule;
+
+  const DAYJS_RECRUITMENT_START_KST_DATE = dayjs(RECRUITMENT_STARTED);
+  const DAYJS_RECRUITMENT_END_KST_DATE = dayjs(RECRUITMENT_ENDED);
 
   return (
     <Styled.Container>

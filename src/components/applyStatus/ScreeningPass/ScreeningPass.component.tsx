@@ -1,5 +1,5 @@
-import { Application } from '@/types/dto';
-import { CURRENT_GENERATION, TEAM_NICK_NAME } from '@/constants';
+import { Application, RecruitSchedule } from '@/types/dto';
+import { CURRENT_GENERATION, DAYS, TEAM_NICK_NAME } from '@/constants';
 
 import { useDetectViewPort, useErrorModalDialog, useLoadingModal } from '@/hooks';
 import { applicationApiService } from '@/api/services';
@@ -14,14 +14,20 @@ import {
 } from 'react';
 import { ConfirmModalDialog, StatusDetailBackground } from '@/components';
 import { getValueOfDateIntoObj } from '@/utils/date';
+import dayjs from 'dayjs';
 import * as Styled from './ScreeningPass.styled';
 
 interface ScreeningPassProps {
   application: Application;
   setSubmittedApplication: Dispatch<SetStateAction<Application | undefined>>;
+  recruitSchedule: RecruitSchedule;
 }
 
-const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassProps) => {
+const ScreeningPass = ({
+  application,
+  setSubmittedApplication,
+  recruitSchedule,
+}: ScreeningPassProps) => {
   const { LoadingModal, setIsLoading } = useLoadingModal();
   const { ErrorModalDialog, setIsOpenErrorModal } = useErrorModalDialog();
   const [isOpenRejectInterviewModal, setIsOpenRejectInterviewModal] = useState(false);
@@ -82,6 +88,16 @@ const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassPr
     setIsOpenRejectInterviewModal(true);
   };
 
+  const { SCREENING_RESULT_ANNOUNCED } = recruitSchedule;
+  const screeningResultAnnouncedDayjs = dayjs(SCREENING_RESULT_ANNOUNCED);
+  const screeningResultAnnouncedNextDayjs = screeningResultAnnouncedDayjs.date(
+    screeningResultAnnouncedDayjs.date() + 1,
+  );
+
+  const screeningResultAnnouncedNextDate = screeningResultAnnouncedNextDayjs.format(
+    `M월 D일(${DAYS[screeningResultAnnouncedNextDayjs.day()]}) H시`,
+  );
+
   return (
     <>
       <StatusDetailBackground imageType="cake">
@@ -111,8 +127,7 @@ const ScreeningPass = ({ application, setSubmittedApplication }: ScreeningPassPr
             </Styled.InterviewDate>
             <Styled.InterviewExplanationList>
               <li>
-                1월 31일(화) 오후 9시까지 면접 참여 여부 선택 안할 시 면접 불참으로 간주되니 빠른
-                응답 부탁드립니다.
+                {`${screeningResultAnnouncedNextDate}까지 면접 참여 여부 선택 안할 시 면접 불참으로 간주되니 빠른 응답 부탁드립니다.`}
               </li>
               <li>
                 면접 일정 조율이 불가피하게 필요하거나 궁금한 사항이 있으면 채널톡으로 문의해주시길

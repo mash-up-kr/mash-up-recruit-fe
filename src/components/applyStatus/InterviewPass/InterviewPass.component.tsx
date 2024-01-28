@@ -1,5 +1,5 @@
-import { Application } from '@/types/dto';
-import { CURRENT_GENERATION, TEAM_NICK_NAME } from '@/constants';
+import { Application, RecruitSchedule } from '@/types/dto';
+import { CURRENT_GENERATION, DAYS, TEAM_NICK_NAME } from '@/constants';
 
 import { useDetectViewPort, useErrorModalDialog, useLoadingModal } from '@/hooks';
 import { applicationApiService } from '@/api/services';
@@ -19,14 +19,20 @@ import {
   StatusDetailBackground,
 } from '@/components';
 import { SubmitHandler } from 'react-hook-form';
+import dayjs from 'dayjs';
 import * as Styled from './InterviewPass.styled';
 
 interface InterviewPassProps {
   application: Application;
   setSubmittedApplication: Dispatch<SetStateAction<Application | undefined>>;
+  recruitSchedule: RecruitSchedule;
 }
 
-const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassProps) => {
+const InterviewPass = ({
+  application,
+  setSubmittedApplication,
+  recruitSchedule,
+}: InterviewPassProps) => {
   const { LoadingModal, setIsLoading } = useLoadingModal();
   const { ErrorModalDialog, setIsOpenErrorModal } = useErrorModalDialog();
   const [isOpenRejectFinalConfirmModal, setIsOpenRejectFinalConfirmModal] = useState(false);
@@ -87,6 +93,26 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
     setIsOpenRejectFinalConfirmModal(true);
   };
 
+  const { INTERVIEW_RESULT_ANNOUNCED, AFTER_FIRST_SEMINAR_JOIN } = recruitSchedule;
+
+  const interviewResultAnnouncedDayjs = dayjs(INTERVIEW_RESULT_ANNOUNCED);
+
+  const joinResponseDeadlineDayjs = interviewResultAnnouncedDayjs
+    .date(interviewResultAnnouncedDayjs.date() + 1)
+    .hour(23)
+    .minute(59)
+    .second(59);
+
+  const joinResponseDeadlineDate = joinResponseDeadlineDayjs.format(
+    `M월 D일(${DAYS[interviewResultAnnouncedDayjs.day()]}) HH시 m분 s초`,
+  );
+
+  const afterFirstSeminalJoinDayjs = dayjs(AFTER_FIRST_SEMINAR_JOIN);
+
+  const afterFirstSeminalJoinDate = afterFirstSeminalJoinDayjs.format(
+    `M월 D일(${DAYS[afterFirstSeminalJoinDayjs.day()]})`,
+  );
+
   return (
     <>
       <StatusDetailBackground imageType="win">
@@ -107,11 +133,10 @@ const InterviewPass = ({ application, setSubmittedApplication }: InterviewPassPr
           </Styled.ResultSection>
           <Styled.ConfirmSection>
             <Styled.OtDateHeading>Mash-Up OT 일시</Styled.OtDateHeading>
-            <Styled.OtDate>2월 11일(토) 오후 2시 ~ 5시</Styled.OtDate>
+            <Styled.OtDate>{`${afterFirstSeminalJoinDate} 오후 2시 ~ 5시`}</Styled.OtDate>
             <Styled.OtExplanationList>
               <li>
-                2월 8일(수) 오후 11시 59분 59초까지 {CURRENT_GENERATION}기 최종 합류 여부 응답 안 할
-                시 합류하지 않는 것으로 간주되니, 빠른 응답 부탁드립니다.
+                {`${joinResponseDeadlineDate}까지 ${CURRENT_GENERATION}기 최종 합류 여부 응답 안 할 시 합류하지 않는 것으로 간주되니, 빠른 응답 부탁드립니다.`}
               </li>
               <li>전체 모임은 격주 토요일 오후 2시 ~ 5시에 온/오프라인을 병행하며 진행됩니다.</li>
               <li>

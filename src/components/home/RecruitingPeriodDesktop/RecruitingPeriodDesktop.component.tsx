@@ -1,16 +1,21 @@
-import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION, RECRUIT_DATE } from '@/constants';
+import { AOS_BASE_DURATION_DISTANCE, AOS_DEFAULT_DURATION } from '@/constants';
 import { Lottie, ScreenReaderOnly } from '@/components';
 import computerLottie from '@/assets/lottie/computer.json';
 import PeriodArrow from '@/assets/svg/period-arrow.svg';
 import fireLottie from '@/assets/lottie/fire.json';
 import dayjs from 'dayjs';
+import { RecruitSchedule } from '@/types/dto';
 import * as Styled from './RecruitingPeriodDesktop.styled';
 
-const RecruitingPeriodDesktop = () => {
-  const { RECRUITMENT_START_KST_DATE, RECRUITMENT_END_KST_DATE } = RECRUIT_DATE;
+interface RecruitingPeriodDesktopProps {
+  recruitSchedule: RecruitSchedule;
+}
 
-  const DAYJS_RECRUITMENT_START_KST_DATE = dayjs(RECRUITMENT_START_KST_DATE);
-  const DAYJS_RECRUITMENT_END_KST_DATE = dayjs(RECRUITMENT_END_KST_DATE);
+const RecruitingPeriodDesktop = ({ recruitSchedule }: RecruitingPeriodDesktopProps) => {
+  const { RECRUITMENT_STARTED, RECRUITMENT_ENDED } = recruitSchedule;
+
+  const DAYJS_RECRUITMENT_START_KST_DATE = dayjs(RECRUITMENT_STARTED);
+  const DAYJS_RECRUITMENT_END_KST_DATE = dayjs(RECRUITMENT_ENDED);
 
   return (
     <Styled.Container>

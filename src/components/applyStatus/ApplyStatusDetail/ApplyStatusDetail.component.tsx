@@ -11,16 +11,16 @@ import {
   ApplyException,
 } from '@/components';
 import { CURRENT_GENERATION } from '@/constants';
-import { Application } from '@/types/dto';
-import { RecruitingProgressStatus } from '@/utils/date';
+import { Application, RecruitSchedule } from '@/types/dto';
+import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
 import { useState } from 'react';
 
 interface ApplyStatusDetailProps {
   applications: Application[];
-  recruitingProgressStatus: RecruitingProgressStatus;
+  recruitSchedule: RecruitSchedule;
 }
 
-const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStatusDetailProps) => {
+const ApplyStatusDetail = ({ applications, recruitSchedule }: ApplyStatusDetailProps) => {
   const [submittedApplication, setSubmittedApplication] = useState(
     applications.find(
       (application) =>
@@ -29,13 +29,18 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
     ),
   );
 
+  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
+    date: new Date(),
+    recruitSchedule,
+  });
+
   if (!submittedApplication || recruitingProgressStatus === 'AFTER-FIRST-SEMINAR') return null;
 
   if (
     recruitingProgressStatus === 'IN-RECRUITING' ||
     recruitingProgressStatus === 'END-RECRUITING'
   ) {
-    return <ScreeningWait />;
+    return <ScreeningWait recruitSchedule={recruitSchedule} />;
   }
 
   if (recruitingProgressStatus === 'AFTER-SCREENING-ANNOUNCED') {
@@ -48,6 +53,7 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
                 <ScreeningPass
                   application={submittedApplication}
                   setSubmittedApplication={setSubmittedApplication}
+                  recruitSchedule={recruitSchedule}
                 />
               );
             }
@@ -92,12 +98,18 @@ const ApplyStatusDetail = ({ applications, recruitingProgressStatus }: ApplyStat
                 <InterviewPass
                   application={submittedApplication}
                   setSubmittedApplication={setSubmittedApplication}
+                  recruitSchedule={recruitSchedule}
                 />
               );
             }
 
             if (submittedApplication.confirmationStatus === 'FINAL_CONFIRM_ACCEPTED') {
-              return <FinalConfirmAccept application={submittedApplication} />;
+              return (
+                <FinalConfirmAccept
+                  application={submittedApplication}
+                  recruitSchedule={recruitSchedule}
+                />
+              );
             }
 
             if (submittedApplication.confirmationStatus === 'FINAL_CONFIRM_REJECTED') {

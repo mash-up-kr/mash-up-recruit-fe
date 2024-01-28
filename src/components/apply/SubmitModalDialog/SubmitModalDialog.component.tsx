@@ -1,11 +1,14 @@
 import { AlertModalDialog, ConfirmModalDialog } from '@/components';
 import { useSession } from 'next-auth/react';
-import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react';
+import { Dispatch, MutableRefObject, SetStateAction, useEffect, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { applicationApiService } from '@/api/services';
 import { useRouter } from 'next/router';
-import { CURRENT_GENERATION, ERROR_CODE, HOME_PAGE, MY_PAGE_APPLY_STATUS } from '@/constants';
+import { CURRENT_GENERATION, DAYS, ERROR_CODE, HOME_PAGE, MY_PAGE_APPLY_STATUS } from '@/constants';
 import axios from 'axios';
+import { RecruitSchedule } from '@/types/dto';
+import { generateRecruitSchedule } from '@/utils/date';
+import dayjs from 'dayjs';
 import { ApplyFormValues } from '../PersonalInformation/PersonalInformation.component';
 import { QuestionAndAnswer } from '../QuestionAndAnswerList/QuestionAndAnswerList.component';
 
@@ -40,6 +43,24 @@ const SubmitModalDialog = ({
 
   const [isOpenFailedSubmittedModal, setIsOpenFailedSubmittedModal] = useState(false);
   const [isOpenCloseRecruitmentModal, setIsOpenCloseRecruitmentModal] = useState(false);
+  const [recruitSchedule, setRecruitSchedule] = useState<RecruitSchedule | null>(null);
+
+  const screeningResultAnnouncedDayjs = dayjs(recruitSchedule?.SCREENING_RESULT_ANNOUNCED);
+  const screeningResultAnnounced = dayjs(recruitSchedule?.SCREENING_RESULT_ANNOUNCED).format(
+    `M월 D일(${DAYS[screeningResultAnnouncedDayjs.day()]}) H시`,
+  );
+
+  useEffect(() => {
+    const fetchRecruitSchedule = async () => {
+      const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
+        generationNumber: CURRENT_GENERATION,
+      });
+
+      setRecruitSchedule(generateRecruitSchedule(recruitScheduleResponse));
+    };
+
+    fetchRecruitSchedule();
+  }, []);
 
   const handleSubmitApplication = async () => {
     if (session.status === 'unauthenticated') return;
@@ -106,7 +127,7 @@ const SubmitModalDialog = ({
       {isOpenSuccessSubmittedModal && (
         <ConfirmModalDialog
           heading="지원서 제출 완료!"
-          paragraph={`귀한 시간내어 매쉬업 ${CURRENT_GENERATION}기에 지원해주셔서 진심으로 감사드립니다! 1월 30일(월) 오후 9시에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!`}
+          paragraph={`귀한 시간내어 매쉬업 ${CURRENT_GENERATION}기에 지원해주셔서 진심으로 감사드립니다! ${screeningResultAnnounced}에 내 페이지에서 서류 결과 발표를 꼭 확인해주세요!`}
           approvalButtonMessage="내 지원서 확인하기"
           cancelButtonMessage="홈으로"
           setIsOpenModal={setIsOpenSuccessSubmittedModal}

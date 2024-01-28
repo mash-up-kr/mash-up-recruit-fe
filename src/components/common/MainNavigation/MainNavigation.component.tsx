@@ -1,4 +1,4 @@
-import { FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID } from '@/constants';
+import { CURRENT_GENERATION, FAQ_COMMON_PAGE, HOME_PAGE, RECRUIT_DETAILS_ID } from '@/constants';
 import { LinkTo, SignInModal, MyPageTab } from '@/components';
 import { MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useDetectOutsideClick } from '@/hooks';
@@ -6,13 +6,36 @@ import Router, { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import ChevronBottom12 from '@/assets/svg/chevron-bottom-12.svg';
 import { colors } from '@/styles';
-import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
+import {
+  generateRecruitSchedule,
+  getRecruitingProgressStatusFromRecruitingPeriod,
+} from '@/utils/date';
+import { RecruitSchedule } from '@/types/dto';
+import { applicationApiService } from '@/api/services';
 import * as Styled from './MainNavigation.styled';
 
 const MainNavigation = () => {
   const session = useSession();
   const { pathname: currentPage } = useRouter();
-  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod(new Date());
+
+  const [recruitSchedule, setRecruitSchedule] = useState<RecruitSchedule | null>(null);
+
+  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
+    date: new Date(),
+    recruitSchedule,
+  });
+
+  useEffect(() => {
+    const fetchRecruitSchedule = async () => {
+      const { data: recruitScheduleResponse } = await applicationApiService.getRecruitSchedule({
+        generationNumber: CURRENT_GENERATION,
+      });
+
+      setRecruitSchedule(generateRecruitSchedule(recruitScheduleResponse));
+    };
+
+    fetchRecruitSchedule();
+  }, []);
 
   const isSessionLoading = session.status === 'loading';
 
@@ -43,6 +66,10 @@ const MainNavigation = () => {
       Router.events.off('routeChangeStart', handleCloseTab);
     };
   }, []);
+
+  if (recruitSchedule === null) {
+    return null;
+  }
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
+import { CURRENT_GENERATION, PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
 import parser from '@/utils/editorjs-html';
 import { unescape, flow } from 'lodash-es';
 import {
@@ -18,6 +18,8 @@ import {
 } from '@/components';
 import { adminApiService } from '@/api/services';
 import { objectKeys } from '@/utils/object';
+import { RecruitScheduleArray } from '@/types/dto';
+import { generateRecruitSchedule } from '@/utils/date';
 
 interface Params extends ParsedUrlQuery {
   platformName: PlatformKey;
@@ -25,10 +27,11 @@ interface Params extends ParsedUrlQuery {
 
 interface PlatformProps {
   platformName: PlatformKey;
+  recruitScheduleArray: RecruitScheduleArray;
   html: string;
 }
 
-const Platform: NextPage<PlatformProps> = ({ platformName, html }) => {
+const Platform: NextPage<PlatformProps> = ({ platformName, recruitScheduleArray, html }) => {
   const {
     name: currentPlatformName,
     role: currentPlatformRole,
@@ -37,6 +40,8 @@ const Platform: NextPage<PlatformProps> = ({ platformName, html }) => {
   } = platformMap[platformName];
 
   const otherPlatforms = platforms.filter(({ key }) => key !== platformName);
+
+  const recruitSchedule = generateRecruitSchedule(recruitScheduleArray);
 
   return (
     <RecruitLayout>
@@ -49,12 +54,15 @@ const Platform: NextPage<PlatformProps> = ({ platformName, html }) => {
       <RecruitContents>
         <RecruitEditorContainer dangerouslySetInnerHTML={{ __html: html }} />
         <ActionGroup>
-          <ApplyLinkButton applyPath={currentPlatformPath.apply} />
+          <ApplyLinkButton
+            applyPath={currentPlatformPath.apply}
+            recruitSchedule={recruitSchedule}
+          />
         </ActionGroup>
       </RecruitContents>
       <Divider />
       <NavigationHeader />
-      <BottomNavigation platforms={otherPlatforms} />
+      <BottomNavigation platforms={otherPlatforms} recruitSchedule={recruitSchedule} />
     </RecruitLayout>
   );
 };
@@ -75,6 +83,17 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
 
   const removeWrongAmpString = (value: string) => value.replace(/&amp;/g, '&');
 
+  const recruitScheduleResponse = await fetch(
+    `https://api.dev-recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
+  );
+
+  if (!recruitScheduleResponse.ok) {
+    return { props: { platformName, recruitScheduleArray: [], html: '' } };
+  }
+
+  const { data: recruitScheduleArray }: { data: RecruitScheduleArray } =
+    await recruitScheduleResponse.json();
+
   const { data } = await adminApiService.getRecruitDataFromStorage({
     accessToken: process.env.ADMIN_TOKEN,
     key: platformName,
@@ -88,9 +107,9 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
   return {
     props: {
       platformName,
+      recruitScheduleArray,
       html,
     },
-    revalidate: 60 * 60 * 24,
   };
 };
 

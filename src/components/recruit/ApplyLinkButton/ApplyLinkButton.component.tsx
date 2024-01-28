@@ -3,20 +3,27 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { MutableRefObject, useRef, useState } from 'react';
 import { getRecruitingProgressStatusFromRecruitingPeriod } from '@/utils/date';
+import { RecruitSchedule } from '@/types/dto';
+
 import * as Styled from './ApplyLinkButton.styled';
 
 interface ApplyLinkProps {
   applyPath: string;
+  recruitSchedule: RecruitSchedule;
 }
 
-const ApplyLinkButton = ({ applyPath }: ApplyLinkProps) => {
+const ApplyLinkButton = ({ applyPath, recruitSchedule }: ApplyLinkProps) => {
   const session = useSession();
   const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null) as MutableRefObject<HTMLButtonElement>;
   const [isOpenSignInModal, setIsOpenSignInModal] = useState(false);
 
-  const isRecruitingInProgress =
-    getRecruitingProgressStatusFromRecruitingPeriod(new Date()) === 'IN-RECRUITING';
+  const recruitingProgressStatus = getRecruitingProgressStatusFromRecruitingPeriod({
+    date: new Date(),
+    recruitSchedule,
+  });
+
+  const isRecruitingInProgress = recruitingProgressStatus === 'IN-RECRUITING';
 
   const handleLinkButtonClick = () => {
     if (session.status !== 'authenticated') {
