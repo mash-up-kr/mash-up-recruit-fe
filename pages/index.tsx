@@ -61,7 +61,7 @@ const Home = ({ recruitScheduleArray }: HomeProps) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
   const recruitScheduleResponse = await fetch(
     `https://api.dev-recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
   );

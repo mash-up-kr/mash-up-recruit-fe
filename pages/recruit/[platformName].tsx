@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { GetServerSideProps, GetStaticPaths, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { CURRENT_GENERATION, PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
 import parser from '@/utils/editorjs-html';
@@ -78,7 +78,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (context) => {
+export const getServerSideProps: GetServerSideProps<PlatformProps, Params> = async (context) => {
   const { platformName } = context.params!;
 
   const removeWrongAmpString = (value: string) => value.replace(/&amp;/g, '&');
