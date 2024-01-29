@@ -122,6 +122,7 @@ export const CancelButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
     position: relative;
+    display: flex;
     padding: 1.3rem 2rem;
     color: ${theme.colors.gray80};
     letter-spacing: -0.08rem;
@@ -166,6 +167,7 @@ export const ApprovalButton = styled.button`
   ${({ theme }) => css`
     ${theme.fonts.kr.medium16};
     position: relative;
+    display: flex;
     margin-left: 1.2rem;
     padding: 1.3rem 2rem;
     color: ${theme.colors.white};
