@@ -94,7 +94,7 @@ const Footer = () => {
                 <Facebook32 aria-hidden />
               </a>
               <a
-                href="https://www.instagram.com/official_mashup_/"
+                href="https://www.instagram.com/branding_mashup_/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="mash up instagram"
