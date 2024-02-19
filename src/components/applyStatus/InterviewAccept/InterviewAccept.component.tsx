@@ -39,7 +39,6 @@ const InterviewAccept = ({ application }: InterviewAcceptProps) => {
                 <li>면접 일시 10분 전에는 준비를 마쳐주세요!</li>
                 <li>목소리를 잘 들을 수 있게 조용한 공간에서 면접에 참여해주세요.</li>
                 <li>면접 장소 노출이 부담스럽다면 배경 설정 고!</li>
-                <li>다른 지원자가 얘기할 때에는 함께 경청해주세요!</li>
                 <li>긴장은 Nope! 본인의 역량을 마음껏 보여주세요 \( ^0^ )/</li>
               </>
             )}
