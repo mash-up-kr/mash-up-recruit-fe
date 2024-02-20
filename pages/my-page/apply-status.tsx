@@ -12,11 +12,7 @@ interface ApplyStatusProps {
   recruitScheduleArray: RecruitScheduleArray;
 }
 
-const ApplyStatus = ({
-  applications,
-
-  recruitScheduleArray,
-}: ApplyStatusProps) => {
+const ApplyStatus = ({ applications, recruitScheduleArray }: ApplyStatusProps) => {
   const recruitSchedule = generateRecruitSchedule(recruitScheduleArray);
 
   return <ApplyStatusLayout applications={applications} recruitSchedule={recruitSchedule} />;

@@ -140,7 +140,7 @@ export const InterviewLink = styled.a`
     color: ${theme.colors.white};
     letter-spacing: -0.08rem;
     text-decoration: underline;
-    word-break: break-all;
+    word-break: keep-all;
 
     @media (max-width: ${theme.breakPoint.media.tabletM}) {
       ${theme.fonts.kr.bold18};
