@@ -104,7 +104,7 @@ const InterviewPass = ({
     .second(59);
 
   const joinResponseDeadlineDate = joinResponseDeadlineDayjs.format(
-    `M월 D일(${DAYS[interviewResultAnnouncedDayjs.day()]}) HH시 m분 s초`,
+    `M월 D일(${DAYS[joinResponseDeadlineDayjs.day()]}) HH시 m분 s초`,
   );
 
   const afterFirstSeminalJoinDayjs = dayjs(AFTER_FIRST_SEMINAR_JOIN);
