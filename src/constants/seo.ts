@@ -2,7 +2,7 @@ import favicon from 'public/favicon.ico';
 import ogImage from '@/assets/images/open-graph-image.png';
 import { DefaultSEOProps } from '@/components/seo/SEO';
 
-export const titleTemplate = 'Mash-up Recruit | ';
+export const titleTemplate = 'Mash-Up Recruit | ';
 
 export const defaultSEOConfig: DefaultSEOProps = {
   title: 'IT 연합 동아리',
