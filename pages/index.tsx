@@ -6,6 +6,7 @@ import {
   RecruitingOpenHero,
   RecruitingPeriod,
   RecruitingRemainder,
+  NotRecruitmentPeriod,
 } from '@/components';
 import { CURRENT_GENERATION } from '@/constants';
 
@@ -27,6 +28,8 @@ const Home = ({ recruitScheduleArray }: HomeProps) => {
   useAOS();
 
   const recruitSchedule = generateRecruitSchedule(recruitScheduleArray);
+
+  const [isOpenNotRecruitMentModal, setIsOpenNotRecruitmentModal] = useState(true);
 
   const [recruitingProgressStatus, setRecruitingProgressStatus] = useState<
     RecruitingProgressStatus | 'NOT_INITIALIZED'
@@ -53,6 +56,10 @@ const Home = ({ recruitScheduleArray }: HomeProps) => {
           <RecruitingPeriod recruitSchedule={recruitSchedule} />
           <RecruitingProcess recruitSchedule={recruitSchedule} />
           <RecruitingDetailNavigation />
+
+          {isOpenNotRecruitMentModal && (
+            <NotRecruitmentPeriod setIsOpenModal={setIsOpenNotRecruitmentModal} />
+          )}
         </HomeLayout>
       )}
     </>
