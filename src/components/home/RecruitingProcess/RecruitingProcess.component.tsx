@@ -23,7 +23,7 @@ const RecruitingProcess = ({ recruitSchedule }: RecruitingProcessProps) => {
   const DAYJS_RECRUITMENT_END_KST_DATE = dayjs(RECRUITMENT_ENDED);
   const DAYJS_SCREENING_RESULT_ANNOUNCED_KST_DATE = dayjs(SCREENING_RESULT_ANNOUNCED);
   const DAYJS_INTERVIEW_START_KST_DATE = dayjs(INTERVIEW_START);
-  const DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE = dayjs(INTERVIEW_END);
+  const DAYJS_INTERVIEW_END_KST_DATE = dayjs(INTERVIEW_END);
   const DAYJS_INTERVIEW_RESULT_ANNOUNCED_KST_DATE = dayjs(INTERVIEW_RESULT_ANNOUNCED);
   const DAYJS_AFTER_FIRST_SEMINAR_JOIN_KST_DATE = dayjs(AFTER_FIRST_SEMINAR_JOIN);
 
@@ -77,23 +77,30 @@ const RecruitingProcess = ({ recruitSchedule }: RecruitingProcessProps) => {
           </Styled.ListItem>
           <Styled.ListItem>
             <Styled.SubHeading>온/오프라인 면접</Styled.SubHeading>
-            <ScreenReaderOnly>{`${DAYJS_INTERVIEW_START_KST_DATE.format('YYYY년 M월 D일')} ${
-              DAYS[DAYJS_INTERVIEW_START_KST_DATE.day()]
-            }요일에서 ${DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.format('YYYY년 M월 D일')} ${
-              DAYS[DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.day()]
-            }요일`}</ScreenReaderOnly>
+            <ScreenReaderOnly>
+              {`${DAYJS_INTERVIEW_START_KST_DATE.format('YYYY년 M월 D일')} ${
+                DAYS[DAYJS_INTERVIEW_START_KST_DATE.day()]
+              }요일에서 ${DAYJS_INTERVIEW_END_KST_DATE.format('YYYY년 M월 D일')} ${
+                DAYS[DAYJS_INTERVIEW_END_KST_DATE.day()]
+              }요일`}
+            </ScreenReaderOnly>
             <Styled.Date aria-hidden>
               <time
                 dateTime={DAYJS_INTERVIEW_START_KST_DATE.format('YYYY-MM-DD')}
               >{`${DAYJS_INTERVIEW_START_KST_DATE.format('MM.DD')}(${
                 DAYS[DAYJS_INTERVIEW_START_KST_DATE.day()]
               })`}</time>
-              &nbsp;~&nbsp;
-              <time
-                dateTime={DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.format('YYYY-MM-DD')}
-              >{`${DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.format('MM.DD')}(${
-                DAYS[DAYJS_INTERVIEW_INTERVIEW_END_KST_DATE.day()]
-              })`}</time>
+              {DAYJS_INTERVIEW_START_KST_DATE.format('YYYY-MM-DD') !==
+                DAYJS_INTERVIEW_END_KST_DATE.format('YYYY-MM-DD') && (
+                <>
+                  &nbsp;~&nbsp;
+                  <time
+                    dateTime={DAYJS_INTERVIEW_END_KST_DATE.format('YYYY-MM-DD')}
+                  >{`${DAYJS_INTERVIEW_END_KST_DATE.format('MM.DD')}(${
+                    DAYS[DAYJS_INTERVIEW_END_KST_DATE.day()]
+                  })`}</time>
+                </>
+              )}
             </Styled.Date>
             <Styled.Note>상세일정 이메일로 전달</Styled.Note>
           </Styled.ListItem>
