@@ -7,7 +7,7 @@ on:
 
 env:
   S3_BUCKET_NAME: dev-recruit.mash-up.kr
-  CODE_DEPLOY_APPLICATION_NAME: dev-recruit-code-deploy
+  CODE_DEPLOY_APPLICATION_NAME: recruit-code-deploy
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dev-recruit
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
           cache: 'yarn'
 
       - name: Generate Environment Variables File
