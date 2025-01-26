@@ -70,7 +70,7 @@ export default Home;
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const recruitScheduleResponse = await fetch(
-    `https://api.recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
+    `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
   );
 
   if (!recruitScheduleResponse.ok) {
