@@ -11,68 +11,36 @@ export const INTERVIEW_TYPE: Record<InterviewTypeEn, InterviewTypeKr> = {
 export const INTERVIEW_LOCATION: {
   [date: string]: Record<TeamName, { address: string; mapUrl: string; type: InterviewTypeEn }>;
 } = {
-  '2024-02-24': {
+  '2025-02-22': {
     Design: {
       type: 'OFFLINE',
-      address: '분당구 판교로 242 PDC A동 902호 구름 스퀘어',
-      mapUrl: 'https://naver.me/GmFlempF',
+      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
+      mapUrl: 'https://naver.me/GL8WMOyB',
     },
     Web: {
-      type: 'ONLINE',
-      address: 'Zoom 링크',
-      mapUrl: 'https://us02web.zoom.us/j/84144059012?pwd=Um1SWDZYbjc5QkxOckhoSS9Qc2hoUT09',
+      type: 'OFFLINE',
+      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
+      mapUrl: 'https://naver.me/GL8WMOyB',
     },
     Android: {
       type: 'OFFLINE',
-      address: '분당구 판교로 242 PDC A동 902호 구름 스퀘어',
-      mapUrl: 'https://naver.me/GmFlempF',
+      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
+      mapUrl: 'https://naver.me/GL8WMOyB',
     },
     iOS: {
       type: 'OFFLINE',
-      address: '분당구 판교로 242 PDC A동 902호 구름 스퀘어',
-      mapUrl: 'https://naver.me/GmFlempF',
+      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
+      mapUrl: 'https://naver.me/GL8WMOyB',
     },
     Node: {
       type: 'OFFLINE',
-      address: '분당구 판교로 242 PDC A동 902호 구름 스퀘어',
-      mapUrl: 'https://naver.me/GmFlempF',
+      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
+      mapUrl: 'https://naver.me/GL8WMOyB',
     },
     Spring: {
       type: 'OFFLINE',
-      address: '서울 서초구 서초대로 77길 17 11층',
-      mapUrl: 'https://naver.me/GOuQ2Ip0',
-    },
-  },
-  '2024-02-25': {
-    Design: {
-      type: 'OFFLINE',
-      address: '분당구 판교로 242 PDC A동 902호 구름 스퀘어',
-      mapUrl: 'https://naver.me/GmFlempF',
-    },
-    Web: {
-      type: 'ONLINE',
-      address: 'Zoom 링크',
-      mapUrl: 'https://us02web.zoom.us/j/84144059012?pwd=Um1SWDZYbjc5QkxOckhoSS9Qc2hoUT09',
-    },
-    Android: {
-      type: 'OFFLINE',
-      address: 'Open UP (서울 서초구 서초대로40길 83 우제빌딩 2층)',
-      mapUrl: 'https://naver.me/Fn2s6XYI',
-    },
-    iOS: {
-      type: 'OFFLINE',
-      address: 'Open UP (서울 서초구 서초대로40길 83 우제빌딩 2층)',
-      mapUrl: 'https://naver.me/Fn2s6XYI',
-    },
-    Node: {
-      type: 'OFFLINE',
-      address: '크리스역삼빌딩 3층 버킷스토어 (서울 강남구 논현로 322)',
-      mapUrl: 'https://naver.me/x2PYWdY3',
-    },
-    Spring: {
-      type: 'OFFLINE',
-      address: '서울 서초구 서초대로 77길 17 11층',
-      mapUrl: 'https://naver.me/GOuQ2Ip0',
+      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
+      mapUrl: 'https://naver.me/GL8WMOyB',
     },
   },
 } as const;
