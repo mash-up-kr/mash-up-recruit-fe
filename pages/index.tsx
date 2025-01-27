@@ -6,7 +6,6 @@ import {
   RecruitingOpenHero,
   RecruitingPeriod,
   RecruitingRemainder,
-  NotRecruitmentPeriod,
 } from '@/components';
 import { CURRENT_GENERATION } from '@/constants';
 
@@ -28,8 +27,6 @@ const Home = ({ recruitScheduleArray }: HomeProps) => {
   useAOS();
 
   const recruitSchedule = generateRecruitSchedule(recruitScheduleArray);
-
-  const [isOpenNotRecruitMentModal, setIsOpenNotRecruitmentModal] = useState(true);
 
   const [recruitingProgressStatus, setRecruitingProgressStatus] = useState<
     RecruitingProgressStatus | 'NOT_INITIALIZED'
@@ -57,9 +54,9 @@ const Home = ({ recruitScheduleArray }: HomeProps) => {
           <RecruitingProcess recruitSchedule={recruitSchedule} />
           <RecruitingDetailNavigation />
 
-          {isOpenNotRecruitMentModal && (
+          {/* {isOpenNotRecruitMentModal && (
             <NotRecruitmentPeriod setIsOpenModal={setIsOpenNotRecruitmentModal} />
-          )}
+          )} */}
         </HomeLayout>
       )}
     </>
@@ -70,7 +67,7 @@ export default Home;
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const recruitScheduleResponse = await fetch(
-    `https://api.recruit.mash-up.kr/api/v1/applications/schedule/${CURRENT_GENERATION}`,
+    `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
   );
 
   if (!recruitScheduleResponse.ok) {
