@@ -44,3 +44,5 @@ export const INTERVIEW_LOCATION: {
     },
   },
 } as const;
+
+export const SEMINAR_RUNNING_HOUR = 3;
