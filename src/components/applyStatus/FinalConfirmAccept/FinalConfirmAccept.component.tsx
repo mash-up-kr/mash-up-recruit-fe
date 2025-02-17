@@ -23,7 +23,7 @@ const FinalConfirmAccept = ({ application, recruitSchedule }: FinalConfirmAccept
   );
 
   const groupChatInviteDayjs = afterFirstSeminalJoinDayjs.date(
-    afterFirstSeminalJoinDayjs.date() - 6,
+    afterFirstSeminalJoinDayjs.date() - 2,
   );
 
   const groupChatInviteDate = groupChatInviteDayjs.format(
