@@ -50,11 +50,11 @@ const FinalConfirmAccept = ({ application, recruitSchedule }: FinalConfirmAccept
           <Styled.OtDetailHeading>모집 프로세스 만족도 조사 설문 링크</Styled.OtDetailHeading>
           <Styled.OtDetailContent>
             <Styled.SatisfactionSurveyLink
-              href="https://forms.gle/bWbvuG2XVm9z3eNw9"
+              href="https://forms.gle/bfpbkhrZckeg5Sim8"
               target="_blank"
               rel="noreferrer"
             >
-              https://forms.gle/bWbvuG2XVm9z3eNw9
+              https://forms.gle/bfpbkhrZckeg5Sim8
             </Styled.SatisfactionSurveyLink>
           </Styled.OtDetailContent>
           <Styled.OtExplanationList>
