@@ -1,4 +1,4 @@
-import { CURRENT_GENERATION, DAYS, TEAM_NICK_NAME } from '@/constants';
+import { CURRENT_GENERATION, DAYS, TEAM_NICK_NAME, SEMINAR_RUNNING_HOUR } from '@/constants';
 import { Application, RecruitSchedule } from '@/types/dto';
 import { StatusDetailBackground } from '@/components';
 import dayjs from 'dayjs';
@@ -17,11 +17,13 @@ const FinalConfirmAccept = ({ application, recruitSchedule }: FinalConfirmAccept
   const afterFirstSeminalJoinDayjs = dayjs(AFTER_FIRST_SEMINAR_JOIN);
 
   const afterFirstSeminalJoinDate = afterFirstSeminalJoinDayjs.format(
-    `M월 D일(${DAYS[afterFirstSeminalJoinDayjs.day()]})`,
+    `M월 D일(${DAYS[afterFirstSeminalJoinDayjs.day()]}) H시 ~ ${
+      afterFirstSeminalJoinDayjs.hour() + SEMINAR_RUNNING_HOUR
+    }시`,
   );
 
   const groupChatInviteDayjs = afterFirstSeminalJoinDayjs.date(
-    afterFirstSeminalJoinDayjs.date() - 6,
+    afterFirstSeminalJoinDayjs.date() - 2,
   );
 
   const groupChatInviteDate = groupChatInviteDayjs.format(
@@ -42,17 +44,17 @@ const FinalConfirmAccept = ({ application, recruitSchedule }: FinalConfirmAccept
         </Styled.NoticeSection>
         <Styled.OtDetailSection>
           <Styled.OtDetailHeading>Mash-Up OT일시</Styled.OtDetailHeading>
-          <Styled.OtDetailContent>{`${afterFirstSeminalJoinDate} 오후 2시 ~ 5시`}</Styled.OtDetailContent>
+          <Styled.OtDetailContent>{`${afterFirstSeminalJoinDate}`}</Styled.OtDetailContent>
           <Styled.OtDetailHeading>준비물</Styled.OtDetailHeading>
           <Styled.OtDetailContent>노트북(선택), 그리고 열.정</Styled.OtDetailContent>
           <Styled.OtDetailHeading>모집 프로세스 만족도 조사 설문 링크</Styled.OtDetailHeading>
           <Styled.OtDetailContent>
             <Styled.SatisfactionSurveyLink
-              href="https://forms.gle/bWbvuG2XVm9z3eNw9"
+              href="https://forms.gle/bfpbkhrZckeg5Sim8"
               target="_blank"
               rel="noreferrer"
             >
-              https://forms.gle/bWbvuG2XVm9z3eNw9
+              https://forms.gle/bfpbkhrZckeg5Sim8
             </Styled.SatisfactionSurveyLink>
           </Styled.OtDetailContent>
           <Styled.OtExplanationList>
