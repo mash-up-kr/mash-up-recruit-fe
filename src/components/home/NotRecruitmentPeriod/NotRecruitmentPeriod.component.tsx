@@ -3,6 +3,7 @@ import mashong from '@/assets/images/mashong-coffee-3x-min.png';
 import { Dispatch, SetStateAction } from 'react';
 import Image from 'next/image';
 import { mashongCoffeeBase64 } from '@/assets/base64';
+import { CURRENT_GENERATION } from '@/constants';
 import * as Styled from './NotRecruitmentPeriod.styled';
 
 interface NotRecruitmentPeriodProps {
@@ -19,7 +20,7 @@ const NotRecruitmentPeriod = ({ setIsOpenModal }: NotRecruitmentPeriodProps) => 
       <Styled.Dialog>
         <Styled.Notify>지금은 모집 기간이 아니에요!</Styled.Notify>
         <Styled.Paragraph>
-          다음 기수 모집 시작은{'\n'}25년 1분기로 예정되어 있습니다.
+          다음 기수 모집 시작 일정에 대해{'\n'}아직은 정해진게 없어요 :)
         </Styled.Paragraph>
         <Styled.GoToOfficialPage href="https://mash-up.kr/">
           공식 홈페이지 바로가기
@@ -35,7 +36,7 @@ const NotRecruitmentPeriod = ({ setIsOpenModal }: NotRecruitmentPeriodProps) => 
             priority
           />
           <Styled.SpeechBubble>
-            <Styled.Speech>현재 14기가 활발히 활동 중이에요</Styled.Speech>
+            <Styled.Speech>현재 {CURRENT_GENERATION}기가 활발히 활동 중이에요</Styled.Speech>
             <Styled.SpeechDotBig />
             <Styled.SpeechDotSmall />
           </Styled.SpeechBubble>
