@@ -2,21 +2,21 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/deploy/mash-up-recruit-fe
+    destination: /home/ec2-user/deploy/mash-up-recruit-fe
     overwrite: yes
 
 permissions:
   - object: /
     pattern: '**'
-    owner: ubuntu
-    group: ubuntu
+    owner: ec2-user
+    group: ec2-user
 
 hooks:
   AfterInstall:
     - location: codedeploy/after-install.sh
       timeout: 600
-      runas: ubuntu
+      runas: ec2-user
   ApplicationStart:
     - location: codedeploy/application-start.sh
       timeout: 60
-      runas: ubuntu
+      runas: ec2-user
