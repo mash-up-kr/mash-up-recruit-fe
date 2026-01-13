@@ -11,36 +11,36 @@ export const INTERVIEW_TYPE: Record<InterviewTypeEn, InterviewTypeKr> = {
 export const INTERVIEW_LOCATION: {
   [date: string]: Record<TeamName, { address: string; mapUrl: string; type: InterviewTypeEn }>;
 } = {
-  '2025-02-22': {
+  '2026-02-21': {
     Design: {
       type: 'OFFLINE',
-      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
-      mapUrl: 'https://naver.me/GL8WMOyB',
+      address: '개별 공지',
+      mapUrl: '',
     },
     Web: {
       type: 'OFFLINE',
-      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
-      mapUrl: 'https://naver.me/GL8WMOyB',
+      address: '개별 공지',
+      mapUrl: '',
     },
     Android: {
       type: 'OFFLINE',
-      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
-      mapUrl: 'https://naver.me/GL8WMOyB',
+      address: '개별 공지',
+      mapUrl: '',
     },
     iOS: {
       type: 'OFFLINE',
-      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
-      mapUrl: 'https://naver.me/GL8WMOyB',
+      address: '개별 공지',
+      mapUrl: '',
     },
     Node: {
       type: 'OFFLINE',
-      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
-      mapUrl: 'https://naver.me/GL8WMOyB',
+      address: '개별 공지',
+      mapUrl: '',
     },
     Spring: {
       type: 'OFFLINE',
-      address: '서울 강남구 테헤란로 133 한국타이어빌딩 18층(마켓컬리)',
-      mapUrl: 'https://naver.me/GL8WMOyB',
+      address: '개별 공지',
+      mapUrl: '',
     },
   },
 } as const;
