@@ -27,7 +27,7 @@ interface HomeProps {
 const Home = ({ recruitScheduleArray }: HomeProps) => {
   useAOS();
 
-  const [isOpenNotRecruitMentModal, setIsOpenNotRecruitmentModal] = useState(true);
+  const [isOpenNotRecruitMentModal, setIsOpenNotRecruitmentModal] = useState(false);
 
   const recruitSchedule = generateRecruitSchedule(recruitScheduleArray);
 
