@@ -55,3 +55,5 @@ export const INTERVIEW_LOCATION: {
 } as const;
 
 export const SEMINAR_RUNNING_HOUR = 3;
+
+export const GOOGLE_FORM = 'https://forms.gle/TFAtaGeHJYhAW5CCA';
