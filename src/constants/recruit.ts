@@ -14,33 +14,42 @@ export const INTERVIEW_LOCATION: {
   '2026-02-21': {
     Design: {
       type: 'OFFLINE',
-      address: '개별 공지',
-      mapUrl: '',
+      address: '서울 강남구 선릉로 410 3층',
+      mapUrl: 'https://naver.me/5asmIxwS',
     },
     Web: {
       type: 'OFFLINE',
-      address: '개별 공지',
-      mapUrl: '',
+      address:
+        '서울시 강서구 마곡중앙8로 71 E13동 1층(마곡동 789) \n' +
+        'Lg sciencepark 바위가 있는 쪽 입구 \n' +
+        '(범한기술원 건너편 입구)',
+      mapUrl: 'https://naver.me/FytJPljP',
     },
     Android: {
       type: 'OFFLINE',
-      address: '개별 공지',
-      mapUrl: '',
+      address: '서울 서초구 서초대로40길 83 우제빌딩 2층',
+      mapUrl: 'https://naver.me/xyTMbrXQ',
     },
     iOS: {
       type: 'OFFLINE',
-      address: '개별 공지',
-      mapUrl: '',
+      address: '서울 서초구 서초대로40길 83 우제빌딩 2층',
+      mapUrl: 'https://naver.me/xyTMbrXQ',
     },
     Node: {
       type: 'OFFLINE',
-      address: '개별 공지',
-      mapUrl: '',
+      address:
+        '서울시 강서구 마곡중앙8로 71 E13동 1층(마곡동 789) \n' +
+        'Lg sciencepark 바위가 있는 쪽 입구 \n' +
+        '(범한기술원 건너편 입구)',
+      mapUrl: 'https://naver.me/FytJPljP',
     },
     Spring: {
       type: 'OFFLINE',
-      address: '개별 공지',
-      mapUrl: '',
+      address:
+        '서울시 강서구 마곡중앙8로 71 E13동 1층(마곡동 789) \n' +
+        'Lg sciencepark 바위가 있는 쪽 입구 \n' +
+        '(범한기술원 건너편 입구)',
+      mapUrl: 'https://naver.me/FytJPljP',
     },
   },
 } as const;
