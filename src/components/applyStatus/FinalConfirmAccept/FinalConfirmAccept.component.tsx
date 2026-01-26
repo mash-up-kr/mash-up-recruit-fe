@@ -1,4 +1,10 @@
-import { CURRENT_GENERATION, DAYS, TEAM_NICK_NAME, SEMINAR_RUNNING_HOUR } from '@/constants';
+import {
+  CURRENT_GENERATION,
+  DAYS,
+  TEAM_NICK_NAME,
+  SEMINAR_RUNNING_HOUR,
+  RECRUIT_FEEDBACK_GOOGLE_FORM,
+} from '@/constants';
 import { Application, RecruitSchedule } from '@/types/dto';
 import { StatusDetailBackground } from '@/components';
 import dayjs from 'dayjs';
@@ -50,11 +56,11 @@ const FinalConfirmAccept = ({ application, recruitSchedule }: FinalConfirmAccept
           <Styled.OtDetailHeading>모집 프로세스 만족도 조사 설문 링크</Styled.OtDetailHeading>
           <Styled.OtDetailContent>
             <Styled.SatisfactionSurveyLink
-              href="https://forms.gle/bfpbkhrZckeg5Sim8"
+              href={RECRUIT_FEEDBACK_GOOGLE_FORM}
               target="_blank"
               rel="noreferrer"
             >
-              https://forms.gle/bfpbkhrZckeg5Sim8
+              {RECRUIT_FEEDBACK_GOOGLE_FORM}
             </Styled.SatisfactionSurveyLink>
           </Styled.OtDetailContent>
           <Styled.OtExplanationList>
