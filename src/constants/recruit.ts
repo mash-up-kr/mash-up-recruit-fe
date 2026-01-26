@@ -56,4 +56,5 @@ export const INTERVIEW_LOCATION: {
 
 export const SEMINAR_RUNNING_HOUR = 3;
 
-export const GOOGLE_FORM = 'https://forms.gle/TFAtaGeHJYhAW5CCA';
+// 리크루팅에 대한 지원자들의 피드백을 받기 위한 구글 폼 링크
+export const RECRUIT_FEEDBACK_GOOGLE_FORM = 'https://forms.gle/TFAtaGeHJYhAW5CCA';

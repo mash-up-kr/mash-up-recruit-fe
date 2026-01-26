@@ -3,7 +3,7 @@ import {
   DAYS,
   TEAM_NICK_NAME,
   SEMINAR_RUNNING_HOUR,
-  GOOGLE_FORM,
+  RECRUIT_FEEDBACK_GOOGLE_FORM,
 } from '@/constants';
 import { Application, RecruitSchedule } from '@/types/dto';
 import { StatusDetailBackground } from '@/components';
@@ -55,8 +55,12 @@ const FinalConfirmAccept = ({ application, recruitSchedule }: FinalConfirmAccept
           <Styled.OtDetailContent>노트북(선택), 그리고 열.정</Styled.OtDetailContent>
           <Styled.OtDetailHeading>모집 프로세스 만족도 조사 설문 링크</Styled.OtDetailHeading>
           <Styled.OtDetailContent>
-            <Styled.SatisfactionSurveyLink href={GOOGLE_FORM} target="_blank" rel="noreferrer">
-              {GOOGLE_FORM}
+            <Styled.SatisfactionSurveyLink
+              href={RECRUIT_FEEDBACK_GOOGLE_FORM}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {RECRUIT_FEEDBACK_GOOGLE_FORM}
             </Styled.SatisfactionSurveyLink>
           </Styled.OtDetailContent>
           <Styled.OtExplanationList>
