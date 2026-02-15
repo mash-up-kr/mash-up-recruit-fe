@@ -12,12 +12,6 @@ export type RecruitingProgressStatus =
   | 'AFTER-FIRST-SEMINAR' // 지원 현황 결과 발표 숨김
   | 'INVALID';
 
-const getKSTDateFromDate = (date: Date) => {
-  const utcUnixTime = date.getTime() + date.getTimezoneOffset() * 60 * 1000;
-  const diffKSTFromUTC = 9 * 60 * 60 * 1000;
-  return new Date(utcUnixTime + diffKSTFromUTC);
-};
-
 export const getRecruitingProgressStatusFromRecruitingPeriod = ({
   date,
   recruitSchedule,
@@ -25,41 +19,41 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = ({
   date: Date;
   recruitSchedule: RecruitSchedule | null;
 }): RecruitingProgressStatus => {
-  const kstDate = getKSTDateFromDate(date);
-  const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
-
   if (recruitSchedule === null) {
     return 'INVALID';
   }
 
-  if (currentDate < recruitSchedule.RECRUITMENT_STARTED) {
+  // (20260215) AWS 환경에서의 타임존 이슈로 인해, date 객체를 timestamp로 변환하여 비교하도록 수정
+  const now = date.getTime();
+
+  if (now < recruitSchedule.RECRUITMENT_STARTED.getTime()) {
     return 'PREVIOUS';
   }
   if (
-    recruitSchedule.RECRUITMENT_STARTED <= currentDate &&
-    currentDate <= recruitSchedule.RECRUITMENT_ENDED
+    recruitSchedule.RECRUITMENT_STARTED.getTime() <= now &&
+    now <= recruitSchedule.RECRUITMENT_ENDED.getTime()
   ) {
     return 'IN-RECRUITING';
   }
   if (
-    recruitSchedule.RECRUITMENT_ENDED < currentDate &&
-    currentDate < recruitSchedule.SCREENING_RESULT_ANNOUNCED
+    recruitSchedule.RECRUITMENT_ENDED.getTime() < now &&
+    now < recruitSchedule.SCREENING_RESULT_ANNOUNCED.getTime()
   ) {
     return 'END-RECRUITING';
   }
   if (
-    recruitSchedule.SCREENING_RESULT_ANNOUNCED <= currentDate &&
-    currentDate < recruitSchedule.INTERVIEW_RESULT_ANNOUNCED
+    recruitSchedule.SCREENING_RESULT_ANNOUNCED.getTime() <= now &&
+    now < recruitSchedule.INTERVIEW_RESULT_ANNOUNCED.getTime()
   ) {
     return 'AFTER-SCREENING-ANNOUNCED';
   }
   if (
-    recruitSchedule.INTERVIEW_RESULT_ANNOUNCED <= currentDate &&
-    currentDate < recruitSchedule.AFTER_FIRST_SEMINAR_JOIN
+    recruitSchedule.INTERVIEW_RESULT_ANNOUNCED.getTime() <= now &&
+    now < recruitSchedule.AFTER_FIRST_SEMINAR_JOIN.getTime()
   ) {
     return 'AFTER-INTERVIEWING-ANNOUNCED';
   }
-  if (recruitSchedule.AFTER_FIRST_SEMINAR_JOIN <= currentDate) {
+  if (recruitSchedule.AFTER_FIRST_SEMINAR_JOIN.getTime() <= now) {
     return 'AFTER-FIRST-SEMINAR';
   }
   return 'INVALID';
