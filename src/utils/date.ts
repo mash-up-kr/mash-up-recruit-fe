@@ -1,7 +1,15 @@
+import dayjs, { Dayjs } from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import { KeyOf } from '@/types';
 import { DAYS } from '@/constants';
 import { RecruitSchedule, RecruitScheduleArray } from '@/types/dto';
 import { objectKeys } from './object';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+export const dayjsKST = (date?: dayjs.ConfigType): Dayjs => dayjs(date).tz('Asia/Seoul');
 
 export type RecruitingProgressStatus =
   | 'PREVIOUS'
@@ -59,15 +67,15 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = ({
   return 'INVALID';
 };
 
-export const getValueOfDateIntoObj = (dateInstance: Date) => {
-  const month = dateInstance.getMonth() + 1;
-  const date = dateInstance.getDate();
-  const hour24Format = dateInstance.getHours();
-  const isAfternoon = dateInstance.getHours() >= 12;
+export const getValueOfDateIntoObj = (dateInstance: Dayjs) => {
+  const month = dateInstance.month() + 1;
+  const date = dateInstance.date();
+  const hour24Format = dateInstance.hour();
+  const isAfternoon = hour24Format >= 12;
   const hour12Format = hour24Format > 12 ? hour24Format - 12 : hour24Format;
-  const minute = dateInstance.getMinutes().toString().padStart(2, '0');
-  const day = dateInstance.getDay();
-  const dayKr = DAYS[dateInstance.getDay()];
+  const minute = dateInstance.minute().toString().padStart(2, '0');
+  const day = dateInstance.day();
+  const dayKr = DAYS[day];
 
   return { month, date, hour24Format, hour12Format, isAfternoon, minute, day, dayKr };
 };

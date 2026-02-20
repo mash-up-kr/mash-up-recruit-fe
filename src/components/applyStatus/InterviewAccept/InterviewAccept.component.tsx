@@ -1,7 +1,6 @@
 import { Application } from '@/types/dto';
-import { getValueOfDateIntoObj } from '@/utils/date';
+import { dayjsKST, getValueOfDateIntoObj } from '@/utils/date';
 import { StatusDetailBackground } from '@/components';
-import dayjs from 'dayjs';
 import { INTERVIEW_LOCATION, INTERVIEW_TYPE } from '@/constants/recruit';
 import * as Styled from './InterviewAccept.styled';
 
@@ -10,13 +9,13 @@ interface InterviewAcceptProps {
 }
 
 const InterviewAccept = ({ application }: InterviewAcceptProps) => {
-  const interviewStartDateInstance = new Date(application.result.interviewStartedAt || '');
+  const interviewStartDateInstance = dayjsKST(application.result.interviewStartedAt || '');
 
   const { month, date, hour12Format, minute, dayKr, isAfternoon } = getValueOfDateIntoObj(
     interviewStartDateInstance,
   );
 
-  const targetDate = dayjs(application.result.interviewStartedAt).format('YYYY-MM-DD');
+  const targetDate = interviewStartDateInstance.format('YYYY-MM-DD');
   const targetPlatform = application.team.name;
 
   const targetInterviewLocation = INTERVIEW_LOCATION[targetDate]?.[targetPlatform];

@@ -7,7 +7,7 @@ import {
 } from '@/constants';
 import { Application, RecruitSchedule } from '@/types/dto';
 import { StatusDetailBackground } from '@/components';
-import dayjs from 'dayjs';
+import { dayjsKST } from '@/utils/date';
 import * as Styled from './FinalConfirmAccept.styled';
 
 interface FinalConfirmAcceptProps {
@@ -20,7 +20,7 @@ const FinalConfirmAccept = ({ application, recruitSchedule }: FinalConfirmAccept
 
   const { AFTER_FIRST_SEMINAR_JOIN } = recruitSchedule;
 
-  const afterFirstSeminalJoinDayjs = dayjs(AFTER_FIRST_SEMINAR_JOIN);
+  const afterFirstSeminalJoinDayjs = dayjsKST(AFTER_FIRST_SEMINAR_JOIN);
 
   const afterFirstSeminalJoinDate = afterFirstSeminalJoinDayjs.format(
     `M월 D일(${DAYS[afterFirstSeminalJoinDayjs.day()]}) H시 ~ ${
