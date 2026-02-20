@@ -13,8 +13,7 @@ import {
   useState,
 } from 'react';
 import { ConfirmModalDialog, StatusDetailBackground } from '@/components';
-import { getValueOfDateIntoObj } from '@/utils/date';
-import dayjs from 'dayjs';
+import { dayjsKST, getValueOfDateIntoObj } from '@/utils/date';
 import * as Styled from './ScreeningPass.styled';
 
 interface ScreeningPassProps {
@@ -37,7 +36,7 @@ const ScreeningPass = ({
 
   const { applicant, applicationId } = application;
 
-  const interviewStartDateInstance = new Date(application.result.interviewStartedAt || '');
+  const interviewStartDateInstance = dayjsKST(application.result.interviewStartedAt || '');
 
   const { month, date, hour12Format, minute, dayKr, isAfternoon } = getValueOfDateIntoObj(
     interviewStartDateInstance,
@@ -89,7 +88,7 @@ const ScreeningPass = ({
   };
 
   const { SCREENING_RESULT_ANNOUNCED } = recruitSchedule;
-  const screeningResultAnnouncedDayjs = dayjs(SCREENING_RESULT_ANNOUNCED);
+  const screeningResultAnnouncedDayjs = dayjsKST(SCREENING_RESULT_ANNOUNCED);
   const screeningResultAnnouncedNextDayjs = screeningResultAnnouncedDayjs.date(
     screeningResultAnnouncedDayjs.date() + 1,
   );

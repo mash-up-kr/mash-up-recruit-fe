@@ -19,7 +19,7 @@ import {
   StatusDetailBackground,
 } from '@/components';
 import { SubmitHandler } from 'react-hook-form';
-import dayjs from 'dayjs';
+import { dayjsKST } from '@/utils/date';
 import * as Styled from './InterviewPass.styled';
 
 interface InterviewPassProps {
@@ -95,7 +95,7 @@ const InterviewPass = ({
 
   const { INTERVIEW_RESULT_ANNOUNCED, AFTER_FIRST_SEMINAR_JOIN } = recruitSchedule;
 
-  const interviewResultAnnouncedDayjs = dayjs(INTERVIEW_RESULT_ANNOUNCED);
+  const interviewResultAnnouncedDayjs = dayjsKST(INTERVIEW_RESULT_ANNOUNCED);
 
   const joinResponseDeadlineDayjs = interviewResultAnnouncedDayjs
     .date(interviewResultAnnouncedDayjs.date() + 1)
@@ -107,7 +107,7 @@ const InterviewPass = ({
     `M월 D일(${DAYS[joinResponseDeadlineDayjs.day()]}) HH시 m분 s초`,
   );
 
-  const afterFirstSeminalJoinDayjs = dayjs(AFTER_FIRST_SEMINAR_JOIN);
+  const afterFirstSeminalJoinDayjs = dayjsKST(AFTER_FIRST_SEMINAR_JOIN);
 
   const afterFirstSeminalJoinDate = afterFirstSeminalJoinDayjs.format(
     `M월 D일(${DAYS[afterFirstSeminalJoinDayjs.day()]})`,

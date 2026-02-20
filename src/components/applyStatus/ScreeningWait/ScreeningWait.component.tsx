@@ -1,6 +1,6 @@
 import { StatusDetailBackground } from '@/components';
 import { RecruitSchedule } from '@/types/dto';
-import dayjs from 'dayjs';
+import { dayjsKST } from '@/utils/date';
 import { DAYS } from '@/constants';
 import * as Styled from './ScreeningWait.styled';
 
@@ -11,8 +11,8 @@ interface ScreeningWaitProps {
 const ScreeningWait = ({ recruitSchedule }: ScreeningWaitProps) => {
   const { SCREENING_RESULT_ANNOUNCED } = recruitSchedule;
 
-  const screeningResultAnnouncedDayjs = dayjs(SCREENING_RESULT_ANNOUNCED);
-  const screeningResultAnnounced = dayjs(recruitSchedule?.SCREENING_RESULT_ANNOUNCED).format(
+  const screeningResultAnnouncedDayjs = dayjsKST(SCREENING_RESULT_ANNOUNCED);
+  const screeningResultAnnounced = dayjsKST(recruitSchedule?.SCREENING_RESULT_ANNOUNCED).format(
     `M월 D일(${DAYS[screeningResultAnnouncedDayjs.day()]}) H시`,
   );
   return (
