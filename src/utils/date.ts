@@ -20,6 +20,11 @@ export type RecruitingProgressStatus =
   | 'AFTER-FIRST-SEMINAR' // 지원 현황 결과 발표 숨김
   | 'INVALID';
 
+// 날짜가 없거나(undefined) 유효하지 않으면 NaN을 반환한다. NaN과의 비교는 항상 false이므로
+// 해당 날짜가 필요한 분기만 건너뛰고, 판정할 수 없으면 최종적으로 INVALID에 도달한다.
+const getTimeOrNaN = (value: Date | undefined): number =>
+  value instanceof Date ? value.getTime() : NaN;
+
 export const getRecruitingProgressStatusFromRecruitingPeriod = ({
   date,
   recruitSchedule,
@@ -32,36 +37,38 @@ export const getRecruitingProgressStatusFromRecruitingPeriod = ({
   }
 
   // (20260215) AWS 환경에서의 타임존 이슈로 인해, date 객체를 timestamp로 변환하여 비교하도록 수정
+  // API가 일정을 비워 주면(예: 해당 기수 일정 미등록) generateRecruitSchedule이 빈 객체를 반환하므로,
+  // 각 날짜는 getTimeOrNaN으로 읽어 undefined에 .getTime()을 호출하지 않도록 한다.
   const now = date.getTime();
 
-  if (now < recruitSchedule.RECRUITMENT_STARTED.getTime()) {
+  if (now < getTimeOrNaN(recruitSchedule.RECRUITMENT_STARTED)) {
     return 'PREVIOUS';
   }
   if (
-    recruitSchedule.RECRUITMENT_STARTED.getTime() <= now &&
-    now <= recruitSchedule.RECRUITMENT_ENDED.getTime()
+    getTimeOrNaN(recruitSchedule.RECRUITMENT_STARTED) <= now &&
+    now <= getTimeOrNaN(recruitSchedule.RECRUITMENT_ENDED)
   ) {
     return 'IN-RECRUITING';
   }
   if (
-    recruitSchedule.RECRUITMENT_ENDED.getTime() < now &&
-    now < recruitSchedule.SCREENING_RESULT_ANNOUNCED.getTime()
+    getTimeOrNaN(recruitSchedule.RECRUITMENT_ENDED) < now &&
+    now < getTimeOrNaN(recruitSchedule.SCREENING_RESULT_ANNOUNCED)
   ) {
     return 'END-RECRUITING';
   }
   if (
-    recruitSchedule.SCREENING_RESULT_ANNOUNCED.getTime() <= now &&
-    now < recruitSchedule.INTERVIEW_RESULT_ANNOUNCED.getTime()
+    getTimeOrNaN(recruitSchedule.SCREENING_RESULT_ANNOUNCED) <= now &&
+    now < getTimeOrNaN(recruitSchedule.INTERVIEW_RESULT_ANNOUNCED)
   ) {
     return 'AFTER-SCREENING-ANNOUNCED';
   }
   if (
-    recruitSchedule.INTERVIEW_RESULT_ANNOUNCED.getTime() <= now &&
-    now < recruitSchedule.AFTER_FIRST_SEMINAR_JOIN.getTime()
+    getTimeOrNaN(recruitSchedule.INTERVIEW_RESULT_ANNOUNCED) <= now &&
+    now < getTimeOrNaN(recruitSchedule.AFTER_FIRST_SEMINAR_JOIN)
   ) {
     return 'AFTER-INTERVIEWING-ANNOUNCED';
   }
-  if (recruitSchedule.AFTER_FIRST_SEMINAR_JOIN.getTime() <= now) {
+  if (getTimeOrNaN(recruitSchedule.AFTER_FIRST_SEMINAR_JOIN) <= now) {
     return 'AFTER-FIRST-SEMINAR';
   }
   return 'INVALID';
