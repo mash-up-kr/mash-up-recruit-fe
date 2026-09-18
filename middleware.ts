@@ -19,14 +19,16 @@ export async function middleware(request: NextRequest) {
 
   const isBlockedPath = blockedPaths.find((path) => pathname.includes(path));
 
+  // fetch는 네트워크 수준 실패(연결 거부, DNS, TLS)에서 reject된다. 잡지 않으면
+  // 미들웨어가 던져 홈을 제외한 모든 요청이 500이 된다. 아래에서 5xx와 동일하게 처리한다.
   const recruitScheduleResponse = await fetch(
     `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
-  );
+  ).catch(() => null);
 
-  if (!recruitScheduleResponse.ok) {
+  if (!recruitScheduleResponse || !recruitScheduleResponse.ok) {
     // 404는 해당 기수 일정이 아직 등록되지 않은 상태이므로 페이지를 열어 둔다.
     // 일정이 없을 때의 처리는 각 페이지가 담당한다. (지원 버튼 비활성, /apply는 자체 리다이렉트)
-    if (recruitScheduleResponse.status === 404 || !isBlockedPath) {
+    if (recruitScheduleResponse?.status === 404 || !isBlockedPath) {
       return NextResponse.next();
     }
 
@@ -37,8 +39,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  const { data: recruitSchedules }: { data: RecruitScheduleArray } =
-    await recruitScheduleResponse.json();
+  // 에러 응답은 body가 { data: null }이므로 빈 배열로 떨어뜨린다. null이면 reduce에서 터진다.
+  const recruitScheduleBody = await recruitScheduleResponse.json().catch(() => null);
+  const recruitSchedules: RecruitScheduleArray = recruitScheduleBody?.data ?? [];
 
   const recruitSchedule = generateRecruitSchedule(recruitSchedules);
 
