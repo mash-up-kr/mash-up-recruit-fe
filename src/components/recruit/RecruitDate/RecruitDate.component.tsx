@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { RecruitSchedule } from '@/types/dto';
+import { isRecruitScheduleComplete } from '@/utils/date';
 import * as Styled from './RecruitDate.styled';
 
 interface RecruitDateProps {
@@ -7,6 +8,8 @@ interface RecruitDateProps {
 }
 
 const RecruitDate = ({ recruitSchedule }: RecruitDateProps) => {
+  if (!isRecruitScheduleComplete(recruitSchedule)) return null;
+
   const { RECRUITMENT_STARTED, RECRUITMENT_ENDED } = recruitSchedule;
 
   const DAYJS_RECRUITMENT_START_KST_DATE = dayjs(RECRUITMENT_STARTED);

@@ -1,6 +1,13 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { CURRENT_GENERATION, PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
+import {
+  CURRENT_GENERATION,
+  PlatformKey,
+  platformKeys,
+  platformMap,
+  platforms,
+  RECRUIT_SCHEDULE_REVALIDATE_SECONDS,
+} from '@/constants';
 import parser from '@/utils/editorjs-html';
 import { unescape, flow } from 'lodash-es';
 import {
@@ -87,8 +94,12 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
     `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
   );
 
+  // revalidate가 없으면 빌드 시점에 일정 조회가 실패했을 때 그 빈 값이 재배포 전까지 고정된다.
   if (!recruitScheduleResponse.ok) {
-    return { props: { platformName, recruitScheduleArray: [], html: '' } };
+    return {
+      props: { platformName, recruitScheduleArray: [], html: '' },
+      revalidate: RECRUIT_SCHEDULE_REVALIDATE_SECONDS,
+    };
   }
 
   const { data: recruitScheduleArray }: { data: RecruitScheduleArray } =
@@ -110,6 +121,7 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
       recruitScheduleArray,
       html,
     },
+    revalidate: RECRUIT_SCHEDULE_REVALIDATE_SECONDS,
   };
 };
 
