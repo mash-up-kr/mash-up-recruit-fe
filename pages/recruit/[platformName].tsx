@@ -108,15 +108,20 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
   const recruitScheduleBody = await recruitScheduleResponse.json().catch(() => null);
   const recruitScheduleArray: RecruitScheduleArray = recruitScheduleBody?.data ?? [];
 
-  const { data } = await adminApiService.getRecruitDataFromStorage({
-    accessToken: process.env.ADMIN_TOKEN,
-    key: platformName,
-  });
+  // adminApiService는 BaseApiService.handleError에서 항상 rethrow한다. 잡지 않으면
+  // 공고 저장소가 네트워크 수준으로 실패할 때 6개 플랫폼 페이지의 빌드가 전부 죽는다.
+  const recruitStorageResponse = await adminApiService
+    .getRecruitDataFromStorage({
+      accessToken: process.env.ADMIN_TOKEN,
+      key: platformName,
+    })
+    .catch(() => null);
 
-  const html = parser
-    .parse(data.valueMap.editorData)
-    .map(flow(removeWrongAmpString, unescape))
-    .join('');
+  const editorData = recruitStorageResponse?.data?.valueMap?.editorData;
+
+  const html = editorData
+    ? parser.parse(editorData).map(flow(removeWrongAmpString, unescape)).join('')
+    : '';
 
   return {
     props: {

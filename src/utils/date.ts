@@ -25,15 +25,19 @@ export type RecruitingProgressStatus =
 const getTimeOrNaN = (value: Date | undefined): number =>
   value instanceof Date ? value.getTime() : NaN;
 
-const RECRUIT_SCHEDULE_EVENTS: RecruitScheduleEvent[] = [
-  'RECRUITMENT_STARTED',
-  'RECRUITMENT_ENDED',
-  'SCREENING_RESULT_ANNOUNCED',
-  'INTERVIEW_START',
-  'INTERVIEW_END',
-  'INTERVIEW_RESULT_ANNOUNCED',
-  'AFTER_FIRST_SEMINAR_JOIN',
-];
+// 배열로 두면 RecruitScheduleEvent에 이벤트가 추가돼도 컴파일 에러 없이 조용히 빠진다.
+// Record로 두면 키가 빠졌을 때 여기서 타입 에러가 나므로 누락을 컴파일 타임에 잡는다.
+const RECRUIT_SCHEDULE_EVENT_MAP: Record<RecruitScheduleEvent, true> = {
+  RECRUITMENT_STARTED: true,
+  RECRUITMENT_ENDED: true,
+  SCREENING_RESULT_ANNOUNCED: true,
+  INTERVIEW_START: true,
+  INTERVIEW_END: true,
+  INTERVIEW_RESULT_ANNOUNCED: true,
+  AFTER_FIRST_SEMINAR_JOIN: true,
+};
+
+const RECRUIT_SCHEDULE_EVENTS = objectKeys(RECRUIT_SCHEDULE_EVENT_MAP);
 
 // 일정이 하나라도 비면 dayjs(undefined)가 '현재 시각'을 반환해 모든 날짜가 오늘로 렌더링된다.
 // 날짜를 그리는 쪽은 렌더 전에 이 검사를 통과시켜야 한다.
