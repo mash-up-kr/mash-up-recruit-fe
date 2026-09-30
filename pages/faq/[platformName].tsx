@@ -79,15 +79,21 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (context) => {
   const { platformName } = context.params!;
 
-  const { data } = await adminApiService.getFaqDataFromStorage({
-    accessToken: process.env.ADMIN_TOKEN,
-    key: platformName,
-  });
+  // adminApiService는 BaseApiService.handleError에서 항상 rethrow한다. 잡지 않으면
+  // FAQ 저장소가 네트워크 수준으로 실패할 때 7개 페이지의 빌드가 전부 죽는다.
+  const faqStorageResponse = await adminApiService
+    .getFaqDataFromStorage({
+      accessToken: process.env.ADMIN_TOKEN,
+      key: platformName,
+    })
+    .catch(() => null);
+
+  const blocks = faqStorageResponse?.data?.valueMap?.editorData?.blocks;
 
   return {
     props: {
       platformName,
-      questions: transformer({ blocks: data.valueMap.editorData.blocks }),
+      questions: blocks ? transformer({ blocks }) : [],
     },
   };
 };

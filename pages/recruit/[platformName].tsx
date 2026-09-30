@@ -1,6 +1,13 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { CURRENT_GENERATION, PlatformKey, platformKeys, platformMap, platforms } from '@/constants';
+import {
+  CURRENT_GENERATION,
+  PlatformKey,
+  platformKeys,
+  platformMap,
+  platforms,
+  RECRUIT_SCHEDULE_REVALIDATE_SECONDS,
+} from '@/constants';
 import parser from '@/utils/editorjs-html';
 import { unescape, flow } from 'lodash-es';
 import {
@@ -83,26 +90,38 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
 
   const removeWrongAmpString = (value: string) => value.replace(/&amp;/g, '&');
 
+  // fetch는 네트워크 수준 실패(연결 거부, DNS, TLS)에서 reject된다. 이때 잡지 않으면
+  // 빌드가 그대로 죽는다. 실제로 그렇게 배포가 실패한 적이 있다.
   const recruitScheduleResponse = await fetch(
     `${process.env.BASE_URL}/api/applications/schedule/${CURRENT_GENERATION}`,
-  );
+  ).catch(() => null);
 
-  if (!recruitScheduleResponse.ok) {
-    return { props: { platformName, recruitScheduleArray: [], html: '' } };
+  // revalidate가 없으면 빌드 시점에 일정 조회가 실패했을 때 그 빈 값이 재배포 전까지 고정된다.
+  if (!recruitScheduleResponse || !recruitScheduleResponse.ok) {
+    return {
+      props: { platformName, recruitScheduleArray: [], html: '' },
+      revalidate: RECRUIT_SCHEDULE_REVALIDATE_SECONDS,
+    };
   }
 
-  const { data: recruitScheduleArray }: { data: RecruitScheduleArray } =
-    await recruitScheduleResponse.json();
+  // 에러 응답은 body가 { data: null }이므로 빈 배열로 떨어뜨린다.
+  const recruitScheduleBody = await recruitScheduleResponse.json().catch(() => null);
+  const recruitScheduleArray: RecruitScheduleArray = recruitScheduleBody?.data ?? [];
 
-  const { data } = await adminApiService.getRecruitDataFromStorage({
-    accessToken: process.env.ADMIN_TOKEN,
-    key: platformName,
-  });
+  // adminApiService는 BaseApiService.handleError에서 항상 rethrow한다. 잡지 않으면
+  // 공고 저장소가 네트워크 수준으로 실패할 때 6개 플랫폼 페이지의 빌드가 전부 죽는다.
+  const recruitStorageResponse = await adminApiService
+    .getRecruitDataFromStorage({
+      accessToken: process.env.ADMIN_TOKEN,
+      key: platformName,
+    })
+    .catch(() => null);
 
-  const html = parser
-    .parse(data.valueMap.editorData)
-    .map(flow(removeWrongAmpString, unescape))
-    .join('');
+  const editorData = recruitStorageResponse?.data?.valueMap?.editorData;
+
+  const html = editorData
+    ? parser.parse(editorData).map(flow(removeWrongAmpString, unescape)).join('')
+    : '';
 
   return {
     props: {
@@ -110,6 +129,7 @@ export const getStaticProps: GetStaticProps<PlatformProps, Params> = async (cont
       recruitScheduleArray,
       html,
     },
+    revalidate: RECRUIT_SCHEDULE_REVALIDATE_SECONDS,
   };
 };
 

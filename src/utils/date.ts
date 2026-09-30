@@ -3,7 +3,7 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { KeyOf } from '@/types';
 import { DAYS } from '@/constants';
-import { RecruitSchedule, RecruitScheduleArray } from '@/types/dto';
+import { RecruitSchedule, RecruitScheduleArray, RecruitScheduleEvent } from '@/types/dto';
 import { objectKeys } from './object';
 
 dayjs.extend(utc);
@@ -24,6 +24,25 @@ export type RecruitingProgressStatus =
 // 해당 날짜가 필요한 분기만 건너뛰고, 판정할 수 없으면 최종적으로 INVALID에 도달한다.
 const getTimeOrNaN = (value: Date | undefined): number =>
   value instanceof Date ? value.getTime() : NaN;
+
+// 배열로 두면 RecruitScheduleEvent에 이벤트가 추가돼도 컴파일 에러 없이 조용히 빠진다.
+// Record로 두면 키가 빠졌을 때 여기서 타입 에러가 나므로 누락을 컴파일 타임에 잡는다.
+const RECRUIT_SCHEDULE_EVENT_MAP: Record<RecruitScheduleEvent, true> = {
+  RECRUITMENT_STARTED: true,
+  RECRUITMENT_ENDED: true,
+  SCREENING_RESULT_ANNOUNCED: true,
+  INTERVIEW_START: true,
+  INTERVIEW_END: true,
+  INTERVIEW_RESULT_ANNOUNCED: true,
+  AFTER_FIRST_SEMINAR_JOIN: true,
+};
+
+const RECRUIT_SCHEDULE_EVENTS = objectKeys(RECRUIT_SCHEDULE_EVENT_MAP);
+
+// 일정이 하나라도 비면 dayjs(undefined)가 '현재 시각'을 반환해 모든 날짜가 오늘로 렌더링된다.
+// 날짜를 그리는 쪽은 렌더 전에 이 검사를 통과시켜야 한다.
+export const isRecruitScheduleComplete = (recruitSchedule: RecruitSchedule): boolean =>
+  RECRUIT_SCHEDULE_EVENTS.every((event) => !Number.isNaN(getTimeOrNaN(recruitSchedule[event])));
 
 export const getRecruitingProgressStatusFromRecruitingPeriod = ({
   date,
